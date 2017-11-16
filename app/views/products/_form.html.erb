@@ -1,0 +1,81 @@
+<%= render 'shared/errors' %>
+<div class="panel panel-default">
+<div class="panel-heading">Ajouter votre article dans notre boutique</div>
+  <div class="panel-body">
+      <div class="container">
+        <%= form_for @product do |f| %>
+        <div class="row">
+          <div class="col-md-4 select">
+            <div class="form-group">
+              <label>Catégorie de Produit</label>
+                <%= f.select :category, [["Jupe","Jupe"], ["Pantallon","Pantallon"], ["Chapeau", "Chapeau"]], id: "home_type", prompt: "A sélectionner...", class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-4 select">
+            <div class="form-group">
+            <label>Etat de l'article</label>
+            <%= f.select :state, [["Neuf","Neuf"], ["Bon état","Bon état"],["Usé","Usé"], ["Mauvais état","Mauvais état"]], prompt: "A sélectionner...", class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-4 select">
+            <div class="form-group">
+            <label> Couleur de l'article ?</label>
+            <%= f.select :color, [["1 blanc",1], ["2 noir",2],["3 rouge", 3], ["4 bleu",4], ["5 vert",5], ["6 autre",6]], prompt: "A sélectionner...", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 select">
+            <div class="form-group">
+            <label>Marque</label>
+            <%= f.select :brand, [["1 repetto",1], ["2 louis vuitton",2], ["3 hermes", 3], ["4 zara",4]], prompt: "Sélectionner la marque", class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-4 select">
+            <div class="form-group">
+            <label>Taille</label>
+            <%= f.select :size, [["1 small",1], ["2 medium",2], ["3 large", 3], ["4 xetra-large",4]], prompt: "Sélectionner la taille", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+          <label>Donnez un nom au produit</label>
+          <%= f.text_field :name, placeholder: "Titre de l'article", class: "form-control" %>
+          </div>
+        </div>
+          <div class="row">
+            <div class="form-group">
+            <label>Description</label>
+            <%= f.text_area :description, rows:4, placeholder: "Décrivez le produit", class: "form-control" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+            <label>Adresse</label>
+            <%= f.text_field :address, placeholder: "Où est situé votre article ?", class: "form-control" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+              <label>Prix de l'article</label>
+                <div class="input-group">
+                <%= f.text_field :price, placeholder: "ex: 45€", class: "form-control" %>
+                  <div class="input-group-addon">€</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+            <%= f.check_box :active %> Annonce active
+            </div>
+          </div>
+          <div class="actions">
+          <%= f.submit "Je valide mon annonce", class: "btn btn-primary"%>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
