@@ -12,7 +12,7 @@ gem 'rails', '5.1.4'
 gem 'redis'
 gem "paperclip", "~> 5.0.0"
 gem "toastr-rails"
-
+gem 'paperclip-cloudinary'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
