@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
 
 before_action :set_product, only: [:show, :edit, :update]
 before_action :authenticate_user!, except: [:show]
+before_action :require_same_user, only: [:edit, :update]
 
 def index
   @products = current_user.products
@@ -14,21 +15,35 @@ end
 def create
   @product = current_user.products.build(product_params)
   if @product.save
-    redirect_to @product, notice:"Votre article a été ajouté avec succés"
+    if params[:images]
+      params[:images].each do |i|
+        @product.photos.create(image: i)
+      end
+    end
+    @photos = @product.photos
+    redirect_to edit_product_path(@product), notice:"Votre article a été ajouté avec succés"
   else
     render :new
   end
 end
 
 def show
+  @photos = @product.photos
 end
 
 def edit
+  @photos = @product.photos
 end
 
 def update
   if @product.update(product_params)
-    redirect_to @product, notice:"Modification enregistrée"
+    if params[:images]
+      params[:images].each do |i|
+        @product.photos.create(image: i)
+      end
+    end
+    @photos = @product.photos
+    redirect_to edit_product_path(@product), notice:"Modification enregistrée"
   else
     render :edit
   end
@@ -43,4 +58,10 @@ private
     params.require(:product).permit(:name, :description, :brand, :category, :color, :size, :state, :price, :address, :active)
   end
 
+  def require_same_user
+    if current_user.id != @product.user_id
+      flash[:danger] = "Vous n'avez pas le droit de modifier cette page"
+      redirect_to root_path
+    end
+  end
 end
