@@ -13,6 +13,7 @@ gem 'redis'
 gem "paperclip", "~> 5.0.0"
 gem "toastr-rails"
 gem 'paperclip-cloudinary'
+gem 'geocoder'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
