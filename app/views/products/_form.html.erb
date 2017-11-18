@@ -17,24 +17,24 @@
             <%= f.select :state, [["Neuf","Neuf"], ["Bon état","Bon état"],["Usé","Usé"], ["Mauvais état","Mauvais état"]], prompt: "A sélectionner...", class: "form-control" %>
             </div>
           </div>
-          <div class="col-md-4 select">
+          <div class="col-md-4">
             <div class="form-group">
             <label> Couleur de l'article ?</label>
-            <%= f.select :color, [["1 blanc",1], ["2 noir",2],["3 rouge", 3], ["4 bleu",4], ["5 vert",5], ["6 autre",6]], prompt: "A sélectionner...", class: "form-control" %>
+             <%= f.text_field :color, placeholder: "bleu..blanc..rouge..", class: "form-control" %>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4 select">
+          <div class="col-md-4">
             <div class="form-group">
             <label>Marque</label>
-            <%= f.select :brand, [["1 repetto",1], ["2 louis vuitton",2], ["3 hermes", 3], ["4 zara",4]], prompt: "Sélectionner la marque", class: "form-control" %>
+             <%= f.text_field :brand, placeholder: "Le comptoir des cotoniers..", class: "form-control" %>
             </div>
           </div>
-          <div class="col-md-4 select">
+          <div class="col-md-4">
             <div class="form-group">
             <label>Taille</label>
-            <%= f.select :size, [["1 small",1], ["2 medium",2], ["3 large", 3], ["4 xetra-large",4]], prompt: "Sélectionner la taille", class: "form-control" %>
+            <%= f.text_field :size, placeholder: "small...medium...36..38..", class: "form-control" %>
             </div>
           </div>
         </div>
