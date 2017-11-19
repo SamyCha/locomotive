@@ -29,7 +29,6 @@
               </div>
               <div class="col-sm-3">
               <i class="fa fa-level-up fa-2x" aria-hidden="true"></i>
-
               </div>
               <div class="col-sm-3">
               <i class="fa fa-adjust fa-2x" aria-hidden="true"></i>
@@ -38,16 +37,16 @@
             </div>
             <div class="row text-center">
               <div class="col-sm-3">
-              <%= @product.category %>
+              CATEGORIE: <%= @product.category %>
               </div>
               <div class="col-sm-3">
-              <%= @product.brand %>
+              MARQUE: <%= @product.brand %>
               </div>
               <div class="col-sm-3">
-              <%= @product.size %>
+              TAILLE: <%= @product.size %>
               </div>
               <div class="col-sm-3">
-              <%= @product.color %>
+              COULEUR: <%= @product.color %>
               </div>
             </div>
           </div>
@@ -55,6 +54,7 @@
       </div>
       <div class="col-md-4">
       <!-- Formulaire de réservation -->
+      <%= render 'reservations/form' %>
     </div>
   </div>
   <!-- Description -->

@@ -13,5 +13,20 @@
       <div class="description row-space-3">
         <%= @user.description %>
       </div>
+      <h4>Articles (<%= @products.length %>)</h4><br>
+        <div class="row">
+          <% @products.each do |product| %>
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading preview">
+                <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
+              </div>
+              <div class="panel-body">
+                <%= link_to product.name, product %>
+              </div>
+            </div>
+          </div>
+          <% end %>
+      </div>
   </div>
 </div>

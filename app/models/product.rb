@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :user
   has_many :photos
+  has_many :reservations
 
   validates :name, presence: true, length: {maximum: 30}
   validates :description, presence: true, length: {maximum: 75}
@@ -15,6 +16,5 @@ class Product < ApplicationRecord
 
 geocoded_by :address
 after_validation :geocode, if: :address_changed?
-
 
 end

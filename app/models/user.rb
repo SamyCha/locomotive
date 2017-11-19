@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :pseudo, presence:true, length: {maximum: 50}
 
   has_many :products
+  has_many :reservations
 
 
 
