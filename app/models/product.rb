@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :photos
   has_many :reservations
+  has_many :reviews
 
   validates :name, presence: true, length: {maximum: 30}
   validates :description, presence: true, length: {maximum: 75}
@@ -16,5 +17,9 @@ class Product < ApplicationRecord
 
 geocoded_by :address
 after_validation :geocode, if: :address_changed?
+
+  def average_rating
+    reviews.count == 0 ? 0 : reviews.average(:star).round(2)
+  end
 
 end
