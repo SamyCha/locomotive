@@ -14,6 +14,7 @@ gem "paperclip", "~> 5.0.0"
 gem "toastr-rails"
 gem 'paperclip-cloudinary'
 gem 'geocoder'
+gem 'jquery-ui-rails'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'

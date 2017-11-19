@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require toastr
+//= require jquery-ui
 //= require_tree .
 
 toastr.options = {

@@ -100,6 +100,35 @@
       </div>
     </div>
     </br>
+
+
+<!-- Reviews -->
+
+ <div class="row">
+
+      <div class="col-md-12">
+
+            <h3>Commentaires <%= @product.average_rating %> (<%= @reviews.count %>)</h3>
+
+            <div class="container">
+
+                <div>
+
+                    <%= render 'reviews/form' if @booked && !@hasReview %>
+
+                </div>
+
+                <div>
+
+                    <%= render 'reviews/list' %>
+
+                </div>
+
+           </div>
+
+        </div>
+
+ </div>
     <!-- Google maps -->
     <div class="row">
       <div class="col-md-12">
@@ -144,3 +173,11 @@
 
   </div>
 </div>
+
+<script>
+            $('#average_rating').raty({
+                path: '/assets',
+                readOnly: true,
+                score: <%= @product.average_rating %>
+            });
+</script>

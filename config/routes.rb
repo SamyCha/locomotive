@@ -8,6 +8,7 @@ resources :users, only: [:show]
 
 resources :products do
   resources :reservations, only: [:create]
+  resources :reviews, only: [:create, :destroy]
 end
 
 resources :photos
