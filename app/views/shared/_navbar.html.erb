@@ -31,17 +31,15 @@
           <%= image_tag avatar_url(current_user), class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
        <%= current_user.pseudo %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
+            <li class="sidebar-item"><%= link_to "Mes articles", products_path, class: "sidebar-link" %></li>
+            <li class="sidebar-item"><%= link_to "Mes ventes", your_reservations_path, class: "sidebar-link" %></li>
+            <li class="sidebar-item"><%= link_to "Mes achats", your_articles_path, class: "sidebar-link" %></li>
+            <li class="sidebar-item">
               <%= link_to edit_user_registration_path do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
               <% end %>
             </li>
-            <li>
-              <%= link_to root_path do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
-              <% end %>
-            </li>
-            <li>
+            <li class="sidebar-item">
               <%= link_to destroy_user_session_path, method: :delete do %>
                 <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
               <% end %>
@@ -58,12 +56,21 @@
   <!-- Dropdown list appearing on mobile only -->
   <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <% if user_signed_in? %>
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+      <li class="sidebar-item"><%= link_to "Mes articles", products_path, class: "sidebar-link" %></li>
+      <li class="sidebar-item"><%= link_to "Mes ventes", your_reservations_path, class: "sidebar-link" %></li>
+      <li class="sidebar-item"><%= link_to "Mes achats", your_articles_path, class: "sidebar-link" %></li>
+      <li class="sidebar-item"><%= link_to edit_user_registration_path do %><i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+      <% end %>
+      </li>
+      <li class="sidebar-item"><%= link_to destroy_user_session_path, method: :delete do %><i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+      <% end %>
+      </li>
       </ul>
+      <% end %>
     </div>
   </div>
 </div>

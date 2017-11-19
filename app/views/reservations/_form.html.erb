@@ -1,0 +1,38 @@
+<%= form_for([@product, @product.reservations.new]) do |f| %>
+<div class= "row">
+  <div class="col-md-12 price_tag text-center">
+    <span><%= @product.price %> euros</span>
+  </div>
+</div>
+<!--
+<div class="row">
+  <div class="col-md-6">
+    <label>article:</label>
+  </div>
+  <div class="col-md-6">
+    <label><%= @product.name %></label>
+  </div>
+ </div>
+
+
+<div id="preview" style="display: none">
+  <table class="reservation-table" >
+    <tbody>
+      <tr>
+        <td>Nuit(s)</td>
+        <td><span id="reservation_days"></span></td>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td><span id="reservation_sum"></span>€</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+-->
+  <%= f.hidden_field :product_id, value: @product.id %>
+  <%= f.hidden_field :price, value: @product.price %>
+  <%= f.hidden_field :total, id: 'reservation_total' %>
+ <br>
+  <%= f.submit "Reserver cet article", class: "btn btn-primary wide" %>
+ <% end %>
