@@ -3,7 +3,7 @@ class ReservationsController < ApplicationController
 
 def create
   @reservation = current_user.reservations.create(reservation_params)
-  redirect_to @reservation.product
+  redirect_to @reservation.product, notice:  'Votre réservation a été acceptée'
 end
 
 def your_articles
