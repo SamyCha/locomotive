@@ -15,6 +15,7 @@ gem "toastr-rails"
 gem 'paperclip-cloudinary'
 gem 'geocoder'
 gem 'jquery-ui-rails'
+gem 'ransack'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
