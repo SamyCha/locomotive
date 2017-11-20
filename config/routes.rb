@@ -13,6 +13,11 @@ end
 
 resources :photos
 
+resources :conversations, only: [:index, :create] do
+  resources :messages, only: [:index, :create]
+end
+
+
 get 'your_articles' => 'reservations#your_articles'
 get '/your_reservations' => 'reservations#your_reservations'
 get '/search' => 'pages#search'

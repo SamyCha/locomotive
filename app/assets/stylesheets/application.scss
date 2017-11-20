@@ -267,3 +267,14 @@ input[type="checkbox"]:checked:before {
   color: #82888a;
   text-decoration: none;
  }
+
+/* Espace de conversation */
+.conversation {
+  color: #7f7f7f;
+  padding: 10px;
+ }
+
+ .conversation:hover, .conversation:focus {
+  background-color: #F4F4F5;
+ }
+
