@@ -28,5 +28,26 @@
           </div>
           <% end %>
       </div>
+
+<!--Review pour utilisateur -->
+<h4>Evaluations</h4><br>
+  <% @products.each do |product| %>
+  <% if !product.reviews.blank? %>
+  <% product.reviews.each do |review| %>
+  <div class="row">
+    <div class="col-md-2 text-center">
+    <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %><br>
+    <%= review.user.pseudo %>
+    </div>
+    <div class="col-md-10">
+    <%= link_to product.name, product %><br>
+    <%= review.comment %><br>
+    <%= review.created_at.strftime("(%d/%m/%y)") %>
+    </div>
+  </div>
+  <% end %>
+  <% end %>
+  <% end %>
+
   </div>
 </div>
