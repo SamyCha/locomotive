@@ -3,6 +3,7 @@
 //= require bootstrap-sprockets
 //= require toastr
 //= require jquery-ui
+//= require rails-timeago-all
 //= require_tree .
 
 toastr.options = {

@@ -16,6 +16,7 @@ gem 'paperclip-cloudinary'
 gem 'geocoder'
 gem 'jquery-ui-rails'
 gem 'ransack'
+gem 'rails-timeago'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
