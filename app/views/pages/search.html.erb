@@ -1,0 +1,20 @@
+<div class="row">
+  <% if @arrProducts.empty? %>Aucune annonce ne correpond à votre recherche.
+  <% else %>
+    <% @arrProducts.each do |product| %>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading preview">
+          <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
+        </div>
+        <div class="panel-body">
+          <%= image_tag avatar_url(product.user), class:"img-circle avatar-small" %>
+          <%= link_to product.name, product %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+
