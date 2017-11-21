@@ -4,15 +4,15 @@ class ReservationsController < ApplicationController
 def create
   @reservation = current_user.reservations.create(reservation_params)
     if @reservation.persisted?
-      @payment = Payment.new({ email: User.find(@reservation.user_id).email, token: params[:payment]["token"], reservation_id: @reservation.id, amount: @reservation.price }) #on teste d’abord la création d’un paiement avec les renseignements de la réservation (email, prix total) et du champ carte bleue
-        begin # process du paiement
+      @payment = Payment.new({ email: User.find(@reservation.user_id).email, token: params[:payment]["token"], reservation_id: @reservation.id, amount: @reservation.price })
+              begin
           @payment.process_payment
             if @payment.save
               AppMailer.new_reservation(Product.find(@reservation.product_id), @reservation).deliver_now
                 redirect_to @reservation.product, notice: "Votre réservation a été acceptée"
             end
         rescue Exception
-          @reservation.destroy #on détruit la réservation crée si échec paiement
+          @reservation.destroy
             puts 'Le paiement a échoué'
               redirect_to @reservation.product, notice: "Votre paiement a été refusé"
         end

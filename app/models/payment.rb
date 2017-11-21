@@ -15,7 +15,7 @@ belongs_to :user
   def process_payment
     customer = Stripe::Customer.create email: email, card: token
     Stripe::Charge.create customer: customer.id,
-    amount: Reservation.last.total*100,
+    amount: Reservation.last.price*100,
     description: 'Réservation les armoires de Paris',
     currency: 'eur'
   end
