@@ -19,6 +19,7 @@ gem 'ransack'
 gem 'rails-timeago'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'stripe'
 
 
 gem 'autoprefixer-rails'

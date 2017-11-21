@@ -1,4 +1,4 @@
-<%= form_for([@product, @product.reservations.new]) do |f| %>
+<%= form_for([@product, @product.reservations.new], html: { class: 'cc_form' }) do |f| %>
 <div class= "row">
   <div class="col-md-12 price_tag text-center">
     <span><%= @product.price %> euros</span>
@@ -30,9 +30,45 @@
   </table>
 </div>
 -->
+
+<br>
+<h5><span id="stripe"></span></h5>
+ <%= fields_for( :payment ) do |p| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group col-md-9">
+      <%= p.label :card_number, "Numéro CB", data: { stripe: 'label'} %>
+      <%= p.text_field :card_number, class: "form-control", required: true, data: { stripe: 'number'} %>
+      </div>
+      <div class="form-group col-md-3">
+      <%= p.label :card_cvv, "CVV", data: { stripe: 'label'} %>
+      <%= p.text_field :card_cvv, class: "form-control", required: true, data: { stripe: 'cvv'} %>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="col-md-12">
+      <%= p.label :card_expires, "Expire fin :", data: { stripe: 'label'} %>
+      </div>
+      <div class="form-group col-md-5">
+      <%= p.select :card_expires_month, options_for_select(Payment.month_options), { include_blank: 'Mois' }, "data-stripe" => "exp-month", class: "form-control", required: true %>
+      </div>
+      <div class="form-group col-md-6">
+      <%= p.select :card_expires_year, options_for_select(Payment.year_options.push), { include_blank: 'Année' }, class: "form-control", data: { stripe: "exp-year" }, required: true %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
   <%= f.hidden_field :product_id, value: @product.id %>
   <%= f.hidden_field :price, value: @product.price %>
   <%= f.hidden_field :total, id: 'reservation_total' %>
+
+
  <br>
   <%= f.submit "Reserver cet article", class: "btn btn-primary wide" %>
  <% end %>
+
+<script language="Javascript">
+  Stripe.setPublishableKey('pk_test_0h7PJnKsS4d2QQNgm7nUgP1T');
+</script>
