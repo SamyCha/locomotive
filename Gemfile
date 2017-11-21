@@ -17,6 +17,9 @@ gem 'geocoder'
 gem 'jquery-ui-rails'
 gem 'ransack'
 gem 'rails-timeago'
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
