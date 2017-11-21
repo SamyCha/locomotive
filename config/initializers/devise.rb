@@ -9,7 +9,7 @@ Devise.setup do |config|
   # config.secret_key = '8884bf2790ffcc6d47fd8b83075bf7b6b8dd940b8fb888311c87450c89909d1a1a96adf09e80d09b666afcb1b506f18c3084863fc693f464356333f009e206fd'
   case Rails.env
     when "development"
-    config.omniauth :facebook, '146371526098057', '646ecfb97fcc9bb53c4380afa985feeb', scope: "email", info_fields: 'email,name'
+    config.omniauth :facebook, '146371526098057', '62a51199b790deaa951d0c6f371a88923', scope: "email", info_fields: 'email,name'
     when "production"
     config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], scope: "email", info_fields: 'email,name'
   end
