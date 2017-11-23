@@ -6,8 +6,10 @@ class: "sidebar-link" %></li>
   <li class="sidebar-item"><i class="fa fa-money" aria-hidden="true"></i>
  <%= link_to "Mes ventes", your_reservations_path,
 class: "sidebar-link active" %></li>
-  <li class="sidebar-item"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <%= link_to "Mes achats", your_articles_path,
-class: "sidebar-link" %></li>
+<li class="sidebar-item">
+      <%= link_to new_product_path do %>
+      <i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un article à la boutique
+    <% end %></li>
   </ul>
   </div>
 

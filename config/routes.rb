@@ -23,5 +23,7 @@ get 'your_articles' => 'reservations#your_articles'
 get '/your_reservations' => 'reservations#your_reservations'
 get '/search' => 'pages#search'
 
+get 'contact' => 'pages#contact'
+
 end
 
