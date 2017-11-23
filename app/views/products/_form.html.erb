@@ -1,6 +1,10 @@
 <%= render 'shared/errors' %>
 <div class="panel panel-default">
-<div class="panel-heading">Ajouter votre article dans notre boutique</div>
+
+<div class="panel-heading">
+<i class="fa fa-plus-circle" aria-hidden="true"></i>
+ Ajouter votre article dans notre boutique
+</div>
   <div class="panel-body">
       <div class="container">
         <%= form_for @product, html: {multipart: true} do |f| %>
@@ -81,11 +85,14 @@
           <div id="photos">
           <%= render 'photos/list' %>
           </div>
+
+
           <div class="row">
             <div class="form-group">
             <%= f.check_box :active %> Annonce active
             </div>
           </div>
+
           <div class="actions">
           <%= f.submit "Je valide mon annonce", class: "btn btn-primary"%>
           </div>

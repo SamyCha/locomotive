@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :search]
+  skip_before_action :authenticate_user!, only: [:home, :search, :contact]
 
   def home
     @products = Product.order("RANDOM()").where(active: true).limit(4)
@@ -19,4 +19,9 @@ def search
       @products = @search.result
       @arrProducts = @products.to_a
   end
+
+
+  def contact
+  end
+
 end

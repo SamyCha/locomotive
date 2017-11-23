@@ -1,4 +1,36 @@
-<%= render "banner" %>
+  <%= render "banner" %>
+<div class="container">
+      <div class="row text-center">
+        <div class="col-xs-12 col-sm-12">
+          <h4>Les armoires de Paris</h4>
+           <p>_______________________________</p>
+          <p>Triari nullo perdiscere ille eius inquam dissentientium ut in quo disputando inquam ut quae solent tum dicas a potest cum.</p>
+        </div>
+      </div>
+
+
+
+  <div class="row">
+  <h4><%= link_to "Découvrez nos derniers articles", search_path %></h4>
+      <% @products.each do |product| %>
+
+
+          <div class="col-xs-12 col-sm-4">
+              <div class="panel panel-default">
+                  <div class="panel-heading preview">
+                      <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
+                  </div>
+                  <div class="panel-body">
+                      <p class="home-link"><b><%= link_to product.price, product_path(product) %> € - <%= link_to product.category, product_path(product) %> - <%= link_to pluralize("taille:", product.size), product_path(product) %></b>
+                      <br><%= link_to product.name, product_path(product) %></p>
+                  </div>
+              </div>
+          </div>
+      <% end %>
+    </div>
+
+
+
 
     <div class="text-center padded features">
       <div class="row">
@@ -25,24 +57,4 @@
       </div>
     </div>
 
-<div class="row">
-<h3><%= link_to "Découvrez nos articles", search_path %></h3>
-    <% @products.each do |product| %>
-
-
-
-
-        <div class="col-xs-12 col-sm-3">
-            <div class="panel panel-default">
-                <div class="panel-heading preview">
-                    <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
-                </div>
-                <div class="panel-body">
-                    <p class="home-link"><b><%= link_to product.price, product_path(product) %> € - <%= link_to product.category, product_path(product) %> - <%= link_to pluralize("taille:", product.size), product_path(product) %></b>
-                    <br><%= link_to product.name, product_path(product) %></p>
-                </div>
-            </div>
-        </div>
-    <% end %>
-  </div>
-
+</div>
