@@ -7,18 +7,12 @@
             <div class="landing-tab-form">
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active text-center" id="landing-atelier">
-                <h2>Trouvez un article</h2>
-                <%= form_tag search_path, method: :get do %>
-                  <div class="row">
-                    <div class="col-md-6">
-                    <%= text_field_tag :search, params[:search], placeholder: "Tapez une adresse...",
-                    class:"form-control" %>
-                    </div>
-                    <div class="col-md-2">
-                    <%= submit_tag "Rechercher", class:"btn btn-primary btn-sm" %>
-                    </div>
-                  </div>
-                  <% end %>
+                <h3>Trouvez un article</h3>
+                <p>par nom, par categorie, par marque...</p>
+                    <%= form_tag(search_path, method: :get) do %>
+                      <%= text_field_tag :name %>
+                      <%= submit_tag 'Rechercher', class:"btn btn-info" %>
+                    <% end %>
                 </div>
 
                 <div role="tabpanel" class="tab-pane" id="landing-recette">

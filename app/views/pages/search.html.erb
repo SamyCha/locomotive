@@ -1,7 +1,6 @@
 <div class="row">
-  <% if @arrProducts.empty? %>Aucune annonce ne correpond à votre recherche.
-  <% else %>
-    <% @arrProducts.each do |product| %>
+
+    <% @products.each do |product| %>
     <div class="col-xs-12 col-sm-4">
 
 
@@ -49,7 +48,7 @@
 
     </div>
   <% end %>
-<% end %>
+
 </div>
 
 

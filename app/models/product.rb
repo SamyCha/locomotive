@@ -1,4 +1,10 @@
 class Product < ApplicationRecord
+
+#barre de recherche de produit
+include PgSearch
+  pg_search_scope :search_by_name against: [ :name ]
+
+
   belongs_to :user
   has_many :photos
   has_many :reservations
