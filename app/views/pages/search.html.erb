@@ -2,7 +2,38 @@
   <% if @arrProducts.empty? %>Aucune annonce ne correpond à votre recherche.
   <% else %>
     <% @arrProducts.each do |product| %>
-    <div class="col-md-4">
+    <div class="col-xs-12 col-sm-4">
+
+
+<div class="container">
+      <p class="text-center"></p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-picture">
+            <%= image_tag product.photos[0].image.url, width: 310, height: 150, crop: :fill if product.photos.length > 0 %>
+              <div class="card-hover">
+                <h4><%= link_to product.name, product %></h4>
+                <p><%= link_to product.description, product %></p>
+              </div>
+            </div>
+            <div class="card-likes">
+              <ul class="list-inline">
+                <li><i class="fa fa-female" aria-hidden="true"></i><%= link_to product.category, product %></li>
+                <li><i class="fa fa-black-tie" aria-hidden="true"></i><%= link_to product.brand, product %></li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-footer">
+             <%= image_tag avatar_url(product.user), class:"img-circle avatar-small" %>
+            <a href="#">SamyCha</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!--
       <div class="panel panel-default">
         <div class="panel-heading preview">
           <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
@@ -12,6 +43,10 @@
           <%= link_to product.name, product %>
         </div>
       </div>
+-->
+
+
+
     </div>
   <% end %>
 <% end %>
