@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     @products = Product.order("RANDOM()").where(active: true).limit(4)
   end
 
-def search
+    def search
       if params[:search].present? && params[:search].strip != ""
          session[:airmoires_search] = params[:search]
       end
@@ -15,10 +15,11 @@ def search
       else
          @products_address = Product.where(active: true).all
       end
-      @search = @products_address.ransack(params[:q])
-      @products = @search.result
-      @arrProducts = @products.to_a
-  end
+        @search = @products_address.ransack(params[:q])
+        @products = @search.result
+        @arrProducts = @products.to_a
+      #on peut ici ajouter des conditions supplémentaires
+      end
 
 
   def contact
