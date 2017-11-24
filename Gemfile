@@ -20,6 +20,8 @@ gem 'rails-timeago'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'stripe'
+gem 'activeadmin', github: 'activeadmin/activeadmin'
+
 
 
 gem 'autoprefixer-rails'
