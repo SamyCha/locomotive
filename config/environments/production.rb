@@ -5,7 +5,18 @@ Paperclip::Attachment.default_options.merge!({
   :path=> 'id/:style/:filename'
   })
 
-  config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
+  config.action_mailer.default_url_options = { host: "https://armoires-web.herokuapp.com" }
+  config.action_mailer.delivery_method = :smtp
+
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
+    :domain => 'heroku.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -68,6 +79,9 @@ Paperclip::Attachment.default_options.merge!({
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "_vide-dressing_#{Rails.env}"
   config.action_mailer.perform_caching = false
+
+
+
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
