@@ -69,7 +69,7 @@
     <% else %>
       <!-- Login link (when logged out) -->
       <%= link_to t(".sign_in", default: "INSCRIPTION"),  new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to t(".sign_in", default: "DEVENIR VENDEUSE"),   contact_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to t(".sign_in", default: "DEVENIR VENDEUSE"),   new_contact_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to t(".sign_in", default: "CONNEXION"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
