@@ -223,8 +223,7 @@ input[type="checkbox"]:checked:before {
  }
 
 .panel-heading.preview img{
-  height: 200px;
-  width: 340px;
+  width: 100%;
  }
 
 
@@ -307,5 +306,43 @@ input[type="checkbox"]:checked:before {
   border-color: #2b2eb2;
   background-color: #2b2ebB2;
   outline:none;
+ }
+
+/* Map */
+#wrapper {
+  width:960px;
+  margin:0 auto;
+ }
+
+#sidebar {
+  float:right;
+  width:340px;
+ }
+
+#sidebar #widget {
+  width:340px;
+  height: 600px;
+  margin-bottom:10px;
+  border-bottom:1px solid #ccc;
+ }
+
+#article {
+  width:560px;
+ }
+
+.search {
+ position: relative;
+}
+
+.search input {
+  text-indent: 30px;
+}
+
+ .search .fa-search {
+  position: absolute;
+  top: 12px;
+  left: 7px;
+  font-size: 15px;
+  opacity: 0.5;
  }
 
