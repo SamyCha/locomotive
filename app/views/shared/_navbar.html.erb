@@ -3,6 +3,13 @@
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <%= image_tag "armoires.png" %>
   <% end %>
+    <%= form_tag search_path, class: "navbar-form navbar-left", method: :get do %>
+    <div class="search">
+      <span class="fa fa-search"></span>
+    <%= text_field_tag :search, params[:search], placeholder: "Rechercher", class: "form-control" %>
+    </div>
+ <% end %>
+
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">

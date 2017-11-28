@@ -24,22 +24,22 @@
           <% product.reservations.order("id DESC").each do |reservation| %>
 
           <div class="row">
-            <div class="col-md-2">
-                <%= reservation.product.name %>
+            <div class="col-md-3">
+                <strong><%= reservation.product.name %></strong>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-3">
               <%= link_to product_path(reservation.product) do %>
               <%= image_tag reservation.product.photos[0].image.url(:thumb) if reservation.product.photos.length > 0 %>
               <% end %>
             </div>
             <span class="label label-primary">article vendu</span>
 
-            <div class="col-md-2">
+            <div class="col-md-4">
               <%= link_to user_path(reservation.user) do %>
+              <p>Contacter cet acheteur:<p>
               <%= image_tag avatar_url(reservation.user), class:"img-circle avatar-medium" %>
               <% end %>
-
 
             </div>
              <div class="col-md-2 right">
