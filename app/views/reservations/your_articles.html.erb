@@ -22,11 +22,12 @@ class: "sidebar-link active" %></li>
           </div>
           <div class="col-md-2">
             <%= link_to user_path(article.product.user) do %>
+            <p>Contacter le vendeur:</p>
             <%= image_tag avatar_url(article.product.user), class:"img-circle avatar-medium" %>
             <% end %>
           </div>
            <div class="col-md-2 right">
-              <h4><%= article.price %> euros</h4>
+              <span class="label label-primary">payé: <%= article.price %> euros</span>
            </div>
         </div>
                 <hr>
