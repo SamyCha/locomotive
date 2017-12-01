@@ -22,6 +22,9 @@ gem 'mail_form'
 gem 'omniauth-facebook'
 gem 'stripe'
 gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+
+
 
 
 
