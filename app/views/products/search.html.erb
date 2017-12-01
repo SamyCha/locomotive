@@ -1,0 +1,57 @@
+<div class="content">
+  <div class="container">
+   <div class="row">
+
+    <% @products.each do |product| %>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <hr>
+      <p class="text-center"></p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-picture">
+                <%= image_tag product.photos[0].image.url, width: 230, height: 150, crop: :fill if product.photos.length > 0 %>
+                <div class="card-hover">
+                  <h4><%= link_to product.name, product %></h4>
+                  <p><%= link_to product.description, product %></p>
+                </div>
+              </div>
+              <div class="card-likes">
+                <ul class="list-inline">
+                <li><%= image_tag avatar_url(product.user), class:"img-circle avatar-small" %></li>
+                  <li><i class="fa fa-female" aria-hidden="true"></i><%= product.category %></li>
+                  <li><i class="fa fa-black-tie" aria-hidden="true"></i><%= product.brand %></li>
+                  <li><i class="fa fa-level-up" aria-hidden="true"></i><%= product.size %></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="map"></div>
+</div>
+    <% content_for(:after_js) do %>
+      <%= javascript_tag do %>
+        var handler = Gmaps.build('Google');
+        handler.buildMap({ internal: { id: 'map' } }, function() {
+          markers = handler.addMarkers(<%= raw @markers.to_json %>);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          if (markers.length == 0) {
+            handler.getMap().setZoom(2);
+          } else if (markers.length == 1) {
+            handler.getMap().setZoom(14);
+          }
+        });
+      <% end %>
+    <% end %>
+
+
+
+
+
+

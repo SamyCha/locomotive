@@ -1,8 +1,17 @@
 class ProductsController < ApplicationController
 
 before_action :set_product, only: [:show, :edit, :update]
-before_action :authenticate_user!, except: [:show]
+before_action :authenticate_user!, except: [:show, :search]
 before_action :require_same_user, only: [:edit, :update]
+
+  def search
+    @products = Product.where.not(latitude: nil, longitude: nil)
+
+    @markers = Gmaps4rails.build_markers(@products) do |product, marker|
+      marker.lat product.latitude
+      marker.lng product.longitude
+    end
+  end
 
 def index
   @products = current_user.products
