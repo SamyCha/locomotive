@@ -4,11 +4,15 @@
 //= require jquery-ui
 //= require rails-timeago-all
 //= require toastr
-//= require_tree .
+//= require ./sticky-kit.js
+//= require ./jquery.raty.js
+//= require ./credit_card_form.js
+//= require ./cable.js
+
 
 
 toastr.options = {
 
- "positionClass": "toast-bottom-left"
+ "positionClass": "toast-bottom-right"
 
  }
