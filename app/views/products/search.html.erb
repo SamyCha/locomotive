@@ -1,6 +1,8 @@
 <div class="content">
   <div class="container">
+
    <div class="row">
+
 
     <% @products.each do |product| %>
     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -30,6 +32,20 @@
       </div>
       <% end %>
     </div>
+
+    <div class="pagination-box">
+      <div class="text-center">
+        <%= paginate @products, :exclude => [:first, :last] %>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
   </div>
 
   <div id="map"></div>
