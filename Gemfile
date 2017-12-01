@@ -31,7 +31,7 @@ source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
 end
 
-
+gem 'kaminari'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
