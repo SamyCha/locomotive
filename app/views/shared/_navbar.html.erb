@@ -6,7 +6,7 @@
     <%= form_tag search_path, class: "navbar-form navbar-left", method: :get do %>
     <div class="search">
       <span class="fa fa-search"></span>
-    <%= text_field_tag :search, params[:search], placeholder: "Rechercher", class: "form-control" %>
+    <%= text_field_tag 'term', params[:term], placeholder: "Trouver un article", class: "form-control" %>
     </div>
  <% end %>
 

@@ -1,4 +1,9 @@
 <div class="container">
+<ol class="breadcrumb">
+  <li><%= link_to "Accueil", root_path %></li>
+  <li><%= link_to "Liste des articles", search_path %></li>
+  <li class="active"><%= @product.category %> : <%= @product.name %></li>
+</ol>
 <div class="panel panel-default">
   <div class="panel-body">
 <!-- Carousel -->
@@ -18,7 +23,7 @@
       <% if @photos %>
       <% @photos.each do |photo| %>
         <div class="item <%= 'active' if photo.id == @photos[0].id %>">
-        <%= image_tag photo.image.url() %>
+        <%= image_tag photo.image.url(), width: "300px" %>
         </div>
         <% end %>
         <% end %>
