@@ -5,15 +5,62 @@ before_action :authenticate_user!, except: [:show, :search]
 before_action :require_same_user, only: [:edit, :update]
 
   def search
+#pg search de produit par name et category
+    if params[:term]
+      @products = Product.search_by_name_and_category(params[:term])
+      @products = Kaminari.paginate_array(@products).page(params[:page]).per(6)
 
-    @products = Product.where.not(latitude: nil, longitude: nil)
-
+    else
+      @products = Product.page(params[:page]).per(6)
+                    .where
+                    .not(latitude: nil, longitude: nil)
+                    .order('created_at DESC')
+    end
+#affichage de la map avec tous les produits
     @markers = Gmaps4rails.build_markers(@products) do |product, marker|
       marker.lat product.latitude
       marker.lng product.longitude
     end
-     @products = Kaminari.paginate_array(@products).page(params[:page]).per(6)
   end
+
+
+
+  def index
+    if params[:search]
+      @horses = Horse.search(search_params)
+      @horses = Kaminari.paginate_array(@horses).page(params[:page]).per(10)
+
+    else
+      @horses = Horse.page(params[:page]).per(10)
+                     .where
+                     .not(latitude: nil, longitude: nil)
+                     .order('created_at DESC')
+    end
+
+    @hash = Gmaps4rails.build_markers(@horses) do |horse, marker|
+      marker.lat horse.latitude
+      marker.lng horse.longitude
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def index
   @products = current_user.products

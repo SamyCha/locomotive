@@ -11,35 +11,20 @@
   <% end %>
 
     <div class="panel panel-default">
-      <div class="panel-heading">Vérification
+      <div class="panel-heading">enregistré depuis: <%= timeago_tag @user.created_at, :lang => :fr  %>
       </div>
-      <div class="panel-body">Email: <%= @user.email %><br>Tél: <%= @user.phone %>
+      <div class="panel-body"><strong><%= @user.pseudo %></strong><br>
       </div>
     </div>
   </div>
   <div class="col-md-9">
-    <h2><%= @user.pseudo %></h2>
+    <h4>A propos de <%= @user.pseudo %>:</h4>
       <div class="description row-space-3">
         <%= @user.description %>
       </div>
-      <h4>Articles (<%= @products.length %>)</h4><br>
-        <div class="row">
-          <% @products.each do |product| %>
-          <div class="col-md-4">
-            <div class="panel panel-default">
-              <div class="panel-heading preview">
-                <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
-              </div>
-              <div class="panel-body">
-                <%= link_to product.name, product %>
-              </div>
-            </div>
-          </div>
-          <% end %>
-      </div>
 
 <!--Review pour utilisateur -->
-<h4>Evaluations</h4><br>
+<h4>Evaluations des produits vendus par <%= @user.pseudo %>:</h4><br>
   <% @products.each do |product| %>
   <% if !product.reviews.blank? %>
   <% product.reviews.each do |review| %>
@@ -57,6 +42,34 @@
   <% end %>
   <% end %>
   <% end %>
+
+
+<div class="row">
+      <h4>Articles en vente: (<%= @products.length %>)</h4><br>
+        <div class="row">
+          <% @products.each do |product| %>
+          <div class="col-xs-12 col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-heading preview">
+                <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
+              </div>
+              <div class="panel-body">
+                <%= link_to product.name, product %>
+                (<%= link_to product.category , product %>)
+              <br>
+
+              <% if product.active? %>
+               <span class="label label-success">annonce publiée</span>
+              <% else %>
+              <span class="label label-info">annonce en cours de publication</span>
+               <% end %>
+              </div>
+            </div>
+          </div>
+          <% end %>
+      </div>
+
+
 
   </div>
 </div>
