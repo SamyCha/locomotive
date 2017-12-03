@@ -19,7 +19,12 @@ geocoded_by :address
 after_validation :geocode, if: :address_changed?
 
 include PgSearch
-pg_search_scope :search_by_name_and_category, against: [:name, :category, :brand]
+pg_search_scope :search_by_name_and_category, against: [:name, :category, :brand],
+    using: {
+      tsearch: {
+        prefix: true
+      }
+    }
 
 
 
