@@ -23,8 +23,6 @@ before_action :require_same_user, only: [:edit, :update]
     end
   end
 
-
-
   def index
     if params[:search]
       @horses = Horse.search(search_params)
@@ -43,25 +41,6 @@ before_action :require_same_user, only: [:edit, :update]
     end
   end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def index
   @products = current_user.products
 end
@@ -79,7 +58,7 @@ def create
       end
     end
     @photos = @product.photos
-    redirect_to edit_product_path(@product), notice:"Votre article a été ajouté avec succés"
+    redirect_to edit_product_path(@product), notice:"Votre article est en attente de publication"
   else
     render :new
   end
@@ -99,6 +78,7 @@ def edit
 end
 
 def update
+  @product.active = false
   if @product.update(product_params)
     if params[:images]
       params[:images].each do |i|
