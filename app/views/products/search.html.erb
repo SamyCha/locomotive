@@ -1,5 +1,5 @@
 <div class="content">
-  <div class="container">
+  <div class="container-fluid">
   <ol class="breadcrumb">
     <li><%= link_to "Accueil", root_path %></li>
     <li class="active"><%= link_to "Liste des articles" %></li>
@@ -55,8 +55,9 @@
       </div>
     </div>
   </div>
-
+<div id="hidden-mobile">
   <div id="map"></div>
+  </div>
 </div>
     <% content_for(:after_js) do %>
       <%= javascript_tag do %>

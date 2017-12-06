@@ -67,10 +67,10 @@
   <!-- Dropdown on mobile only -->
   <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
 
       <% if user_signed_in? %>
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"> Menu</i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <li class="sidebar-item">
           <%= link_to conversations_path do %><i class="fa fa-envelope" aria-hidden="true"></i> Messages<% end %></li>
@@ -83,14 +83,15 @@
 
             <li class="sidebar-item"><%= link_to new_product_path do %>
               <i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un article à la boutique<% end %></li>
-
-
           <% end %>
-        <li class="sidebar-item"><%= link_to edit_user_registration_path do %><i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-        <% end %></li>
-        <li class="sidebar-item"><%= link_to destroy_user_session_path, method: :delete do %><i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %><% end %></li>
 
+            <li class="sidebar-item"><%= link_to edit_user_registration_path do %><i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+            <% end %></li>
+            <li class="sidebar-item"><%= link_to destroy_user_session_path, method: :delete do %><i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %><% end %></li>
       </ul>
+        <% else %>
+
+      <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% end %>
     </div>
   </div>

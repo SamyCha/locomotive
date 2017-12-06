@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
 <div class="row">
 <div class="col-md-3">
 
@@ -14,7 +14,7 @@
 
  <br>
 
- <%= link_to 'Voir mon profil', user_path(current_user.id), class: 'btn btn-default wide' %>
+ <%= link_to user_path(current_user.id), class: 'btn btn-info wide' do %><i class="fa fa-user" aria-hidden="true"></i> Voir mon profil <% end %>
 
  </div>
   <div class="col-md-7 text-center">
