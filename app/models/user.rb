@@ -21,7 +21,7 @@ class User < ApplicationRecord
         return user
       else
         where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
-        u.fullname = auth.info.name
+        u.pseudo = auth.info.name
         u.provider = auth.provider
         u.uid = auth.uid
         u.email = auth.info.email
