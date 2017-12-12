@@ -7,6 +7,7 @@ class User < ApplicationRecord
   enum state:  [:client, :seller]
 
   validates :pseudo, presence:true, length: {maximum: 50}
+  validates :address, presence: true
 
   has_many :products
   has_many :reservations
