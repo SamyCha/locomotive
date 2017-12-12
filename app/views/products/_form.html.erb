@@ -57,7 +57,18 @@
           <div class="row">
             <div class="form-group">
             <label>Adresse</label>
-            <%= f.text_field :address, placeholder: "Où est situé votre article ?", class: "form-control" %>
+            <%= f.text_field :address, placeholder: "Où est situé votre article ?", id:"user_input_autocomplete_address", class: "form-control" %>
+            <input id="street_number" name="street_number" disabled type="hidden">
+            <input id="route" name="route" disabled type="hidden">
+            <input id="locality" name="locality" disabled type="hidden">
+            <input id="country" name="country" disabled type="hidden">
+          </div>
+
+
+
+
+
+
             </div>
           </div>
           <div class="row">
@@ -93,3 +104,6 @@
         </div>
       </div>
     </div>
+
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_JAVASCRIPT_KEY']}"></script>

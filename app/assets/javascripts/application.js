@@ -10,7 +10,7 @@
 //= require ./jquery.raty.js
 //= require ./credit_card_form.js
 //= require ./cable.js
-
+//= require ./autocomplete.js
 
 
 toastr.options = {
