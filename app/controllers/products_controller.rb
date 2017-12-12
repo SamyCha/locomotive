@@ -23,24 +23,6 @@ before_action :require_same_user, only: [:edit, :update]
     end
   end
 
-  def index
-    if params[:search]
-      @horses = Horse.search(search_params)
-      @horses = Kaminari.paginate_array(@horses).page(params[:page]).per(10)
-
-    else
-      @horses = Horse.page(params[:page]).per(10)
-                     .where
-                     .not(latitude: nil, longitude: nil)
-                     .order('created_at DESC')
-    end
-
-    @hash = Gmaps4rails.build_markers(@horses) do |horse, marker|
-      marker.lat horse.latitude
-      marker.lng horse.longitude
-    end
-  end
-
 def index
   @products = current_user.products
 end
@@ -65,6 +47,8 @@ def create
 end
 
 def show
+  @user = @product.user
+
   @photos = @product.photos
   @reviews = @product.reviews
   if current_user
