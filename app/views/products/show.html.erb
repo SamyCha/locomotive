@@ -60,54 +60,40 @@
 
       <br>
       <br>
-      <%= @product.user.pseudo %>
-      <br>(voir son profil)
+      vendu par:
+      <strong><%= @product.user.pseudo %></strong>
+
+      <br>
+            <a href="#average_rating", class="sidebar-link"><span id="average_rating_header"></span> <%= @reviews.count %> commentaires</a><hr>
       </div>
       <div class="col-md-9">
-      <h4><%= @product.name %></h4>
-      <%= @product.address %> <a href="#average_rating", class="sidebar-link"><span id="average_rating_header"></span> <%= @reviews.count %></a>
-        <div class="row text-center row-space-1">
+
+        <div class="row text-center">
           <div class="col-sm-3">
-          <i class="fa fa-female fa-2x" aria-hidden="true"></i>
+           <i class="fa fa-female fa-2x" aria-hidden="true"></i>
+          CATEGORIE: <%= @product.category %><hr>
           </div>
           <div class="col-sm-3">
           <i class="fa fa-black-tie fa-2x" aria-hidden="true"></i>
+          MARQUE: <%= @product.brand %><hr>
           </div>
           <div class="col-sm-3">
-          <i class="fa fa-level-up fa-2x" aria-hidden="true"></i>
+             <i class="fa fa-level-up fa-2x" aria-hidden="true"></i>
+          TAILLE: <%= @product.size %><hr>
           </div>
           <div class="col-sm-3">
-          <i class="fa fa-adjust fa-2x" aria-hidden="true"></i>
+            <i class="fa fa-adjust fa-2x" aria-hidden="true"></i>
+          COULEUR: <%= @product.color %><hr>
           </div>
         </div>
-        <div class="row text-center">
-          <div class="col-sm-3">
-          CATEGORIE: <%= @product.category %>
-          </div>
-          <div class="col-sm-3">
-          MARQUE: <%= @product.brand %>
-          </div>
-          <div class="col-sm-3">
-          TAILLE: <%= @product.size %>
-          </div>
-          <div class="col-sm-3">
-          COULEUR: <%= @product.color %>
-          </div>
-        </div>
+              <h4><%= @product.name %> (<%= @product.state %>)</h4>
+              <p><%= @product.description %></p>
+
       </div>
     </div>
 
-  <!-- Description -->
-<div class="row">
-  <div class="col-md-12">
-  <h4>A propos de cet article</h4>
-  <p><%= @product.description %></p>
-  <p><%= @product.state %></p>
-  </div>
-</div>
 
-<br>
-<hr>
+
 
   </div>
   <div class="col-md-4">
