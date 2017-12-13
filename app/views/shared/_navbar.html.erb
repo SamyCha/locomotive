@@ -35,7 +35,7 @@
     <% end %>
 
     <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-    <%= link_to "Mes achats", your_articles_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to "Mes intérêts", your_articles_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <!-- Avatar with dropdown menu -->
     <div class="navbar-wagon-item">
       <div class="dropdown">
@@ -74,7 +74,7 @@
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <li class="sidebar-item">
           <%= link_to conversations_path do %><i class="fa fa-envelope" aria-hidden="true"></i> Messages<% end %></li>
-          <li class="sidebar-item"><%= link_to your_articles_path do %><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Mes achats<% end %></li>
+          <li class="sidebar-item"><%= link_to your_articles_path do %><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Mes intérêts<% end %></li>
           <!-- if user is seller -->
           <% if current_user.seller? %>
           <li class="sidebar-item"><%= link_to products_path do %><i class="fa fa-female" aria-hidden="true"></i> Mes articles<% end %>
