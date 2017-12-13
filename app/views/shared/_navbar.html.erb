@@ -1,66 +1,66 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "armoires.png" %>
+  <%= image_tag "armoires.png" %>
   <% end %>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
     <div class="search">
-    <%= form_tag search_path, class: "navbar-form navbar-left", method: :get do %>
-  <%= text_field_tag 'term', params[:term], placeholder: "Trouver un article", class: "form-control" %>
- <% end %>
+      <%= form_tag search_path, class: "navbar-form navbar-left", method: :get do %>
+      <%= text_field_tag 'term', params[:term], placeholder: "Trouver un article", class: "form-control" %>
+      <% end %>
     </div>
 
     <% if user_signed_in? %>
-      <!-- Links when logged in -->
-      <i class="fa fa-envelope" aria-hidden="true"></i>
-      <%= link_to "Messages", conversations_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <!-- if user is seller -->
-      <% if current_user.seller? %>
-          <div class="navbar-wagon-item">
-            <div class="dropdown"><i class="fa fa-money" aria-hidden="true"></i>
-              <%= link_to "Mes ventes", "#", class: "navbar-wagon-item navbar-wagon-link", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-                <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-                  <li class="sidebar-item"><%= link_to products_path do %><i class="fa fa-female" aria-hidden="true"></i> Mes articles<% end %></li>
-                  <li class="sidebar-item"><%= link_to your_reservations_path do %><i class="fa fa-money" aria-hidden="true"></i> Mes ventes<% end %></li>
-                  <li class="sidebar-item">
-                    <%= link_to new_product_path do %>
-                  <i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un article à la boutique
-                  <% end %>
-                  </li>
-                </ul>
-            </div>
-          </div>
-        <% end %>
-
-       <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-      <%= link_to "Mes achats", your_articles_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <!-- Avatar with dropdown menu -->
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-          <%= image_tag avatar_url(current_user), class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-            <%= current_user.pseudo %>
-
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li class="sidebar-item">
-              <%= link_to edit_user_registration_path do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Mon Profile") %>
-              <% end %>
-            </li>
-            <li class="sidebar-item">
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Deconnexion") %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
+    <!-- Links when logged in -->
+    <i class="fa fa-envelope" aria-hidden="true"></i>
+    <%= link_to "Messages", conversations_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <!-- if user is seller -->
+    <% if current_user.seller? %>
+    <div class="navbar-wagon-item">
+      <div class="dropdown"><i class="fa fa-money" aria-hidden="true"></i>
+        <%= link_to "Mes ventes", "#", class: "navbar-wagon-item navbar-wagon-link", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li class="sidebar-item"><%= link_to products_path do %><i class="fa fa-female" aria-hidden="true"></i> Mes articles<% end %></li>
+          <li class="sidebar-item"><%= link_to your_reservations_path do %><i class="fa fa-money" aria-hidden="true"></i> Mes ventes<% end %></li>
+          <li class="sidebar-item">
+            <%= link_to new_product_path do %>
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un article à la boutique
+            <% end %>
+          </li>
+        </ul>
       </div>
+    </div>
+    <% end %>
+
+    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+    <%= link_to "Mes achats", your_articles_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <!-- Avatar with dropdown menu -->
+    <div class="navbar-wagon-item">
+      <div class="dropdown">
+        <%= image_tag avatar_url(current_user), class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <%= current_user.pseudo %>
+
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li class="sidebar-item">
+            <%= link_to edit_user_registration_path do %>
+            <i class="fa fa-user"></i> <%= t(".profile", default: "Mon Profile") %>
+            <% end %>
+          </li>
+          <li class="sidebar-item">
+            <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Deconnexion") %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
     <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "INSCRIPTION"),  new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to t(".sign_in", default: "DEVENIR VENDEUSE"),   new_contact_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to t(".sign_in", default: "CONNEXION"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <!-- Login link (when logged out) -->
+    <%= link_to t(".sign_in", default: "INSCRIPTION"),  new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to t(".sign_in", default: "DEVENIR VENDEUSE"),   new_contact_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to t(".sign_in", default: "CONNEXION"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
 
@@ -77,23 +77,23 @@
           <li class="sidebar-item"><%= link_to your_articles_path do %><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Mes achats<% end %></li>
           <!-- if user is seller -->
           <% if current_user.seller? %>
-            <li class="sidebar-item"><%= link_to products_path do %><i class="fa fa-female" aria-hidden="true"></i> Mes articles<% end %>
-            </li>
-            <li class="sidebar-item"><%= link_to your_reservations_path do %><i class="fa fa-money" aria-hidden="true"></i> Mes ventes<% end %></li>
+          <li class="sidebar-item"><%= link_to products_path do %><i class="fa fa-female" aria-hidden="true"></i> Mes articles<% end %>
+          </li>
+          <li class="sidebar-item"><%= link_to your_reservations_path do %><i class="fa fa-money" aria-hidden="true"></i> Mes ventes<% end %></li>
 
-            <li class="sidebar-item"><%= link_to new_product_path do %>
-              <i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un article à la boutique<% end %></li>
-          <% end %>
+          <li class="sidebar-item"><%= link_to new_product_path do %>
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un article à la boutique<% end %></li>
+            <% end %>
 
             <li class="sidebar-item"><%= link_to edit_user_registration_path do %><i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-            <% end %></li>
-            <li class="sidebar-item"><%= link_to destroy_user_session_path, method: :delete do %><i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %><% end %></li>
-      </ul>
-        <% else %>
+              <% end %></li>
+              <li class="sidebar-item"><%= link_to destroy_user_session_path, method: :delete do %><i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %><% end %></li>
+            </ul>
+            <% else %>
 
-      <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <% end %>
-    </div>
-  </div>
-</div>
+            <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
 

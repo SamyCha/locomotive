@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
     product = @photo.product
     @photo.destroy
     @photos = Photo.where(product_id: product.id)
-      respond_to :js
+    respond_to :js
   end
 
 end

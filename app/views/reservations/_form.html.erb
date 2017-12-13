@@ -3,19 +3,19 @@
   <div class="col-md-12 price_tag text-center">
     <span><%= @product.price %> euros</span>
   </div>
-     <div class="col-md-12 text-center">
-<i class="fa fa-map-marker" aria-hidden="true"></i> article situé: <%= @product.address %>
-</div>
+  <div class="col-md-12 text-center">
+    <i class="fa fa-map-marker" aria-hidden="true"></i> article situé: <%= @product.address %>
+  </div>
 </div>
 
 <div class="col-md-12 text-center">
-<% if user_signed_in? && current_user != @user %>
-    <%= link_to "Contacter son vendeur", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-primary wide" %>
-<% elsif user_signed_in? && current_user == @user %>
-    <%= link_to "Mettre à jour votre article", edit_product_path(@product), class: "btn btn-primary" %>
-<% else %>
+  <% if user_signed_in? && current_user != @user %>
+  <%= link_to "Contacter son vendeur", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-primary wide" %>
+  <% elsif user_signed_in? && current_user == @user %>
+  <%= link_to "Mettre à jour votre article", edit_product_path(@product), class: "btn btn-primary" %>
+  <% else %>
   <%= link_to new_user_session_path, class: "btn btn-info" do %>
-      Se connecter
+  Se connecter
   <% end %>
-<% end %>
+  <% end %>
 </div>

@@ -16,18 +16,18 @@ class MessagesController < ApplicationController
     @messages = @conversation.messages.order("created_at DESC")
     if @message.save
       respond_to do |format|
-           format.js
-      end
-    end
-  end
+       format.js
+     end
+   end
+ end
 
-private
-  def set_conversation
-    @conversation = Conversation.find(params[:conversation_id])
-  end
+ private
+def set_conversation
+  @conversation = Conversation.find(params[:conversation_id])
+end
 
-  def message_params
-    params.require(:message).permit(:content, :user_id)
-  end
+def message_params
+  params.require(:message).permit(:content, :user_id)
+end
 
 end

@@ -1,48 +1,46 @@
 <div class="container-fluid">
-<ol class="breadcrumb">
-  <li><%= link_to "Accueil", root_path %></li>
-  <li><%= link_to "Liste des articles", search_path %></li>
-  <li class="active"><%= @product.category %> : <%= @product.name %></li>
-</ol>
-<div class="panel panel-default">
-  <div class="panel-body">
-<!-- Carousel -->
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-    <% if @photos %>
-    <% @photos.each do |photo| %>
-    <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="<%= photo.id %>" class="active"></li>
-    </ol>
-    <% end %>
-    <% end %>
-        <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
-      <% if @photos %>
-      <% @photos.each do |photo| %>
-        <div class="item <%= 'active' if photo.id == @photos[0].id %>">
-        <%= image_tag photo.image.url(), width: "300px" %>
+  <ol class="breadcrumb">
+    <li><%= link_to "Accueil", root_path %></li>
+    <li><%= link_to "Liste des articles", search_path %></li>
+    <li class="active"><%= @product.category %> : <%= @product.name %></li>
+  </ol>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <!-- Carousel -->
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <% if @photos %>
+            <% @photos.each do |photo| %>
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="<%= photo.id %>" class="active"></li>
+            </ol>
+            <% end %>
+            <% end %>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <% if @photos %>
+              <% @photos.each do |photo| %>
+              <div class="item <%= 'active' if photo.id == @photos[0].id %>">
+                <%= image_tag photo.image.url(), width: "300px" %>
+              </div>
+              <% end %>
+              <% end %>
+            </div>
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Précédent</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Suivant</span>
+            </a>
+          </div>
         </div>
-        <% end %>
-        <% end %>
       </div>
-          <!-- Left and right controls -->
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Précédent</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Suivant</span>
-      </a>
-    </div>
-  </div>
-</div>
-</br>
-
-
+    </br>
     <!-- Photo principale de l'annonce
 <div class="row">
   <div class="col-md-12">
@@ -51,93 +49,82 @@
 </div>
 <br>
 -->
-    <!-- Informations principales -->
+<!-- Informations principales -->
 <div class="row">
   <div class="col-md-8">
     <div class="row">
       <div class="col-md-3 text-center">
-      <%= image_tag avatar_url(@product.user), class:"img-circle avatar-large" %>
-
-      <br>
-      <br>
-      vendu par:
-      <strong><%= @product.user.pseudo %></strong>
-
-      <br>
-            <a href="#average_rating", class="sidebar-link"><span id="average_rating_header"></span> <%= @reviews.count %> commentaires</a><hr>
+        <%= image_tag avatar_url(@product.user), class:"img-circle avatar-large" %>
+        <br>
+        <br>
+        vendu par:
+        <strong><%= @product.user.pseudo %></strong>
+        <br>
+        <a href="#average_rating", class="sidebar-link"><span id="average_rating_header"></span> <%= @reviews.count %> commentaires</a><hr>
       </div>
       <div class="col-md-9">
-
         <div class="row text-center">
           <div class="col-sm-3">
            <i class="fa fa-female fa-2x" aria-hidden="true"></i>
-          CATEGORIE: <%= @product.category %><hr>
-          </div>
-          <div class="col-sm-3">
+           CATEGORIE: <%= @product.category %><hr>
+         </div>
+         <div class="col-sm-3">
           <i class="fa fa-black-tie fa-2x" aria-hidden="true"></i>
           MARQUE: <%= @product.brand %><hr>
-          </div>
-          <div class="col-sm-3">
-             <i class="fa fa-level-up fa-2x" aria-hidden="true"></i>
-          TAILLE: <%= @product.size %><hr>
-          </div>
-          <div class="col-sm-3">
-            <i class="fa fa-adjust fa-2x" aria-hidden="true"></i>
-          COULEUR: <%= @product.color %><hr>
-          </div>
         </div>
-              <h4><%= @product.name %> (<%= @product.state %>)</h4>
-              <p><%= @product.description %></p>
-
+        <div class="col-sm-3">
+         <i class="fa fa-level-up fa-2x" aria-hidden="true"></i>
+         TAILLE: <%= @product.size %><hr>
+       </div>
+       <div class="col-sm-3">
+        <i class="fa fa-adjust fa-2x" aria-hidden="true"></i>
+        COULEUR: <%= @product.color %><hr>
       </div>
     </div>
-
-
-
-
+    <h4><%= @product.name %> (<%= @product.state %>)</h4>
+    <p><%= @product.description %></p>
   </div>
-  <div class="col-md-4">
+</div>
+</div>
+<div class="col-md-4">
   <!-- Formulaire de réservation -->
   <%= render 'reservations/form' %>
-  </div>
 </div>
-
-
+</div>
 <!-- Reviews -->
-
- <div class="row">
+<div class="row">
   <div class="col-md-12">
-  <h3><%= pluralize(@reviews.count, 'commentaire') %> <span id="average_rating"></span><span id="average_rating"></span>(<%= @reviews.count %>)</h3>
+    <h3><%= pluralize(@reviews.count, 'commentaire') %> <span id="average_rating"></span><span id="average_rating"></span>(<%= @reviews.count %>)</h3>
     <div class="container">
       <div>
-      <%= render 'reviews/form' if @booked && !@hasReview %>
+        <%= render 'reviews/form' if @booked && !@hasReview %>
       </div>
       <div>
-      <%= render 'reviews/list' %>
+        <%= render 'reviews/list' %>
       </div>
     </div>
   </div>
 </div>
-    <!-- Google maps -->
+<!-- Google maps -->
 <div class="row">
   <div class="col-md-12">
     <div id="map"></div>
     <style>
       #map {
-      height: 400px;
-      width: 100%;
+        height: 400px;
+        width: 100%;
       }</style>
-    <script>function initMap() {
-      var uluru = {lat: <%= @product.latitude %>, lng: <%= @product.longitude %>};
+      <script>function initMap() {
+        var uluru = {lat: <%= @product.latitude %>, lng: <%= @product.longitude %>};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 15,
           center: uluru
-          });
-          var marker = new google.maps.Marker({
-                      position: uluru,
-                      map: map
-          });
-          }
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgkkYGH99wJ7N-wb_J6HcjTvu9KK-ZFiU&callback=initMap"></script>
   </div>
@@ -145,22 +132,22 @@
 <!-- Logements à proximité -->
 <h3>Autres articles à proximité...</h3>
 <div class="row">
-<% for product in @product.nearbys(2).limit(3) %>
+  <% for product in @product.nearbys(2).limit(3) %>
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading preview">
-      <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
+        <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
       </div>
       <div class="panel-body">
-      <%= link_to product.name, product %><br>
-                  (à <%= (product.distance*1.6).round(2) %> km)
+        <%= link_to product.name, product %><br>
+        (à <%= (product.distance*1.6).round(2) %> km)
       </div>
     </div>
   </div>
   <% end %>
 </div>
 
-  </div>
+</div>
 </div>
 </div>
 <script>
@@ -168,7 +155,7 @@
     path: '/assets',
     readOnly: true,
     score: <%= @product.average_rating %>
-    });
+  });
 </script>
 
 <script>
@@ -176,5 +163,5 @@
     path: '/assets',
     readOnly: true,
     score: <%= @product.average_rating %>
-    });
+  });
 </script>

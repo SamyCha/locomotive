@@ -10,6 +10,6 @@ class Contact < MailForm::Base
       :subject => "Devenir vendeuse",
       :to => "contact@les-armoires-de-paris.com",
       :from => %("#{name}" <#{email}>)
-  }
+    }
   end
 end

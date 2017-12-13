@@ -1,49 +1,45 @@
 <div class="container-fluid">
-<div class="row">
-  <div class="col-md-3">
-  <%= image_tag avatar_url(@user), class: "avatar-full" %>
-
-  <% if current_user != @user %>
-    <div class="row-space-2">
-    <%= link_to "Envoyer un message", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-primary wide" %>
-    </div>
-  <% end %>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">enregistré depuis: <%= timeago_tag @user.created_at, :lang => :fr  %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= image_tag avatar_url(@user), class: "avatar-full" %>
+      <% if current_user != @user %>
+      <div class="row-space-2">
+        <%= link_to "Envoyer un message", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-primary wide" %>
       </div>
-      <div class="panel-body"><strong><%= @user.pseudo %></strong><br>
+      <% end %>
+      <div class="panel panel-default">
+        <div class="panel-heading">enregistré depuis: <%= timeago_tag @user.created_at, :lang => :fr  %>
+        </div>
+        <div class="panel-body"><strong><%= @user.pseudo %></strong><br>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-9">
-    <h4>A propos de <%= @user.pseudo %>:</h4>
+    <div class="col-md-9">
+      <h4>A propos de <%= @user.pseudo %>:</h4>
       <div class="description row-space-3">
         <%= @user.description %>
       </div>
-
-<!--Review pour utilisateur -->
-<h4>Evaluations des produits vendus par <%= @user.pseudo %>:</h4><br>
-  <% @products.each do |product| %>
-  <% if !product.reviews.blank? %>
-  <% product.reviews.each do |review| %>
-  <div class="row">
-    <div class="col-md-2 text-center">
-    <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %><br>
-    <%= review.user.pseudo %>
-    </div>
-    <div class="col-md-10">
-    <%= link_to product.name, product %><br>
-    <%= review.comment %><br>
-    <%= review.created_at.strftime("(%d/%m/%y)") %>
-    </div>
-  </div>
-  <% end %>
-  <% end %>
-  <% end %>
-
-<div class="row">
-      <h4>Articles en vente: (<%= @products.length %>)</h4><br>
+      <!--Review pour utilisateur -->
+      <h4>Evaluations des produits vendus par <%= @user.pseudo %>:</h4><br>
+      <% @products.each do |product| %>
+      <% if !product.reviews.blank? %>
+      <% product.reviews.each do |review| %>
+      <div class="row">
+        <div class="col-md-2 text-center">
+          <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %><br>
+          <%= review.user.pseudo %>
+        </div>
+        <div class="col-md-10">
+          <%= link_to product.name, product %><br>
+          <%= review.comment %><br>
+          <%= review.created_at.strftime("(%d/%m/%y)") %>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+      <% end %>
+      <div class="row">
+        <h4>Articles en vente: (<%= @products.length %>)</h4><br>
         <div class="row">
           <% @products.each do |product| %>
           <div class="col-xs-12 col-sm-4">
@@ -54,21 +50,18 @@
               <div class="panel-body">
                 <%= link_to product.name, product %>
                 (<%= link_to product.category , product %>)
-              <br>
+                <br>
 
-              <% if product.active? %>
-               <span class="label label-success">annonce publiée</span>
-              <% else %>
-              <span class="label label-info">annonce en cours de publication</span>
-               <% end %>
+                <% if product.active? %>
+                <span class="label label-success">annonce publiée</span>
+                <% else %>
+                <span class="label label-info">annonce en cours de publication</span>
+                <% end %>
               </div>
             </div>
           </div>
           <% end %>
+        </div>
       </div>
-
-
-
+    </div>
   </div>
-</div>
-</div>
