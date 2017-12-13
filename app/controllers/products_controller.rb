@@ -1,27 +1,27 @@
 class ProductsController < ApplicationController
 
-before_action :set_product, only: [:show, :edit, :update]
-before_action :authenticate_user!, except: [:show, :search]
-before_action :require_same_user, only: [:edit, :update]
+  before_action :set_product, only: [:show, :edit, :update]
+  before_action :authenticate_user!, except: [:show, :search]
+  before_action :require_same_user, only: [:edit, :update]
 
   def search
 #pg search de produit par name et category
-    if params[:term]
-      @products = Product.search_by_name_and_category(params[:term])
-      @products = Kaminari.paginate_array(@products).page(params[:page]).per(6)
+if params[:term]
+  @products = Product.search_by_name_and_category(params[:term])
+  @products = Kaminari.paginate_array(@products).page(params[:page]).per(6)
 
-    else
-      @products = Product.page(params[:page]).per(6)
-                    .where
-                    .not(latitude: nil, longitude: nil)
-                    .order('created_at DESC')
-    end
+else
+  @products = Product.page(params[:page]).per(6)
+  .where
+  .not(latitude: nil, longitude: nil)
+  .order('created_at DESC')
+end
 #affichage de la map avec tous les produits
-    @markers = Gmaps4rails.build_markers(@products) do |product, marker|
-      marker.lat product.latitude
-      marker.lng product.longitude
-    end
-  end
+@markers = Gmaps4rails.build_markers(@products) do |product, marker|
+  marker.lat product.latitude
+  marker.lng product.longitude
+end
+end
 
 def index
   @products = current_user.products
@@ -52,8 +52,8 @@ def show
   @photos = @product.photos
   @reviews = @product.reviews
   if current_user
-      @booked = Reservation.where("product_id = ? AND user_id = ?", @product.id, current_user.id).present?
-      @hasReview = @reviews.find_by(user_id: current_user.id)
+    @booked = Reservation.where("product_id = ? AND user_id = ?", @product.id, current_user.id).present?
+    @hasReview = @reviews.find_by(user_id: current_user.id)
   end
 end
 
@@ -77,18 +77,18 @@ def update
 end
 
 private
-  def set_product
-    @product = Product.find(params[:id])
-  end
+def set_product
+  @product = Product.find(params[:id])
+end
 
-  def product_params
-    params.require(:product).permit(:name, :description, :brand, :category, :color, :size, :state, :price, :address, :active)
-  end
+def product_params
+  params.require(:product).permit(:name, :description, :brand, :category, :color, :size, :state, :price, :address, :active)
+end
 
-  def require_same_user
-    if current_user.id != @product.user_id
-      flash[:danger] = "Vous n'avez pas le droit de modifier cette page"
-      redirect_to root_path
-    end
+def require_same_user
+  if current_user.id != @product.user_id
+    flash[:danger] = "Vous n'avez pas le droit de modifier cette page"
+    redirect_to root_path
   end
+end
 end

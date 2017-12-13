@@ -1,26 +1,27 @@
 <div class="container-fluid">
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading"><i class="fa fa-envelope" aria-hidden="true"></i> Boîte de réception</div>
-      <div class="panel-body">
-        <div class="container">
-          <% @conversations.each do |conversation| %>
-          <% other = conversation.sender == current_user ? conversation.recipient : conversation.sender %>
-          <%= link_to conversation_messages_path(conversation) do %>
-              <div class="row conversation">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading"><i class="fa fa-envelope" aria-hidden="true"></i> Boîte de réception</div>
+        <div class="panel-body">
+          <div class="container">
+            <% @conversations.each do |conversation| %>
+            <% other = conversation.sender == current_user ? conversation.recipient : conversation.sender %>
+            <%= link_to conversation_messages_path(conversation) do %>
+            <div class="row conversation">
               <div class="col-md-2">
-              <%= image_tag avatar_url(other), class: "img-circle avatar-medium" %>
+                <%= image_tag avatar_url(other), class: "img-circle avatar-medium" %>
               </div>
               <div class="col-md-2">
-              <%= other.pseudo %><br>
-               <%= timeago_tag conversation.messages.last.created_at, :lang => :fr  %>
-               </div>
+                <%= other.pseudo %><br>
+                <%= timeago_tag conversation.messages.last.created_at, :lang => :fr  %>
+              </div>
               <div class="col-md-8">
-              <%= conversation.messages.last.content %>
+                <%= conversation.messages.last.content %>
               </div>
               <% end %>
-            <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

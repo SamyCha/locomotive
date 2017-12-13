@@ -1,31 +1,31 @@
 <div class="row">
   <div class="col-md-3 text-center">
-  <%= image_tag avatar_url(@other), class: "img-circle avatar-medium" %><br>
-  <strong><%= @other.pseudo %></strong>
-  <%= link_to "Voir profil", @other, class: "btn btn-info wide" %>
+    <%= image_tag avatar_url(@other), class: "img-circle avatar-medium" %><br>
+    <strong><%= @other.pseudo %></strong>
+    <%= link_to "Voir profil", @other, class: "btn btn-info wide" %>
   </div>
   <div class="col-md-9">
     <div class="panel panel-default">
       <div class="panel-heading">
-      <i class="fa fa-envelope" aria-hidden="true"></i>
-       Discussion avec <%= @other.pseudo %>
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+        Discussion avec <%= @other.pseudo %>
       </div>
       <div class="panel-body">
-      <div class="container">
-      <%= form_for [@conversation, @conversation.messages.new], remote: true do |f| %>
-        <div class="form-group">
-        <%= f.text_area :content, placeholder: "Votre message...", class: "form-control" %>
+        <div class="container">
+          <%= form_for [@conversation, @conversation.messages.new], remote: true do |f| %>
+          <div class="form-group">
+            <%= f.text_area :content, placeholder: "Votre message...", class: "form-control" %>
+          </div>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <div class="actions">
+            <%= f.submit "Envoyer un message", class: "btn btn-primary" %>
+          </div>
+          <% end %>
         </div>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <div class="actions">
-        <%= f.submit "Envoyer un message", class: "btn btn-primary" %>
-        </div>
-        <% end %>
       </div>
     </div>
-  </div>
-  <div id="chat">
-  <%= render @messages, locals: {conversation: @conversation} %>
+    <div id="chat">
+      <%= render @messages, locals: {conversation: @conversation} %>
+    </div>
   </div>
 </div>
- </div>
