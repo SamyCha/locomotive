@@ -10,12 +10,12 @@
 
 <div class="col-md-12 text-center">
   <% if user_signed_in? && current_user != @user %>
-  <%= link_to "Contacter son vendeur", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-primary wide" %>
-  <% elsif user_signed_in? && current_user == @user %>
+  <%= link_to "Contacter son vendeur", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-primary" %>
+  <% elsif user_signed_in? && current_user == @product.user %>
   <%= link_to "Mettre à jour votre article", edit_product_path(@product), class: "btn btn-primary" %>
   <% else %>
-  <%= link_to new_user_session_path, class: "btn btn-info" do %>
-  Se connecter
+  <%= link_to new_user_session_path, class: "btn btn-primary" do %>
+  Se connecter pour contacter le vendeur
   <% end %>
   <% end %>
 </div>
