@@ -13,9 +13,9 @@
 <br>
 <div class="col-md-12 text-center">
   <% if user_signed_in? && current_user != @user %>
-  <div id="demo">
+
     <%= f.submit "Mettre dans ma liste", class:"btn-success btn-lg" %>
-  </div>
+
 
 <!--
   <%= link_to "Contacter son vendeur", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-primary" %>
@@ -29,13 +29,3 @@ Se connecter pour contacter le vendeur
 <% end %>
 </div>
 <% end %>
-
-<script>
-  document.getElementById("demo").addEventListener("click", myFunction);
-
-  function myFunction() {
-    document.getElementById("demo").innerHTML = "Article ajouté à votre liste";
-  }
-</script>
-
-
