@@ -12,15 +12,11 @@
            <%= @articles.count %> articles ajouté(s)
          </div>
          <div class="panel-body">
-
+      <% if @articles.count != 0 %>
           <% @articles.order("id DESC").each do |article| %>
-
-
           <div class="row">
             <div class="col-md-2">
               <strong><%= article.product.name %></strong><br>
-
-
             </div>
             <div class="col-md-2">
               <%= link_to product_path(article.product) do %>
@@ -37,15 +33,14 @@
               <span class="label label-info">prix: <%= article.price %> euros</span><br><br>
               <%= link_to user_path(article.product.user), class:"btn btn-primary" do %>
               Contacter le vendeur
-
               <% end %>
             </div>
           </div>
           <hr>
-
           <% end %>
-
-
+      <% else %>
+        Votre liste est vide
+      <% end %>
         </div>
       </div>
     </div>
