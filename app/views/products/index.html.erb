@@ -32,11 +32,11 @@
                 <% if product.active? %>
                 <span class="label label-success">annonce publiée</span>
                 <% else %>
-                <span class="label label-info">annonce en cours de publication</span>
+                <span class="label label-default">en cours de publication</span>
                 <% end %>
                 <br>
-                <br>
-                reférence article: <%= product.id %>
+                ref.: <%= product.id %>
+               (crée: <%= timeago_tag product.created_at, :lang => :fr  %>)
               </div>
               <br>
               <div class="col-md-3 text-center">

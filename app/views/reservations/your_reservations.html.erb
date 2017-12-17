@@ -14,8 +14,6 @@
           <% end %></li>
         </ul>
       </div>
-
-
       <div class="col-md-9">
         <div class="panel panel-default">
           <div class="panel-heading"><i class="fa fa-female" aria-hidden="true"></i> Mes ventes
@@ -33,20 +31,17 @@
                 <% if product.active? %>
                 <span class="label label-success">annonce publiée</span>
                 <% else %>
-                <span class="label label-info">annonce dépubliée</span>
+                <span class="label label-default">annonce dépubliée</span>
                 <% end %>
                 <br>
                 <br>
-                reférence article: <%= product.id %>
+                ref.: <%= product.id %>
               </div>
               <div class="col-md-3 right">
-
-
               </div>
             </div>
             <hr>
             <% end %>
-
             <% end %>
           </div>
         </div>

@@ -5,13 +5,14 @@ class ProductsController < ApplicationController
   before_action :require_same_user, only: [:edit, :update]
 
   def search
+
 #pg search de produit par name et category
 if params[:term]
   @products = Product.search_by_name_and_category(params[:term])
-  @products = Kaminari.paginate_array(@products).page(params[:page]).per(6)
+  @products = Kaminari.paginate_array(@products).page(params[:page]).per(9)
 
 else
-  @products = Product.page(params[:page]).per(6)
+  @products = Product.page(params[:page]).per(9)
   .where
   .not(latitude: nil, longitude: nil)
   .order('created_at DESC')
@@ -21,6 +22,7 @@ end
   marker.lat product.latitude
   marker.lng product.longitude
 end
+
 end
 
 def index
@@ -48,7 +50,6 @@ end
 
 def show
   @user = @product.user
-
   @photos = @product.photos
   @reviews = @product.reviews
   if current_user
