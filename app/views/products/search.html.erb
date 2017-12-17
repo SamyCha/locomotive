@@ -3,93 +3,28 @@
     <ol class="breadcrumb">
       <li><%= link_to "Accueil", root_path %></li>
       <li class="active"><%= link_to "Liste des articles" %></li>
-
     </ol>
     <div class="row">
-
-      <%= form_tag search_path, method: :get do %>
-      <%= text_field_tag 'term', params[:term], placeholder: "Entrez un article" %>
-      <%= submit_tag 'Chercher' %>
-      <% end %>
-
-      <% if @products.present? %>
-      <p>Voici  tous les articles correspondants à votre recherche: " <%= params[:term] %> "</p>
-
-
-                  <% @products.each do |product| %>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                      <div class="panel panel-default">
-                        <div class="panel-heading preview">
-                          <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
-                        </div>
-                        <div class="panel-body">
-                            <%= image_tag avatar_url(product.user), class: "img-circle avatar-small" %>
-                          <%= link_to product.name, product %>
-                        </div>
-                      </div>
-                    </div>
-                  <% end %>
-
-
-<!-- autres type de cards
       <% @products.each do |product| %>
+      <% if product.active? %>
       <div class="col-xs-12 col-sm-6 col-md-4">
-        <hr>
-        <p class="text-center"></p>
-        <div class="cards">
-          <div class="card">
-            <div class="card-body">
-              <div class="card-picture">
-                <%= image_tag product.photos[0].image.url, width: 230, height: 150, crop: :fill if product.photos.length > 0 %>
-                <div class="card-hover">
-                  <h4><%= link_to product.name, product %></h4>
-                  <p><%= link_to product.description, product %></p>
-                </div>
-              </div>
-              <div class="card-likes">
-                <ul class="list-inline">
-                  <li><%= image_tag avatar_url(product.user), class:"img-circle avatar-small" %></li>
-                  <li><i class="fa fa-female" aria-hidden="true"></i><%= product.category %></li>
-                  <li><i class="fa fa-black-tie" aria-hidden="true"></i><%= product.brand %></li>
-                  <li><i class="fa fa-level-up" aria-hidden="true"></i><%= product.size %></li>
-                </ul>
-              </div>
-            </div>
+        <div class="panel panel-default">
+          <div class="panel-heading preview">
+
+            <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
+
+          </div>
+          <div class="panel-body">
+
+            <strong><%= link_to product.name, product %></strong> (<%= product.price %>
+            euros)<br>
+            <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %> <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %>
           </div>
         </div>
       </div>
       <% end %>
--->
-
-
-
-
-      <% else %>
-        <p>Nous n'avons pas d'article correspondant à votre recherche: " <%= params[:term] %> "</p>
       <% end %>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="pagination-box">
       <div class="text-center">
         <%= paginate @products, :exclude => [:first, :last] %>
@@ -115,9 +50,3 @@ handler.getMap().setZoom(14);
 });
 <% end %>
 <% end %>
-
-
-
-
-
-

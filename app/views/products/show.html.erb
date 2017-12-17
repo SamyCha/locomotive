@@ -1,3 +1,4 @@
+<% if @product.active? %>
 <div class="container-fluid">
   <ol class="breadcrumb">
     <li><%= link_to "Accueil", root_path %></li>
@@ -57,10 +58,10 @@
         <%= image_tag avatar_url(@product.user), class:"img-circle avatar-large" %>
         <br>
         <br>
-        vendu par:
-        <strong><%= @product.user.pseudo %></strong>
+       article vendu par:<br>
+        <strong><%= link_to @product.user.pseudo ,user_path(@product.user) %></strong>
         <br>
-        <a href="#average_rating", class="sidebar-link"><span id="average_rating_header"></span> <%= @reviews.count %> commentaires</a><hr>
+        <span id="average_rating_header"></span> <%= @product.user.reviews.count %> commentaires<hr>
       </div>
       <div class="col-md-9">
         <div class="row text-center">
@@ -91,7 +92,7 @@
   <%= render 'reservations/form' %>
 </div>
 </div>
-<!-- Reviews -->
+<!-- Reviews
 <div class="row">
   <div class="col-md-12">
     <h3><%= pluralize(@reviews.count, 'commentaire') %> <span id="average_rating"></span><span id="average_rating"></span>(<%= @reviews.count %>)</h3>
@@ -105,6 +106,7 @@
     </div>
   </div>
 </div>
+ -->
 <!-- Google maps -->
 <div class="row">
   <div class="col-md-12">
@@ -129,18 +131,17 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgkkYGH99wJ7N-wb_J6HcjTvu9KK-ZFiU&callback=initMap"></script>
   </div>
 </div>
-<!-- Logements à proximité -->
+<!-- articles à proximité -->
 <h3>Autres articles à proximité...</h3>
 <div class="row">
   <% for product in @product.nearbys(2).limit(3) %>
   <div class="col-md-4">
     <div class="panel panel-default">
-      <div class="panel-heading preview">
-        <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
-      </div>
+
       <div class="panel-body">
-        <%= link_to product.name, product %><br>
-        (à <%= (product.distance*1.6).round(2) %> km)
+        <strong><%= link_to product.name, product %></strong> (à <%= (product.distance*1.6).round(2) %> km)<br>
+        <i class="fa fa-black-tie" aria-hidden="true"></i> <%= @product.brand %>
+        <i class="fa fa-level-up" aria-hidden="true"></i> <%= @product.size %>
       </div>
     </div>
   </div>
@@ -150,6 +151,19 @@
 </div>
 </div>
 </div>
+
+<% else %>
+<br>
+<div class="text-center">
+Ce produit a déjà été vendu
+ <%= link_to search_path, class: "btn btn-info" do %>
+    Retour vers la liste des articles
+<% end %>
+</div>
+
+
+<% end %>
+
 <script>
   $('#average_rating').raty({
     path: '/assets',

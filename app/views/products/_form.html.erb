@@ -1,10 +1,11 @@
 <%= render 'shared/errors' %>
 <div class="panel panel-default">
-
   <div class="panel-heading">
     <i class="fa fa-plus-circle" aria-hidden="true"></i>
     Ajouter votre article dans notre boutique
   </div>
+
+
   <div class="panel-body">
     <div class="container-fluid">
       <%= form_for @product, html: {multipart: true} do |f| %>
@@ -12,7 +13,7 @@
         <div class="col-md-4 select">
           <div class="form-group">
             <label>Catégorie de Produit</label>
-            <%= f.select :category, [["Jupe","Jupe"], ["Pantallon","Pantallon"], ["Chapeau", "Chapeau"]], id: "home_type", prompt: "A sélectionner...", class: "form-control" %>
+            <%= f.select :category, [["Bijou", "Bijou"], ["Jupe","Jupe"], ["Pantallon","Pantallon"], ["Chapeau", "Chapeau"], ["Autre", "Autre"]], id: "home_type", prompt: "A sélectionner...", class: "form-control" %>
           </div>
         </div>
         <div class="col-md-4 select">
@@ -44,13 +45,13 @@
       </div>
       <div class="row">
         <div class="form-group">
-          <label>Donnez un nom au produit</label>
+          <label>Donnez un nom au produit (max. 12 caractères)</label>
           <%= f.text_field :name, placeholder: "Titre de l'article", class: "form-control" %>
         </div>
       </div>
       <div class="row">
         <div class="form-group">
-          <label>Description</label>
+          <label>Description (max. 50 caractères)</label>
           <%= f.text_area :description, rows:4, placeholder: "Décrivez le produit", class: "form-control" %>
         </div>
       </div>
@@ -102,6 +103,7 @@
     <% end %>
   </div>
 </div>
+
 </div>
 
 <script type="text/javascript"
