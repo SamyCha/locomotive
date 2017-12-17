@@ -13,7 +13,7 @@ class Product < ApplicationRecord
   validates :description, presence: true, length: {maximum: 50}
   validates :address, presence: true
   validates :price, numericality: {only_integer: true, greater_than: 1}
-
+  validates :status, inclusion: { in: [ true, false ] }
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?

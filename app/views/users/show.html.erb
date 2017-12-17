@@ -33,7 +33,7 @@
       <div class="col-xs-12 col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
-            <%= link_to product.name %> <span class="label label-success">article en vente</span><br>
+            <strong><%= link_to product.name, product %></strong> (<%= product.price %>euros) <span class="label label-success">article en vente</span><br>
             <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %>
             <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %>
 
@@ -42,7 +42,7 @@
             <div class="col-xs-12 col-sm-4">
               <div class="panel panel-default">
                 <div class="panel-body">
-                  <%= product.name %> <span class="label label-info">article vendu</span><br>
+                  <strong><%= product.name %></strong> <span class="label label-info">article vendu</span><br>
                   <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %>
                   <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %>
                   <br>

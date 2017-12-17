@@ -17,8 +17,9 @@
           <div class="panel-body">
 
             <strong><%= link_to product.name, product %></strong> (<%= product.price %>
-            euros)<br>
+            euros) <i class="fa fa-heart" aria-hidden="true"></i> <%= product.reservations.count %><br>
             <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %> <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %>
+
           </div>
         </div>
       </div>

@@ -42,7 +42,7 @@ def create
       end
     end
     @photos = @product.photos
-    redirect_to edit_product_path(@product), notice:"Votre article est en attente de publication"
+    redirect_to products_path, notice:"Votre article est en attente de publication"
   else
     render :new
   end
@@ -71,7 +71,7 @@ def update
       end
     end
     @photos = @product.photos
-    redirect_to edit_product_path(@product), notice:"Modification enregistrée"
+    redirect_to products_path, notice:"Modification enregistrée"
   else
     render :edit
   end
