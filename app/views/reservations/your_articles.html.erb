@@ -2,13 +2,13 @@
   <div class="row">
     <div class="col-md-3">
       <ul class="sidebar-list">
-        <li class="sidebar-item"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <%= link_to "Ma WishList", your_articles_path,
+        <li class="sidebar-item"><i class="fa fa-heart" aria-hidden="true"></i> <%= link_to "Ma WishList", your_articles_path,
           class: "sidebar-link active" %></li>
         </ul>
       </div>
       <div class="col-md-9">
         <div class="panel panel-default">
-          <div class="panel-heading"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Ma WishList:
+          <div class="panel-heading"><i class="fa fa-heart" aria-hidden="true"></i> Ma WishList:
            <%= @articles.count %> articles ajouté(s)
          </div>
          <div class="panel-body">
@@ -16,7 +16,7 @@
           <% @articles.order("id DESC").each do |article| %>
           <div class="row">
             <div class="col-md-2">
-              <strong><%= article.product.name %></strong><br>
+              <strong><%= link_to article.product.name, product_path(article.product) %></strong><br>
               ref. <%= article.product_id %>
             </div>
             <div class="col-md-2">
