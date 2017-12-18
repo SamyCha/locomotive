@@ -9,8 +9,8 @@ class Product < ApplicationRecord
   validates :color, presence: true
   validates :brand, presence: true
   validates :size, presence: true
-  validates :name, presence: true, length: {maximum: 12}
-  validates :description, presence: true, length: {maximum: 50}
+  validates :name, presence: true, length: {maximum: 25}
+  validates :description, presence: true, length: {maximum: 70}
   validates :address, presence: true
   validates :price, numericality: {only_integer: true, greater_than: 1}
   validates :status, inclusion: { in: [ true, false ] }
