@@ -26,7 +26,9 @@
                 <%= image_tag product.photos[0].image.url(:thumb) if product.photos.length > 0 %>
               </div>
               <div class="col-md-7">
-                <strong><%= product.name %></strong> (<%= link_to "Mettre à jour l'annonce", edit_product_path(product) %>)
+
+
+                <strong><%= product.name %></strong>  ref. <%= product.id %>
                 <br>
                 <span class="label label-success">produit en vente</span>
                 <% if product.active? %>
@@ -35,8 +37,8 @@
                 <span class="label label-default">en cours de publication</span>
                 <% end %>
                 <br>
-                ref.: <%= product.id %>
-               (crée: <%= timeago_tag product.created_at, :lang => :fr  %>)
+               dernière mis à jour: <%= timeago_tag product.updated_at, :lang => :fr  %><br>
+               (<%= link_to "Mettre à jour l'annonce", edit_product_path(product) %>)
               </div>
               <br>
               <div class="col-md-3 text-center">
