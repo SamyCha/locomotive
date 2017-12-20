@@ -11,6 +11,8 @@
 //= require ./credit_card_form.js
 //= require ./cable.js
 //= require ./autocomplete.js
+//= require ./jquery.jTinder
+//= require ./jquery-transform2d
 
 
 toastr.options = {

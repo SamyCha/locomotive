@@ -13,13 +13,13 @@
         <div class="col-md-4 select">
           <div class="form-group">
             <label>Catégorie de Produit</label>
-            <%= f.select :category, [["Bijou", "Bijou"], ["Jupe","Jupe"], ["Pantallon","Pantallon"], ["Chapeau", "Chapeau"], ["Autre", "Autre"]], id: "home_type", prompt: "A sélectionner...", class: "form-control" %>
+            <%= f.select :category, [["Accessoire", "Accessoire"], ["Autre", "Autre"], ["Bijou", "Bijou"], ["Chapeau", "Chapeau"], ["Chaussures","Chaussures"], ["Chemise","Chemise"], ["Jupe","Jupe"], ["Lingerie","Lingerie"], ["Manteau","Manteau"], ["Pantallon","Pantallon"], ["Pull","Pull"], ["T-shirt","T-shirt"], ["Top","Top"], ["Veste","Veste"]],  id: "home_type", prompt: "A sélectionner...", class: "form-control" %>
           </div>
         </div>
         <div class="col-md-4 select">
           <div class="form-group">
             <label>Etat de l'article</label>
-            <%= f.select :state, [["Neuf","Neuf"], ["Bon état","Bon état"],["Usé","Usé"], ["Mauvais état","Mauvais état"]], prompt: "A sélectionner...", class: "form-control" %>
+            <%= f.select :state, [["Neuf","Neuf"], ["Bon état","Bon état"],["Usé","Usé"]], prompt: "A sélectionner...", class: "form-control" %>
           </div>
         </div>
         <div class="col-md-4">
