@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   before_action :set_product, only: [:show, :edit, :update]
-  before_action :authenticate_user!, except: [:show, :search]
+  before_action :authenticate_user!, except: [:show, :search, :slide]
   before_action :require_same_user, only: [:edit, :update]
 
   def search
@@ -22,8 +22,12 @@ end
   marker.lat product.latitude
   marker.lng product.longitude
 end
-
 end
+
+def slide
+@products = Product.all
+end
+
 
 def index
   @products = current_user.products

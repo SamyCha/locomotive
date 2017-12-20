@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get 'your_articles' => 'reservations#your_articles'
   get '/your_reservations' => 'reservations#your_reservations'
   get '/search' => 'products#search'
-
+  get '/slide' => 'products#slide'
 
 end
 
