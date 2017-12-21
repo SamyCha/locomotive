@@ -1,5 +1,5 @@
 <div class="container-fluid">
- <% if current_user.seller? %>
+
  <div class="row">
   <div class="col-md-3">
     <ul class="sidebar-list">
@@ -26,8 +26,6 @@
                 <%= image_tag product.photos[0].image.url(:thumb) if product.photos.length > 0 %>
               </div>
               <div class="col-md-7">
-
-
                 <strong><%= product.name %></strong>  ref. <%= product.id %>
                 <br>
                 <span class="label label-success">produit en vente</span>
@@ -53,5 +51,5 @@
         </div>
       </div>
     </div>
-    <% end %>
+
   </div>
