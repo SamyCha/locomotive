@@ -5,7 +5,6 @@ class ProductsController < ApplicationController
   before_action :require_same_user, only: [:edit, :update]
 
   def search
-
 #pg search de produit par name et category
 if params[:term]
   @products = Product.search_by_name_and_category(params[:term])
@@ -22,19 +21,32 @@ end
   marker.lat product.latitude
   marker.lng product.longitude
 end
+
+
 end
 
 def slide
-@products = Product.all
+  if user_signed_in?
+    @products =  Product.all.where(active: true)
+  else
+    redirect_to search_path
+  end
 end
 
-
 def index
-  @products = current_user.products
+  if current_user.seller?
+    @products = current_user.products
+  else
+    redirect_to root_path
+  end
 end
 
 def new
-  @product = current_user.products.build
+  if current_user.seller?
+    @product = current_user.products.build
+  else
+    redirect_to root_path
+  end
 end
 
 def create
@@ -63,7 +75,11 @@ def show
 end
 
 def edit
-  @photos = @product.photos
+  if current_user.seller?
+    @photos = @product.photos
+  else
+    redirect_to root_path
+  end
 end
 
 def update

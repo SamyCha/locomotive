@@ -1,3 +1,9 @@
+
+<div class="text-center">
+     <%= link_to your_articles_path, class: "btn btn-info" do %>
+    Voir vos articles appréciés
+    <% end %>
+</div>
     <!-- start padding container -->
     <div class="wrap">
       <!-- start jtinder container -->
@@ -6,7 +12,8 @@
           <% @products.each do |product| %>
           <li class="pane1">
             <div class="img"><%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %></div>
-            <div><%= link_to product.name, product %></div>
+            <div><strong><%= product.name %></strong>
+             </div>
             <div class="like"></div>
             <div class="dislike"></div>
             </li>
@@ -27,7 +34,6 @@
     <div id="status"></div>
 
     <div class="text-center">
-        <%= link_to your_articles_path, class: "btn btn-info btn-lg" do %>
-    Voir votre wishlist
-    <% end %>
+
+
     </div>
