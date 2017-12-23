@@ -35,7 +35,7 @@
     <% end %>
 
     <i class="fa fa-heart" aria-hidden="true"></i>
-    <%= link_to "Ma Wishlist", your_articles_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to "Mes coups de coeur", your_articles_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <!-- Avatar with dropdown menu -->
     <div class="navbar-wagon-item">
       <div class="dropdown">
@@ -75,7 +75,7 @@
         <li class="sidebar-item">
         <%= link_to slide_path do %><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
     Faire défiler les articles<% end %></li>
-          <li class="sidebar-item"><%= link_to your_articles_path do %><i class="fa fa-heart" aria-hidden="true"></i> Ma Wishlist<% end %></li>
+          <li class="sidebar-item"><%= link_to your_articles_path do %><i class="fa fa-heart" aria-hidden="true"></i> Mes coups de coeur<% end %></li>
           <!-- if user is seller -->
           <% if current_user.seller? %>
           <li class="sidebar-item">

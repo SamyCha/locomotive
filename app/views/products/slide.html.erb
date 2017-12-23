@@ -1,18 +1,22 @@
 
-<div class="text-center">
+
+<div id="status"></div><div class="text-center">
      <%= link_to your_articles_path, class: "btn btn-info" do %>
-    Voir vos articles appréciés
+    Voir vos coups de coeur
     <% end %>
 </div>
+
     <!-- start padding container -->
     <div class="wrap">
+     <!-- jTinder status text  -->
+
       <!-- start jtinder container -->
       <div id="tinderslide">
         <ul>
           <% @products.each do |product| %>
           <li class="pane1">
             <div class="img"><%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %></div>
-            <div><strong><%= product.name %></strong>
+            <div><strong><%= product.address %></strong>
              </div>
             <div class="like"></div>
             <div class="dislike"></div>
@@ -30,10 +34,4 @@
       <a href="#" class="like"><i></i></a>
     </div>
 
-    <!-- jTinder status text  -->
-    <div id="status"></div>
 
-    <div class="text-center">
-
-
-    </div>

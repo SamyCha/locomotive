@@ -20,14 +20,15 @@
   <% if user_signed_in? && current_user != @user %>
     <% if @booked %>
     <%= link_to your_articles_path, class: "btn btn-primary" do %>
-    Ce produit est dans votre liste <i class="fa fa-heart" aria-hidden="true"></i>
+    Un vos coups de coeur <i class="fa fa-heart" aria-hidden="true"></i>
     <% end %>
     <% else %>
-    <%= f.submit "Mettre dans ma liste", class:"btn-success btn-lg" %>
-    <% end %>
-<!--
+    <%= f.submit "Mettre dans vos Coups de coeur", class:"btn-success" %>
+
   <%= link_to "Contacter son vendeur", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-primary" %>
--->
+
+    <% end %>
+
 <% elsif user_signed_in? && current_user == @product.user %>
 <%= link_to "Mettre à jour votre article", edit_product_path(@product), class: "btn btn-primary" %><br>
 (dernière mise à jour:<%= timeago_tag @product.updated_at, :lang => :fr  %>)

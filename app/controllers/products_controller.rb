@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
 
-  before_action :set_product, only: [:show, :edit, :update]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :search, :slide]
-  before_action :require_same_user, only: [:edit, :update]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def search
 #pg search de produit par name et category
@@ -21,18 +21,20 @@ end
   marker.lat product.latitude
   marker.lng product.longitude
 end
-
-
 end
 
+# pour le slider mobile
 def slide
   if user_signed_in?
-    @products =  Product.all.where(active: true)
+    @address = current_user.address
+    @active = Product.all.where(active: true)
+    @products = @active.near(@address, 20).sample(50)
   else
     redirect_to search_path
   end
 end
 
+#liste de tous les articles publiés et non publiés du vendeur
 def index
   if current_user.seller?
     @products = current_user.products
@@ -96,6 +98,12 @@ def update
     render :edit
   end
 end
+
+def destroy
+  @product.destroy
+  redirect_to products_path, notice:"Article supprimé"
+end
+
 
 private
 def set_product

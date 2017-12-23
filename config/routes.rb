@@ -21,11 +21,8 @@ Rails.application.routes.draw do
 
   resources :contacts, only: [:new, :create]
 
-
   get 'your_articles' => 'reservations#your_articles'
   get '/your_reservations' => 'reservations#your_reservations'
   get '/search' => 'products#search'
   get '/slide' => 'products#slide'
-
 end
-
