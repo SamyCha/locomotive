@@ -22,11 +22,12 @@
             <% @products.each do |product| %>
             <% if product.status != true %>
             <div class="row">
-              <div class="col-md-2">
-                <%= image_tag product.photos[0].image.url(:thumb) if product.photos.length > 0 %>
+              <div class="col-md-2 text-center">
+                <%= image_tag product.photos[0].image.url(:thumb) if product.photos.length > 0 %><br>
+                ref. <%= product.id %>
               </div>
               <div class="col-md-7">
-                <strong><%= product.name %></strong>  ref. <%= product.id %>
+                <strong><%= product.name %></strong>  (<%= product.price %> euros)
                 <br>
                 <span class="label label-success">produit en vente</span>
                 <% if product.active? %>
@@ -36,12 +37,16 @@
                 <% end %>
                 <br>
                dernière mis à jour: <%= timeago_tag product.updated_at, :lang => :fr  %><br>
-               (<%= link_to "Mettre à jour l'annonce", edit_product_path(product) %>)
-              </div>
-              <br>
-              <div class="col-md-3 text-center">
 
-                <%= link_to "passer l'article à vendu", edit_product_path(product), class: "btn btn-info" %>
+
+              </div>
+
+              <div class="col-md-3 text-center">
+              <%= link_to "Modifier l'annonce", edit_product_path(product) %><br>
+
+              <%= link_to "Supprimer cette annonce", products_path(product), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer l'article? Cela supprimera aussi vos conversations avec les acheteurs" } %><br>
+
+                <%= link_to "L'article est vendu", edit_product_path(product) %>
               </div>
             </div>
             <hr>
