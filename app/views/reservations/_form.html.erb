@@ -23,9 +23,10 @@
     Un vos coups de coeur <i class="fa fa-heart" aria-hidden="true"></i>
     <% end %>
     <% else %>
-    <%= f.submit "Mettre dans vos Coups de coeur", class:"btn-success" %>
 
-  <%= link_to "Contacter son vendeur", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-primary" %>
+<%= f.submit "Mettre dans mes coups de coeur", class:" btn btn-success" %>
+
+<%= link_to "Contacter son vendeur", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class:"btn btn-primary" %>
 
     <% end %>
 

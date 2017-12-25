@@ -13,8 +13,10 @@
    </ul>
 
    <br>
-
+    <% if current_user.seller? %>
    <%= link_to user_path(current_user.id), class: 'btn btn-info wide' do %><i class="fa fa-user" aria-hidden="true"></i> Voir mon profil <% end %>
+<% end %>
+
 
  </div>
  <div class="col-md-7 text-center">

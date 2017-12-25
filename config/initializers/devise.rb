@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -8,10 +10,10 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '8884bf2790ffcc6d47fd8b83075bf7b6b8dd940b8fb888311c87450c89909d1a1a96adf09e80d09b666afcb1b506f18c3084863fc693f464356333f009e206fd'
   case Rails.env
-    when "development"
-    config.omniauth :facebook, '146371526098057', '2a51199b790deaa951d0c6f371a88923', scope: "email", info_fields: 'email,name'
-    when "production"
-    config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], scope: "email", info_fields: 'email,name'
+  when 'development'
+    config.omniauth :facebook, '146371526098057', '2a51199b790deaa951d0c6f371a88923', scope: 'email', info_fields: 'email,name'
+  when 'production'
+    config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], scope: 'email', info_fields: 'email,name'
   end
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,

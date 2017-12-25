@@ -1,40 +1,40 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 ruby '2.3.4'
 
+gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'devise'
+gem 'devise-i18n'
+gem 'faker'
+gem 'figaro'
+gem 'geocoder'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'jbuilder', '~> 2.0'
+gem 'jquery-ui-rails'
+gem 'mail_form'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'devise-i18n'
-gem 'rails-i18n'
-gem 'figaro'
-gem 'faker'
-gem 'jbuilder', '~> 2.0'
+gem 'paperclip', '~> 5.0.0'
+gem 'paperclip-cloudinary'
 gem 'pg'
 gem 'pg_search'
 gem 'puma'
 gem 'rails', '5.1.4'
-gem 'redis'
-gem "paperclip", "~> 5.0.0"
-gem "toastr-rails"
-gem 'paperclip-cloudinary'
-gem 'geocoder'
-gem 'jquery-ui-rails'
-gem 'ransack'
+gem 'rails-i18n'
 gem 'rails-timeago'
-gem 'mail_form'
+gem 'ransack'
+gem 'redis'
 gem 'stripe'
-gem 'activeadmin', github: 'activeadmin/activeadmin'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-
-gem "coffee-rails"
-gem "gmaps4rails"
+gem 'toastr-rails'
+gem 'coffee-rails'
+gem 'gmaps4rails'
 
 source 'https://rails-assets.org' do
-  gem "rails-assets-underscore"
+  gem 'rails-assets-underscore'
 end
 
 gem 'kaminari'
-
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
@@ -44,10 +44,15 @@ gem 'simple_form'
 gem 'uglifier'
 
 group :development, :test do
+  gem 'listen', '~> 3.0.5'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '>= 3.3.0'
+end
+
+group :development do
+  gem 'guard'
+  gem 'guard-rubocop'
 end

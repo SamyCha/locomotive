@@ -1,23 +1,22 @@
-class Payment < ActiveRecord::Base
+# frozen_string_literal: true
 
+class Payment < ApplicationRecord
   attr_accessor :card_number, :card_cvv, :card_expires_month, :card_expires_year
   belongs_to :user
 
   def self.month_options
-    Date::MONTHNAMES.compact.each_with_index.map { |name, i| ["#{i+1}", i+1]}
-
+    Date::MONTHNAMES.compact.each_with_index.map { |_name, i| [(i + 1).to_s, i + 1] }
   end
 
   def self.year_options
-    (Date.today.year..(Date.today.year+10)).to_a
+    (Date.today.year..(Date.today.year + 10)).to_a
   end
 
   def process_payment
     customer = Stripe::Customer.create email: email, card: token
     Stripe::Charge.create customer: customer.id,
-    amount: Reservation.last.price*100,
-    description: 'Réservation les armoires de Paris',
-    currency: 'eur'
+                          amount: Reservation.last.price * 100,
+                          description: 'Réservation les armoires de Paris',
+                          currency: 'eur'
   end
-
 end

@@ -1,4 +1,3 @@
-<% if @product.active? %>
 <div class="container-fluid">
   <ol class="breadcrumb">
     <li><%= link_to "Accueil", root_path %></li>
@@ -58,7 +57,7 @@
         <%= image_tag avatar_url(@product.user), class:"img-circle avatar-large" %>
         <br>
         <br>
-       article vendu par:<br>
+        article vendu par:<br>
         <strong><%= link_to @product.user.pseudo ,user_path(@product.user) %></strong>
         <br>
         <span id="average_rating_header"></span> <%= @product.user.reviews.count %> commentaires<hr>
@@ -106,7 +105,7 @@
     </div>
   </div>
 </div>
- -->
+-->
 <!-- Google maps -->
 <div class="row">
   <div class="col-md-12">
@@ -154,17 +153,7 @@
 </div>
 </div>
 
-<% else %>
-<br>
-<div class="text-center">
-Ce produit a déjà été vendu ou a été dépublié par son vendeur<hr>
- <%= link_to search_path, class: "btn btn-info" do %>
-    Retour vers la liste des articles
-<% end %>
-</div>
 
-
-<% end %>
 
 <script>
   $('#average_rating').raty({

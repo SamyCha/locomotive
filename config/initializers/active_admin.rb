@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 def authenticate_admin!
-  redirect_to new_user_session_path unless current_user && current_user.admin
+  redirect_to new_user_session_path unless current_user&.admin
 end
 
 ActiveAdmin.setup do |config|
@@ -8,7 +10,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Vide Dressing"
+  config.site_title = 'Vide Dressing'
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
