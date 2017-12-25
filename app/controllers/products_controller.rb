@@ -28,8 +28,9 @@ class ProductsController < ApplicationController
   def slide
     if user_signed_in?
       @address = current_user.address
+      @distance = current_user.distance
       @active = Product.all.where(active: true)
-      @products = @active.near(@address, 50).sample(50)
+      @products = @active.near(@address, @distance).sample(50)
     else
       redirect_to search_path
     end

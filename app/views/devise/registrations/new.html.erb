@@ -25,6 +25,12 @@
         <input id="country" name="country" disabled type="hidden">
       </div>
 
+  <div class="form-group">
+  Distance max. des articles proposés (kms):
+    <%= f.number_field :distance, class: "form-control", placeholder: "Distance max des articles proposés" %>
+  </div>
+
+
       <div class="form-group">
         <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "adresse email" %>
       </div>
