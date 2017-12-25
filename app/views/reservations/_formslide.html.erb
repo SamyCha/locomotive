@@ -1,0 +1,39 @@
+<div id="status"></div>
+<div class="text-center">
+  Glissez vers la droite <br> pour ajouter à vos coups de coeur
+</div>
+</div>
+<!-- start padding container -->
+<div class="wrap">
+ <!-- jTinder status text  -->
+ <!-- start jtinder container -->
+ <div id="tinderslide">
+  <ul>
+    <% @products.each do |product| %>
+    <li class="pane1">
+      <div><strong><%= product.name %></strong>  <i class="fa fa-heart-o" aria-hidden="true"></i> <%= product.reservations.count %>
+       <br></div>
+       <div><%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %></div>
+       <div><%= product.price %> euros<br>
+         <div><h2><%= product.address %></h2><br>
+         </div>
+         <div class="like"></div>
+         <div class="dislike"></div>
+       </li>
+       <% end %>
+     </ul>
+   </div>
+   <!-- end jtinder container -->
+ </div>
+ <!-- end padding container -->
+ <div class="text-center">
+  <%= link_to your_articles_path, class: "btn btn-info" do %>
+  Voir tous vos coups de coeur
+  <% end %>
+   <!-- jTinder trigger by buttons
+
+   <div class="actions">
+    <a href="#" class="dislike"><i></i></a>
+    <a href="#" class="like"><i></i></a>
+  </div>
+-->

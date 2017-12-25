@@ -1,123 +1,124 @@
-class ProductsController < ApplicationController
+# frozen_string_literal: true
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show, :search, :slide]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
+class ProductsController < ApplicationController
+  before_action :set_product, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[show search slide]
+  before_action :require_same_user, only: %i[edit update destroy]
 
   def search
-#pg search de produit par name et category
-if params[:term]
-  @products = Product.search_by_name_and_category(params[:term])
-  @products = Kaminari.paginate_array(@products).page(params[:page]).per(9)
+    # pg search de produit par name et category
+    if params[:term]
+      @products = Product.search_by_name_and_category(params[:term])
+      @products = Kaminari.paginate_array(@products).page(params[:page]).per(9)
 
-else
-  @products = Product.page(params[:page]).per(9)
-  .where
-  .not(latitude: nil, longitude: nil)
-  .order('created_at DESC')
-end
-#affichage de la map avec tous les produits
-@markers = Gmaps4rails.build_markers(@products) do |product, marker|
-  marker.lat product.latitude
-  marker.lng product.longitude
-end
-end
-
-# pour le slider mobile
-def slide
-  if user_signed_in?
-    @address = current_user.address
-    @active = Product.all.where(active: true)
-    @products = @active.near(@address, 20).sample(50)
-  else
-    redirect_to search_path
+    else
+      @products = Product.page(params[:page]).per(9)
+      .where
+      .not(latitude: nil, longitude: nil)
+      .order('created_at DESC')
+    end
+    # affichage de la map avec tous les produits
+    @markers = Gmaps4rails.build_markers(@products) do |product, marker|
+      marker.lat product.latitude
+      marker.lng product.longitude
+    end
   end
-end
 
-#liste de tous les articles publiés et non publiés du vendeur
-def index
-  if current_user.seller?
-    @products = current_user.products
-  else
-    redirect_to root_path
+  # pour le slider mobile
+  def slide
+    if user_signed_in?
+      @address = current_user.address
+      @active = Product.all.where(active: true)
+      @products = @active.near(@address, 50).sample(50)
+    else
+      redirect_to search_path
+    end
   end
-end
 
-def new
-  if current_user.seller?
-    @product = current_user.products.build
-  else
-    redirect_to root_path
+  # liste de tous les articles publiés et non publiés du vendeur
+  def index
+    if current_user.seller?
+      @products = current_user.products
+    else
+      redirect_to root_path
+    end
   end
-end
 
-def create
-  @product = current_user.products.build(product_params)
-  if @product.save
-    if params[:images]
-      params[:images].each do |i|
+  def new
+    if current_user.seller?
+      @product = current_user.products.build
+    else
+      redirect_to root_path
+    end
+  end
+
+  def create
+    @product = current_user.products.build(product_params)
+    if @product.save
+      params[:images]&.each do |i|
         @product.photos.create(image: i)
       end
+      @photos = @product.photos
+      redirect_to products_path, notice: 'Votre article est en attente de publication'
+    else
+      render :new
     end
-    @photos = @product.photos
-    redirect_to products_path, notice:"Votre article est en attente de publication"
-  else
-    render :new
   end
-end
 
-def show
-  @user = @product.user
-  @photos = @product.photos
-  @reviews = @product.reviews
-  if current_user
-    @booked = Reservation.where("product_id = ? AND user_id = ?", @product.id, current_user.id).present?
-    @hasReview = @reviews.find_by(user_id: current_user.id)
+  def show
+    if @product.active?
+      @user = @product.user
+      @photos = @product.photos
+      @reviews = @product.reviews
+      if current_user
+        @booked = Reservation.where('product_id = ? AND user_id = ?', @product.id, current_user.id).present?
+        @hasReview = @reviews.find_by(user_id: current_user.id)
+      end
+    else
+      redirect_to search_path, notice: 'Ce produit a été dépublié ou vendu'
+    end
   end
-end
 
-def edit
-  if current_user.seller?
-    @photos = @product.photos
-  else
-    redirect_to root_path
+  def edit
+    if current_user.seller?
+      @photos = @product.photos
+    else
+      redirect_to root_path
+    end
   end
-end
 
-def update
-  @product.active = false
-  if @product.update(product_params)
-    if params[:images]
-      params[:images].each do |i|
+  def update
+    @product.active = false
+    if @product.update(product_params)
+      params[:images]&.each do |i|
         @product.photos.create(image: i)
       end
+      @photos = @product.photos
+      redirect_to products_path, notice: 'Modification enregistrée'
+    else
+      render :edit
     end
-    @photos = @product.photos
-    redirect_to products_path, notice:"Modification enregistrée"
-  else
-    render :edit
   end
-end
 
-def destroy
-  @product.destroy
-  redirect_to products_path, notice:"Article supprimé"
-end
-
-
-private
-def set_product
-  @product = Product.find(params[:id])
-end
-
-def product_params
-  params.require(:product).permit(:name, :description, :brand, :category, :color, :size, :state, :price, :address, :status, :active)
-end
-
-def require_same_user
-  if current_user.id != @product.user_id
-    flash[:danger] = "Vous n'avez pas le droit de modifier cette page"
-    redirect_to root_path
+  def destroy
+    @product.destroy
+    redirect_to products_path, notice: 'Article supprimé'
   end
-end
+
+  private
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def product_params
+    params.require(:product).permit(:name, :description, :brand, :category, :color, :size, :state, :price, :address, :status, :active)
+  end
+
+  def require_same_user
+    if current_user.id != @product.user_id
+      flash[:danger] = "Vous n'avez pas le droit de modifier cette page"
+      redirect_to root_path
+    end
+  end
 end

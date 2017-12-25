@@ -1,5 +1,6 @@
-module ApplicationHelper
+# frozen_string_literal: true
 
+module ApplicationHelper
   def avatar_url(user)
     if user.image
       user.image
@@ -11,5 +12,4 @@ module ApplicationHelper
       end
     end
   end
-
 end

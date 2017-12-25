@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise  :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  enum state:  [:client, :seller]
+  enum state: %i[client seller]
 
-  validates :pseudo, presence:true, length: {maximum: 50}
+  validates :pseudo, presence: true, length: { maximum: 50 }
   validates :address, presence: true
 
   has_many :products
   has_many :reservations
   has_many :reviews
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }
+  has_attached_file :avatar, styles: { medium: '300x300>', thumb: '100x100>' }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   def self.from_omniauth(auth)
@@ -27,9 +29,8 @@ class User < ApplicationRecord
         u.uid = auth.uid
         u.email = auth.info.email
         u.image = auth.info.image
-        u.password = Devise.friendly_token[0,20]
+        u.password = Devise.friendly_token[0, 20]
       end
     end
   end
-
 end

@@ -1,21 +1,22 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
+  Paperclip::Attachment.default_options.merge!(
+    storage: :cloudinary,
+    path: 'id/:style/:filename'
+  )
 
-Paperclip::Attachment.default_options.merge!({
-  :storage=>:cloudinary,
-  :path=> 'id/:style/:filename'
-  })
-
-  config.action_mailer.default_url_options = { host: "https://armoires-web.herokuapp.com" }
+  config.action_mailer.default_url_options = { host: 'https://armoires-web.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
 
   ActionMailer::Base.smtp_settings = {
-    :user_name => ENV['SENDGRID_USERNAME'],
-    :password => ENV['SENDGRID_PASSWORD'],
-    :domain => 'heroku.com',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    user_name: ENV['SENDGRID_USERNAME'],
+    password: ENV['SENDGRID_PASSWORD'],
+    domain: 'heroku.com',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
   }
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -70,7 +71,7 @@ Paperclip::Attachment.default_options.merge!({
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -79,9 +80,6 @@ Paperclip::Attachment.default_options.merge!({
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "_vide-dressing_#{Rails.env}"
   config.action_mailer.perform_caching = false
-
-
-
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -101,7 +99,7 @@ Paperclip::Attachment.default_options.merge!({
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
