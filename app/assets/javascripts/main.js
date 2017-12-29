@@ -5,12 +5,13 @@ $("#tinderslide").jTinder({
   // dislike callback
     onDislike: function (item) {
       // set the status text
-        $('#status').html('non retenu ' + (item.index()+1));
+        $('#status').html('article précent non retenu');
     },
   // like callback
     onLike: function (item) {
       // set the status text
-        $('#status').html('ajouté à la liste ' + (item.index()+1));
+        $('#status').html('article précèdent dans vos coups de coeur');
+        $('.like').submit();;
     },
   animationRevertSpeed: 200,
   animationSpeed: 400,
