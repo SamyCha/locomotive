@@ -1,39 +1,54 @@
-<div id="status"></div>
-<div class="text-center">
-  Glissez vers la droite <br> pour ajouter à vos coups de coeur
-</div>
-</div>
-<!-- start padding container -->
-<div class="wrap">
- <!-- jTinder status text  -->
- <!-- start jtinder container -->
- <div id="tinderslide">
-  <ul>
-    <% @products.each do |product| %>
-    <li class="pane1">
-      <div><strong><%= product.name %></strong>  <i class="fa fa-heart-o" aria-hidden="true"></i> <%= product.reservations.count %>
-       <br></div>
-       <div><%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %></div>
-       <div><%= product.price %> euros<br>
-         <div><h2><%= product.address %></h2><br>
-         </div>
-         <div class="like"></div>
-         <div class="dislike"></div>
-       </li>
-       <% end %>
-     </ul>
-   </div>
-   <!-- end jtinder container -->
- </div>
- <!-- end padding container -->
- <div class="text-center">
-  <%= link_to your_articles_path, class: "btn btn-info" do %>
-  Voir tous vos coups de coeur
-  <% end %>
-   <!-- jTinder trigger by buttons
+<br>
+<div class="row">
+  <div class="text-center">
+    Glissez vers la droite <br> pour ajouter à vos coups de coeur
+    <div class="wrap">
 
-   <div class="actions">
-    <a href="#" class="dislike"><i></i></a>
-    <a href="#" class="like"><i></i></a>
-  </div>
+      <div id="tinderslide">
+        <ul>
+        <br>
+        <br>
+
+        A ce jour, il n' y a plus d'article dans votre zone de: <strong><%= current_user.distance %> kms </strong>
+        <br>
+(<%= link_to "Modifier votre zone de recherche", edit_user_registration_path %>)
+          <% @products.each do |product| %>
+
+<!--
+          <%= form_for([product, product.reservations.new]) do |f| %>
+          <%= f.hidden_field :product_id, value: product.id %>
+          <%= f.hidden_field :price, value: product.price %>
+          <br>
+          <div class="like"></div>
+          <div class="dislike"></div>
+          <%= f.submit "Mettre dans mes coups de coeur", class:" btn btn-success" %>
+          <% end %>
+
+          Mettre dans le main js pour la class Like: l'action de submit ci dessus
 -->
+
+
+
+
+          <li class="<%= product.id %>">
+            <div><strong><%= link_to product.name, product %></strong> <i class="fa fa-heart-o" aria-hidden="true"></i> <%= product.reservations.count %>
+             <br>
+           </div>
+           <div><%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0  %>
+           </div>
+           <div><%= product.price %> euros<br></div>
+           <div><h2><i class="fa fa-map-marker"></i> <%= product.address %></h2><br>
+           </div>
+
+
+         </li>
+         <% end %>
+       </ul>
+     </div>
+   </div>
+
+   <%= link_to your_articles_path, class: "btn btn-info" do %>
+   Voir vos <%= current_user.reservations.count %> coup(s) de coeur
+   <% end %>
+ </div>
+</div>

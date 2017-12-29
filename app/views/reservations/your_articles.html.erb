@@ -16,36 +16,47 @@
           <% @articles.order("id DESC").each do |article| %>
           <div class="row">
             <div class="col-md-2">
-              <strong><%= link_to article.product.name, product_path(article.product) %></strong><br>
-              ref. <%= article.product_id %>
+              <div class="text-center">
+                <strong><%= link_to article.product.name, product_path(article.product) %></strong><br>
+                ref. <%= article.product_id %>
+              </div>
             </div>
             <div class="col-md-2">
-              <%= link_to product_path(article.product) do %>
-              <%= image_tag article.product.photos[0].image.url(:thumb) if article.product.photos.length > 0 %>
-              <% end %>
+              <div class="text-center">
+
+                <%= link_to product_path(article.product) do %>
+                <%= image_tag article.product.photos[0].image.url(:thumb) if article.product.photos.length > 0 %>
+                <% end %>
+              </div>
             </div>
             <div class="col-md-4">
-              <%= article.product.brand %><br>
-              <%= article.product.state %><br>
-              <%= article.product.size %><br>
+              <div class="text-center">
+
+                <%= article.product.brand %><br>
+                <%= article.product.state %><br>
+                <%= article.product.size %><br>
+              </div>
             </div>
             <div class="col-md-4">
-<!-- Affichage en fonction du status du produit -->
-              <% if article.product.active %>
-              <!-- Si le produit est publié -->
-              <span class="label label-success">article en vente</span>
-              <span class="label label-info">prix: <%= article.price %> euros</span>
-              <br><br>
-              <%= link_to user_path(article.product.user), class:"btn btn-primary" do %>
-              Contacter le vendeur
-              <% end %>
-              <% elsif article.product.status? %>
-              <!-- Si le produit est vendu -->
-              <span class="label label-info">article vendu</span>
-              <% else %>
-              <!-- Si le produit est dépublié -->
-              <span class="label label-info">article dépublié</span>
-              <% end %>
+              <div class="text-center">
+
+                <!-- Affichage en fonction du status du produit -->
+                <% if article.product.active %>
+                <!-- Si le produit est publié -->
+                <span class="label label-success">article en vente</span>
+                <span class="label label-info">prix: <%= article.price %> euros</span>
+                <br><br>
+                <%= link_to user_path(article.product.user), class:"btn btn-primary" do %>
+                Contacter le vendeur
+                <% end %>
+                <% elsif article.product.status? %>
+                <!-- Si le produit est vendu -->
+                <span class="label label-info">article vendu</span>
+                <% else %>
+                <!-- Si le produit est dépublié -->
+                <span class="label label-info">article dépublié</span>
+                <% end %>
+              </div>
             </div>
           </div>
           <hr>
