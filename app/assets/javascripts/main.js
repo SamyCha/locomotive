@@ -11,7 +11,6 @@ $("#tinderslide").jTinder({
     onLike: function (item) {
       // set the status text
         $('#status').html('article précèdent dans vos coups de coeur');
-        $('.like').submit();;
     },
   animationRevertSpeed: 200,
   animationSpeed: 400,
