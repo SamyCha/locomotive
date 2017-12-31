@@ -1,18 +1,16 @@
-  <%= render "banner" %>
+<%= render "banner" %>
+<div class="container">
+  <%= render "searchbar" %>
+  <br>
+  <div class="row">
+    <%= render "caroussel" %>
+    <%= render "asidecaroussel" %>
 
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-xs-12 col-sm-12">
-        <h4>Les armoires de Paris</h4>
-        <p>_______________________________</p>
-        <p>Triari nullo perdiscere ille eius inquam dissentientium ut in quo disputando inquam ut quae solent tum dicas a potest cum.</p>
+<div class="col-xs-12 text-center">
+      <p>___________</p><h4><strong>NOS DERNIERS ARTICLES EN LIGNE</strong></h4>    <%= link_to search_path do %>(voir tous les articles)<% end %>
       </div>
-    </div>
-<!--
-    <div class="row">
-      <h4><%= link_to "Découvrez nos derniers articles", search_path %></h4>
       <% @products.each do |product| %>
-
+    <div class="row">
 
       <div class="col-xs-12 col-sm-4">
         <div class="panel panel-default">
@@ -27,7 +25,15 @@
         </div>
         <% end %>
       </div>
--->
+
+
+    <div class="row text-center">
+      <div class="col-xs-12 col-sm-12">
+        <h4>Les armoires de Paris</h4>
+        <p>_______________________________</p>
+        <p>Triari nullo perdiscere ille eius inquam dissentientium ut in quo disputando inquam ut quae solent tum dicas a potest cum.</p>
+      </div>
+    </div>
       <div class="text-center padded features">
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-3">

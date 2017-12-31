@@ -6,11 +6,7 @@
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-    <div class="search">
-      <%= form_tag search_path, class: "navbar-form navbar-left", method: :get do %>
-      <%= text_field_tag 'term', params[:term], placeholder: "Trouver un article", class: "form-control" %>
-      <% end %>
-    </div>
+
 
     <% if user_signed_in? %>
     <!-- Links when logged in -->
