@@ -39,16 +39,14 @@
             </div>
             <div class="col-md-4">
               <div class="text-center">
-
+                <%= link_to user_path(article.product.user), class:"btn btn-primary" do %>
+                Contacter le vendeur
+                <% end %>
                 <!-- Affichage en fonction du status du produit -->
                 <% if article.product.active %>
                 <!-- Si le produit est publié -->
                 <span class="label label-success">article en vente</span>
                 <span class="label label-info">prix: <%= article.price %> euros</span>
-                <br><br>
-                <%= link_to user_path(article.product.user), class:"btn btn-primary" do %>
-                Contacter le vendeur
-                <% end %>
                 <% elsif article.product.status? %>
                 <!-- Si le produit est vendu -->
                 <span class="label label-info">article vendu</span>
