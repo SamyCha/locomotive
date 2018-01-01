@@ -24,10 +24,13 @@ ActiveAdmin.register User do
     f.inputs 'Admin' do
       f.input :admin
     end
+        f.inputs 'Starseller' do
+      f.input :starseller
+    end
     f.actions
   end
 
-  permit_params :email, :state, :admin
+  permit_params :email, :state, :admin, :starseller
 
   index do
     selectable_column
@@ -35,6 +38,7 @@ ActiveAdmin.register User do
     column :email
     column :created_at
     column :state
+    column :starseller
     column :admin
     actions
   end

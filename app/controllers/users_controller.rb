@@ -1,12 +1,13 @@
 # frozen_string_literal: true
-
 class UsersController < ApplicationController
+
+  before_action :authenticate_user!, except: %i[show]
+
+
   def show
-    if current_user.seller?
+
       @user = User.find(params[:id])
       @products = @user.products
-    else
-      redirect_to edit_user_registration_path
-    end
+
   end
 end
