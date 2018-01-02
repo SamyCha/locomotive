@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+
+  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
+    <div class="card-category">NOS PROCHAINS EVENEMENTS</div>
+    <div class="card-description">
+      <h2>Les armoires de Paris</h2>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12">
+      <% @meetings.each do |meeting| %>
+      <div class="product">
+        <div class='product-upvote'>
+          <div class="product-arrow"></div>
+          <div class='product-count'>15 exposants</div>
+        </div>
+        <img src="" alt="kudoz" class="product-image hidden-xs">
+        <div class='product-body'>
+          <h3><%= meeting.name %></h3><a href="">Partager<i class="fa fa-share"></i></a>
+          <p><%= meeting.start_time.strftime("%d/%m/%Y") %></p>
+        </div>
+        <ul class="list-inline product-controls hidden-sm hidden-xs">
+          <li><%= link_to 'Voir', meeting %></li>
+          <li><%= link_to 'Modifier', edit_meeting_path(meeting) %></li>
+          <li><%= link_to 'Supprimer', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          <li>Reserver un stand</li>
+        </ul>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <%= link_to 'Créer un nouvel évenement', new_meeting_path %>
+</div>

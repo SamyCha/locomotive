@@ -5,28 +5,9 @@
   <div class="row">
     <%= render "caroussel" %>
     <%= render "asidecaroussel" %>
-
-<div class="col-xs-12 text-center">
-      <p>___________</p><h4><strong>NOS DERNIERS ARTICLES EN LIGNE</strong></h4>    <%= link_to search_path do %>(voir tous les articles)<% end %>
-      </div>
-      <% @products.each do |product| %>
-    <div class="row">
-
-      <div class="col-xs-12 col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading preview">
-            <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
-          </div>
-          <div class="panel-body">
-            <p class="home-link"><b><%= link_to product.price, product_path(product) %> € - <%= link_to product.category, product_path(product) %> - <%= link_to pluralize("taille:", product.size), product_path(product) %></b>
-              <br><%= link_to product.name, product_path(product) %></p>
-            </div>
-          </div>
-        </div>
-        <% end %>
-      </div>
-
-
+  </div>
+  <%= render "lastarticlesonline" %>
+  <div class="row">
     <div class="row text-center">
       <div class="col-xs-12 col-sm-12">
         <h4>Les armoires de Paris</h4>
@@ -34,29 +15,28 @@
         <p>Triari nullo perdiscere ille eius inquam dissentientium ut in quo disputando inquam ut quae solent tum dicas a potest cum.</p>
       </div>
     </div>
-      <div class="text-center padded features">
-        <div class="row">
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <i class="fa fa-heart-o fa-4x" aria-hidden="true"></i>
-            <h4>Les armoires de Paris</h4>
-            <p>Triari nullo perdiscere ille eius inquam dissentientium ut in quo disputando inquam ut quae solent tum dicas a potest cum.</p>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <i class="fa fa-shopping-bag fa-4x" aria-hidden="true"></i>
-            <h4>Vendez vos vetements</h4>
-            <p>Ipso faeneramur omnis liberalesque mercedis faeneramur fructus ad sic natura ad enim in sed sed exigamus enim liberalitatem propensi sed.</p>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <i class="fa fa-calendar fa-4x" aria-hidden="true"></i>
-            <h4>Les Prochains évenements</h4>
-            <p>Alia desiderata solet solet causa et nihil vicissimque natura maxime est ex alio id coniungendam alio quisque verum hoc iis.</p>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <i class="fa fa-bullhorn fa-4x" aria-hidden="true"></i>
-            <h4>Partagez nos évenements</h4>
-            <p>Feci intractato sunt sed in maxima quae utatur appareat montuosis in vetustas illae animal quam commorati in si commorati silvestribus.</p>
-          </div>
-        </div>
-      </div>
+  </div>
 
+  <div class="row">
+    <div class="text-center padded features">
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <i class="fa fa-heart-o fa-4x" aria-hidden="true"></i>
+        <h4>Les armoires de Paris</h4>
+        <p>Triari nullo perdiscere ille eius inquam dissentientium ut in quo disputando inquam ut quae solent tum dicas a potest cum.</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <i class="fa fa-shopping-bag fa-4x" aria-hidden="true"></i>
+        <h4>Vendez vos vetements</h4>
+        <p>Ipso faeneramur omnis liberalesque mercedis faeneramur fructus ad sic natura ad enim in sed sed exigamus enim liberalitatem propensi sed.</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <i class="fa fa-calendar fa-4x" aria-hidden="true"></i>
+        <h4>Les Prochains évenements</h4>
+        <%= link_to meetings_path do %>
+        <p>Alia desiderata solet solet causa et nihil vicissimque natura maxime est ex alio id coniungendam alio quisque verum hoc iis.</p>
+        <% end %>
+      </div>
     </div>
+  </div>
+
+</div>

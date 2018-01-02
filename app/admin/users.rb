@@ -24,7 +24,7 @@ ActiveAdmin.register User do
     f.inputs 'Admin' do
       f.input :admin
     end
-        f.inputs 'Starseller' do
+    f.inputs 'Starseller' do
       f.input :starseller
     end
     f.actions
