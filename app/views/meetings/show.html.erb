@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+
+  <strong>Evenement:</strong>
+
+<% @meetings.each do |meeting| %>
+<p> je serais présent à </p>
+  <%= meeting.name %> le: <%= meeting.start_time %>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
+<%= link_to 'Back', meetings_path %>

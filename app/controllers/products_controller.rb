@@ -13,9 +13,9 @@ class ProductsController < ApplicationController
 
     else
       @products = Product.page(params[:page]).per(9)
-      .where
-      .not(latitude: nil, longitude: nil)
-      .order('created_at DESC')
+                         .where
+                         .not(latitude: nil, longitude: nil)
+                         .order('created_at DESC')
     end
     # affichage de la map avec tous les produits
     @markers = Gmaps4rails.build_markers(@products) do |product, marker|

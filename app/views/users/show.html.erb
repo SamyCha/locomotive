@@ -11,11 +11,20 @@
       <div class="row-space-2">
         <%= link_to "Envoyer un message", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-primary wide" %>
       </div>
+        <% elsif current_user == @user %>
+        <hr>
+
+            <%= link_to "Ajouter un article à vendre", new_product_path, class: "btn btn-info" %>
+            <br>
+            <br>
+            <%= link_to "Participer à un evenement", meeting_path, class: "btn btn-info" %>
+            <br>
+            <br>
+            <%= link_to "Modifier mon profil", edit_user_registration_path, class: "btn btn-info" %>
+
+            <hr>
       <% end %>
 <% end %>
-
-
-
 
       <div class="panel panel-default">
         <div class="panel-heading">enregistré depuis: <%= timeago_tag @user.created_at, :lang => :fr  %>
@@ -27,25 +36,44 @@
       </div>
     </div>
     <br>
+
     <div class="col-md-9">
       <% if @user.starseller? %>
-
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('http://res.cloudinary.com/hessdypy6/image/upload/v1514816032/starseller_bkzwa6.jpg');">
-        <div class="card-category">CREATEUR DU MOIS</div>
+        <div class="card-category">CREATEUR DU MOIS</div><img class="card-user" src="http://www.freepngimg.com/download/best_quality/5-2-best-quality-download-png.png">
+        <div class="card-description">
+          <h2><%= @user.pseudo %></h2>
+          <h5><%= @user.description %></h5>
+
+        </div>
+      </div>
+      <% else %>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('http://res.cloudinary.com/hessdypy6/image/upload/v1514816032/starseller_bkzwa6.jpg');">
         <div class="card-description">
           <h2><%= @user.pseudo %></h2>
           <h5><%= @user.description %></h5>
         </div>
       </div>
-      <% else %>
-      <h4>A propos de <%= @user.pseudo %>:</h4>
-      <div class="description row-space-3">
-        <%= @user.description %>
-      </div>
       <% end %>
 
+<br>
+<div class="col-xs-12 text-center">
+<h4><i class="fa fa-calendar fa-2x" aria-hidden="true"></i> VOUS ME TROUVEREZ AUX EVENEMENTS SUIVANTS:</h4>
+<%= week_calendar number_of_weeks: 2, events: @meetings do |date, meetings| %>
+  <strong><%= date.strftime("%d") %></strong>
 
-      <h4>Tous ses articles:</h4>
+  <% meetings.each do |meeting| %>
+    <div>
+      <strong><p><%= link_to meeting.name, @meeting_path  %></p></strong>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+
+<br>
+<div class="col-xs-12 text-center">
+      <h4><i class="fa fa-female fa-2x" aria-hidden="true"></i> MES ARTICLES:</h4>
       <% @products.each do |product| %>
       <!-- affiche tous les articles actif en vente -->
       <% if product.active? %>
@@ -82,8 +110,11 @@
         <% end %>
       </div>
     </div>
+</div>
 
-
+  </div>
+  <div class="row">
+  <br>
   </div>
 </div>
 

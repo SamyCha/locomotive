@@ -317,6 +317,8 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
     shellany (0.0.1)
+    simple_calendar (2.2.7)
+      rails (>= 3.0)
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
@@ -402,6 +404,7 @@ DEPENDENCIES
   ransack
   redis
   sass-rails
+  simple_calendar (~> 2.0)
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)

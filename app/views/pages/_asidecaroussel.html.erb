@@ -16,9 +16,10 @@
         <h2>La créatrice du mois</h2>
         <% @starsellers.each do |user| %>
         <h5><%= user.pseudo %></h5>
-      </div>
+
       <%= link_to "", user_path(user), class:"card-link" %>
       <% end %>
+      </div>
     </div>
     <br>
     Suivez notre actualité:
