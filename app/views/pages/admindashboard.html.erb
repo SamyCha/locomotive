@@ -4,69 +4,85 @@
     Bonjour <strong><%= current_user.pseudo %></strong>,<br>
     Bienvenue dans votre panneau d'administration, voici les actions requises:
   </div>
-<div class='row text-center'>
-        <span class="label label-success">Article(s) en attente de publication:
-        <%= @notactives.count %></span>
-         <span class="label label-success">
-        Vendeur(s) en attente de confirmation: </span>
-</div>
-  <br>
-  <div class='row'>
-    <div class="col-xs-12 col-sm-4">
-      <h3><i class="fa fa-calendar" aria-hidden="true"></i>
-Mes évènements:</h3>
-        <% @meetings.each do |meeting| %>
-        <ul>
-          <li><strong><%= link_to meeting.name, meeting_path(meeting) %></strong> (<%= meeting.start_time.strftime("%d/%m/%Y") %>)
-          </li>
-        </ul><% end %>
-
-
-
-      <%= link_to 'Créer un nouvel évenement', new_meeting_path, class:'btn btn-primary' %><br><hr>
-
-      <h3><i class="fa fa-female" aria-hidden="true"></i> Mes articles:</h3>
-      <%= link_to 'Ajouter un article', new_product_path, class:'btn btn-primary' %><br><br>
-      <%= link_to 'Supprimer un article', root_path, class:'btn btn-primary' %>
-      <br><br>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-4">
-      <h3><i class="fa fa-users" aria-hidden="true"></i>
-Mes utilisateurs:</h3>
-      Nombre de comptes enregistrés:
-      <strong><%= @users.count %></strong><br>
-      Nombre de vendeurs enregistrés:
-      <strong><%= @sellers.count %></strong><hr>
-      Derniers utilisateurs enregistrés:
-      <% @lastuserregistered.each do |user| %>
-      <ul>
-        <li><strong><%= link_to user.pseudo, user_path(user) %> <%= user.state %></strong> (<%= user.created_at.strftime("%d/%m/%Y") %>)</li>
-      </ul><% end %>
-      <%= link_to 'Passer un acheteur à vendeur', root_path, class:'btn btn-primary' %><br><br>
-      <%= link_to 'Supprimer un utilisateur', root_path, class:'btn btn-primary' %></div>
-
-      <div class="col-xs-12 col-sm-4">
-      <h3><i class="fa fa-female" aria-hidden="true"></i> Leurs articles</h3>
-        Nombre d'article enregistrés:
-        <strong><%= @products.count %></strong><br>
-        Nombre d'articles publiés:
-        <strong><%= @onlines.count %></strong><hr>
-        Articles en attente de publication:
-        <% @notactives.each do |product| %>
-        <ul>
-          <li><strong><%= link_to product.name, product_path(product) %> <%= product.user.pseudo %></strong> (<%= product.updated_at.strftime("%d/%m/%Y") %>)
-          </li>
-        </ul><% end %>
-
-
-
-        <%= link_to 'Valider la mise en ligne d un article', root_path, class:'btn btn-primary' %><br><br>
-
+  <div class='row text-center'>
+    <span class="label label-success">Article(s) en attente de publication:
+      <%= @notactives.count %></span>
+      <span class="label label-success">
+        Vendeur(s) en attente de validation: <%= @sellerwaitinglist.count %></span>
       </div>
-    </div>
-  </div>
+      <br>
+
+      <div class='row'>
+        <div id="mystuff">
+          <div class="col-xs-12 col-sm-4">
+            <h3><i class="fa fa-calendar" aria-hidden="true"></i>
+              Mes évènements:</h3>
+              <% @meetings.each do |meeting| %>
+              <ul>
+                <li><strong><%= link_to meeting.name, meeting_path(meeting) %></strong> (<%= meeting.start_time.strftime("%d/%m/%Y") %>)
+                </li>
+              </ul><% end %>
+              <%= link_to 'Créer un nouvel évenement', new_meeting_path, class:'btn btn-primary' %><br><hr>
+
+              <h3><i class="fa fa-female" aria-hidden="true"></i> Mes derniers articles:</h3>
+              <% @myproducts.each do |product| %>
+              <ul>
+                <li><strong><%= link_to product.name, product_path(product) %></strong>
+                  <% if product.active? %>
+                  <p>publié</p>
+                  <% elsif product.status? %>
+                  <p>vendu</p>
+                  <% else %>
+                  <br><span class="label label-success">en attente de publication</span>
+                  <% end %>
+                </li>
+              </ul><% end %>
 
 
+              <%= link_to 'Ajouter un article', new_product_path, class:'btn btn-primary' %><br><br>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-4">
+            <h3><i class="fa fa-users" aria-hidden="true"></i>
+              Mes utilisateurs:</h3>
+              Nombre de comptes enregistrés:
+              <strong><%= @users.count %></strong><br>
+              Nombre de vendeurs enregistrés:
+              <strong><%= @sellers.count %></strong><hr>
+              Derniers utilisateurs enregistrés:
+              <% @lastuserregistered.each do |user| %>
+              <ul>
+                <li><strong><%= link_to user.pseudo, user_path(user) %> <%= user.state %></strong> (<%= user.created_at.strftime("%d/%m/%Y") %>)
+                <% if user.choice? %><br>
+                   <span class="label label-success">souhaite être vendeur</span> <%= link_to '=> valider', root_path %>
+                  <% end %>
+                </li>
+              </ul><% end %>
+              <%= link_to 'Supprimer un utilisateur', root_path, class:'btn btn-primary' %>
+            </div>
+
+            <div class="col-xs-12 col-sm-4">
+              <h3><i class="fa fa-female" aria-hidden="true"></i> Leurs articles</h3>
+              Nombre d'article enregistrés:
+              <strong><%= @products.count %></strong><br>
+              Nombre d'articles publiés:
+              <strong><%= @onlines.count %></strong><hr>
+              Articles en attente de publication:
+              <% @notactives.each do |product| %>
+              <ul>
+                <li><strong><%= link_to product.name, product_path(product) %> <%= product.user.pseudo %></strong> (<%= product.updated_at.strftime("%d/%m/%Y") %>)
+                <% if product.active? %>
+                  <p>publié</p>
+                  <% elsif product.status? %>
+                  <p>vendu</p>
+                  <% else %>
+                   <span class="label label-success">en attente de publication</span> <%= link_to '=> publier', root_path %>
+                  <% end %>
+                </li>
+              </ul><% end %>
+              <br><br>
+            </div>
+          </div>
+        </div>
 

@@ -21,11 +21,12 @@ def admindashboard
   @users = User.all
   @sellers = User.seller
   @lastuserregistered = User.all.sort_by(&:created_at).last(10)
+  @sellerwaitinglist = User.all.where(choice: true)
 
   @products = Product.all
   @onlines = Product.all.where(active: true)
 
-
+  @myproducts = current_user.products.last(5)
   @notactives = Product.all.where(active: false) #attention et qu il ne soit pas vendu (if not sold)
 end
 
