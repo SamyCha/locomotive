@@ -15,13 +15,18 @@ class PagesController < ApplicationController
   end
 
 def admindashboard
+  @meetings = Meeting.all.sort_by(&:start_time)
+
   @user = current_user
   @users = User.all
   @sellers = User.seller
-  @products = Product.all
-  @onlines = Product.all.where(active: true)
   @lastuserregistered = User.all.sort_by(&:created_at).last(10)
 
+  @products = Product.all
+  @onlines = Product.all.where(active: true)
+
+
+  @notactives = Product.all.where(active: false) #attention et qu il ne soit pas vendu (if not sold)
 end
 
 
