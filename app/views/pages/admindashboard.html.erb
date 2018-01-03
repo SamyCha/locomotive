@@ -1,0 +1,39 @@
+<hr>
+<div class='row text-center'>
+Bonjour <strong><%= current_user.pseudo %></strong>,<br>
+Bienvenue dans votre panneau d'administration
+</div>
+<br>
+<div class='row'>
+<div class="col-xs-12 col-sm-4">
+  <h3>Mes évènements</h3>
+  <%= link_to 'Créer un nouvel évenement', new_meeting_path, class:'btn btn-primary' %><br><br>
+  <%= link_to 'Modifier un évènement', new_meeting_path, class:'btn btn-primary' %><br>
+</div>
+
+<div class="col-xs-12 col-sm-4">
+  <h3>Mes utilisateurs:</h3>
+  Nombre de comptes enregistrés:
+  <strong><%= @users.count %></strong><br>
+  Nombre de vendeurs enregistrés:
+  <strong><%= @sellers.count %></strong><br>
+  Derniers utilisateurs enregistrés:
+  <% @lastuserregistered.each do |user| %>
+  <ul>
+    <li><strong><%= link_to user.pseudo, user_path(user) %></strong> (<%= user.created_at %>)</li>
+  </ul><% end %>
+  <%= link_to 'Passer un acheteur à vendeur', root_path, class:'btn btn-primary' %><br><br>
+  <%= link_to 'Supprimer un utilisateur', root_path, class:'btn btn-primary' %></div>
+
+  <div class="col-xs-12 col-sm-4">
+    <h3>Les articles</h3>
+    Nombre d'article enregistrés:
+    <strong><%= @products.count %></strong><br>
+    Nombre d'articles publiés:
+    <strong><%= @onlines.count %></strong><br>
+    Nombre d'article renseignés comme "vendus":<br>
+    <%= link_to 'Valider la mise en ligne d un article', root_path, class:'btn btn-primary' %><br><br>
+    <%= link_to 'Supprimer un article', root_path, class:'btn btn-primary' %>
+
+  </div>
+</div>
