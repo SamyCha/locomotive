@@ -1,0 +1,21 @@
+<div id="hidden-mobile">
+    <div class="col-xs-12 text-center">
+      <p>___________</p><h4><strong>NOS DERNIERS ARTICLES EN LIGNE</strong></h4>    <%= link_to search_path do %>(voir tous les articles)<% end %>
+    </div>
+    <% @products.each do |product| %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading preview">
+            <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
+          </div>
+          <div class="panel-body">
+            <p class="home-link"><b><%= link_to product.price, product_path(product) %> € - <%= link_to product.category, product_path(product) %> - <%= link_to pluralize("taille:", product.size), product_path(product) %></b>
+              <br><%= link_to product.name, product_path(product) %></p>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+

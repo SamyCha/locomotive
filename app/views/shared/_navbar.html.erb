@@ -6,10 +6,12 @@
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-
-
     <% if user_signed_in? %>
     <!-- Links when logged in -->
+    <% if current_user.admin? %>
+    <i class="fa fa-unlock" aria-hidden="true"></i>
+    <%= link_to "Dashboard Admin", admindashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <% end %>
     <i class="fa fa-envelope" aria-hidden="true"></i>
     <%= link_to "Messages", conversations_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <!-- if user is seller -->
@@ -68,30 +70,30 @@
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <li class="sidebar-item">
           <%= link_to conversations_path do %><i class="fa fa-envelope" aria-hidden="true"></i> Messages<% end %></li>
-        <li class="sidebar-item">
-        <%= link_to slide_path do %><i class="fa fa-arrows-h" aria-hidden="true"></i>
-    Faire défiler les articles<% end %></li>
-          <li class="sidebar-item"><%= link_to your_articles_path do %><i class="fa fa-heart" aria-hidden="true"></i> Mes coups de coeur<% end %></li>
-          <!-- if user is seller -->
-          <% if current_user.seller? %>
           <li class="sidebar-item">
-          <%= link_to products_path do %><i class="fa fa-female" aria-hidden="true"></i> Mes articles<% end %>
-          </li>
-          <li class="sidebar-item"><%= link_to your_reservations_path do %><i class="fa fa-money" aria-hidden="true"></i> Mes ventes<% end %></li>
+            <%= link_to slide_path do %><i class="fa fa-arrows-h" aria-hidden="true"></i>
+            Faire défiler les articles<% end %></li>
+            <li class="sidebar-item"><%= link_to your_articles_path do %><i class="fa fa-heart" aria-hidden="true"></i> Mes coups de coeur<% end %></li>
+            <!-- if user is seller -->
+            <% if current_user.seller? %>
+            <li class="sidebar-item">
+              <%= link_to products_path do %><i class="fa fa-female" aria-hidden="true"></i> Mes articles<% end %>
+            </li>
+            <li class="sidebar-item"><%= link_to your_reservations_path do %><i class="fa fa-money" aria-hidden="true"></i> Mes ventes<% end %></li>
 
-          <li class="sidebar-item"><%= link_to new_product_path do %>
-            <i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un article à la boutique<% end %></li>
-            <% end %>
+            <li class="sidebar-item"><%= link_to new_product_path do %>
+              <i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un article à la boutique<% end %></li>
+              <% end %>
 
-            <li class="sidebar-item"><%= link_to edit_user_registration_path do %><i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %></li>
-              <li class="sidebar-item"><%= link_to destroy_user_session_path, method: :delete do %><i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %><% end %></li>
-            </ul>
-            <% else %>
+              <li class="sidebar-item"><%= link_to edit_user_registration_path do %><i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+                <% end %></li>
+                <li class="sidebar-item"><%= link_to destroy_user_session_path, method: :delete do %><i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %><% end %></li>
+              </ul>
+              <% else %>
 
-            <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-            <% end %>
+              <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
 

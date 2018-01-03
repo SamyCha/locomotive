@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :meetings
   ActiveAdmin.routes(self)
   devise_for :users,
-             controllers: { registrations: 'registrations' },
-             omniauth_callbacks: 'omniauth_callbacks'
+  controllers: { registrations: 'registrations' },
+  omniauth_callbacks: 'omniauth_callbacks'
 
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -23,9 +23,12 @@ Rails.application.routes.draw do
   end
 
   resources :contacts, only: %i[new create]
+  resources :meetings
 
   get 'your_articles' => 'reservations#your_articles'
   get '/your_reservations' => 'reservations#your_reservations'
   get '/search' => 'products#search'
   get '/slide' => 'products#slide'
+  get '/admindashboard' => 'pages#admindashboard'
+
 end
