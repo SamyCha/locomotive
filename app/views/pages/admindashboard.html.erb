@@ -11,7 +11,6 @@
         Vendeur(s) en attente de validation: <%= @sellerwaitinglist.count %></span>
       </div>
       <br>
-
       <div class='row'>
         <div id="mystuff">
           <div class="col-xs-12 col-sm-4">
@@ -42,42 +41,60 @@
               <%= link_to 'Ajouter un article', new_product_path, class:'btn btn-primary' %><br><br>
             </div>
           </div>
-
           <div class="col-xs-12 col-sm-4">
             <h3><i class="fa fa-users" aria-hidden="true"></i>
               Mes utilisateurs:</h3>
               Nombre de comptes enregistrés:
               <strong><%= @users.count %></strong><br>
               Nombre de vendeurs enregistrés:
-              <strong><%= @sellers.count %></strong><hr>
-              Derniers utilisateurs enregistrés:
-              <% @lastuserregistered.each do |user| %>
+              <strong><%= @sellers.count %></strong><br>
+              La créatrice du mois:
+              <% @starsellers.each do |user| %>
+              <strong><%= user.pseudo %></strong> <%= link_to '=> modifier', root_path %><br>
+              <% end %>
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Voir tous les utilisateurs:
+                  <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <% @users.each do |user|%>
+                  <li><strong><%= user.pseudo %></strong> <%= user.state %><%= link_to "Supprimer", admin_destroy_user_path(user), method: :delete, data: { confirm: "Êtes-vous sûr de supprimer le compte de #{user.pseudo}" } %></li>
+
+                  <% end %>
+                </ul>
+              </div>
+              <hr>
+              Utilisateurs en attente de validation:
+              <% @sellerwaitinglist.each do |user| %>
               <ul>
                 <li><strong><%= link_to user.pseudo, user_path(user) %> <%= user.state %></strong> (<%= user.created_at.strftime("%d/%m/%Y") %>)
-                <% if user.choice? %><br>
-                   <span class="label label-success">souhaite être vendeur</span> <%= link_to '=> valider', root_path %>
-                  <% end %>
+                  <br>
+                  <span class="label label-success">souhaite être vendeur</span> <%= link_to '=> valider en vendeur', root_path %>
+                  <br>
                 </li>
               </ul><% end %>
-              <%= link_to 'Supprimer un utilisateur', root_path, class:'btn btn-primary' %>
             </div>
-
             <div class="col-xs-12 col-sm-4">
               <h3><i class="fa fa-female" aria-hidden="true"></i> Leurs articles</h3>
               Nombre d'article enregistrés:
               <strong><%= @products.count %></strong><br>
               Nombre d'articles publiés:
-              <strong><%= @onlines.count %></strong><hr>
-              Articles en attente de publication:
+              <strong><%= @onlines.count %></strong><br>
+              Nombre d'articles déclarés vendus:
+              <strong><%= @products.where(status:1).count %></strong><hr>
+
+              Articles en attente de publication: <strong><%= @notactives.count %></strong>
               <% @notactives.each do |product| %>
               <ul>
                 <li><strong><%= link_to product.name, product_path(product) %> <%= product.user.pseudo %></strong> (<%= product.updated_at.strftime("%d/%m/%Y") %>)
-                <% if product.active? %>
+                  <% if product.active? %>
                   <p>publié</p>
                   <% elsif product.status? %>
                   <p>vendu</p>
                   <% else %>
-                   <span class="label label-success">en attente de publication</span> <%= link_to '=> publier', root_path %>
+                  <span class="label label-success">en attente de publication</span> <%= link_to '=> publier', root_path %>
                   <% end %>
                 </li>
               </ul><% end %>
@@ -85,4 +102,3 @@
             </div>
           </div>
         </div>
-

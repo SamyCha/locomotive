@@ -7,6 +7,13 @@ Rails.application.routes.draw do
   controllers: { registrations: 'registrations' },
   omniauth_callbacks: 'omniauth_callbacks'
 
+# suppression d'un utilisateur par admin
+match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
+
+
+
+
+
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:show]

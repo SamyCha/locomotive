@@ -120,6 +120,6 @@ class ProductsController < ApplicationController
     if current_user.id != @product.user_id
       flash[:danger] = "Vous n'avez pas le droit de modifier cette page"
       redirect_to root_path
-    end
+  end
   end
 end
