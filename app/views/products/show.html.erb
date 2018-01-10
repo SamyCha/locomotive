@@ -4,169 +4,42 @@
     <li><%= link_to "Liste des articles", search_path %></li>
     <li class="active"><%= @product.category %> : <%= @product.name %></li>
   </ol>
+
   <div class="panel panel-default">
     <div class="panel-body">
-      <!-- Carousel -->
-      <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <% if @photos %>
-            <% @photos.each do |photo| %>
-            <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="<%= photo.id %>" class="active"></li>
-            </ol>
-            <% end %>
-            <% end %>
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-              <% if @photos %>
-              <% @photos.each do |photo| %>
-              <div class="item <%= 'active' if photo.id == @photos[0].id %>">
-                <%= image_tag photo.image.url(), width: "300px" %>
-              </div>
-              <% end %>
-              <% end %>
-            </div>
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-              <span class="sr-only">Précédent</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              <span class="sr-only">Suivant</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </br>
-    <!-- Photo principale de l'annonce
-<div class="row">
-  <div class="col-md-12">
-  <%= image_tag @photos[0].image.url(), class:"img-responsive" if @photos.length >0 %>
-  </div>
-</div>
-<br>
--->
-<!-- Informations principales -->
-<div class="row">
-  <div class="col-md-8">
-    <div class="row">
-      <div class="col-md-3 text-center">
-        <%= image_tag avatar_url(@product.user), class:"img-circle avatar-large" %>
-        <br>
-        <br>
-        article vendu par:<br>
-        <strong><%= link_to @product.user.pseudo ,user_path(@product.user) %></strong>
-        <br>
-        <span id="average_rating_header"></span> <%= @product.user.reviews.count %> commentaires<hr>
-      </div>
-      <div class="col-md-9">
-        <div class="row text-center">
-          <div class="col-sm-3">
-           <i class="fa fa-female fa-2x" aria-hidden="true"></i>
-           CATEGORIE: <%= @product.category %><hr>
-         </div>
-         <div class="col-sm-3">
-          <i class="fa fa-black-tie fa-2x" aria-hidden="true"></i>
-          MARQUE: <%= @product.brand %><hr>
-        </div>
-        <div class="col-sm-3">
-         <i class="fa fa-level-up fa-2x" aria-hidden="true"></i>
-         TAILLE: <%= @product.size %><hr>
-       </div>
-       <div class="col-sm-3">
-        <i class="fa fa-adjust fa-2x" aria-hidden="true"></i>
-        COULEUR: <%= @product.color %><hr>
-      </div>
-    </div>
-    <h4><%= @product.name %> (<%= @product.state %>)</h4>
-    <p><%= @product.description %></p>
-  </div>
-</div>
-</div>
-<div class="col-md-4">
-  <!-- Formulaire de réservation -->
-  <%= render 'reservations/form' %>
-</div>
-</div>
-<!-- Reviews
-<div class="row">
-  <div class="col-md-12">
-    <h3><%= pluralize(@reviews.count, 'commentaire') %> <span id="average_rating"></span><span id="average_rating"></span>(<%= @reviews.count %>)</h3>
-    <div class="container">
-      <div>
-        <%= render 'reviews/form' if @booked && !@hasReview %>
-      </div>
-      <div>
-        <%= render 'reviews/list' %>
-      </div>
-    </div>
-  </div>
-</div>
--->
-<!-- Google maps -->
-<div class="row">
-  <div class="col-md-12">
-    <div id="map"></div>
-    <style>
-      #map {
-        height: 400px;
-        width: 100%;
-      }</style>
-      <script>function initMap() {
-        var uluru = {lat: <%= @product.latitude %>, lng: <%= @product.longitude %>};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgkkYGH99wJ7N-wb_J6HcjTvu9KK-ZFiU&callback=initMap"></script>
-  </div>
-</div>
-<!-- articles à proximité -->
-<h3>Autres articles à proximité...</h3>
-<div class="row">
+ <% if @product.active? %>
+      <%= render 'caroussel' %>
+<% end %>
 
-  <% for product in @product.nearbys(2).limit(3) %>
-  <div class="col-md-4">
-    <div class="panel panel-default">
-
-      <div class="panel-body">
-        <strong><%= link_to product.name, product %></strong> (à <%= (product.distance*1.6).round(2) %> km)<br>
-        <i class="fa fa-black-tie" aria-hidden="true"></i> <%= @product.brand %>
-        <i class="fa fa-level-up" aria-hidden="true"></i> <%= @product.size %>
-      </div>
-    </div>
+<div class="row">
+  <% if @product.active? %>
+    <%= render 'articles_infos' %>
+  <% elsif @product.active? == false && @product.status? %>
+  <div class="row text-center">
+  <h2><strong> PRODUIT VENDU </strong></h2>
   </div>
+    <%= render 'articles_infos' %>
+  <% else %>
+    Le produit est dépublié
   <% end %>
 
+  <% if @product.active? %>
+    <%= render 'reservations/form' %>
+  <% end %>
 </div>
 
+  <% if @product.active? == false && @product.status? %>
+    <%= render 'reviews' %>
+  <% end %>
+
+  <% if @product.active? %>
+    <%= render 'articles_map' %>
+   <% end %>
+
+  <% if @product.active? %>
+    <%= render 'proximity_articles' %>
+  <% end %>
+
+    </div>
+  </div>
 </div>
-</div>
-</div>
-
-
-
-<script>
-  $('#average_rating').raty({
-    path: '/assets',
-    readOnly: true,
-    score: <%= @product.average_rating %>
-  });
-</script>
-
-<script>
-  $('#average_rating_header').raty({
-    path: '/assets',
-    readOnly: true,
-    score: <%= @product.average_rating %>
-  });
-</script>

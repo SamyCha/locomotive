@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <hr>
+<br>
   <div class='row text-center'>
     Bonjour <strong><%= current_user.pseudo %></strong>,<br>
     Bienvenue dans votre panneau d'administration, voici les actions requises:
@@ -10,7 +10,33 @@
       <span class="label label-success">
         Vendeur(s) en attente de validation: <%= @sellerwaitinglist.count %></span>
       </div>
-      <br>
+<br>
+<div class="row">
+<div class="col-xs-12 text-center">
+<h4><i class="fa fa-comment-o" aria-hidden="true"></i> Les derniers commentaires publiés:
+</h4>
+</div>
+<ul>
+<% @reviews.each do |review| %>
+<li>
+<div class="col-xs-12 col-sm-3">
+<%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %> <%= review.user.pseudo %>  <%= review.created_at.strftime("(%d/%m/%y)") %><br>
+<span class="label label-success">
+<%= review.comment %>
+<% end %>
+</div>
+</span>
+</li>
+</ul>
+
+<br>
+</div>
+<hr>
+
+
+
+
+
       <div class='row'>
         <div id="mystuff">
           <div class="col-xs-12 col-sm-4">
@@ -43,7 +69,7 @@
           </div>
           <div class="col-xs-12 col-sm-4">
             <h3><i class="fa fa-users" aria-hidden="true"></i>
-              Mes utilisateurs:</h3>
+              Les utilisateurs:</h3>
               Nombre de comptes enregistrés:
               <strong><%= @users.count %></strong><br>
               Nombre de vendeurs enregistrés:
@@ -77,7 +103,7 @@
               </ul><% end %>
             </div>
             <div class="col-xs-12 col-sm-4">
-              <h3><i class="fa fa-female" aria-hidden="true"></i> Leurs articles</h3>
+              <h3><i class="fa fa-female" aria-hidden="true"></i> Les articles:</h3>
               Nombre d'article enregistrés:
               <strong><%= @products.count %></strong><br>
               Nombre d'articles publiés:

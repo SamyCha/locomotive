@@ -28,8 +28,9 @@ class PagesController < ApplicationController
     @onlines = Product.all.where(active: true)
     @myproducts = current_user.products.last(10)
     @notactives = Product.all.where(active: false).where.not(status: 1)
-end
 
+    @reviews = Review.all.sort_by(&:created_at).last(4)
+end
 
 private
 

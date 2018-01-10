@@ -1,0 +1,19 @@
+<!-- Reviews -->
+<div class="col-md-12">
+  <h3><%= pluralize(@reviews.count, 'commentaire') %> <span id="average_rating"></span><span id="average_rating"></span>(<%= @reviews.count %>)</h3>
+  <div class="container">
+    <div>
+      <%= render 'reviews/form' %>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $('#average_rating').raty({
+    path: '/assets',
+    readOnly: true,
+    score: <%= @product.average_rating %>
+  });
+</script>
+

@@ -16,7 +16,7 @@
       </div>
       <div class="col-md-9">
         <div class="panel panel-default">
-          <div class="panel-heading"><i class="fa fa-female" aria-hidden="true"></i> Mes ventes
+          <div class="panel-heading"><i class="fa fa-female" aria-hidden="true"></i> Mes ventes <br>(N'oubliez pas de transmettre le code à l'acheteur afin de recevoir un commentaire de sa part)
           </div>
           <div class="panel-body">
             <% @products.each do |product| %>
@@ -38,6 +38,7 @@
                 ref.: <%= product.id %>
               </div>
               <div class="col-md-3 right">
+              <p>Code à transmettre à l'acheteur: </p><strong><%= product.reviewcode %></strong>
               </div>
             </div>
             <hr>

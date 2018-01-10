@@ -10,10 +10,6 @@ Rails.application.routes.draw do
 # suppression d'un utilisateur par admin
 match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
 
-
-
-
-
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:show]
@@ -37,5 +33,8 @@ match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_use
   get '/search' => 'products#search'
   get '/slide' => 'products#slide'
   get '/admindashboard' => 'pages#admindashboard'
-
+  get '/new_review' => "reviews#new"
+  get '/reviews_index' => "reviews#index"
+  get '/products/mini/:id' => 'products#minishow'
+  get '/mini_index' => 'products#mini_index'
 end
