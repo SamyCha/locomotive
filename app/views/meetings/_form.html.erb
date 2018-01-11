@@ -1,12 +1,17 @@
+<div class="container">
 <%= simple_form_for(@meeting) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :start_time %>
+    <%= f.input :details %>
+    <%= f.input :address %>
+    <%= f.check_box :highlight %> Mettre en avant cet évènement
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
 <% end %>
+</div>

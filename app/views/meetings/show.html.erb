@@ -1,14 +1,15 @@
 <p id="notice"><%= notice %></p>
+<strong>Evenement:</strong><%= @meeting.name %><br>
+détails<%= @meeting.details %><br>
+le: <%= @meeting.start_time.strftime("%d/%m/%Y") %><br>
+adresse:<%= @meeting.address %>
+<br>
 
-
-  <strong>Evenement:</strong>
-
-<% @meetings.each do |meeting| %>
-<p> je serais présent à </p>
-  <%= meeting.name %> le: <%= meeting.start_time %>
+<% if user_signed_in? %>
+<% if current_user.seller? %>
+<%= link_to "#", class:"btn btn-info" do %>
+Reserver un stand
+<% end %>
+<% end %>
 <% end %>
 
-
-
-<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
-<%= link_to 'Back', meetings_path %>
