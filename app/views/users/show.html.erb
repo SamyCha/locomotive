@@ -12,16 +12,16 @@
         <% elsif current_user == @user %>
         <hr>
 
-            <%= link_to "Ajouter un article à vendre", new_product_path, class: "btn btn-info" %>
+            <%= link_to "Je veux ajouter un article à vendre", new_product_path, class: "btn btn-info" %>
             <br>
             <br>
 
-            <!--
-            <%= link_to "Participer à un evenement", new_meeting_path, class: "btn btn-info" %>
--->
+
+            <%= link_to "Je veux participer à un evenement", meetings_path, class: "btn btn-info" %>
+
             <br>
             <br>
-            <%= link_to "Modifier mon profil", edit_user_registration_path, class: "btn btn-info" %>
+            <%= link_to "Je veux modifier mon profil", edit_user_registration_path, class: "btn btn-info" %>
 
             <hr>
       <% end %>

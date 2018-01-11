@@ -11,9 +11,6 @@ class PagesController < ApplicationController
     @products = @selection.sort_by(&:created_at).reverse
   end
 
-  def contact
-  end
-
   def admindashboard
     @meetings = Meeting.all.sort_by(&:start_time)
 
