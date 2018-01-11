@@ -8,13 +8,13 @@ class ReviewsController < ApplicationController
 # A faire: Essayer une autre condition à la place que je puisse vérifier..
 
 def create
-if check_password
+# if check_password
 @review = current_user.reviews.new(review_params)
 @review.save
 redirect_to @review.product
-else
-render :create, notice: "Le code n'est pas bon"
-end
+#else
+#render :create, notice: "Le code n'est pas bon"
+#end
 end
 
 private
