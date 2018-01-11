@@ -3,14 +3,18 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
-  def create
-#   if check_password
-    @review = current_user.reviews.new(review_params)
-    @review.save
-    redirect_to @review.product
-#  else
-#   render :create, notice: "Le code n'est pas bon"
-# end
+
+# C'est Checkpassword qui ne fonctionne pas car sans cette condition ça crée bien une review
+# A faire: Essayer une autre condition à la place que je puisse vérifier..
+
+def create
+if check_password
+@review = current_user.reviews.new(review_params)
+@review.save
+redirect_to @review.product
+else
+render :create, notice: "Le code n'est pas bon"
+end
 end
 
 private

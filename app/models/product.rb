@@ -35,7 +35,7 @@ class Product < ApplicationRecord
   end
 
   def reviewcode
-    reviewcode = "1234"
+    reviewcode = product.price
     #SecureRandom.urlsafe_base64
   end
 

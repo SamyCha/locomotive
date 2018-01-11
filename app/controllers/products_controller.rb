@@ -75,7 +75,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-
       @user = @product.user
       @photos = @product.photos
       @reviews = @product.reviews

@@ -33,8 +33,9 @@ match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_use
   get '/search' => 'products#search'
   get '/slide' => 'products#slide'
   get '/admindashboard' => 'pages#admindashboard'
-  get '/new_review' => "reviews#new"
-  get '/reviews_index' => "reviews#index"
-  get '/products/mini/:id' => 'products#minishow'
+
+  get '/rating' => "reviews#rating"
   get '/mini_index' => 'products#mini_index'
+
+
 end
