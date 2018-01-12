@@ -9,6 +9,8 @@ class PagesController < ApplicationController
 
     @selection = Product.where(active: true).limit(3)
     @products = @selection.sort_by(&:created_at).reverse
+    @highlights = Meeting.where(highlight: true).sample(1)
+    @starsellers = User.where(starseller: true).sample(1)
   end
 
   def admindashboard
