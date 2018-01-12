@@ -1,0 +1,17 @@
+<hr>
+<div class="col xs-12">
+<div class="text-center">
+<h3>Notez et commentez votre achat</h3><br>
+
+<%= form_tag(mini_index_path, :method => "get", id: "search-form") do %>
+Saisissez le nom de l'article acheté:
+<%= text_field_tag :search, params[:search] %><br><br>
+<%= submit_tag "Trouver votre produit", :name => nil, class:"btn btn-primary" %>
+<% end %>
+
+
+</div>
+</div>
+
+
+

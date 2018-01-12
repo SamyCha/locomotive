@@ -1,0 +1,18 @@
+<!-- articles à proximité -->
+<h3>Autres articles à proximité...</h3>
+<div class="row">
+
+  <% for product in @product.nearbys(2).limit(3) %>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+
+      <div class="panel-body">
+        <strong><%= link_to product.name, product %></strong> (à <%= (product.distance*1.6).round(2) %> km)<br>
+        <i class="fa fa-black-tie" aria-hidden="true"></i> <%= @product.brand %>
+        <i class="fa fa-level-up" aria-hidden="true"></i> <%= @product.size %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+</div>
