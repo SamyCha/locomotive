@@ -16,7 +16,7 @@ match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_use
 
   resources :products do
     resources :reservations, only: [:create]
-    resources :reviews, only: %i[create destroy]
+    resources :reviews, only: %i[create destroy form]
   end
 
   resources :photos

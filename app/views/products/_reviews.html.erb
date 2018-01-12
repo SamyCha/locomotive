@@ -3,7 +3,7 @@
   <h3><%= pluralize(@reviews.count, 'commentaire') %> <span id="average_rating"></span><span id="average_rating"></span>(<%= @reviews.count %>)</h3>
   <div class="container">
     <div>
-      <%= render 'reviews/form' %>
+      <%= render 'reviews#new' %>
     </div>
   </div>
 </div>

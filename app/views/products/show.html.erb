@@ -29,7 +29,7 @@
 </div>
 
   <% if @product.active? == false && @product.status? %>
-    <%= render 'reviews' %>
+    <%= render 'reviews/form' %>
   <% end %>
 
   <% if @product.active? %>

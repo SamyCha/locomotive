@@ -1,0 +1,13 @@
+<% if @reviews.present? %>
+Il y a deja un commentaire.
+<% else %>
+de la merde
+<% end %>
+
+<script>
+  $('#user_stars').raty({
+    path: '/assets',
+    scoreName: 'review[star]',
+    score: 1
+  });
+</script>
