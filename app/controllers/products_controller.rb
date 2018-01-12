@@ -118,7 +118,7 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :brand, :category, :color, :size, :state, :price, :address, :status, :active, :reviewcode)
+    params.require(:product).permit(:name, :description, :brand, :category, :color, :size, :state, :price, :address, :status, :active)
   end
 
   def require_same_user

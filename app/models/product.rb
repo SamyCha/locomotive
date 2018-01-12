@@ -16,8 +16,6 @@ class Product < ApplicationRecord
   validates :address, presence: true
   validates :price, numericality: { only_integer: true, greater_than: 1 }
   validates :status, inclusion: { in: [true, false] }
-  validates :reviewcode, presence: true
-
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
@@ -34,10 +32,6 @@ class Product < ApplicationRecord
     reviews.count == 0 ? 0 : reviews.average(:star).round(2)
   end
 
-  def reviewcode
-    reviewcode = product.price
-    #SecureRandom.urlsafe_base64
-  end
 
   def self.search(search)
     where("name LIKE ?", "%#{search}%")
