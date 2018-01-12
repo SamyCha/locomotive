@@ -29,8 +29,11 @@ class MeetingsController < InheritedResources::Base
   end
 
   def update
-    @meeting.update(params[:meeting])
-    redirect_to_meeting_path
+    if @meeting.update(meeting_params)
+    redirect_to meetings_path
+  else
+    render :edit
+  end
   end
 
   def destroy
@@ -41,11 +44,11 @@ class MeetingsController < InheritedResources::Base
   private
 
   def set_meeting
-    @meeting = meeting.find(params [:id])
+    @meeting = Meeting.find(params[:id])
   end
 
   def meeting_params
-    params.require(:meeting).permit(:name, :start_time, :user_id)
+    params.require(:meeting).permit(:name, :details, :address, :start_time, :highlight, :user_id)
   end
 
   def is_admin

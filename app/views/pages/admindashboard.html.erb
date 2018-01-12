@@ -44,9 +44,14 @@
               Mes évènements:</h3>
               <% @meetings.each do |meeting| %>
               <ul>
-                <li><strong><%= link_to meeting.name, meeting_path(meeting) %></strong> (<%= meeting.start_time.strftime("%d/%m/%Y") %>)
+                <li><%= link_to meeting.name, meeting_path(meeting) %> (<%= meeting.start_time.strftime("%d/%m/%Y") %>)
                 </li>
+                <%= link_to 'Supprimer', meeting, method: :delete, data: { confirm: 'Are you sure?' } %> /
+                <%= link_to "Modifier", edit_meeting_path(meeting) %>
               </ul><% end %>
+              <ul>
+              <li><strong><%= link_to "Tous les évenements", meetings_path %></strong></li>
+              </ul>
               <%= link_to 'Créer un nouvel évenement', new_meeting_path, class:'btn btn-primary' %><br><hr>
 
               <h3><i class="fa fa-female" aria-hidden="true"></i> Mes derniers articles:</h3>
