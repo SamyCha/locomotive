@@ -1,19 +1,21 @@
 <div id="hidden-mobile">
   <div class="col-xs-12 col-sm-3">
     <%= link_to meetings_path class:"card-link" do %>
-    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://i.ytimg.com/vi/v5sY7e92HJw/hqdefault.jpg');">
+    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('http://res.cloudinary.com/hessdypy6/image/upload/v1515771216/alaffiche_rhs60z.jpg');">
       <div class="card-category">ACTUALITE</div>
       <div class="card-description">
-        <h2>Foire de Paris</h2>
+        <% @highlights.each do |meeting| %>
+        <h2><%= meeting.name %></h2>
+        <% end %>
         <h5>Reservez votre stand</h5>
       </div>
     </div>
     <% end %>
     <br>
     <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('https://sixactualites.fr/wp-content/uploads/2017/06/Bijou.jpg');">
-      <div class="card-category">CREATEUR</div>
+      <div class="card-category">SELECTION</div>
       <div class="card-description">
-        <h2>La créatrice du mois</h2>
+        <h2>Créateur</h2>
         <% @starsellers.each do |user| %>
         <h5><%= user.pseudo %></h5>
 

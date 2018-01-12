@@ -79,7 +79,7 @@
               <strong><%= @users.count %></strong><br>
               Nombre de vendeurs enregistrés:
               <strong><%= @sellers.count %></strong><br>
-              La créatrice du mois:
+              Créateur(s) en page d'accueil:
               <% @starsellers.each do |user| %>
               <strong><%= user.pseudo %></strong> <%= link_to '=> modifier', root_path %><br>
               <% end %>
