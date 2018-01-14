@@ -30,6 +30,15 @@ class PagesController < ApplicationController
 
     @reviews = Review.all.sort_by(&:created_at).last(4)
     @reviewsnotactive = Review.where(active: nil)
+
+
+    @markers = Gmaps4rails.build_markers(@products) do |product, marker|
+      marker.lat product.latitude
+      marker.lng product.longitude
+    end
+
+
+
   end
 
 
