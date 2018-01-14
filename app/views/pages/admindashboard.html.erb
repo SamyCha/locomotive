@@ -3,143 +3,153 @@
   <div class='row text-center'>
     Bonjour <strong><%= current_user.pseudo %></strong>,<br>
     Bienvenue dans le panneau d'administration, voici les actions requises:
-
+<!-- Comptabilisation des actions requises -->
     <div class='row text-center'>
       <span class="label label-success">Article(s) en attente de publication:
         <%= @notactives.count %></span>
-        <span class="label label-success">
+      <span class="label label-success">
           Vendeur(s) en attente de validation: <%= @sellerwaitinglist.count %></span>
-
-          <span class="label label-success">
+      <span class="label label-success">
             Commentaires(s) en attente de validation: <%= @reviewsnotactive.count %></span>
-          </div>
+    </div>
+  </div>
+  <br>
+<!-- Action requisepour les Review -->
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <% if @reviewsnotactive.count == 0 %>
+      <% else %>
+      <h4><i class="fa fa-comment-o" aria-hidden="true"></i> Les commentaires en attente:</h4>
+    </div>
+    <ul>
+    <% @reviews.each do |review| %>
+      <% if !review.active? %>
+      <li>
+      <div class="col-xs-12 col-sm-3">
+      <strong><%= link_to review.product.name, product_path(review.product) %></strong>
+      <br>
+      <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %> <%= review.user.pseudo %>  <%= review.created_at.strftime("(%d/%m/%y)") %><br>
+      <%= review.comment %><br>
+      <span class="label label-success">
+      <%= link_to "publier le commentaire", publish_review_path(review.id), method: :patch %></span>
+      <% end %>
+      <% end %>
+    </div>
+    </li>
+    </ul>
+    <br>
+  </div>
+  <% end %>
+  <hr>
+
+  <div class='row'>
+<!-- Les utilisateurs -->
+      <div class="col-xs-12 col-sm-4">
+        <h3><i class="fa fa-users" aria-hidden="true"></i>Les utilisateurs:</h3>
+        Nombre de comptes enregistrés:
+        <strong><%= @users.count %></strong><br>
+        Nombre de vendeurs enregistrés:
+        <strong><%= @sellers.count %></strong><br>
+        Créateur(s) en page d'accueil:
+        <% @starsellers.each do |user| %>
+        <strong><%= user.pseudo %></strong> <%= link_to '=> modifier', root_path %><br>
+        <% end %>
+<!--
+        <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Voir tous les utilisateurs:
+        <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <% @users.each do |user|%>
+        <li><strong><%= user.pseudo %></strong> <%= user.state %><%= link_to "Supprimer", admin_destroy_user_path(user), method: :delete, data: { confirm: "Êtes-vous sûr de supprimer le compte de #{user.pseudo}" } %></li>
+        <% end %>
+        </ul>
         </div>
+-->
+        Utilisateurs en attente de validation:
+        <% @sellerwaitinglist.each do |user| %>
+        <ul>
+        <li><strong><%= link_to user.pseudo, user_path(user) %> <%= user.state %></strong> (<%= user.created_at.strftime("%d/%m/%Y") %>)
         <br>
-        <div class="row">
-          <div class="col-xs-12 text-center">
+        <span class="label label-success"><%= link_to "passer en vendeur", user_to_seller_path(user.id), method: :patch %></span>
+        <br>
+        </li>
+        </ul><% end %>
+      </div>
+<!-- Les articles -->
+      <div class="col-xs-12 col-sm-4">
+        <h3><i class="fa fa-female" aria-hidden="true"></i> Les articles:</h3>
+        Nombre d'article enregistrés:
+        <strong><%= @products.count %></strong><br>
+        Nombre d'articles publiés:
+        <strong><%= @onlines.count %></strong><br>
+        Nombre d'articles déclarés vendus:
+        <strong><%= @products.where(status:1).count %></strong><br>
+        Articles en attente de publication: <strong><%= @notactives.count %></strong>
+        <% @notactives.each do |product| %>
+        <ul>
+        <li><strong><%= link_to product.name, product_path(product) %> <%= product.user.pseudo %></strong> (<%= product.updated_at.strftime("%d/%m/%Y") %>)
+        <span class="label label-success">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span></li>
+        </ul><% end %>
+        <br><br>
+      </div>
+<!-- Map des articles publiés -->
+    <div class="col-xs-12 col-sm-4">
+    <h3><i class="fa fa-globe" aria-hidden="true"></i> Localisation des articles: </h3>
+      <div id="map"></div>
+    </div>
+  </div>
 
-            <% if @reviewsnotactive.count == 0 %>
-
-            <% else %>
-            <h4><i class="fa fa-comment-o" aria-hidden="true"></i> Les commentaires en attente:</h4>
-
-          </div>
+  <hr>
+  <div class='row'>
+<!-- Mes évènements -->
+      <div class="col-xs-12 col-sm-6">
+        <h3><i class="fa fa-calendar" aria-hidden="true"></i> Mes évènements:</h3>
+          <% @meetings.each do |meeting| %>
           <ul>
-            <% @reviews.each do |review| %>
-            <% if !review.active? %>
-            <li>
-              <div class="col-xs-12 col-sm-3">
+          <li><%= link_to meeting.name, meeting_path(meeting) %> (<%= meeting.start_time.strftime("%d/%m/%Y") %>)</li>
+          <%= link_to 'Supprimer', meeting, method: :delete, data: { confirm: 'Are you sure?' } %> / <%= link_to "Modifier", edit_meeting_path(meeting) %>
+          </ul><% end %>
+          <ul>
+          <li><strong><%= link_to "Tous les évenements", meetings_path %></strong></li>
+          </ul>
+          <%= link_to 'Créer un nouvel évenement', new_meeting_path, class:'btn btn-primary' %><br>
+      </div>
+<!-- Mes articles ajoutés -->
+    <div class="col-xs-12 col-sm-6">
+      <h3><i class="fa fa-female" aria-hidden="true"></i> Mes derniers articles:</h3>
+      <% @myproducts.each do |product| %>
+      <ul>
+      <li><strong><%= link_to product.name, product_path(product) %></strong>
+      <% if product.active? %>
+      <p>publié</p>
+      <% elsif product.status? %>
+      <p>vendu</p>
+      <% else %>
+      <br>
+      <span class="label label-success">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span>
+      <% end %>
+      </li>
+      </ul><% end %>
+      <%= link_to 'Ajouter un article', new_product_path, class:'btn btn-primary' %><br><br>
+    </div>
+  </div>
+</div>
 
-                <strong><%= link_to review.product.name, product_path(review.product) %>
-                  <br></strong>
-                  <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %> <%= review.user.pseudo %>  <%= review.created_at.strftime("(%d/%m/%y)") %><br>
-                  <%= review.comment %><br>
-                  <span class="label label-success">
-                    <%= link_to "publier le commentaire", publish_review_path(review.id), method: :patch %></span>
-                    <% end %>
-                    <% end %>
-                  </div>
-                </li>
-              </ul>
-              <br>
-            </div>
-            <% end %>
+<% content_for(:after_js) do %>
+<%= javascript_tag do %>
+var handler = Gmaps.build('Google');
+handler.buildMap({ internal: { id: 'map' } }, function() {
+markers = handler.addMarkers(<%= raw @markers.to_json %>);
+handler.bounds.extendWith(markers);
+handler.fitMapToBounds();
+if (markers.length == 0) {
+handler.getMap().setZoom(2);
+} else if (markers.length == 1) {
+handler.getMap().setZoom(14);
+}
+});
+<% end %>
+<% end %>
 
-
-            <hr>
-
-            <div class='row'>
-              <div id="mystuff">
-                <div class="col-xs-12 col-sm-4">
-                  <h3><i class="fa fa-calendar" aria-hidden="true"></i>
-                    Mes évènements:</h3>
-                    <% @meetings.each do |meeting| %>
-                    <ul>
-                      <li><%= link_to meeting.name, meeting_path(meeting) %> (<%= meeting.start_time.strftime("%d/%m/%Y") %>)
-                      </li>
-                      <%= link_to 'Supprimer', meeting, method: :delete, data: { confirm: 'Are you sure?' } %> /
-                      <%= link_to "Modifier", edit_meeting_path(meeting) %>
-                    </ul><% end %>
-                    <ul>
-                      <li><strong><%= link_to "Tous les évenements", meetings_path %></strong></li>
-                    </ul>
-                    <%= link_to 'Créer un nouvel évenement', new_meeting_path, class:'btn btn-primary' %><br><hr>
-
-                    <h3><i class="fa fa-female" aria-hidden="true"></i> Mes derniers articles:</h3>
-                    <% @myproducts.each do |product| %>
-                    <ul>
-                      <li><strong><%= link_to product.name, product_path(product) %></strong>
-                        <% if product.active? %>
-                        <p>publié</p>
-                        <% elsif product.status? %>
-                        <p>vendu</p>
-                        <% else %>
-                        <br> <span class="label label-success">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span>
-                        <% end %>
-                      </li>
-                    </ul><% end %>
-
-
-                    <%= link_to 'Ajouter un article', new_product_path, class:'btn btn-primary' %><br><br>
-                  </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                  <h3><i class="fa fa-users" aria-hidden="true"></i>
-                    Les utilisateurs:</h3>
-                    Nombre de comptes enregistrés:
-                    <strong><%= @users.count %></strong><br>
-                    Nombre de vendeurs enregistrés:
-                    <strong><%= @sellers.count %></strong><br>
-                    Créateur(s) en page d'accueil:
-                    <% @starsellers.each do |user| %>
-                    <strong><%= user.pseudo %></strong> <%= link_to '=> modifier', root_path %><br>
-                    <% end %>
-                    <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Voir tous les utilisateurs:
-                        <span class="caret"></span>
-                      </button>
-
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <% @users.each do |user|%>
-                        <li><strong><%= user.pseudo %></strong> <%= user.state %><%= link_to "Supprimer", admin_destroy_user_path(user), method: :delete, data: { confirm: "Êtes-vous sûr de supprimer le compte de #{user.pseudo}" } %></li>
-
-                        <% end %>
-                      </ul>
-                    </div>
-                    <hr>
-                    Utilisateurs en attente de validation:
-                    <% @sellerwaitinglist.each do |user| %>
-                    <ul>
-                      <li><strong><%= link_to user.pseudo, user_path(user) %> <%= user.state %></strong> (<%= user.created_at.strftime("%d/%m/%Y") %>)
-                        <br>
-                        <span class="label label-success">
-
-                          <%= link_to "passer en vendeur", user_to_seller_path(user.id), method: :patch %>
-
-                        </span>
-                        <br>
-                      </li>
-                    </ul><% end %>
-                  </div>
-                  <div class="col-xs-12 col-sm-4">
-                    <h3><i class="fa fa-female" aria-hidden="true"></i> Les articles:</h3>
-                    Nombre d'article enregistrés:
-                    <strong><%= @products.count %></strong><br>
-                    Nombre d'articles publiés:
-                    <strong><%= @onlines.count %></strong><br>
-                    Nombre d'articles déclarés vendus:
-                    <strong><%= @products.where(status:1).count %></strong><hr>
-
-                    Articles en attente de publication: <strong><%= @notactives.count %></strong>
-                    <% @notactives.each do |product| %>
-                    <ul>
-                      <li><strong><%= link_to product.name, product_path(product) %> <%= product.user.pseudo %></strong> (<%= product.updated_at.strftime("%d/%m/%Y") %>)
-                        <span class="label label-success">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span>
-                      </li>
-                    </ul><% end %>
-                    <br><br>
-                  </div>
-                </div>
-              </div>
-            </div>

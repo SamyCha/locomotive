@@ -18,10 +18,10 @@ class ProductsController < ApplicationController
       .order('created_at DESC')
     end
     # affichage de la map avec tous les produits
-    @markers = Gmaps4rails.build_markers(@products) do |product, marker|
-      marker.lat product.latitude
-      marker.lng product.longitude
-    end
+    #@markers = Gmaps4rails.build_markers(@products) do |product, marker|
+    #  marker.lat product.latitude
+    #  marker.lng product.longitude
+    #end
   end
 
   # pour le slider mobile
