@@ -33,9 +33,13 @@ match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_use
   get '/search' => 'products#search'
   get '/slide' => 'products#slide'
   get '/admindashboard' => 'pages#admindashboard'
+  get '/contact' => 'pages#contact'
+  get '/quisommesnous' => 'pages#qui'
 
   get '/rating' => "reviews#rating"
   get '/mini_index' => 'products#mini_index'
+
+  patch '/publish_product/:id' =>'pages#publish_product', as: :publish_product
 
 
 end

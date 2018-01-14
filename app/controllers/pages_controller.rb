@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home search contact]
-  before_action :is_admin, only: %i[admindashboard]
+  skip_before_action :authenticate_user!, only: %i[home search contact qui]
+  before_action :is_admin, only: %i[admindashboard publish_product]
 
   def home
     @starsellers = User.where(starseller: true).limit(1)
@@ -29,15 +29,37 @@ class PagesController < ApplicationController
     @notactives = Product.all.where(active: false).where.not(status: 1)
 
     @reviews = Review.all.sort_by(&:created_at).last(4)
-end
-
-private
-
-def is_admin
-  if current_user.admin?
-  else
-    redirect_to root_path
   end
+
+
+#Publication des articles par admin
+def publish_product
+  @product = Product.find(params[:id])
+  @product.active = !@product.active
+  redirect_to :admindashboard if @product.save
 end
+
+
+  def qui
+  end
+
+  def contact
+  end
+
+  private
+
+  def is_admin
+    if current_user.admin?
+    else
+      redirect_to root_path
+    end
+  end
+
+
+  def product_params
+    params.require(:product).permit(:name, :description, :brand, :category, :color, :size, :state, :price, :address, :status, :active)
+  end
+
+
 
 end

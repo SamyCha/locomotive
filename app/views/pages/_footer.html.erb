@@ -25,50 +25,42 @@
   <div class="container mt-5 mb-4 text-center text-md-left">
     <div class="row mt-3">
 
-<div id="hidden-mobile">
-
       <!--First column-->
-      <div class="col-md-3 col-lg-4 col-xl-3 mb-r">
-        <h6 class="title font-bold"><strong>Les Armoires de Paris</strong></h6>
-        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>vous proposent de vendre vos articles lors de ses évènements !</p>
-        <p>vous proposent également de venir chiner et découvrir ses plus beaux articles sur ses évènements éphémères lors de ses journées vide dressing.</p>
+      <div class="col-md-2">
+        <h6 class="title font-bold"><strong><%= link_to "Qui sommes-nous?", quisommesnous_path %></strong></h6>
       </div>
       <!--/.First column-->
 
-
-
-
       <!--Second column-->
-      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-r">
-        <h6 class="title font-bold"><strong>Nos Produits</strong></h6>
-        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p><a href="#!">Bijoux</a></p>
-        <p><a href="#!">Chausssures</a></p>
-        <p><a href="#!">Jupes</a></p>
-        <p><a href="#!">Robes</a></p>
+      <div class="col-md-2">
+        <h6 class="title font-bold"><strong><%= link_to "Comment ça marche?", products_path %></strong></h6>
+
       </div>
       <!--/.Second column-->
 
       <!--Third column-->
-      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-r">
-        <h6 class="title font-bold"><strong>Les Prochains Evenements</strong></h6>
-        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p><a href="#!">02 février 2018</a></p>
-        <p><a href="#!">14 mars 2018</a></p>
-        <p><a href="#!">10 avril 2018</a></p>
-        <p><%= link_to "Nos prochains évènements", meetings_path %></p>
+
+      <div class="col-md-2">
+        <h6 class="title font-bold"><strong>Devenir vendeuse?</strong></h6>
       </div>
+
       <!--/.Third column-->
-    </div>
+
     <!--Fourth column-->
-    <div class="col-md-4 col-lg-3 col-xl-3">
-      <h6 class="title font-bold"><strong>Contact</strong></h6>
-      <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-      <p><i class="fa fa-home mr-3"></i> Paris, 75013, France</p>
-      <p><i class="fa fa-envelope mr-3"></i> contact@les-armoires-de-paris.com</p>
+    <div class="col-md-2">
+      <h6 class="title font-bold"><strong><%= link_to "Notez votre achat", rating_path %></strong></h6>
+
     </div>
     <!--/.Fourth column-->
+<div class="col-md-2">
+      <h6 class="title font-bold"><strong><%= link_to "ORGANISER UN VIDE-DRESSING", contact_path %></strong></h6>
+
+    </div>
+  <div class="col-md-2">
+        <h6 class="title font-bold"><strong><%= link_to "Découvrir nos évènements", meetings_path %></strong></h6>
+        <p></p>
+      </div>
+
 
   </div>
 </div>
