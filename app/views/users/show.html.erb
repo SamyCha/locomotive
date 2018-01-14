@@ -93,13 +93,16 @@
                   <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %>
                   <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %>
                   <br>
-                  <!-- Si le produit vendu dispose d'un commentaire on l'affiche -->
+
+<!-- Si le produit vendu dispose d'un commentaire publié on l'affiche -->
                   <% if !product.reviews.blank? %>
-                  <hr>
                   <% product.reviews.each do |review| %>
+<% if review.active %>
+                  <hr>
                   Commentaire:<br>
                   <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %> <%= review.user.pseudo %>  <%= review.created_at.strftime("(%d/%m/%y)") %><br>
                   <%= review.comment %><br>
+<% end %>
                 </div>
               </div>
               <% end %>

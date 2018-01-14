@@ -11,7 +11,7 @@
         Vendeur(s) en attente de validation: <%= @sellerwaitinglist.count %></span>
 
         <span class="label label-success">
-        Commentaires(s) en attente de validation: XXXXXX</span>
+        Commentaires(s) en attente de validation: <%= @reviewsnotactive.count %></span>
       </div>
        </div>
 <br>
@@ -22,18 +22,18 @@
 </div>
 <ul>
 <% @reviews.each do |review| %>
+<% if !review.active? %>
 <li>
 <div class="col-xs-12 col-sm-3">
 <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %> <%= review.user.pseudo %>  <%= review.created_at.strftime("(%d/%m/%y)") %><br>
-<%= review.comment %>
+<%= review.comment %><br>
 <span class="label label-success">
-publier le commentaire
+<%= link_to "publier le commentaire", publish_review_path(review.id), method: :patch %></span>
+<% end %>
 <% end %>
 </div>
-</span>
 </li>
 </ul>
-
 <br>
 </div>
 <hr>
@@ -103,7 +103,11 @@ publier le commentaire
               <ul>
                 <li><strong><%= link_to user.pseudo, user_path(user) %> <%= user.state %></strong> (<%= user.created_at.strftime("%d/%m/%Y") %>)
                   <br>
-                  <span class="label label-success"><%= link_to 'passer en vendeur', root_path %></span>
+                  <span class="label label-success">
+
+                  <%= link_to "passer en vendeur", user_to_seller_path(user.id), method: :patch %>
+
+                  </span>
                   <br>
                 </li>
               </ul><% end %>
