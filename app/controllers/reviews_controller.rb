@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.new(review_params)
     if check_password
       @review.save
-      redirect_to @review.product
+      redirect_to @review.product, notice: "Suite à notre modération, votre commentaire sera publié"
     else
       redirect_to @review.product, notice: "Le code est incorrect"
     end
@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:comment, :star, :product_id, :user_id, :password)
+    params.require(:review).permit(:comment, :star, :product_id, :user_id, :password, :active)
   end
 
   def check_password

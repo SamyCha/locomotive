@@ -39,7 +39,8 @@ match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_use
   get '/rating' => "reviews#rating"
   get '/mini_index' => 'products#mini_index'
 
+# admindashbooard: fast publication seller/product/review
   patch '/publish_product/:id' =>'pages#publish_product', as: :publish_product
-
-
+  patch '/user_to_seller/:id' =>'pages#user_to_seller', as: :user_to_seller
+  patch '/publish_review/:id' =>'pages#publish_review', as: :publish_review
 end
