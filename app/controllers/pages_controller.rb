@@ -29,7 +29,7 @@ class PagesController < ApplicationController
     @notactives = Product.all.where(active: false).where.not(status: 1)
 
     @reviews = Review.all.sort_by(&:created_at).last(4)
-    @reviewsnotactive = Review.all.where(active: false)
+    @reviewsnotactive = Review.where(active: nil)
   end
 
 
@@ -47,7 +47,8 @@ end
 def user_to_seller
   @user = User.find(params[:id])
   if @user.state = 0
-    @user.update.state = 1
+    @user.state = 1
+    @user.save
   end
   redirect_to :admindashboard if @user.save
 end
