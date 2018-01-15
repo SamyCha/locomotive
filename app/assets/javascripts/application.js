@@ -3,7 +3,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require rails-timeago-all
-//= require toastr
 //= require underscore
 //= require gmaps/google
 

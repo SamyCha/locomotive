@@ -5,6 +5,18 @@ class MeetingsController < InheritedResources::Base
   before_action :set_meeting, only: %i[show edit update destroy]
   before_action :is_admin, only: %i[new create edit update destroy]
 
+
+  def participate
+    @meeting = Meeting.find(params[:id])
+    if user.client?
+      @participant = @meeting << current_user
+      @participant.save
+    elsif user.seller?
+      @exhibitor = @meeting << current_user
+      @exhibitor.save
+    end
+  end
+
   def index
     @meetings = Meeting.all
   end
@@ -14,7 +26,7 @@ class MeetingsController < InheritedResources::Base
   end
 
   def create
-    @meeting = current_user.meetings.create(meeting_params)
+    @meeting = Meeting.create(meeting_params)
     if @meeting.save
       redirect_to meetings_path
     else
@@ -23,6 +35,7 @@ class MeetingsController < InheritedResources::Base
   end
 
   def show
+  #  @exhibitors = User.all.participate
   end
 
   def edit
@@ -30,10 +43,10 @@ class MeetingsController < InheritedResources::Base
 
   def update
     if @meeting.update(meeting_params)
-    redirect_to meetings_path
-  else
-    render :edit
-  end
+      redirect_to meetings_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -57,5 +70,4 @@ class MeetingsController < InheritedResources::Base
       redirect_to meetings_path
     end
   end
-
 end
