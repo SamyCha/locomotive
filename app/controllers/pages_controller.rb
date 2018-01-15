@@ -20,7 +20,7 @@ class PagesController < ApplicationController
     @users = User.all
     @sellers = User.seller
     @lastuserregistered = User.all.sort_by(&:created_at).last(20)
-    @sellerwaitinglist = User.where(choice: true)
+    @sellerwaitinglist = User.where(choice: true).where(state: "client")
     @starsellers = User.where(starseller: true)
 
     @products = Product.all
@@ -36,9 +36,6 @@ class PagesController < ApplicationController
       marker.lat product.latitude
       marker.lng product.longitude
     end
-
-
-
   end
 
 
@@ -54,12 +51,11 @@ end
 ###########
 
 def user_to_seller
-  @user = User.find(params[:id])
-  if @user.state = 0
-    @user.state = 1
-    @user.save
-  end
-  redirect_to :admindashboard if @user.save
+ @user = User.find(params[:id])
+ if @user.client?
+   @user.seller!
+ end
+ redirect_to :admindashboard if @user.save
 end
 
 ##########
@@ -92,7 +88,4 @@ end
 def product_params
   params.require(:product).permit(:name, :description, :brand, :category, :color, :size, :state, :price, :address, :status, :active)
 end
-
-
-
 end

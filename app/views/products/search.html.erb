@@ -1,5 +1,40 @@
-<div class="content">
+
   <div class="container-fluid">
+<!--
+      <h1 class="text-center">Searchbar</h1>
+<div class="row">
+      <div class="cards">
+      <% @products.each do |product| %>
+      <% if product.active? %>
+        <div class="col-xs-12 col-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-picture">
+            <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
+            </div>
+              <div class="card-hover">
+                <h4><%= link_to product.name, product %></h4>
+                <p>This is my work I'm proud of it. Check this out</p>
+              </div>
+            </div>
+            <div class="card-likes">
+              <ul class="list-inline">
+                <li><i class="fa fa-eye"></i> 567</li>
+                <li><i class="fa fa-heart" aria-hidden="true"></i> <%= product.reservations.count %></li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-footer">
+            <img src="http://placehold.it/30x30" alt="" class="avatar">
+            <a href="#">Bob</a>
+          </div>
+        </div>
+        </div>
+    </div>
+        <% end %>
+      <% end %>
+-->
+
     <div class="row">
       <% @products.each do |product| %>
       <% if product.active? %>
@@ -23,28 +58,18 @@
       <% end %>
       <% end %>
     </div>
+
+
+
     <div class="pagination-box">
       <div class="text-center">
         <%= paginate @products, :exclude => [:first, :last] %>
       </div>
     </div>
-  </div>
-  <div id="hidden-mobile">
-    <div id="map"></div>
-  </div>
+
+
+
+
+
 </div>
-<% content_for(:after_js) do %>
-<%= javascript_tag do %>
-var handler = Gmaps.build('Google');
-handler.buildMap({ internal: { id: 'map' } }, function() {
-markers = handler.addMarkers(<%= raw @markers.to_json %>);
-handler.bounds.extendWith(markers);
-handler.fitMapToBounds();
-if (markers.length == 0) {
-handler.getMap().setZoom(2);
-} else if (markers.length == 1) {
-handler.getMap().setZoom(14);
-}
-});
-<% end %>
-<% end %>
+

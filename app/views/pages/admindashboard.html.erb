@@ -14,33 +14,6 @@
     </div>
   </div>
   <br>
-<!-- Action requisepour les Review -->
-  <div class="row">
-    <div class="col-xs-12 text-center">
-      <% if @reviewsnotactive.count == 0 %>
-      <% else %>
-      <h4><i class="fa fa-comment-o" aria-hidden="true"></i> Les commentaires en attente:</h4>
-    </div>
-    <ul>
-    <% @reviews.each do |review| %>
-      <% if !review.active? %>
-      <li>
-      <div class="col-xs-12 col-sm-3">
-      <strong><%= link_to review.product.name, product_path(review.product) %></strong>
-      <br>
-      <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %> <%= review.user.pseudo %>  <%= review.created_at.strftime("(%d/%m/%y)") %><br>
-      <%= review.comment %><br>
-      <span class="label label-success">
-      <%= link_to "publier le commentaire", publish_review_path(review.id), method: :patch %></span>
-      <% end %>
-      <% end %>
-    </div>
-    </li>
-    </ul>
-    <br>
-  </div>
-  <% end %>
-  <hr>
 
   <div class='row'>
 <!-- Les utilisateurs -->
@@ -67,7 +40,7 @@
         </ul>
         </div>
 -->
-        Utilisateurs en attente de validation:
+        Utilisateurs en attente de validation: <strong><%= @sellerwaitinglist.count %></strong>
         <% @sellerwaitinglist.each do |user| %>
         <ul>
         <li><strong><%= link_to user.pseudo, user_path(user) %> <%= user.state %></strong> (<%= user.created_at.strftime("%d/%m/%Y") %>)
@@ -100,8 +73,40 @@
       <div id="map"></div>
     </div>
   </div>
-
+<!-- Action requisepour les Review -->
+  <div class="row">
+    <div class="col-xs-12">
+      <% if @reviewsnotactive.count == 0 %>
+      <% else %>
+      <h3><i class="fa fa-comment-o" aria-hidden="true"></i> Les commentaires en attente:</h3>
+    </div>
+    <ul>
+    <% @reviews.each do |review| %>
+      <% if !review.active? %>
+      <li>
+      <div class="col-xs-12 col-sm-3">
+      <strong><%= link_to review.product.name, product_path(review.product) %></strong>
+      <br>
+      <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %> <%= review.user.pseudo %>  <%= review.created_at.strftime("(%d/%m/%y)") %><br>
+      <%= review.comment %><br>
+      <span class="label label-success">
+      <%= link_to "publier le commentaire", publish_review_path(review.id), method: :patch %></span>
+      <% end %>
+      <% end %>
+    </div>
+    </li>
+    </ul>
+    <br>
+  </div>
+  <% end %>
   <hr>
+
+
+
+
+
+
+
   <div class='row'>
 <!-- Mes évènements -->
       <div class="col-xs-12 col-sm-6">
