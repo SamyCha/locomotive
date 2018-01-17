@@ -17,7 +17,7 @@
 //= require ./credit_card_form.js
 //= require ./cable.js
 //= require ./autocomplete.js
-
+//= require ./InstantSearch.js
 
 toastr.options = {
 

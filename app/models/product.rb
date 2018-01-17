@@ -27,6 +27,16 @@ class Product < ApplicationRecord
       prefix: true
     }
   }
+
+
+#algolia pour les produit publiés uniquement
+include AlgoliaSearch
+algoliasearch if: :active? do
+  attribute :name, :brand, :category, :color, :size, :price
+  geoloc :lat_attr, :lng_attr
+end
+
+
 #signifie 'si reviews.count égal 0 alors ça retourne 0 sinon ça retourne la moyenne des notes
   def average_rating
     reviews.count == 0 ? 0 : reviews.average(:star).round(2)

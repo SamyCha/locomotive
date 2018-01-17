@@ -1,75 +1,28 @@
 
   <div class="container-fluid">
-<!--
-      <h1 class="text-center">Searchbar</h1>
-<div class="row">
-      <div class="cards">
-      <% @products.each do |product| %>
-      <% if product.active? %>
-        <div class="col-xs-12 col-sm-3">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-picture">
-            <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
-            </div>
-              <div class="card-hover">
-                <h4><%= link_to product.name, product %></h4>
-                <p>This is my work I'm proud of it. Check this out</p>
-              </div>
-            </div>
-            <div class="card-likes">
-              <ul class="list-inline">
-                <li><i class="fa fa-eye"></i> 567</li>
-                <li><i class="fa fa-heart" aria-hidden="true"></i> <%= product.reservations.count %></li>
-              </ul>
-            </div>
-          </div>
-          <div class="card-footer">
-            <img src="http://placehold.it/30x30" alt="" class="avatar">
-            <a href="#">Bob</a>
-          </div>
-        </div>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.css">
+  <!-- Always use `2.x` versions in production rather than `2` to mitigate any side effects on your website,
+  Find the latest version on InstantSearch.js website: https://community.algolia.com/instantsearch.js/v2/guides/usage.html -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <header>
+    <div>
+       <input id="search-input" placeholder="Search for products">
+       <!-- We use a specific placeholder in the input to guides users in their search. -->
     </div>
-        <% end %>
-      <% end %>
--->
-
-    <div class="row">
-      <% @products.each do |product| %>
-      <% if product.active? %>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="panel panel-default">
-          <div class="panel-heading preview">
-
-            <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
-
-          </div>
-          <div class="panel-body">
-
-            <strong><%= link_to product.name, product %></strong> <i class="fa fa-heart" aria-hidden="true"></i> <%= product.reservations.count %><br>
-
-            <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %> <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %> <br>
-            <strong><%= product.price %> euros</strong>
-
-          </div>
-        </div>
-      </div>
-      <% end %>
-      <% end %>
-    </div>
+  </header>
+  <main>
+      <div id="hits"></div>
+      <div id="pagination"></div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
+  <script src="app.js"></script>
+</body>
+  </div>
 
 
-
-    <div class="pagination-box">
-      <div class="text-center">
-        <%= paginate @products, :exclude => [:first, :last] %>
-      </div>
-    </div>
-
-
-
-
-
-</div>
-
+  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
+  <script src="app.js"></script>
