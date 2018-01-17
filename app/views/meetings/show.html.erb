@@ -3,12 +3,9 @@
 détails<%= @meeting.details %><br>
 le: <%= @meeting.start_time.strftime("%d/%m/%Y") %><br>
 adresse:<%= @meeting.address %><br>
-Nombre d'exposants: <%= @exhibitors.count %><br>
+Nombre d'exposants: XXXX <br>
 <% if user_signed_in? %>
 <% if current_user.seller? %>
-<%= link_to participate_path, class:"btn btn-info" do %>
-Reserver un stand
+<%= link_to "Reserver un stand", participate_path(@meeting), class:"btn btn-info" %>
 <% end %>
 <% end %>
-<% end %>
-

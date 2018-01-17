@@ -41,7 +41,8 @@ match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_use
 
 # Participation to a meeting
   get 'participate' => 'meetings#participate'
-
+#show in calendar participation to a meeting
+  get 'participation' => 'meetings#my_participation'
 
 # admindashbooard: fast publication seller/product/review
   patch '/publish_product/:id' =>'pages#publish_product', as: :publish_product

@@ -8,14 +8,20 @@ class MeetingsController < InheritedResources::Base
 
   def participate
     @meeting = Meeting.find(params[:id])
-    if user.client?
-      @participant = @meeting << current_user
-      @participant.save
-    elsif user.seller?
-      @exhibitor = @meeting << current_user
-      @exhibitor.save
+    @current_user.meetings << @meeting
+    if @current_user.meetings.save
+      render :index, notice: "Vous apparaissez en exposant sur ce prochain evenement"
+    else
+      render :participate
     end
   end
+
+
+  def my_participation
+    @user = User.find(params[:id])
+    @participations = @user.meetings
+  end
+
 
   def index
     @meetings = Meeting.all
@@ -35,7 +41,7 @@ class MeetingsController < InheritedResources::Base
   end
 
   def show
-  #  @exhibitors = User.all.participate
+
   end
 
   def edit

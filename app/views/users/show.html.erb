@@ -50,6 +50,8 @@
       <% end %>
       <br>
       <% if @user.seller? %>
+
+<!-- affiche le calendrier des participations du vendeur   et rempacer @ meetings par @participations -->
       <h4><i class="fa fa-calendar fa-2x" aria-hidden="true"></i> VOUS ME TROUVEREZ AUX EVENEMENTS SUIVANTS:</h4>
       <%= week_calendar number_of_weeks: 2, events: @meetings do |date, meetings| %>
       <strong><%= date.strftime("%d") %></strong>
