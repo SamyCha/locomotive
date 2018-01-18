@@ -19,7 +19,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'paperclip', '~> 5.0.0'
 gem 'paperclip-cloudinary'
-gem 'pg'
+gem 'pg', '~> 0.20'
 gem 'pg_search'
 gem 'puma'
 gem 'rails', '5.1.4'
@@ -28,7 +28,6 @@ gem 'rails-timeago'
 gem 'ransack'
 gem 'redis'
 gem "simple_calendar", "~> 2.0"
-gem 'stripe'
 gem 'toastr-rails'
 
 source 'https://rails-assets.org' do

@@ -1,10 +1,4 @@
 <div class="container-fluid">
-  <ol class="breadcrumb">
-    <li><%= link_to "Accueil", root_path %></li>
-    <li><%= link_to "Liste des articles", search_path %></li>
-    <li class="active"><%= @product.category %> : <%= @product.name %></li>
-  </ol>
-
   <div class="panel panel-default">
     <div class="panel-body">
  <% if @product.active? %>
@@ -35,10 +29,6 @@
   <% if @product.active? %>
     <%= render 'articles_map' %>
    <% end %>
-
-  <% if @product.active? %>
-    <%= render 'proximity_articles' %>
-  <% end %>
 
     </div>
   </div>

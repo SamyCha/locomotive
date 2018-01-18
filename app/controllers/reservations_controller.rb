@@ -3,6 +3,7 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
 
+#Ajout d'un produit dans la wishlist de l'acheteur
   def create
     @product = Product.find(params[:product_id])
     @booked = Reservation.where('product_id = ? AND user_id = ?', @product.id, current_user.id).present?
@@ -15,11 +16,11 @@ class ReservationsController < ApplicationController
       redirect_to your_articles_path, notice: 'Cet article a été ajouté à votre liste'
     end
   end
-
+# contenu de la wishlist
   def your_articles
     @articles = current_user.reservations
   end
-
+# liste de sproduits en vente par le seller
   def your_reservations
     @products = current_user.products
   end
@@ -30,8 +31,3 @@ class ReservationsController < ApplicationController
     params.require(:reservation).permit(:price, :total, :product_id)
   end
 end
-
-# def create
-#    @reservation = current_user.reservations.create(reservation_params)
-#      redirect_to @reservation.product, notice: "Cet article a été ajouté à votre liste"
-# end

@@ -1,25 +1,22 @@
 <div id="hidden-mobile">
   <div class="col-xs-12 col-sm-3">
-    <%= link_to meetings_path class:"card-link" do %>
+
     <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('http://res.cloudinary.com/hessdypy6/image/upload/v1515771216/alaffiche_rhs60z.jpg');">
-      <div class="card-category">ACTUALITE</div>
+      <div class="card-category">EXPOSER</div>
       <div class="card-description">
         <% @highlights.each do |meeting| %>
-        <h2><%= meeting.name %></h2>
-        <% end %>
-        <h5>Reservez votre stand</h5>
+        <h5>Reservez votre stand <br>
+        <%= link_to meeting.name, meeting_path(meeting.id) %></h5>
       </div>
     </div>
     <% end %>
     <br>
     <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('https://sixactualites.fr/wp-content/uploads/2017/06/Bijou.jpg');">
-      <div class="card-category">SELECTION</div>
+      <div class="card-category">DECOUVREZ</div>
       <div class="card-description">
-        <h2>Créateur</h2>
         <% @starsellers.each do |user| %>
-        <h5><%= user.pseudo %></h5>
-
-      <%= link_to "", user_path(user), class:"card-link" %>
+        <h5>Nouveau créateur<br>
+      <%= link_to user.pseudo, user_path(user) %></h5>
       <% end %>
       </div>
     </div>

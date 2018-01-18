@@ -62,7 +62,7 @@
         Articles en attente de publication: <strong><%= @notactives.count %></strong>
         <% @notactives.each do |product| %>
         <ul>
-        <li><strong><%= link_to product.name, product_path(product) %> <%= product.user.pseudo %></strong> (<%= product.updated_at.strftime("%d/%m/%Y") %>)
+        <li><strong><%= link_to product.name, product_path(product) %> <%= product.user.pseudo %></strong> (<%= product.updated_at.strftime("%d/%m/%Y") %>)<br>
         <span class="label label-success">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span></li>
         </ul><% end %>
         <br><br>
@@ -140,7 +140,9 @@
       <%= link_to 'Ajouter un article', new_product_path, class:'btn btn-primary' %><br><br>
     </div>
   </div>
-</div>
+
+</div>∏
+<div></div>
 
 <% content_for(:after_js) do %>
 <%= javascript_tag do %>
