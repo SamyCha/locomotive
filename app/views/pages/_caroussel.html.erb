@@ -1,42 +1,55 @@
 <div id="hidden-mobile">
 
-<div class="col-xs-12 col-sm-9">
-  <div id="myCarousel" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="item active">
-        <img src="/assets/shopping.jpg">
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Choisissez des articles à proximité de chez vous </h1>
-            <p class="lead">Une selection d'articles neufs et d’occasion selon vos envies…</p>
-            <%= link_to search_path, class:"btn btn-large btn-info" do %> Découvrir nos articles<% end %>
+  <div class="col-xs-12 col-sm-9">
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="/assets/shopping.jpg">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Choisissez des articles à proximité de chez vous </h1>
+              <p class="lead">Une selection d'articles neufs et d’occasion selon vos envies…</p>
+              <%= link_to search_path, class:"btn btn-large btn-info" do %> Découvrir nos articles<% end %>
+            </div>
+          </div>
+          </div>
+        <% if user_signed_in? %>
+        <div class="item">
+          <img src="/assets/stand.jpg" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Decouvrez les articles qui vous entourent</h1>
+              <p class="lead">Soyez la première à trouver votre article</p>
+              <%= link_to slide_path, class:"btn btn-large btn-primary" do %> Trouver des articles à proximité<% end %>
+            </div>
+          </div>
+        </div>
+        <% else %>
+        <div class="item">
+          <img src="/assets/stand.jpg" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Devenez vendeuse... ou soyez au courant des bonnes affaires</h1>
+              <p class="lead">Inscrivez-vous aux Armoires de Paris</p>
+              <%= link_to new_user_registration_path, class:"btn btn-large btn-primary" do %> Inscrivez-vous<% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <div class="item">
+          <img src="/assets/shoes.jpg" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Nos prochains évènements</h1>
+              <p class="lead">Consultez la liste des prochains évènements en 2018</p>
+              <%= link_to meetings_path, class:"btn btn-large btn-primary" do %> Connaître nos évenements <% end %>
+            </div>
           </div>
         </div>
       </div>
-      <div class="item">
-        <img src="/assets/stand.jpg" alt="">
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Devenez vendeuse... ou soyez au courant des bonnes affaires</h1>
-            <p class="lead">Inscrivez-vous aux Armoires de Paris</p>
-            <%= link_to meetings_path, class:"btn btn-large btn-primary" do %> Inscrivez-vous<% end %>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="/assets/shoes.jpg" alt="">
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Nos prochains évènements</h1>
-            <p class="lead">Consultez la liste des prochains évènements en 2018</p>
-            <%= link_to meetings_path, class:"btn btn-large btn-primary" do %> Connaître nos évenements <% end %>
-          </div>
-        </div>
-      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
     </div>
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
   </div>
-</div>
 
 </div>

@@ -1,45 +1,44 @@
-
 <div class="col-md-4">
-<div class= "row">
-  <div class="col-md-12  text-center">
+  <div class= "row">
+    <div class="col-md-12  text-center">
 
-    <i class="fa fa-heart" aria-hidden="true"></i> Cet article plaît déjà à <%= @product.reservations.count %> utilisateur(s)
-  </div>
-  <div class="col-md-12 price_tag text-center">
-    <span><%= @product.price %> euros</span>
+      <i class="fa fa-heart" aria-hidden="true"></i> Cet article plaît déjà à <%= @product.reservations.count %> utilisateur(s)
+    </div>
+    <div class="col-md-12 price_tag text-center">
+      <span><%= @product.price %> euros</span>
+    </div>
+
+    <div class="col-md-12 text-center">
+      <i class="fa fa-map-marker" aria-hidden="true"></i> article situé: <%= @product.address %>
+    </div>
   </div>
 
+  <%= form_for([@product, @product.reservations.new]) do |f| %>
+  <%= f.hidden_field :product_id, value: @product.id %>
+  <%= f.hidden_field :price, value: @product.price %>
+  <br>
   <div class="col-md-12 text-center">
-    <i class="fa fa-map-marker" aria-hidden="true"></i> article situé: <%= @product.address %>
-  </div>
-</div>
-
-<%= form_for([@product, @product.reservations.new]) do |f| %>
-<%= f.hidden_field :product_id, value: @product.id %>
-<%= f.hidden_field :price, value: @product.price %>
-<br>
-<div class="col-md-12 text-center">
-  <% if user_signed_in? && current_user != @user %>
+    <% if user_signed_in? && current_user != @user %>
     <% if @booked %>
     <%= link_to your_articles_path, class: "btn btn-primary" do %>
     Un vos coups de coeur <i class="fa fa-heart" aria-hidden="true"></i>
     <% end %>
     <% else %>
 
-<%= f.submit "Mettre dans mes coups de coeur", class:" btn btn-success" %>
+    <%= f.submit "Mettre dans mes coups de coeur", class:" btn btn-success" %>
 
-<%= link_to "Contacter son vendeur", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class:"btn btn-primary" %>
+    <%= link_to "Contacter son vendeur", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class:"btn btn-primary" %>
 
     <% end %>
 
-<% elsif user_signed_in? && current_user == @product.user %>
-<%= link_to "Mettre à jour votre article", edit_product_path(@product), class: "btn btn-primary" %><br>
-(dernière mise à jour:<%= timeago_tag @product.updated_at, :lang => :fr  %>)
-<% else %>
-<%= link_to new_user_session_path, class: "btn btn-primary" do %>
-Se connecter pour contacter le vendeur
-<% end %>
-<% end %>
-</div>
-<% end %>
+    <% elsif user_signed_in? && current_user == @product.user %>
+    <%= link_to "Mettre à jour votre article", edit_product_path(@product), class: "btn btn-primary" %><br>
+    (dernière mise à jour:<%= timeago_tag @product.updated_at, :lang => :fr  %>)
+    <% else %>
+    <%= link_to new_user_session_path, class: "btn btn-primary" do %>
+    Se connecter pour contacter le vendeur
+    <% end %>
+    <% end %>
+  </div>
+  <% end %>
 </div>
