@@ -26,6 +26,7 @@ match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_use
   end
 
   resources :contacts, only: %i[new create]
+
   resources :meetings
 
   get 'your_articles' => 'reservations#your_articles'
@@ -40,7 +41,7 @@ match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_use
   get '/mini_index' => 'products#mini_index'
 
 # Participation to a meeting
-  get 'participate' => 'meetings#participate'
+  get 'participate/:id' => 'meetings#participate', as: :participate
 #show in calendar participation to a meeting
   get 'participation' => 'meetings#my_participation'
 

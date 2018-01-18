@@ -8,9 +8,9 @@ class MeetingsController < InheritedResources::Base
 
   def participate
     @meeting = Meeting.find(params[:id])
-    @current_user.meetings << @meeting
-    if @current_user.meetings.save
-      render :index, notice: "Vous apparaissez en exposant sur ce prochain evenement"
+    current_user.meetings << @meeting
+    if current_user.meetings.save
+      render :index, notice: "Votre demande d'exposant est en cours"
     else
       render :participate
     end

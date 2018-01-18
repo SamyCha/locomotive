@@ -6,6 +6,8 @@ adresse:<%= @meeting.address %><br>
 Nombre d'exposants: XXXX <br>
 <% if user_signed_in? %>
 <% if current_user.seller? %>
-<%= link_to "Reserver un stand", participate_path(@meeting), class:"btn btn-info" %>
+
+<%= link_to "Je souhaite reserver un stand", participate_path(@meeting), class:"btn btn-info" %>
+
 <% end %>
 <% end %>
