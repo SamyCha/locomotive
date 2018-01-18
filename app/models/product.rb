@@ -33,7 +33,6 @@ class Product < ApplicationRecord
 include AlgoliaSearch
 algoliasearch if: :active? do
   attribute :name, :brand, :category, :color, :size, :price
-  geoloc :lat_attr, :lng_attr
 end
 
 
