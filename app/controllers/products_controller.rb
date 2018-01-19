@@ -6,9 +6,19 @@ class ProductsController < ApplicationController
   before_action :require_same_user, only: %i[edit update destroy]
 
   def search
-    # pg search de produit par name et category
 
-  @products = Product.where(active: true)
+
+
+#if
+@results = Product.search('foo', hitsPerPage: 10)
+#else
+  #@products = Product.where(active: true)
+#end
+
+
+
+
+
   #  if params[:term]
   #    @products = Product.search_by_name_and_category(params[:term])
 
