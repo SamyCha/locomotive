@@ -8,6 +8,9 @@
 //= require gmaps/google
 //= require algolia/v3/algoliasearch.min
 
+// `yarn add instantsearch.js`
+const instantsearch = require('instantsearch.js');
+
 //= require ./jquery.jTinder.js
 //= require ./jquery.transform2d.js
 //= require ./main.js
@@ -19,9 +22,7 @@
 //= require ./autocomplete.js
 
 
-
-
-var client = algoliasearch(012967GRTQ, a3f100606d982f64d7c25410c672f5f5);
+var client = algoliasearch(ENV["ALGOLIA_ID"], ENV["ALGOLIA_ADMIN_KEY"]);
 var index = client.initIndex('Product');
 index.search('something', { hitsPerPage: 10, page: 0 })
   .then(function searchDone(content) {
@@ -32,23 +33,34 @@ index.search('something', { hitsPerPage: 10, page: 0 })
   });
 
 
+var search = instantsearch({
+  appId: ENV["ALGOLIA_ID"],
+  apiKey: ENV["ALGOLIA_SEARCH_KEY"], // search only API key, no ADMIN key
+  indexName: 'Product',
+  urlSync: true
+});
 
 
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-input',
+    placeholder: 'Rechercher un article',
+    poweredBy: true
+  })
+);
 
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '#hits',
+    hitsPerPage: 10,
+    templates: {
+      item: getTemplate('hit'),
+      empty: getTemplate('no-results')
+    }
+  })
+);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+search.start();
 
 
 

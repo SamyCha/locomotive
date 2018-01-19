@@ -7,34 +7,8 @@ class ProductsController < ApplicationController
 
   def search
 
-
-
-#if
 @results = Product.search('foo', hitsPerPage: 10)
-#else
-  #@products = Product.where(active: true)
-#end
 
-
-
-
-
-  #  if params[:term]
-  #    @products = Product.search_by_name_and_category(params[:term])
-
-   #   @products = Kaminari.paginate_array(@products).page(params[:page]).per(9)
-
-   # else
-   #   @products = Product.page(params[:page]).per(9)
-   #   .where
-   #   .not(latitude: nil, longitude: nil)
-   #   .order('created_at DESC')
-  #  end
-    # affichage de la map avec tous les produits
-    #@markers = Gmaps4rails.build_markers(@products) do |product, marker|
-    #  marker.lat product.latitude
-    #  marker.lng product.longitude
-    #end
   end
 
   # pour le slider mobile

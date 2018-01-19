@@ -1,7 +1,12 @@
 <hr>
 <div class="row">
   <div class="col-xs-12 col-md-3">
-    XXXXXXX
+    <div id="search-box">
+      <!-- SearchBox widget will appear here -->
+    </div>
+    <div id="refinement-list">
+      <!-- RefinementList widget will appear here -->
+    </div>
   </div>
 
   <div class="col-xs-12 col-md-9">
@@ -18,8 +23,8 @@
     <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
     <!-- Initialize autocomplete menu -->
     <script>
-      var client = algoliasearch("012967GRTQ", "a3f100606d982f64d7c25410c672f5f5");
-      var index = client.initIndex('Product');
+      var client = algoliasearch(ENV["ALGOLIA_ID"], ENV["ALGOLIA_SEARCH_KEY"];
+        var index = client.initIndex('Product');
 //initialize autocomplete on search input (ID selector must match)
 autocomplete('#aa-search-input',
   { hint: false }, {
@@ -42,7 +47,47 @@ autocomplete('#aa-search-input',
     <br>
   </div>
 
+
+
+
+  <div id="hits">
+    <!-- Hits widget will appear here -->
+  </div>
+
+
+
 </div>
 </div>
 </div>
+
+
+<script>
+  const search = instantsearch(options);
+
+  // initialize RefinementList
+  search.addWidget(
+    instantsearch.widgets.refinementList({
+      container: '#refinement-list',
+      attributeName: 'category'
+    })
+    );
+
+  // initialize SearchBox
+  search.addWidget(
+    instantsearch.widgets.searchBox({
+      container: '#search-box',
+      placeholder: 'Search for products'
+    })
+    );
+
+  // initialize hits widget
+  search.addWidget(
+    instantsearch.widgets.hits({
+      container: '#hits'
+    })
+    );
+
+  search.start();
+</script>
+
 
