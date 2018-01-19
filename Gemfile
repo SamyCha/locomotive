@@ -42,6 +42,8 @@ gem 'kaminari'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
+gem "algoliasearch-rails"
+
 
 group :development, :test do
   gem 'listen', '~> 3.0.5'

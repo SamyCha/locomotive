@@ -1,0 +1,29 @@
+<div class="container-fluid">
+<hr>
+  <div class="row">
+<div class="col-xs-12 col-md-3">
+XXXXXXX
+</div>
+
+<div class="col-xs-12 col-md-9">
+    <% @products.each do |product| %>
+    <% if product.active? %>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading preview">
+<!--
+            <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
+          -->
+        </div>
+        <div class="panel-body">
+          <strong><%= link_to product.name, product %></strong> <i class="fa fa-heart" aria-hidden="true"></i> <%= product.reservations.count %><br>
+          <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %> <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %> <br>
+          <strong><%= product.price %> euros</strong>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+</div>
