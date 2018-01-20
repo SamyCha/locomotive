@@ -10,7 +10,7 @@
 L'article:
       <strong><%= product.name %></strong> (Ref.produit: <%= product.id %>) a bien été vendu <br><br><%= link_to "Passer à la notation", product_path(product), class:"btn btn-primary" %>
       <% else %>
-      Ce produit est encore en vente, vous ne pouvez pas le noter...
+      <p>Ce produit est encore en vente, vous ne pouvez pas le noter...</p>
       <% end %>
       <% end %>
       <% end %>

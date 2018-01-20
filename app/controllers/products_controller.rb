@@ -10,9 +10,9 @@ class ProductsController < ApplicationController
 
 
 #if
-@results = Product.search('foo', hitsPerPage: 10)
+#@results = Product.search('foo', hitsPerPage: 10)
 #else
-  #@products = Product.where(active: true)
+  @products = Product.where(active: true)
 #end
 
 
@@ -39,6 +39,8 @@ class ProductsController < ApplicationController
 
   # pour le slider mobile
   def slide
+     @articles = current_user.reservations.last(10)
+
     if user_signed_in?
       @address = current_user.address
       @distance = current_user.distance
