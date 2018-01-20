@@ -20,14 +20,13 @@ class Product < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
-#  include PgSearch
+# include PgSearch
 #  pg_search_scope :search_by_name_and_category, against: %i[name category brand],
 #  using: {
 #    tsearch: {
 #      prefix: true
 #    }
 #  }
-
 
 
 #signifie 'si reviews.count égal 0 alors ça retourne 0 sinon ça retourne la moyenne des notes
@@ -41,8 +40,10 @@ algoliasearch if: :active? do
   attribute :name, :brand, :category, :color, :size, :price
 end
 
-#  def self.search(search)
-#    where("name LIKE ?", "%#{search}%")
-#  end
+
+#utilisé pour faire le rating
+def self.search(search)
+   where("name LIKE ?", "%#{search}%")
+  end
 
 end

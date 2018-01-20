@@ -1,1 +1,66 @@
+<div class="container-fluid">
+<div class="col-xs-12 col-md-7">
  <%= render 'reservations/formslide' %>
+ <br>
+ </div>
+
+<div id="hidden-mobile">
+<div class="col-xs-12 col-md-5 text-center">
+<hr>
+Vos derniers coups de coeur:<br>
+
+ <div class="row">
+
+      <div class="col-md-12">
+        <div class="panel panel-default">
+
+         <div class="panel-body">
+          <% if @articles.count != 0 %>
+          <% @articles.each do |article| %>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="text-center">
+                <%= article.product.name %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="text-center">
+                <!-- Affichage en fonction du status du produit -->
+                <% if article.product.active %>
+                <!-- Si le produit est publié -->
+                <span class="label label-success">article en vente</span>
+                <span class="label label-info">prix: <%= article.price %> euros</span>
+                <% elsif article.product.status? %>
+                <!-- Si le produit est vendu -->
+                <span class="label label-info">article vendu</span>
+                <% else %>
+                <!-- Si le produit est dépublié -->
+                <span class="label label-info">article dépublié</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <% end %>
+            </div>
+          <% else %>
+          Votre liste est vide
+          <% end %>
+          <div class="text-center">
+  <%= link_to your_articles_path, class: "btn btn-info" do %>
+  Tous vos coups de coeur
+  <% end %>
+  <br>
+  <br>
+  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+</div>
+
+</div>
