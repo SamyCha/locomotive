@@ -29,6 +29,9 @@ gem 'ransack'
 gem 'redis'
 gem "simple_calendar", "~> 2.0"
 gem 'toastr-rails'
+gem "mailboxer"
+gem 'chosen-rails'
+
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-underscore'
@@ -43,7 +46,8 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem "algoliasearch-rails"
-
+gem 'bootstrap-will_paginate'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'listen', '~> 3.0.5'

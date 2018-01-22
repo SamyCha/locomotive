@@ -5,6 +5,15 @@ class MeetingsController < InheritedResources::Base
   before_action :set_meeting, only: %i[show edit update destroy]
   before_action :is_admin, only: %i[new create edit update destroy]
 
+
+def participate
+ meeting = Meeting.find(params[:meeting_id])
+ current_user.meetings << meeting
+redirect_to meetings_path
+
+end
+
+
   def index
     @meetings = Meeting.all
   end

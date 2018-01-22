@@ -8,6 +8,11 @@ class User < ApplicationRecord
 
   enum state: %i[client seller]
 
+#equip for mailboxer functionality
+acts_as_messageable
+
+
+
   validates :pseudo, presence: true, length: { maximum: 50 }
   validates :address, presence: true
 

@@ -2,24 +2,25 @@
 
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :get_mailbox
+  before_action :get_conversation, except: [:index]
 
   def index
-    @users = User.all
-    @conversations = Conversation.involving(current_user)
- end
-
-  def create
-    if Conversation.between(params[:sender_id], params[:recipient_id]).present?
-      @conversation = Conversation.between(params[:sender_id], params[:recipient_id]).first
-    else
-        @conversation = Conversation.create(conversation_params)
+    @conversations = @mailbox.inbox.paginate(page: params[:page], per_page: 10)
   end
-    redirect_to conversation_messages_path(@conversation)
- end
+
+  def show
+  end
 
   private
 
-  def conversation_params
-    params.permit(:sender_id, :recipient_id)
+  def get_mailbox
+    @mailbox ||= current_user.mailbox
   end
+
+  def get_conversation
+    @conversation ||= @mailbox.conversations.find(params[:id])
+  end
+
+
 end

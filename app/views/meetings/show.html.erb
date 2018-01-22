@@ -7,9 +7,8 @@ adresse:<%= @meeting.address %>
 
 <% if user_signed_in? %>
 <% if current_user.seller? %>
-<%= link_to "#", class:"btn btn-info" do %>
-Reserver un stand
-<% end %>
+<%= link_to "Reserver un stand", meeting_participate_path(@meeting), method: :post %>
+
 <% end %>
 <% end %>
 

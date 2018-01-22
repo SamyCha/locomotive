@@ -55,9 +55,7 @@
             <i class="fa fa-user"></i> <%= t(".profile", default: "Mon Profile") %>
             <% end %>
           </li>
-          <li class="sidebar-item">
-
-    <%= link_to conversations_path do %><i class="fa fa-envelope" aria-hidden="true"></i> Messages <% end %> </li>
+    <li class="sidebar-item"><%= link_to conversations_path do %><i class="fa fa-envelope" aria-hidden="true"></i> Messages <% end %> </li>
           <li class="sidebar-item">
             <%= link_to destroy_user_session_path, method: :delete do %>
             <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Deconnexion") %>
@@ -82,7 +80,7 @@
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"> Menu</i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <li class="sidebar-item">
-          <%= link_to conversations_path do %><i class="fa fa-envelope" aria-hidden="true"></i> Messages<% end %></li>
+          <li class="sidebar-item"><%= link_to conversations_path do %><i class="fa fa-envelope" aria-hidden="true"></i> Messages<% end %></li>
           <li class="sidebar-item">
             <%= link_to slide_path do %><i class="fa fa-arrows-h" aria-hidden="true"></i>
             Faire défiler les articles<% end %></li>

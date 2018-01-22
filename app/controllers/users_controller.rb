@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, except: %i[show]
 
   def show
-    @meetings = Meeting.all
+    @meetings = Meeting.all  # Meetings where user
     @user = User.find(params[:id])
     @products = @user.products
   end

@@ -21,12 +21,14 @@ match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_use
 
   resources :photos
 
-  resources :conversations, only: %i[index create] do
-    resources :messages, only: %i[index create]
-  end
+resources :conversations, only: [:index, :show, :destroy]
+resources :messages, only: [:new, :create]
 
   resources :contacts, only: %i[new create]
   resources :meetings
+ resources :meetings do
+    post :participate
+  end
 
   get 'your_articles' => 'reservations#your_articles'
   get '/your_reservations' => 'reservations#your_reservations'
