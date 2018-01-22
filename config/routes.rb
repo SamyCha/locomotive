@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 # suppression d'un utilisateur par admin
 match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
 
-  root to: 'pages#home'
+root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:show]
 
@@ -27,6 +27,9 @@ match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_use
 
   resources :contacts, only: %i[new create]
   resources :meetings
+  resources :meetings do
+    post :participate
+  end
 
   get 'your_articles' => 'reservations#your_articles'
   get '/your_reservations' => 'reservations#your_reservations'
@@ -40,7 +43,7 @@ match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_use
   get '/mini_index' => 'products#mini_index'
 
 # admindashbooard: fast publication seller/product/review
-  patch '/publish_product/:id' =>'pages#publish_product', as: :publish_product
-  patch '/user_to_seller/:id' =>'pages#user_to_seller', as: :user_to_seller
-  patch '/publish_review/:id' =>'pages#publish_review', as: :publish_review
+patch '/publish_product/:id' =>'pages#publish_product', as: :publish_product
+patch '/user_to_seller/:id' =>'pages#user_to_seller', as: :user_to_seller
+patch '/publish_review/:id' =>'pages#publish_review', as: :publish_review
 end

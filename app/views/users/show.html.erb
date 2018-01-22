@@ -57,7 +57,7 @@
       <strong><%= date.strftime("%d") %></strong>
       <% meetings.each do |meeting| %>
       <div>
-        <strong><p><%= link_to meeting.name, @meeting_path  %></p></strong>
+        <strong><p><%= link_to meeting.name, meeting_path(meeting)  %></p></strong>
       </div>
       <% end %>
       <% end %>
