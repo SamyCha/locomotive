@@ -19,6 +19,7 @@
 <!-- Les utilisateurs -->
       <div class="col-xs-12 col-sm-4">
         <h3><i class="fa fa-users" aria-hidden="true"></i>Les utilisateurs:</h3>
+        <%= link_to "Voir tous les utilisateurs", users_path %><br>
         Nombre de comptes enregistrés:
         <strong><%= @users.count %></strong><br>
         Nombre de vendeurs enregistrés:
@@ -27,19 +28,6 @@
         <% @starsellers.each do |user| %>
         <strong><%= user.pseudo %></strong> <%= link_to '=> modifier', root_path %><br>
         <% end %>
-<!--
-        <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Voir tous les utilisateurs:
-        <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <% @users.each do |user|%>
-        <li><strong><%= user.pseudo %></strong> <%= user.state %><%= link_to "Supprimer", admin_destroy_user_path(user), method: :delete, data: { confirm: "Êtes-vous sûr de supprimer le compte de #{user.pseudo}" } %></li>
-        <% end %>
-        </ul>
-        </div>
--->
         Utilisateurs en attente de validation: <strong><%= @sellerwaitinglist.count %></strong>
         <% @sellerwaitinglist.each do |user| %>
         <ul>

@@ -5,10 +5,11 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: %i[show search slide]
   before_action :require_same_user, only: %i[edit update destroy]
 
+
+
+
+
   def search
-
-
-
 #if
 #@results = Product.search('foo', hitsPerPage: 10)
 #else
@@ -142,4 +143,12 @@ class ProductsController < ApplicationController
       redirect_to root_path
     end
   end
+
+def is_admin
+  if current_user.admin?
+  else
+    redirect_to root_path
+  end
+end
+
 end

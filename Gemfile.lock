@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/activeadmin/activeadmin.git
-  revision: d19b3035ee7cd8b3fafd092b02d8a6856cb6610e
+  revision: 7f38dd557052543c06cc49bc748badc3fe531eba
   specs:
     activeadmin (2.0.0.alpha)
       arbre (>= 1.1.1)
@@ -225,7 +225,7 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
-    paperclip (5.0.0)
+    paperclip (5.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       cocaine (~> 0.5.5)
@@ -252,7 +252,7 @@ GEM
       pry (~> 0.10)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
-    puma (3.11.0)
+    puma (3.11.2)
     rack (2.0.3)
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
@@ -397,7 +397,7 @@ DEPENDENCIES
   mail_form
   omniauth
   omniauth-facebook
-  paperclip (~> 5.0.0)
+  paperclip (~> 5.1.0)
   paperclip-cloudinary
   pg (~> 0.20)
   pg_search
