@@ -2,10 +2,18 @@
 
 Rails.application.routes.draw do
   resources :meetings
+
+resources :users, only: [:index]
+
   ActiveAdmin.routes(self)
   devise_for :users,
   controllers: { registrations: 'registrations' },
   omniauth_callbacks: 'omniauth_callbacks'
+
+#Listing of all users
+
+
+
 
 # suppression d'un utilisateur par admin
 match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
