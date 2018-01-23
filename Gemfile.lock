@@ -239,7 +239,7 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
-    paperclip (5.0.0)
+    paperclip (5.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       cocaine (~> 0.5.5)
@@ -415,7 +415,7 @@ DEPENDENCIES
   mailboxer
   omniauth
   omniauth-facebook
-  paperclip (~> 5.0.0)
+  paperclip (~> 5.1.0)
   paperclip-cloudinary
   pg (~> 0.20)
   pg_search

@@ -39,10 +39,10 @@ end
 
   def update
     if @meeting.update(meeting_params)
-    redirect_to meetings_path
-  else
-    render :edit
-  end
+      redirect_to meetings_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -50,21 +50,30 @@ end
     redirect_to meetings_path
   end
 
-  private
 
-  def set_meeting
-    @meeting = Meeting.find(params[:id])
-  end
+  def participate
+   meeting = Meeting.find(params[:meeting_id])
+   current_user.meetings << meeting
+   redirect_to meeting_path(meeting), notice: "Vous êtes enregisté sur cet évenement"
+ end
 
-  def meeting_params
-    params.require(:meeting).permit(:name, :details, :address, :start_time, :highlight, :user_id)
-  end
 
-  def is_admin
-    if current_user.admin?
-    else
-      redirect_to meetings_path
-    end
+
+ private
+
+ def set_meeting
+  @meeting = Meeting.find(params[:id])
+end
+
+def meeting_params
+  params.require(:meeting).permit(:name, :details, :address, :start_time, :highlight, :user_id)
+end
+
+def is_admin
+  if current_user.admin?
+  else
+    redirect_to meetings_path
   end
+end
 
 end
