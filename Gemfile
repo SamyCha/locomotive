@@ -31,7 +31,7 @@ gem "simple_calendar", "~> 2.0"
 gem 'toastr-rails'
 gem "mailboxer"
 gem 'chosen-rails'
-
+gem 'gravatar_image_tag'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-underscore'
@@ -41,13 +41,13 @@ gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
-gem 'kaminari'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem "algoliasearch-rails"
-gem 'bootstrap-will_paginate'
 gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+
 
 group :development, :test do
   gem 'listen', '~> 3.0.5'

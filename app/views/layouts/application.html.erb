@@ -16,7 +16,22 @@
 <body>
   <%= render 'shared/navbar' %>
   <%= render 'shared/message' %>
-  <%= yield %>
+
+
+  <div class="container">
+    <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>">
+      <%= value %>
+    </div>
+    <% end %>
+
+    <div class="page-header">
+      <h1><%= yield :page_header %></h1>
+    </div>
+
+    <%= yield %>
+
+  </div>
   <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
   <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
   <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
@@ -24,13 +39,13 @@
   <script type="text/javascript" src="autocomplete.js"></script>
 
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <!-- transform2d lib -->
-    <script type="text/javascript" src="js/jquery.transform2d.js"></script>
-    <!-- jTinder lib -->
-    <script type="text/javascript" src="js/jquery.jTinder.js"></script>
-    <!-- jTinder initialization script -->
-    <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <!-- transform2d lib -->
+  <script type="text/javascript" src="js/jquery.transform2d.js"></script>
+  <!-- jTinder lib -->
+  <script type="text/javascript" src="js/jquery.jTinder.js"></script>
+  <!-- jTinder initialization script -->
+  <script type="text/javascript" src="js/main.js"></script>
 
 
 
