@@ -29,11 +29,21 @@ root to: 'pages#home'
 
   resources :photos
 
-  resources :conversations, only: %i[index create] do
-    resources :messages, only: %i[index create]
+  resources :conversations, only: [:index, :show, :destroy] do
+    member do
+      post :reply
+      post :restore
+      post :mark_as_read
+    end
+    collection do
+      delete :empty_trash
+    end
   end
 
+  resources :messages, only: [:new, :create]
+
   resources :contacts, only: %i[new create]
+
   resources :meetings
   resources :meetings do
     post :participate

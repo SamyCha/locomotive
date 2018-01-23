@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, except: %i[show]
   before_action :is_admin, only: %i[index]
   def show
+
+    @meetings = Meeting.all  # Meetings where user
+
     @user = User.find(params[:id])
     @meetings = @user.meetings
     @products = @user.products

@@ -7,6 +7,8 @@
 //= require underscore
 //= require gmaps/google
 //= require algolia/v3/algoliasearch.min
+//= require chosen-jquery
+//= require messages
 
 //= require ./jquery.jTinder.js
 //= require ./jquery.transform2d.js
