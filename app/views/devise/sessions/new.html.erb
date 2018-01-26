@@ -2,10 +2,13 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4 col-md-offset-4 text-center">
-
+    <br>
+<%= image_tag "armoires.png" %>
+<br>
       <br>
       <%= link_to "Connexion avec Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-primary-fb" %>
-      <hr>
+<br>
+<br>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
@@ -24,7 +27,7 @@
       <% end %>
 
       <div class="actions">
-        <%= f.submit "Connexion", class: "btn btn-primary" %>
+        <%= f.submit "Connexion", class: 'btn btn-md btn-danger' %>
       </div>
       <% end %>
 

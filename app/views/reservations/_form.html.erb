@@ -20,22 +20,20 @@
   <div class="col-md-12 text-center">
     <% if user_signed_in? && current_user != @user %>
     <% if @booked %>
-    <%= link_to your_articles_path, class: "btn btn-primary" do %>
+    <%= link_to your_articles_path,  class: 'btn btn-md btn-danger' do %>
     Un vos coups de coeur <i class="fa fa-heart" aria-hidden="true"></i>
     <% end %>
     <% else %>
+    <%= f.submit "Mettre dans mes coups de coeur", class: 'btn btn-md btn-success' %>
 
-    <%= f.submit "Mettre dans mes coups de coeur", class:" btn btn-success" %>
-
-    <%= link_to "Contacter son vendeur", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class:"btn btn-primary" %>
-
+    <%= link_to "Contacter son vendeur", new_message_path(sender_id: current_user.id, recipient_id: @user.id), method: 'get', class: 'btn btn-md btn-danger' %>
     <% end %>
 
     <% elsif user_signed_in? && current_user == @product.user %>
-    <%= link_to "Mettre à jour votre article", edit_product_path(@product), class: "btn btn-primary" %><br>
+    <%= link_to "Mettre à jour votre article", edit_product_path(@product), class: 'btn btn-md btn-danger' %><br>
     (dernière mise à jour:<%= timeago_tag @product.updated_at, :lang => :fr  %>)
     <% else %>
-    <%= link_to new_user_session_path, class: "btn btn-primary" do %>
+    <%= link_to new_user_session_path, class: 'btn btn-md btn-danger' do %>
     Se connecter pour contacter le vendeur
     <% end %>
     <% end %>

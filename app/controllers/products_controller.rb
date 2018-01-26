@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
 #@results = Product.search('foo', hitsPerPage: 10)
 #else
   @products = Product.where(active: true)
+
 #end
 
 

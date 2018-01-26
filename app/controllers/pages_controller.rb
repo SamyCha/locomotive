@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home search contact qui]
+  skip_before_action :authenticate_user!, only: %i[home search contact qui devenir_vendeuse]
   before_action :is_admin, only: %i[admindashboard publish_product user_to_seller]
 
   def home
@@ -67,7 +67,8 @@ def publish_review
   redirect_to :admindashboard if @review.save
 end
 
-
+def devenir_vendeuse
+end
 
 def qui
 end

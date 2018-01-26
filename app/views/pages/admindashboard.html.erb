@@ -26,7 +26,7 @@
         <strong><%= @sellers.count %></strong><br>
         Créateur(s) en page d'accueil:
         <% @starsellers.each do |user| %>
-        <strong><%= user.pseudo %></strong> <%= link_to '=> modifier', root_path %><br>
+        <strong><%= user.pseudo %></strong><br>
         <% end %>
         Utilisateurs en attente de validation: <strong><%= @sellerwaitinglist.count %></strong>
         <% @sellerwaitinglist.each do |user| %>
@@ -107,7 +107,7 @@
           <ul>
           <li><strong><%= link_to "Tous les évenements", meetings_path %></strong></li>
           </ul>
-          <%= link_to 'Créer un nouvel évenement', new_meeting_path, class:'btn btn-primary' %><br>
+          <%= link_to 'Créer un nouvel évenement', new_meeting_path,  class: 'btn btn-md btn-danger' %><br>
       </div>
 <!-- Mes articles ajoutés -->
     <div class="col-xs-12 col-sm-6">
@@ -125,7 +125,7 @@
       <% end %>
       </li>
       </ul><% end %>
-      <%= link_to 'Ajouter un article', new_product_path, class:'btn btn-primary' %><br><br>
+      <%= link_to 'Ajouter un article', new_product_path,  class: 'btn btn-md btn-danger' %><br><br>
     </div>
   </div>
 

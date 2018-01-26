@@ -12,7 +12,7 @@ adresse:<%= @meeting.address %>
 
 <% end %>
 
-<%= link_to "Je participe à cet évènement", meeting_participate_path(@meeting), method: :post, class:"btn btn-primary" %>
+<%= link_to "Je participe à cet évènement", meeting_participate_path(@meeting), method: :post, class: 'btn btn-md btn-danger' %>
 <% else %>
 <strong>Inscrivez-vous pour reserver un stand</strong>
 

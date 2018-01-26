@@ -1,11 +1,16 @@
 <div class="container-fluid">
+<hr>
   <div class="row">
     <div class="col-md-3">
       <ul class="sidebar-list">
-        <li class="sidebar-item"><i class="fa fa-heart" aria-hidden="true"></i> <%= link_to "Mes coups de coeur", your_articles_path,
-          class: "sidebar-link active" %></li>
+        <li class="sidebar-item"><i class="fa fa-search-plus" aria-hidden="true"></i> <%= link_to "Les articles", search_path,
+          class: "navbar-wagon-item navbar-wagon-link" %></li>
+  <% if user_signed_in? %>
+        <li class="sidebar-item"><i class="fa fa-heart" aria-hidden="true"></i> <%= link_to your_articles_path, class: "sidebar-link active" do %>Mes <%= current_user.reservations.count %> coup(s) de coeur
+        <% end %></li>
           <li class="sidebar-item"><i class="fa fa-star-half-o" aria-hidden="true"></i>  <%= link_to "Notez un achat", rating_path, class: "navbar-wagon-item navbar-wagon-link" %>
           </li>
+  <% end %>
         </ul>
       </div>
       <div class="col-md-9">
@@ -20,7 +25,11 @@
             <div class="col-md-2">
               <div class="text-center">
                 <strong><%= link_to article.product.name, product_path(article.product) %></strong><br>
-                ref. <%= article.product_id %>
+                <%= article.product.brand %><br>
+
+                <%= article.product.size %><br>
+
+                <strong>ref. <%= article.product_id %></strong>
               </div>
             </div>
             <div class="col-md-2">
@@ -33,17 +42,6 @@
             </div>
             <div class="col-md-4">
               <div class="text-center">
-
-                <%= article.product.brand %><br>
-                <%= article.product.state %><br>
-                <%= article.product.size %><br>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="text-center">
-                <%= link_to user_path(article.product.user), class:"btn btn-primary" do %>
-                Contacter le vendeur
-                <% end %>
                 <!-- Affichage en fonction du status du produit -->
                 <% if article.product.active %>
                 <!-- Si le produit est publié -->
@@ -55,6 +53,18 @@
                 <% else %>
                 <!-- Si le produit est dépublié -->
                 <span class="label label-info">article dépublié</span>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="text-center">
+              <br>
+                <%= link_to user_path(article.product.user), class: 'btn btn-md btn-danger' do %>
+                Contacter le vendeur
+                <% end %>
+<br>
+                  <%= link_to user_path(article.product.user) do %>
+                découvrir <%= article.product.user.pseudo %>
                 <% end %>
               </div>
             </div>

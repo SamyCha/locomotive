@@ -15,21 +15,19 @@ class UsersController < ApplicationController
 
 
 #List of all users
-  def index
-    @users = User.all.order('created_at DESC')
-  end
-
-
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    if @user.destroy
-        redirect_to root_url, notice: "Compte supprimé"
-    end
-  end
+def index
+  @users = User.all.order('created_at DESC')
 end
 
+
+def destroy
+  @user = User.find(params[:id])
+  @user.destroy
+
+  if @user.destroy
+    redirect_to root_url, notice: "Compte supprimé"
+  end
+end
 
 private
 
@@ -38,4 +36,5 @@ def is_admin
   else
     redirect_to root_path
   end
+end
 end
