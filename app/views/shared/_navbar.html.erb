@@ -15,11 +15,13 @@
 -->
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-<i class="fa fa-calendar" aria-hidden="true"></i><%= link_to "Les évènements", meetings_path , class: "navbar-wagon-item navbar-wagon-link" %>
-<i class="fa fa-search-plus" aria-hidden="true"></i><%= link_to "Les articles", search_path , class: "navbar-wagon-item navbar-wagon-link" %>
+<i class="fa fa-search-plus" aria-hidden="true"></i><%= link_to "Sélectionner des articles", search_path , class: "navbar-wagon-item navbar-wagon-link" %>
+<i class="fa fa-calendar" aria-hidden="true"></i><%= link_to "Suivre des évènements", meetings_path , class: "navbar-wagon-item navbar-wagon-link" %>
 
     <% if user_signed_in? %>
     <!-- Links when logged in -->
+
+
     <% if current_user.admin? %>
     <i class="fa fa-unlock" aria-hidden="true"></i>
     <%= link_to "Dashboard Admin", admindashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
@@ -28,7 +30,7 @@
     <% if current_user.seller? %>
     <div class="navbar-wagon-item">
       <div class="dropdown"><i class="fa fa-money" aria-hidden="true"></i>
-        <%= link_to "Mes articles", "#", class: "navbar-wagon-item navbar-wagon-link", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <%= link_to "Vendre des articles", "#", class: "navbar-wagon-item navbar-wagon-link", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li class="sidebar-item"><%= link_to products_path do %><i class="fa fa-female" aria-hidden="true"></i> Mes articles<% end %></li>
           <li class="sidebar-item"><%= link_to your_reservations_path do %><i class="fa fa-money" aria-hidden="true"></i> Mes ventes<% end %></li>
@@ -41,8 +43,8 @@
       </div>
     </div>
     <% end %>
-    <i class="fa fa-heart" aria-hidden="true"></i>
-    <%= link_to "Mes coups de coeur", your_articles_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
+    <i class="fa fa-envelope" aria-hidden="true"></i><%= link_to "Messages", conversations_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <!-- Avatar with dropdown menu -->
     <div class="navbar-wagon-item">
       <div class="dropdown">

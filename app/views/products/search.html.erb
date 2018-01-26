@@ -3,8 +3,21 @@
   <div class="row">
 <div class="content">
   <div id="searchbox">
-<div class="col-xs-12 col-md-3">
-XXXXXXX
+<div class="col-xs-12">
+      <ul class="sidebar-list">
+        <li class="sidebar-item"><i class="fa fa-search-plus" aria-hidden="true"></i> <%= link_to "Les articles", search_path,
+          class: "sidebar-link active" %></li>
+
+          <% if user_signed_in? %>
+        <li class="sidebar-item"><i class="fa fa-heart" aria-hidden="true"></i> <%= link_to your_articles_path, class: "navbar-wagon-item navbar-wagon-link" do %>Mes <%= current_user.reservations.count %> coup(s) de coeur
+        <% end %></li>
+          <li class="sidebar-item"><i class="fa fa-star-half-o" aria-hidden="true"></i>  <%= link_to "Notez un achat", rating_path, class: "navbar-wagon-item navbar-wagon-link" %>
+          </li>
+          <% end %>
+
+        </ul>
+ALGOLIA SEARCH
+
 </div>
 </div>
 <div class="col-xs-12 col-md-9">
@@ -18,7 +31,20 @@ XXXXXXX
           -->
         </div>
         <div class="panel-body">
-          <strong><%= link_to product.name, product %></strong> <i class="fa fa-heart" aria-hidden="true"></i> <%= product.reservations.count %><br>
+          <strong><%= link_to product.name, product %></strong>
+
+
+<% if user_signed_in? %>
+<% if product == current_user.reservations %>
+      <i class="fa fa-heart" aria-hidden="true"></i>
+<% else %>
+      <i class="fa fa-heart-o" aria-hidden="true"></i>
+  <% end %>
+<% else %>
+      <i class="fa fa-heart-o" aria-hidden="true"></i>
+<% end %>
+
+          <%= product.reservations.count %><br>
           <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %> <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %> <br>
           <strong><%= product.price %> euros</strong>
         </div>
@@ -28,5 +54,7 @@ XXXXXXX
     <% end %>
   </div>
 
+
+</div>
 </div>
 </div>

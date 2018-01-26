@@ -1,18 +1,82 @@
-<h3>Tous les utilisateurs</h3>
-<%= link_to "Retour au panneau d'administration", admindashboard_path %>
-<br>
-<br>
-<ul>
-  <% @users.each do |user| %>
-    <li>
-    <strong>id: <%= user.id %></strong>
-    (<%= user.created_at.strftime("%d/%m/%Y") %>)
-      - <strong><%= link_to user.pseudo, user_path(user) %></strong>
-      <%= user.state %>
-      (<%= user.email %>)
-      <%= user.address %>
-<strong><%= link_to "Supprimer", admin_destroy_user_path(user), method: :delete, data: { confirm: "Êtes-vous sûr de supprimer le compte de #{user.pseudo}" } %></strong>
+<div class="container-fluid">
+  <div class="text-center">
+    <h3><i class="fa fa-users" aria-hidden="true"></i> Les utilisateurs</h3>
+    <%= link_to "Retour au panneau d'administration", admindashboard_path %>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-3 text-center">
+      <h4><strong>Vendeurs:</strong></h4>
+      <ul>
+        <% @users.seller.each do |user| %>
+        <li>
+          <div class="panel panel-default">
+            <div class="panel-heading preview">
+              <strong>identifiant: <%= user.id %></strong>  <%if user.starseller %>
+              <span class="label label-success">vendeur à l'affiche</span>
+              <% end %>
+              <strong><br><%= link_to user.pseudo, user_path(user) %></strong>
+            </div>
+            <div class="panel-body">
+             compte crée le: <%= user.created_at.strftime("%d/%m/%Y") %>
+             <%= user.email %><br>
+             <%= user.address %><br>
+             <% unless current_user == user %>
+             <%= link_to 'Envoyer un message', new_message_path(to: user.id) %>
+             <% end %>
+             <strong><%= link_to "Supprimer le compte", admin_destroy_user_path(user), method: :delete, data: { confirm: "Êtes-vous sûr de supprimer le compte de #{user.pseudo}" } %></strong>
+           </div>
+         </div>
+       </li>
+       <br>
+       <% end %>
+     </ul>
+   </div>
+   <div class="col-xs-12 col-md-3 text-center">
+    <h4><strong>Clients:</strong></h4>
+    <ul>
+      <% @users.client.each do |user| %>
+      <li>
+        <div class="panel panel-default">
+          <div class="panel-heading preview">
+            <strong>identifiant: <%= user.id %></strong><br>
 
-    </li>
-  <% end %>
-</ul>
+            <strong><%= link_to user.pseudo, user_path(user) %></strong>
+          </div>
+          <div class="panel-body">
+            compte crée le: <%= user.created_at.strftime("%d/%m/%Y") %><br>
+            <%= user.email %><br>
+            <%= user.address %><br>
+            <% unless current_user == user %>
+            <%= link_to 'Envoyer un message', new_message_path(to: user.id) %>
+            <% end %>
+            <strong><%= link_to "Supprimer le compte", admin_destroy_user_path(user), method: :delete, data: { confirm: "Êtes-vous sûr de supprimer le compte de #{user.pseudo}" } %></strong>
+          </div>
+        </div>
+      </li>
+      <br>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <h3><strong>Envoyer un message groupé:</strong></h3>
+    <%= form_tag messages_path, method: :post do %>
+    <div class="form-group">
+      <%= label_tag 'message[subject]', 'Subject' %>
+      <%= text_field_tag 'message[subject]', nil, class: 'form-control', required: true %>
+    </div>
+    <div class="form-group">
+      <%= label_tag 'message[body]', 'Message' %>
+      <%= text_area_tag 'message[body]', nil, cols: 3, class: 'form-control', required: true %>
+    </div>
+    <div class="form-group">
+      <%= label_tag 'recipients', 'Choisir un destinataire' %>
+      <%= select_tag 'recipients', recipients_options(@chosen_recipient), multiple: true, class: 'form-control chosen-it' %>
+    </div>
+    <%= submit_tag 'Envoyer', class: 'btn btn-md btn-danger' %>
+    <% end %>
+    <br>
+    <br>
+  </div>
+</div>
+</div>

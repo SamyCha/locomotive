@@ -2,10 +2,10 @@
   <div class="col-xs-12 col-sm-3">
 
     <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('http://res.cloudinary.com/hessdypy6/image/upload/v1515771216/alaffiche_rhs60z.jpg');">
-      <div class="card-category">EXPOSER</div>
+      <div class="card-category">EXPOSER / VISITER</div>
       <div class="card-description">
         <% @highlights.each do |meeting| %>
-        <h5>Reservez votre stand <br>
+        <h5>Ne pas manquer <br>
         <%= link_to meeting.name, meeting_path(meeting.id) %></h5>
       </div>
     </div>
