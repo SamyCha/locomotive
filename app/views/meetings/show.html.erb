@@ -4,18 +4,3 @@ détails<%= @meeting.details %><br>
 le: <%= @meeting.start_time.strftime("%d/%m/%Y") %><br>
 adresse:<%= @meeting.address %>
 <br>
-
-<% if user_signed_in? %>
-
-<% if current_user.seller? %>
-<%= link_to "Reserver un stand", meeting_participate_path(@meeting), method: :post %>
-
-<% end %>
-
-<%= link_to "Je participe à cet évènement", meeting_participate_path(@meeting), method: :post, class: 'btn btn-md btn-danger' %>
-<% else %>
-<strong>Inscrivez-vous pour reserver un stand</strong>
-
-<% end %>
-
-
