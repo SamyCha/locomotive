@@ -5,53 +5,23 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: %i[show search slide]
   before_action :require_same_user, only: %i[edit update destroy]
 
-
-
-
-
   def search
-#if
-#@results = Product.search('foo', hitsPerPage: 10)
-#else
-  @products = Product.where(active: true)
-
-#end
-
-
-
-
-
-  #  if params[:term]
-  #    @products = Product.search_by_name_and_category(params[:term])
-
-   #   @products = Kaminari.paginate_array(@products).page(params[:page]).per(9)
-
-   # else
-   #   @products = Product.page(params[:page]).per(9)
-   #   .where
-   #   .not(latitude: nil, longitude: nil)
-   #   .order('created_at DESC')
-  #  end
-    # affichage de la map avec tous les produits
-    #@markers = Gmaps4rails.build_markers(@products) do |product, marker|
-    #  marker.lat product.latitude
-    #  marker.lng product.longitude
-    #end
+    @products = Product.where(active: true)
   end
 
   # pour le slider mobile
   def slide
-     @articles = current_user.reservations.last(10)
+   @articles = current_user.reservations.last(10)
 
-    if user_signed_in?
-      @address = current_user.address
-      @distance = current_user.distance
-      @active = Product.all.where(active: true)
-      @products = @active.near(@address, @distance).sample(50)
-    else
-      redirect_to search_path
-    end
+   if user_signed_in?
+    @address = current_user.address
+    @distance = current_user.distance
+    @active = Product.all.where(active: true)
+    @products = @active.near(@address, @distance).sample(50)
+  else
+    redirect_to search_path
   end
+end
 
   # liste de tous les articles publiés et non publiés du vendeur
   def index
@@ -92,14 +62,14 @@ class ProductsController < ApplicationController
   end
 
   def show
-      @user = @product.user
-      @photos = @product.photos
-      @reviews = @product.reviews
+    @user = @product.user
+    @photos = @product.photos
+    @reviews = @product.reviews
 
-  if current_user
+    if current_user
       @booked = Reservation.where('product_id = ?', @product.id).present?
       @hasReview = @reviews.find_by(user_id: current_user.id)
-  end
+    end
   end
 
   def edit
@@ -145,11 +115,11 @@ class ProductsController < ApplicationController
     end
   end
 
-def is_admin
-  if current_user.admin?
-  else
-    redirect_to root_path
+  def is_admin
+    if current_user.admin?
+    else
+      redirect_to root_path
+    end
   end
-end
 
 end
