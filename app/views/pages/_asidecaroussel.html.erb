@@ -1,32 +1,49 @@
 <div id="hidden-mobile">
   <div class="col-xs-12 col-sm-3">
-
+    <% if @highlights.present? %>
     <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('http://res.cloudinary.com/hessdypy6/image/upload/v1515771216/alaffiche_rhs60z.jpg');">
       <div class="card-category">EXPOSER / VISITER</div>
       <div class="card-description">
         <% @highlights.each do |meeting| %>
         <h5>Ne pas manquer <br>
-        <%= link_to meeting.name, meeting_path(meeting.id) %></h5>
+          <%= link_to meeting.name, meeting_path(meeting.id) %></h5>
+        </div>
       </div>
-    </div>
-    <% end %>
-    <br>
-    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('https://sixactualites.fr/wp-content/uploads/2017/06/Bijou.jpg');">
-      <div class="card-category">DECOUVREZ</div>
-      <div class="card-description">
-        <% @starsellers.each do |user| %>
-        <h5>Nouveau créateur<br>
-      <%= link_to user.pseudo, user_path(user) %></h5>
       <% end %>
+      <% else %>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('http://res.cloudinary.com/hessdypy6/image/upload/v1515771216/alaffiche_rhs60z.jpg');">
+        <div class="card-category">EXPOSER / VISITER</div>
+        <div class="card-description">
+          <%= link_to "Voir nos évenements", meetings_path %></h5>
+        </div>
       </div>
-    </div>
-    <br>
-    Suivez notre actualité:
-    <br>
-    <div class="text-center">
-     <a href="https://www.facebook.com/lesarmoiresdeparis/"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
-     <a href="https://www.instagram.com/lesarmoiresdeparis/"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
-     <i class="fa fa-youtube fa-2x" aria-hidden="true"></i>
+      <% end %>
+      <br>
+      <% if @starsellers.present? %>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('https://sixactualites.fr/wp-content/uploads/2017/06/Bijou.jpg');">
+        <div class="card-category">DECOUVREZ</div>
+        <div class="card-description">
+          <% @starsellers.each do |user| %>
+          <h5>Nouveau créateur<br>
+            <%= link_to user.pseudo, user_path(user) %></h5>
+            <% end %>
+          </div>
+        </div>
+        <% else %>
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('https://sixactualites.fr/wp-content/uploads/2017/06/Bijou.jpg');">
+          <div class="card-category">DECOUVREZ</div>
+          <div class="card-description">
+            <%= link_to "Nos derniers articles", search_path %></h5>
+          </div>
+        </div>
+        <% end %>
+        <br>
+        Suivez notre actualité:
+        <br>
+        <div class="text-center">
+         <a href="https://www.facebook.com/lesarmoiresdeparis/"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
+         <a href="https://www.instagram.com/lesarmoiresdeparis/"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+         <i class="fa fa-youtube fa-2x" aria-hidden="true"></i>
+       </div>
+     </div>
    </div>
- </div>
-</div>
