@@ -1,17 +1,12 @@
-<div class="col-md-4">
-  <div class= "row">
-    <div class="col-md-12  text-center">
 
-      <i class="fa fa-heart" aria-hidden="true"></i> Cet article plaît déjà à <%= @product.reservations.count %> utilisateur(s)
-    </div>
+  <strong><%= @product.name %></strong>
+  <div class= "row">
+      <p> Cet article plaît déjà à <%= @product.reservations.count %> utilisateur(s)</p>
     <div class="col-md-12 price_tag text-center">
       <span><%= @product.price %> euros</span>
     </div>
-
-    <div class="col-md-12 text-center">
-      <i class="fa fa-map-marker" aria-hidden="true"></i> article situé: <%= @product.address %>
-    </div>
   </div>
+
 
   <%= form_for([@product, @product.reservations.new]) do |f| %>
   <%= f.hidden_field :product_id, value: @product.id %>
@@ -39,4 +34,5 @@
     <% end %>
   </div>
   <% end %>
-</div>
+
+

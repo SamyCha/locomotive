@@ -13,6 +13,15 @@ class ReviewsController < ApplicationController
     end
   end
 
+
+
+
+def rating
+ @reviews = current_user.reviews
+#    @reviewsnotactive = Review.where(active: nil)
+ end
+
+
   private
 
   def review_params
@@ -23,10 +32,5 @@ class ReviewsController < ApplicationController
   @product = Product.find(params[:product_id])
     return @review.password == @product.price*10
   end
-
-#  def rating
-#    @reviews = current_user.reviews
-#    @reviewsnotactive = Review.where(active: nil)
-#  end
 
 end

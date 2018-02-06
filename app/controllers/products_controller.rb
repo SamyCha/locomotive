@@ -7,6 +7,8 @@ class ProductsController < ApplicationController
 
   def search
     @products = Product.where(active: true)
+
+    @booked = current_user.reservations.present?
   end
 
   # pour le slider mobile

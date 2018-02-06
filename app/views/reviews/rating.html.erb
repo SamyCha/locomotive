@@ -1,37 +1,59 @@
 <div class="container-fluid">
-<hr>
+  <hr>
   <div class="row">
     <div class="col-md-3">
       <ul class="sidebar-list">
-      <li class="sidebar-item"><i class="fa fa-search-plus" aria-hidden="true"></i> <%= link_to "Les articles", search_path,
+        <li class="sidebar-item"><i class="fa fa-search-plus" aria-hidden="true"></i> <%= link_to "Les articles", search_path,
           class: "navbar-wagon-item navbar-wagon-link" %></li>
-<% if user_signed_in? %>
-        <li class="sidebar-item"><i class="fa fa-heart" aria-hidden="true"></i> <%= link_to your_articles_path, class: "navbar-wagon-item navbar-wagon-link" do %>Mes <%= current_user.reservations.count %> coup(s) de coeur
-        <% end %></li>
-        <li class="sidebar-item"><i class="fa fa-star-half-o" aria-hidden="true"></i>  <%= link_to "Notez un achat", rating_path, class: "sidebar-link active" %>
-        </li>
-<% end %>
-
-      </ul>
-    </div>
-    <div class="col-md-9 text-center">
-      <div class="panel panel-default">
-        <h3><i class="fa fa-star-half-o" aria-hidden="true"></i> Notez et commentez votre achat</h3><br>
-
-        <%= form_tag(mini_index_path, :method => "get", id: "search-form") do %>
-        Saisissez le nom de l'article acheté:
-        <%= text_field_tag :search, params[:search] %><br><br>
-        <%= submit_tag "Trouver votre produit", :name => nil, class: 'btn btn-md btn-danger' %>
-        <% end %>
-        <br>
-        <br>
-<div class="text-left">
-Mes precedents commentaires:
-</div>
-        <br>
-
-
+          <% if user_signed_in? %>
+          <li class="sidebar-item"><i class="fa fa-heart" aria-hidden="true"></i> <%= link_to your_articles_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+            <% if current_user.reservations.count == 1 %>
+            Mon coup de coeur
+            <% elsif current_user.reservations.count > 1 %>
+            Mes <%= current_user.reservations.count %> coups de coeur
+            <% else %>
+            Pas encore de coup de coeur!
+            <% end %>
+            <% end %></li>
+            <li class="sidebar-item"><i class="fa fa-star-half-o" aria-hidden="true"></i>  <%= link_to "Notez un achat", rating_path, class: "sidebar-link active" %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="col-md-9 text-center">
+          <div class="panel panel-default">
+            <h3><i class="fa fa-star-half-o" aria-hidden="true"></i> Notez et commentez vos achats</h3><br>
+            <%= form_tag(mini_index_path, :method => "get", id: "search-form") do %>
+            Saisissez le nom de l'article acheté:
+            <%= text_field_tag :search, params[:search] %><br><br>
+            <%= submit_tag "Trouver votre produit", :name => nil, class: 'btn btn-md btn-danger' %>
+            <% end %>
+            <hr>
+            <% if !@reviews.blank? %>
+            <div class="text-left">
+              <h4>Mes precedents commentaires:</h4><br>
+              <ul>
+                <% @reviews.each do |review| %>
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <li><strong><%= review.product.name %></strong> <%= review.created_at.strftime("(%d/%m/%y)") %>
+                      <% if review.active %>
+                      <span class="label label-success">publié</span>
+                      <% else %>
+                      <span class="label label-info">en cours de publication</span>
+                      <% end %>
+                      <br>
+                      <%= review.comment %>
+                      <br>
+                    </li>
+                  </div>
+                </div>
+                <% end %>
+              </ul>
+            </div>
+            <% end %>
+            <br>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
