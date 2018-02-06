@@ -1,13 +1,7 @@
 <div class="container-fluid">
   <hr>
-  <div class="row">
-    <div class="content">
-      <div id="searchbox">
-        <div class="col-xs-12">
-
-
-
-
+<div class="row">
+<div class="col-xs-12 text-center">
           <!-- Algolia searchbar -->
           <!-- HTML Markup -->
           <div class="aa-input-container" id="aa-input-container">
@@ -40,6 +34,15 @@ autocomplete('#aa-search-input',
       }
     });
   </script>
+</div>
+</div>
+<br>
+
+
+  <div class="row">
+    <div class="content">
+      <div id="searchbox">
+        <div class="col-xs-12">
 
 
 
@@ -48,7 +51,16 @@ autocomplete('#aa-search-input',
       class: "sidebar-link active" %></li>
 
       <% if user_signed_in? %>
-      <li class="sidebar-item"><i class="fa fa-heart" aria-hidden="true"></i> <%= link_to your_articles_path, class: "navbar-wagon-item navbar-wagon-link" do %>Mes <%= current_user.reservations.count %> coup(s) de coeur
+      <li class="sidebar-item"><i class="fa fa-heart" aria-hidden="true"></i> <%= link_to your_articles_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+        <% if current_user.reservations.count == 1 %>
+        Mon coup de coeur
+        <% elsif current_user.reservations.count > 1 %>
+        Mes <%= current_user.reservations.count %> coups de coeur
+        <% else %>
+        Pas encore de coup de coeur!
+        <% end %>
+
+
         <% end %></li>
         <li class="sidebar-item"><i class="fa fa-star-half-o" aria-hidden="true"></i>  <%= link_to "Notez un achat", rating_path, class: "navbar-wagon-item navbar-wagon-link" %>
         </li>
@@ -68,27 +80,43 @@ autocomplete('#aa-search-input',
     <div class="col-xs-12 col-sm-6 col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading preview">
-<!--
-            <%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0 %>
-          -->
+
+            <%= image_tag product.photos[0].image.url, style: 'height:250px;width:312px' if product.photos.length > 0  %>
+
         </div>
         <div class="panel-body">
-          <strong><%= link_to product.name, product %></strong>
+      <div class="col-xs-12 text-center">
+          <h5><%= link_to product.name, product %></h5><hr>
+</div>
+        <div class="col-xs-6">
 
+          <%= image_tag "brand.png", heigth:10, width: 20 %> <%= product.brand %><br>
+          <%= image_tag "size.png", heigth:10, width: 20 %> <%= product.size %>
+          <br>
 
+</div>
+
+ <div class="col-xs-6">
+<div class="text-right">
           <% if user_signed_in? %>
-          <% if product == current_user.reservations %>
-          <i class="fa fa-heart" aria-hidden="true"></i>
-          <% else %>
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
-          <% end %>
-          <% else %>
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
-          <% end %>
+          <% if @booked %>
+               <%= image_tag "heart.png", heigth:15, width: 30 %>
 
-          <%= product.reservations.count %><br>
-          <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %> <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %> <br>
-          <strong><%= product.price %> euros</strong>
+          <% else %>
+          <%= form_for([product, product.reservations.new]) do |f| %>
+          <%= f.hidden_field :product_id, value: product.id %>
+          <%= f.submit "ajouter à ma liste" %>
+          <% end %>
+          <% end %>
+          <% end %>
+          <br><strong><%= product.price %> euros</strong>
+</div>
+</div>
+
+
+
+
+
         </div>
       </div>
     </div>

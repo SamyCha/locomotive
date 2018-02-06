@@ -1,11 +1,17 @@
 <div class="container-fluid">
   <div class="panel panel-default">
     <div class="panel-body">
+    <div class="row">
+     <div class="col-md-7">
  <% if @product.active? %>
       <%= render 'caroussel' %>
 <% end %>
-
-<div class="row">
+</div>
+<div class="col-md-5">
+<% if @product.active? %>
+    <%= render 'reservations/form' %>
+  <% end %>
+</div>
   <% if @product.active? %>
     <%= render 'articles_infos' %>
   <% elsif @product.active? == false && @product.status? %>
@@ -16,11 +22,13 @@
   <% else %>
     Le produit est dépublié
   <% end %>
-
-  <% if @product.active? %>
-    <%= render 'reservations/form' %>
-  <% end %>
 </div>
+
+
+
+
+
+
 
   <% if @product.active? == false && @product.status? %>
     <%= render 'reviews' %>
