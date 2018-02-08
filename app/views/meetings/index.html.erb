@@ -1,67 +1,37 @@
-<p id="notice"><%= notice %></p>
-<div class="row>"
-  <div class="col xs-12">
-    <div class="container-fluid">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-        <div class="card-category">NOS PROCHAINS EVENEMENTS</div>
-        <div class="card-description">
-          <h2>Les armoires de Paris</h2>
+<section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
+  <div class="container">
+    <div class="row">
+      <% @meetings.each do |meeting| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="panel panel-default">
+
+          <div class="panel-heading preview">
+            <%= image_tag "foiredeparis.jpg", width: 50  %>
+          </div>
+          <div class="panel-body">
+            <div class="col-xs-12 text-center">
+              <p><%= meeting.name %></p>
+              <br><p><%= meeting.details %></p><hr>
+            </div>
+            <div class="col-xs-12 text-center">
+              <%= image_tag "place.png", heigth:10, width: 20 %> <p><%= meeting.address %></p><br>
+              <%= image_tag "date.png", heigth:15, width: 25 %><p> <%= meeting.start_time.strftime("%d/%m/%Y") %></p>
+              <hr>
+              <% if user_signed_in? %>
+              <% if current_user.seller? %>
+              <li><%= link_to "Réserver un stand en direct", meeting_participate_path(meeting), method: :post, class: 'btn btn-md btn-info' %></li>
+              <li> <%= link_to "ou sur event bride", "https://www.eventbrite.fr/o/les-armoires-de-paris-14507830874", :target => "_blank" %></li>
+              <% end %>
+              <% else %>
+              <%- if controller_name != 'sessions' %>
+              <%= link_to "connectez-vous pour reserver", new_session_path(resource_name), class:"btn btn-info" %><br />
+              <% end -%>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
-      <hr>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-offset-2 col-xs-8">
-
-      <% @meetings.each do |meeting| %>
-      <div class="product">
-        <div class='product-upvote'>
-          <div class="product-arrow"></div>
-          <div class='product-count'><%= meeting.start_time.strftime("%d/%m/%Y") %></div>
-        </div>
-        <div class='product-body'>
-          <h3><%= meeting.name %></h3>
-          <%= meeting.address %>
-          <p>Détails: <%= meeting.details %></p>
-        </div>
-
-        <ul class="list-inline product-controls">
-
-
-
-<% if user_signed_in? %>
-<% if current_user.seller? %>
-<li><%= link_to "Réserver un stand", meeting_participate_path(meeting), method: :post, class: 'btn btn-md btn-danger' %></li>
-<% end %>
-<% end %>
-
-      </ul>
-    </div>
-    <% end %>
-  </div>
-
-
-
-
-<!--
-  <div class="col xs-12 col-md-4">
-    <h2>A ne pas manquer:</h2>
-    <hr>
-    <% @meetings.each do |meeting| %>
-    <% if meeting.highlight %>
-    <div>
-      <h3><%= link_to meeting.name, meeting %></h3><br>
-      <%= meeting.start_time.strftime("%d/%m/%Y") %><br>
-      <%= meeting.address %><br>
-      <%= meeting.details %>
-      <hr>
-      <% end %>
-
       <% end %>
     </div>
   </div>
--->
-
-</div>
-</div>
+</section>
