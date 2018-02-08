@@ -8,7 +8,6 @@ class ProductsController < ApplicationController
   def search
     @products = Product.where(active: true)
 
-    @booked = current_user.reservations.present?
   end
 
   # pour le slider mobile
@@ -49,7 +48,7 @@ end
         @product.photos.create(image: i)
       end
       @photos = @product.photos
-      redirect_to products_path, notice: 'Votre article est en attente de publication'
+      redirect_to products_path, alert: 'Votre article est en attente de publication'
     else
       render :new
     end
@@ -89,7 +88,7 @@ end
         @product.photos.create(image: i)
       end
       @photos = @product.photos
-      redirect_to products_path, notice: 'Modification enregistrée'
+      redirect_to products_path, alert: 'Modification enregistrée'
     else
       render :edit
     end
@@ -97,7 +96,7 @@ end
 
   def destroy
     @product.destroy
-    redirect_to products_path, notice: 'Article supprimé'
+    redirect_to products_path, alert: 'Article supprimé'
   end
 
   private

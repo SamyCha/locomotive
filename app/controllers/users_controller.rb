@@ -25,7 +25,7 @@ def destroy
   @user.destroy
 
   if @user.destroy
-    redirect_to root_url, notice: "Compte supprimé"
+    redirect_to root_url, alert: "Compte supprimé"
   end
 end
 

@@ -1,40 +1,45 @@
 
-<div class="container-fluid">
+<section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
   <div class="row">
     <div class="col-md-4 col-md-offset-4 text-center">
-    <br>
-<%= image_tag "armoires.png" %>
-<br>
+      <div class="box-shadow">
+        CONNEXION
+        <br>
+        <br>
+
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+        <div class="form-group">
+          <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Adresse e-mail" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.password_field :password, autocomplete: "off", placeholder: "Mot de passe" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+        <div class="form-group">
+          <%= f.check_box :remember_me %> se souvenir de moi
+        </div>
+        <% end %>
+
+        <div class="actions">
+          <%= f.submit "Connexion", class: 'btn btn-md btn-info' %>
+        </div>
+        <% end %>
+        <br>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+
+    <div class="col-md-4 col-md-offset-4 text-center">
       <br>
+      ou <br>
       <%= link_to "Connexion avec Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-primary-fb" %>
-<br>
-<br>
-
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-      <div class="form-group">
-        <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Adresse e-mail" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.password_field :password, autocomplete: "off", placeholder: "Mot de passe" %>
-      </div>
-
-      <% if devise_mapping.rememberable? %>
-      <div class="form-group">
-        <%= f.check_box :remember_me %> se souvenir de moi
-      </div>
-      <% end %>
-
-      <div class="actions">
-        <%= f.submit "Connexion", class: 'btn btn-md btn-danger' %>
-      </div>
-      <% end %>
-
     </div>
   </div>
-
-  <%= render "devise/shared/links" %>
-
-</div>
+</section>
 

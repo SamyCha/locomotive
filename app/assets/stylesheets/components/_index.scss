@@ -21,6 +21,29 @@
 @import 'bootstrap/theme';
 @import 'chosen';
 
+
+
+
+
+.box-shadow {
+   width: 0,5em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+
+.jumbotron {
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: white;
+}
+section {
+  padding-top: 4rem;
+}
+
+
 @media screen and (max-width: 600px) {
   #hidden-mobile {
     visibility: hidden;
@@ -62,184 +85,141 @@
 .aa-input-container {
   display: inline-block;
   position: relative; }
-.aa-input-search {
-  width: 300px;
-  padding: 12px 28px 12px 12px;
-  border: 2px solid #e4e4e4;
-  border-radius: 4px;
-  -webkit-transition: .2s;
-  transition: .2s;
-  font-family: "Montserrat", sans-serif;
-  box-shadow: 4px 4px 0 rgba(241, 241, 241, 0.35);
-  font-size: 11px;
-  box-sizing: border-box;
-  color: #333;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none; }
-  .aa-input-search::-webkit-search-decoration, .aa-input-search::-webkit-search-cancel-button, .aa-input-search::-webkit-search-results-button, .aa-input-search::-webkit-search-results-decoration {
-    display: none; }
-  .aa-input-search:focus {
-    outline: 0;
-    border-color: #3a96cf;
-    box-shadow: 4px 4px 0 rgba(58, 150, 207, 0.1); }
-.aa-input-icon {
-  height: 16px;
-  width: 16px;
-  position: absolute;
-  top: 50%;
-  right: 16px;
-  -webkit-transform: translateY(-50%);
+  .aa-input-search {
+    width: 300px;
+    padding: 12px 28px 12px 12px;
+    border: 2px solid #e4e4e4;
+    border-radius: 4px;
+    -webkit-transition: .2s;
+    transition: .2s;
+    font-family: "Montserrat", sans-serif;
+    box-shadow: 4px 4px 0 rgba(241, 241, 241, 0.35);
+    font-size: 11px;
+    box-sizing: border-box;
+    color: #333;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; }
+    .aa-input-search::-webkit-search-decoration, .aa-input-search::-webkit-search-cancel-button, .aa-input-search::-webkit-search-results-button, .aa-input-search::-webkit-search-results-decoration {
+      display: none; }
+      .aa-input-search:focus {
+        outline: 0;
+        border-color: #3a96cf;
+        box-shadow: 4px 4px 0 rgba(58, 150, 207, 0.1); }
+        .aa-input-icon {
+          height: 16px;
+          width: 16px;
+          position: absolute;
+          top: 50%;
+          right: 16px;
+          -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  fill: #e4e4e4; }
-.aa-hint {
-  color: #e4e4e4; }
-.aa-dropdown-menu {
-  background-color: #fff;
-  border: 2px solid rgba(228, 228, 228, 0.6);
-  border-top-width: 1px;
-  font-family: "Montserrat", sans-serif;
-  width: 300px;
-  margin-top: 10px;
-  box-shadow: 4px 4px 0 rgba(241, 241, 241, 0.35);
-  font-size: 11px;
-  border-radius: 4px;
-  box-sizing: border-box; }
-.aa-suggestion {
-  padding: 12px;
-  border-top: 1px solid rgba(228, 228, 228, 0.6);
-  cursor: pointer;
-  -webkit-transition: .2s;
-  transition: .2s;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; }
-  .aa-suggestion:hover, .aa-suggestion.aa-cursor {
-    background-color: rgba(241, 241, 241, 0.35); }
-  .aa-suggestion > span:first-child {
-    color: #333; }
-  .aa-suggestion > span:last-child {
-    text-transform: uppercase;
-    color: #a9a9a9; }
-.aa-suggestion > span:first-child em, .aa-suggestion > span:last-child em {
-  font-weight: 700;
-  font-style: normal;
-  background-color: rgba(58, 150, 207, 0.1);
-  padding: 2px 0 2px 2px; }
+          fill: #e4e4e4; }
+          .aa-hint {
+            color: #e4e4e4; }
+            .aa-dropdown-menu {
+              background-color: #fff;
+              border: 2px solid rgba(228, 228, 228, 0.6);
+              border-top-width: 1px;
+              font-family: "Montserrat", sans-serif;
+              width: 300px;
+              margin-top: 10px;
+              box-shadow: 4px 4px 0 rgba(241, 241, 241, 0.35);
+              font-size: 11px;
+              border-radius: 4px;
+              box-sizing: border-box; }
+              .aa-suggestion {
+                padding: 12px;
+                border-top: 1px solid rgba(228, 228, 228, 0.6);
+                cursor: pointer;
+                -webkit-transition: .2s;
+                transition: .2s;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center; }
+                .aa-suggestion:hover, .aa-suggestion.aa-cursor {
+                  background-color: rgba(241, 241, 241, 0.35); }
+                  .aa-suggestion > span:first-child {
+                    color: #333; }
+                    .aa-suggestion > span:last-child {
+                      text-transform: uppercase;
+                      color: #a9a9a9; }
+                      .aa-suggestion > span:first-child em, .aa-suggestion > span:last-child em {
+                        font-weight: 700;
+                        font-style: normal;
+                        background-color: rgba(58, 150, 207, 0.1);
+                        padding: 2px 0 2px 2px; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.card-body {
-  background: white;
-  padding: 10px;
-  border-radius: 2px;
-  box-shadow: 1px 1px 2px #B3B3B3;
-}
-.card-picture {
-  height: 150px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-.card-likes {
-  color: #B3B3B3;
-  font-size: 14px;
-  font-weight: bold;
-  padding-top: 10px;
-  display: flex;
-  justify-content: flex-end;
-}
-.card-likes li {
-  padding: 0 5px;
-}
-.card-likes i {
-  padding-right: 5px;
-}
-.card-footer {
-  display: flex;
-  align-items: center;
-  padding: 10px 0;
-}
-.card-footer img {
-  border-radius: 50%;
-  margin-right: 10px;
-}
-.card-footer a {
-  color: #3a8bbb;
-  font-weight: bold;
-}
-.card-hover {
-  padding: 5px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.card-hover h4 {
-  margin-bottom: 10px;
-  margin-top: 10px;
-  font-size: 17px;
-}
-.card-hover p {
-  font-weight: lighter;
-  color: #AAAAAA;
-  font-size: 14px;
-  margin-top: 0px;
-}
-.card:hover {
-  cursor: pointer;
-}
-.card-picture:hover .card-hover {
-  opacity: 1;
-}
+                        .card-body {
+                          background: white;
+                          padding: 10px;
+                          border-radius: 2px;
+                          box-shadow: 1px 1px 2px #B3B3B3;
+                        }
+                        .card-picture {
+                          height: 150px;
+                          background-size: cover;
+                          background-position: center;
+                          position: relative;
+                        }
+                        .card-likes {
+                          color: #B3B3B3;
+                          font-size: 14px;
+                          font-weight: bold;
+                          padding-top: 10px;
+                          display: flex;
+                          justify-content: flex-end;
+                        }
+                        .card-likes li {
+                          padding: 0 5px;
+                        }
+                        .card-likes i {
+                          padding-right: 5px;
+                        }
+                        .card-footer {
+                          display: flex;
+                          align-items: center;
+                          padding: 10px 0;
+                        }
+                        .card-footer img {
+                          border-radius: 50%;
+                          margin-right: 10px;
+                        }
+                        .card-footer a {
+                          color: #3a8bbb;
+                          font-weight: bold;
+                        }
+                        .card-hover {
+                          padding: 5px;
+                          position: absolute;
+                          top: 0;
+                          bottom: 0;
+                          left: 0;
+                          right: 0;
+                          background: white;
+                          opacity: 0;
+                          transition: opacity 0.4s ease;
+                        }
+                        .card-hover h4 {
+                          margin-bottom: 10px;
+                          margin-top: 10px;
+                          font-size: 17px;
+                        }
+                        .card-hover p {
+                          font-weight: lighter;
+                          color: #AAAAAA;
+                          font-size: 14px;
+                          margin-top: 0px;
+                        }
+                        .card:hover {
+                          cursor: pointer;
+                        }
+                        .card-picture:hover .card-hover {
+                          opacity: 1;
+                        }

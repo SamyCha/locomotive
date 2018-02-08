@@ -1,65 +1,54 @@
-<div class="container-fluid">
+<section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
   <div class="row">
     <div class="col-md-4 col-md-offset-4 text-center">
+      <div class="box-shadow">
+        <h4>INSCRIPTION EN TANT QUE VENDEUSE</h4>
+         Consulter les conditions pour devenir vendeuse<br>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render 'shared/devise_errors' %>
+        <div class="form-group">
+          <%= f.text_field :pseudo, autofocus: true, class: "form-control", placeholder: "Pseudo" %>
+        </div>
+        <div class="form-group">
+         <div class="col-xs-9">
 
-      <br>
-      <%= link_to "Connexion avec Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-primary-fb" %>
-      <br><br>
-      <center>ou</center>
-      <hr>
+          <%= f.check_box :choice, class: "form-control" %>
+          <%= f.label "Je souhaitre devenir vendeuse" %>
+        </div>
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render 'shared/devise_errors' %>
 
-      <div class="form-group">
-        <%= f.text_field :pseudo, autofocus: true, class: "form-control", placeholder: "Pseudo" %>
+
       </div>
-
+      <div class="form-group">
+        <%= f.text_field :address, placeholder: "Saisissez votre addresse..", id:"user_input_autocomplete_address", class: "form-control" %>
+        <input id="street_number" name="street_number" disabled type="hidden">
+        <input id="route" name="route" disabled type="hidden">
+        <input id="locality" name="locality" disabled type="hidden">
+        <input id="country" name="country" disabled type="hidden">
+      </div>
       <div class="form-group">
        <div class="col-xs-9">
-        <%= f.check_box :choice, class: "form-control" %>
-        <%= f.label "Je souhaitre être vendeuse" %>
+        Articles qui me sont proposés (kms):
+      </div>
+      <div class="col-xs-3">
+        <%= f.number_field :distance, class: "form-control" %>
       </div>
     </div>
-
-    <div class="form-group">
-      <%= f.text_field :address, placeholder: "Saisissez votre addresse..", id:"user_input_autocomplete_address", class: "form-control" %>
-      <input id="street_number" name="street_number" disabled type="hidden">
-      <input id="route" name="route" disabled type="hidden">
-      <input id="locality" name="locality" disabled type="hidden">
-      <input id="country" name="country" disabled type="hidden">
-    </div>
-
-    <div class="form-group">
-     <div class="col-xs-9">
-      Distance max. des articles en tant qu'acheteur (kms):
-    </div>
     <br>
-    <div class="col-xs-3">
-      <%= f.number_field :distance, class: "form-control" %>
+    <br>
+    <div class="form-group">
+      <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "adresse email" %>
     </div>
+    <div class="form-group">
+      <%= f.password_field :password, autocomplete: "off", placeholder: "Créer un mot de passe" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Inscription", class: 'btn btn-md btn-info' %>
+    </div><br>
+    <% end %>
   </div>
-  <br>
-  <br>
-
-  <div class="form-group">
-    <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "adresse email" %>
-  </div>
-
-  <div class="form-group">
-  </br>
-  <%= f.password_field :password, autocomplete: "off", placeholder: "Créer un mot de passe" %>
-</div>
-
-<div class="actions">
-  <%= f.submit "Inscription", class: 'btn btn-md btn-danger' %>
-</div>
-<% end %>
-
 </div>
 </div>
-</div>
-
+</section>
 <script type="text/javascript"
 src="https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_JAVASCRIPT_KEY']}"></script>
-
