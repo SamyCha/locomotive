@@ -7,9 +7,9 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.new(review_params)
     if check_password
       @review.save
-      redirect_to @review.product, notice: "Suite à notre modération, votre commentaire sera publié"
+      redirect_to @review.product, alert: "Suite à notre modération, votre commentaire sera publié"
     else
-      redirect_to @review.product, notice: "Le code est incorrect"
+      redirect_to @review.product, alert: "Le code est incorrect"
     end
   end
 

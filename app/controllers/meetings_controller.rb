@@ -54,7 +54,7 @@ end
   def participate
    meeting = Meeting.find(params[:meeting_id])
    current_user.meetings << meeting
-   redirect_to meeting_path(meeting), notice: "Vous êtes enregisté sur cet évenement"
+   redirect_to meeting_path(meeting), alert: "Vous êtes enregisté sur cet évenement"
  end
 
 

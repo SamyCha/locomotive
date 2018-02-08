@@ -10,10 +10,10 @@ class ReservationsController < ApplicationController
 
     @reservation = current_user.reservations.new(reservation_params)
     if @booked
-      redirect_to @reservation.product, notice: 'Cet article est déjà dans votre liste'
+      redirect_to @reservation.product, alert: 'Cet article est déjà dans votre liste'
     else
       @reservation.save
-      redirect_to your_articles_path, notice: 'Cet article a été ajouté à votre liste'
+      redirect_to your_articles_path, alert: 'Cet article a été ajouté à votre liste'
     end
   end
 # contenu de la wishlist

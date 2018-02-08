@@ -22,4 +22,21 @@ module ApplicationHelper
   image_tag gravatar_image_url(user.email, size: size), title: title, class: 'img-rounded'
 end
 
+#pour avoir le formulaire sign-up en HP
+ def resource_name
+    :user
+  end
+
+  def resource_class
+     User
+  end
+
+  def resource
+    @resource ||= User.new
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+
 end
