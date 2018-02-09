@@ -18,13 +18,19 @@
               <%= image_tag "date.png", heigth:15, width: 25 %><p> <%= meeting.start_time.strftime("%d/%m/%Y") %></p>
               <hr>
               <% if user_signed_in? %>
-              <% if current_user.seller? %>
-              <li><%= link_to "Réserver un stand en direct", meeting_participate_path(meeting), method: :post, class: 'btn btn-md btn-info' %></li>
+
+<% if meeting == current_user.meetings %>
+<p>Demande en cours</p>
+<% else %>
+              <ul>
+              <li><%= link_to "Réserver un stand", meeting_participate_path(meeting), method: :post, class: 'btn btn-md btn-info' %></li>
               <li> <%= link_to "ou sur event bride", "https://www.eventbrite.fr/o/les-armoires-de-paris-14507830874", :target => "_blank" %></li>
-              <% end %>
+              </ul>
+<% end %>
+
               <% else %>
               <%- if controller_name != 'sessions' %>
-              <%= link_to "connectez-vous pour reserver", new_session_path(resource_name), class:"btn btn-info" %><br />
+              <%= link_to "connectez-vous", new_session_path(resource_name), class:"btn btn-info" %><br />
               <% end -%>
               <% end %>
             </div>

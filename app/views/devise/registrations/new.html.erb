@@ -4,10 +4,16 @@
       <div class="box-shadow">
         <h4>INSCRIPTION EN TANT QUE VENDEUSE</h4>
          Consulter les  <%=link_to "conditions pour devenir vendeuse", devenir_vendeuse_path %><br>
+
+
+
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+
+
         <%= render 'shared/devise_errors' %>
         <div class="form-group">
-          <%= f.text_field :pseudo, autofocus: true, class: "form-control", placeholder: "Pseudo" %>
+          <%= f.text_field :pseudo, autofocus: true, class: "form-control", placeholder: "Pseudo", :class=>"input-small" %>
         </div>
         <div class="form-group">
          <div class="col-xs-9">
@@ -16,12 +22,9 @@
           <%= f.label "J'accepte les conditions pour devenir vendeuse" %>
 
         </div>
-
-
-
       </div>
       <div class="form-group">
-        <%= f.text_field :address, placeholder: "Saisissez votre addresse..", id:"user_input_autocomplete_address", class: "form-control" %>
+        <%= f.text_field :address, placeholder: "Saisissez votre addresse..", id:"user_input_autocomplete_address", :class=>"input-small" %>
         <input id="street_number" name="street_number" disabled type="hidden">
         <input id="route" name="route" disabled type="hidden">
         <input id="locality" name="locality" disabled type="hidden">
@@ -29,19 +32,35 @@
       </div>
       <div class="form-group">
        <div class="col-xs-9">
-        Articles pouvant m'interesser(kms):
-      </div>
+        Articles pouvant m'interesser:
+      </div><br>
+<!--
       <div class="col-xs-3">
-        <%= f.number_field :distance, class: "form-control" %>
+        <%= f.number_field :distance, :class=>"input-small" %>
       </div>
+-->
+
+ <div class="col-xs-2">
+ 0 km
+ </div>
+  <div class="col-xs-5">
+<%= f.range_field :distance, :in => 0..1000, :step => '25' %>
+</div>
+ <div class="col-xs-2">
+ 1000 kms
+ </div>
+
+
+
+
     </div>
     <br>
     <br>
     <div class="form-group">
-      <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "adresse email" %>
+      <%= f.email_field :email, autofocus: true, :class=>"input-small", placeholder: "adresse email" %>
     </div>
     <div class="form-group">
-      <%= f.password_field :password, autocomplete: "off", placeholder: "Créer un mot de passe" %>
+      <%= f.password_field :password, autocomplete: "off", placeholder: "Créer un mot de passe", :class=>"input-small" %>
     </div>
     <div class="actions">
       <%= f.submit "Inscription", class: 'btn btn-md btn-info' %>
@@ -53,3 +72,6 @@
 </section>
 <script type="text/javascript"
 src="https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_JAVASCRIPT_KEY']}"></script>
+
+
+

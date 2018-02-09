@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   def home
     @starsellers = User.where(starseller: true).limit(1)
 
-    @selection = Product.where(active: true).limit(3)
+    @selection = Product.where(active: true).limit(4)
     @products = @selection.sort_by(&:created_at).reverse
     @highlights = Meeting.where(highlight: true).sample(1)
     @starsellers = User.where(starseller: true).sample(1)

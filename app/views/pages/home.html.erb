@@ -15,18 +15,20 @@
         <br>
 
         <% if @highlights.present? %>
-        <div class="box-shadow">
+
           <% @highlights.each do |meeting| %>
-          <h5>Venez nous visiter ou exposez à: <br>
+          <h4>Prochainement:</h4>
+          Venez nous visiter ou exposez: <br>
             <%= link_to meetings_path do %>
-            <%= meeting.name %></h5>
+
 
             <%= image_tag "foiredeparis.jpg", width: 200 %>
 
             <% end %>
             <% end %>
             <% end %>
-          </div>
+            <br><br>
+
 
         </div>
 
@@ -38,52 +40,65 @@
           <div class="box-shadow">
            <% if !user_signed_in? %>
            <section>
-            <h4>Inscrivez-vous gratuitement</h4>
+            <h4><%= image_tag "signup.png", heigth:65, width: 45 %>
+            Inscrivez-vous gratuitement</h4>
             <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
             <%= devise_error_messages! %>
-            <%= f.text_field :pseudo, autofocus: true, class: "form-control", placeholder: "Pseudo" %><br>
+            <%= f.text_field :pseudo, autofocus: true, placeholder: "Pseudo",:class=>"input-small" %><br><br>
             <div class="form-group">
-              <%= f.text_field :address, placeholder: "Saisissez votre addresse..", id:"user_input_autocomplete_address", class: "form-control" %>
+              <%= f.text_field :address, placeholder: "Addresse postale", id:"user_input_autocomplete_address", :class=>"input-small" %>
               <input id="street_number" name="street_number" disabled type="hidden">
               <input id="route" name="route" disabled type="hidden">
               <input id="locality" name="locality" disabled type="hidden">
               <input id="country" name="country" disabled type="hidden">
             </div>
-            Articles pouvant m'interesser(kms):
-            <%= f.number_field :distance, class: "form-control"%><br>
-            <div class="form-group">
-              <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "adresse email" %><br>
-            </div>
-            <div class="form-group">
-              <%= f.password_field :password, autocomplete: "off", placeholder: "Créer un mot de passe" %>
-            </div>
-            <div><%= f.submit "S'inscrire",class: "btn btn-info"  %></div><br>
-            <% end %>
-            <strong><%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-              <%= link_to "Devenir vendeuse", new_registration_path(resource_name) %><br />
-              <% end -%></strong>
-
-            </section>
-            <% end %>
+            Articles pouvant m'interesser:
+            <div class="col-xs-1">
+             0 km
+           </div>
+           <div class="col-xs-7">
+            <%= f.range_field :distance, :in => 0..1000, :step => '25' %>
           </div>
+          <div class="col-xs-1">
+           1000 kms
+         </div><br><br>
+         <div class="form-group">
+          <%= f.email_field :email, autofocus: true, placeholder: "adresse email", :class=>"input-small" %><br>
         </div>
-      </section>
+        <div class="form-group">
+          <%= f.password_field :password, autocomplete: "off", placeholder: "Créer un mot de passe", :class=>"input-small" %>
+        </div>
+        <div><%= f.submit "S'inscrire",class: "btn btn-info"  %></div><br>
+        <% end %>
+        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
 
-    </div>
 
-    <div class="container">
-      <div class="row">
-        <%= render "details" %>
+          <strong><%= link_to "Devenir vendeuse", new_registration_path(resource_name)  %><br />
+
+          <% end -%></strong>
+
+        </section>
+        <% end %>
       </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="container">
+  <div class="row">
+    <%= render "details" %>
+  </div>
 <!--
   <div class="row">
     <%= render "caroussel" %>
     <%= render "asidecaroussel" %>
   </div>
+  -->
 <div class="row">
   <%= render "lastarticles" %>
 </div>
--->
+
 
 
 </div>
