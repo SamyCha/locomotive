@@ -15,7 +15,6 @@
 @import "profilpage";
 @import "devise";
 @import "pagination";
-@import "kudoz";
 @import "searchbox";
 @import 'bootstrap';
 @import 'bootstrap/theme';
@@ -24,13 +23,16 @@
 
 
 
-
+//box en home
 .box-shadow {
-   width: 0,5em;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    text-align: center;
+ width: 0,5em;
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ background-color: #3c6382;
+ opacity:0.9;
+ text-align: center;
 }
 
+//background image home
 .jumbotron {
   background-image: url('background.jpg');
   background-size: cover;

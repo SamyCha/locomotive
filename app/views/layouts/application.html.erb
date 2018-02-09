@@ -18,7 +18,7 @@
   <%= render 'shared/message' %>
 
 <!-- affichage de l'alerte -->
-  <div class="container">
+  <div class="container" id="flash">
 <% flash.each do |message_type, message| %>
   <%= content_tag :div, class: "alert alert-#{message_type}" do -%>
   <%= message %>
@@ -45,6 +45,14 @@
   <!-- jTinder initialization script -->
   <script type="text/javascript" src="js/main.js"></script>
 
+<!-- timer sur affichage de l'alerte -->
+<script type="text/javascript">
+$(document).ready(function(){
+  setTimeout(function(){
+    $('#flash').remove();
+  }, 1000);
+ })
+</script>
 
 
   <%= yield(:after_js) %>
