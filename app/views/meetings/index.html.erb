@@ -3,30 +3,30 @@
     <div class="row">
       <% @meetings.each do |meeting| %>
       <div class="col-xs-12 col-sm-4">
-        <div class="panel panel-default">
+        <div class="panel panel-default box-shadow">
 
           <div class="panel-heading preview">
             <%= image_tag "foiredeparis.jpg", width: 50  %>
           </div>
           <div class="panel-body">
             <div class="col-xs-12 text-center">
-              <p><%= meeting.name %></p>
-              <br><p><%= meeting.details %></p><hr>
+              <strong><%= meeting.name %></strong>
+              <br><%= meeting.details %><hr>
             </div>
             <div class="col-xs-12 text-center">
-              <%= image_tag "place.png", heigth:10, width: 20 %> <p><%= meeting.address %></p><br>
-              <%= image_tag "date.png", heigth:15, width: 25 %><p> <%= meeting.start_time.strftime("%d/%m/%Y") %></p>
+              <%= image_tag "place.png", heigth:15, width: 30 %> <strong><%= meeting.address %></strong><br>
+              <%= image_tag "date.png", heigth:20, width: 45 %> <%= meeting.start_time.strftime("%d/%m/%Y") %>
               <hr>
               <% if user_signed_in? %>
 
-<% if meeting == current_user.meetings %>
-<p>Demande en cours</p>
-<% else %>
-              <ul>
-              <li><%= link_to "Réserver un stand", meeting_participate_path(meeting), method: :post, class: 'btn btn-md btn-info' %></li>
-              <li> <%= link_to "ou sur event bride", "https://www.eventbrite.fr/o/les-armoires-de-paris-14507830874", :target => "_blank" %></li>
-              </ul>
-<% end %>
+              <% if meeting == current_user.meetings %>
+              Demande en cours
+              <% else %>
+
+              <%= link_to "Réserver un stand", meeting_participate_path(meeting), method: :post, class: 'btn btn-md btn-info' %><br>
+              <%= link_to "ou sur event bride", "https://www.eventbrite.fr/o/les-armoires-de-paris-14507830874", :target => "_blank" %>
+
+              <% end %>
 
               <% else %>
               <%- if controller_name != 'sessions' %>
