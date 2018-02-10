@@ -1,5 +1,5 @@
 <div class="container">
-<%= simple_form_for(@meeting) do |f| %>
+  <%= simple_form_for(@meeting) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -7,11 +7,15 @@
     <%= f.input :start_time %>
     <%= f.input :details %>
     <%= f.input :address %>
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
+
+
     <%= f.check_box :highlight %> Mettre en avant cet évènement
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
-<% end %>
+  <% end %>
 </div>

@@ -32,6 +32,8 @@ gem 'toastr-rails'
 gem "mailboxer"
 gem 'chosen-rails'
 gem 'gravatar_image_tag'
+gem 'carrierwave', '~> 1.0'
+
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-underscore'

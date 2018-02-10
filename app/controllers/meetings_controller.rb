@@ -14,7 +14,7 @@ class MeetingsController < InheritedResources::Base
 
 
   def index
-    @meetings = Meeting.all
+     @meetings = Meeting.where('start_time > ?', Time.now)
   end
 
   def new
@@ -65,7 +65,7 @@ class MeetingsController < InheritedResources::Base
 end
 
 def meeting_params
-  params.require(:meeting).permit(:name, :details, :address, :start_time, :highlight, :user_id)
+  params.require(:meeting).permit(:name, :details, :address, :start_time, :highlight, :user_id, :photo)
 end
 
 def is_admin

@@ -71,6 +71,7 @@ def devenir_vendeuse
 end
 
 def qui
+ @meetings = Meeting.where('start_time < ?', Time.now)
 end
 
 def contact
