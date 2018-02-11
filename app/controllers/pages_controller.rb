@@ -31,6 +31,7 @@ class PagesController < ApplicationController
     @reviews = Review.all.sort_by(&:created_at).last(4)
     @reviewsnotactive = Review.where(active: nil)
 
+    @meetings = Meeting.where('start_time > ?', Time.now)
 
     @markers = Gmaps4rails.build_markers(@products) do |product, marker|
       marker.lat product.latitude
@@ -71,6 +72,7 @@ def devenir_vendeuse
 end
 
 def qui
+  @meetings = Meeting.where('start_time < ?', Time.now)
 end
 
 def contact

@@ -1,150 +1,190 @@
-<div class="container-fluid">
-  <br>
-  <div class='row text-center'>
-    Bonjour <strong><%= current_user.pseudo %></strong>,<br>
-    Bienvenue dans le panneau d'administration, voici les actions requises:
-<!-- Comptabilisation des actions requises -->
-    <div class='row text-center'>
-      <span class="label label-success">Article(s) en attente de publication:
-        <%= @notactives.count %></span>
-      <span class="label label-success">
-          Vendeur(s) en attente de validation: <%= @sellerwaitinglist.count %></span>
-      <span class="label label-success">
-            Commentaires(s) en attente de validation: <%= @reviewsnotactive.count %></span>
-    </div>
-  </div>
-  <br>
-
-  <div class='row'>
-<!-- Les utilisateurs -->
-      <div class="col-xs-12 col-sm-4">
-        <h3><i class="fa fa-users" aria-hidden="true"></i>Les utilisateurs:</h3>
-        <%= link_to "Voir tous les utilisateurs", users_path %><br>
-        Nombre de comptes enregistrés:
-        <strong><%= @users.count %></strong><br>
-        Nombre de vendeurs enregistrés:
-        <strong><%= @sellers.count %></strong><br>
-        Créateur(s) en page d'accueil:
-        <% @starsellers.each do |user| %>
-        <strong><%= user.pseudo %></strong><br>
-        <% end %>
-        Utilisateurs en attente de validation: <strong><%= @sellerwaitinglist.count %></strong>
-        <% @sellerwaitinglist.each do |user| %>
-        <ul>
-        <li><strong><%= link_to user.pseudo, user_path(user) %> <%= user.state %></strong> (<%= user.created_at.strftime("%d/%m/%Y") %>)
-        <br>
-        <span class="label label-success"><%= link_to "passer en vendeur", user_to_seller_path(user.id), method: :patch %></span>
-        <br>
-        </li>
-        </ul><% end %>
-      </div>
-<!-- Les articles -->
-      <div class="col-xs-12 col-sm-4">
-        <h3><i class="fa fa-female" aria-hidden="true"></i> Les articles:</h3>
-        Nombre d'article enregistrés:
-        <strong><%= @products.count %></strong><br>
-        Nombre d'articles publiés:
-        <strong><%= @onlines.count %></strong><br>
-        Nombre d'articles déclarés vendus:
-        <strong><%= @products.where(status:1).count %></strong><br>
-        Articles en attente de publication: <strong><%= @notactives.count %></strong>
-        <% @notactives.each do |product| %>
-        <ul>
-        <li><strong><%= link_to product.name, product_path(product) %> <%= product.user.pseudo %></strong> (<%= product.updated_at.strftime("%d/%m/%Y") %>)<br>
-        <span class="label label-success">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span></li>
-        </ul><% end %>
-        <br><br>
-      </div>
-<!-- Map des articles publiés -->
-    <div class="col-xs-12 col-sm-4">
-    <h3><i class="fa fa-globe" aria-hidden="true"></i> Localisation des articles: </h3>
-      <div id="map"></div>
-    </div>
-  </div>
-<!-- Action requisepour les Review -->
-  <div class="row">
-    <div class="col-xs-12">
-      <% if @reviewsnotactive.count == 0 %>
-      <% else %>
-      <h3><i class="fa fa-comment-o" aria-hidden="true"></i> Les commentaires en attente:</h3>
-    </div>
-    <ul>
-    <% @reviews.each do |review| %>
-      <% if !review.active? %>
-      <li>
-      <div class="col-xs-12 col-sm-3">
-      <strong><%= link_to review.product.name, product_path(review.product) %></strong>
-      <br>
-      <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %> <%= review.user.pseudo %>  <%= review.created_at.strftime("(%d/%m/%y)") %><br>
-      <%= review.comment %><br>
-      <span class="label label-success">
-      <%= link_to "publier le commentaire", publish_review_path(review.id), method: :patch %></span>
-      <% end %>
-      <% end %>
-    </div>
-    </li>
-    </ul>
+<section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
+  <div class="container-fluid">
     <br>
-  </div>
-  <% end %>
-  <hr>
-
-
-
-
-
-
-
-  <div class='row'>
-<!-- Mes évènements -->
-      <div class="col-xs-12 col-sm-6">
-        <h3><i class="fa fa-calendar" aria-hidden="true"></i> Mes évènements:</h3>
-          <% @meetings.each do |meeting| %>
-          <ul>
-          <li><%= link_to meeting.name, meeting_path(meeting) %> (<%= meeting.start_time.strftime("%d/%m/%Y") %>)</li>
-          <%= link_to 'Supprimer', meeting, method: :delete, data: { confirm: 'Are you sure?' } %> / <%= link_to "Modifier", edit_meeting_path(meeting) %>
-          </ul><% end %>
-          <ul>
-          <li><strong><%= link_to "Tous les évenements", meetings_path %></strong></li>
-          </ul>
-          <%= link_to 'Créer un nouvel évenement', new_meeting_path,  class: 'btn btn-md btn-danger' %><br>
+    <%= link_to 'Créer un nouvel évenement', new_meeting_path,  class: 'btn btn-md btn-info' %>
+    <%= link_to 'Ajouter un article', new_product_path,  class: 'btn btn-md btn-info' %>
+    <div class='row text-center'>
+      Bonjour <strong><%= current_user.pseudo %></strong>,<br>
+      Bienvenue dans le panneau d'administration, voici les actions requises:
+      <!-- Comptabilisation des actions requises -->
+      <div class='row text-center'>
+        <span class="label label-success">Article(s) en attente de publication:
+          <%= @notactives.count %></span>
+          <span class="label label-success">
+            Vendeur(s) en attente de validation: <%= @sellerwaitinglist.count %></span>
+            <span class="label label-success">
+              Commentaires(s) en attente de validation: <%= @reviewsnotactive.count %></span>
+            </div>
+          </div>
+          <br>
+          <div class='row'>
+            <!-- Les utilisateurs -->
+            <div class="col-xs-12 col-sm-4">
+              <div class="box-shadow">
+                <div class="panel-heading preview">
+                  <h4><i class="fa fa-users" aria-hidden="true"></i> Les utilisateurs:</h4>
+                </div>
+                <div class="panel-body">
+                  Nombre de comptes enregistrés:
+                  <strong><%= @users.count %></strong><br>
+                  Nombre de vendeurs enregistrés:
+                  <strong><%= @sellers.count %></strong><br>
+            <!--
+              Créateur(s) en page d'accueil:
+              <% @starsellers.each do |user| %>
+              <strong><%= user.pseudo %></strong><br>
+              <% end %>
+            -->
+            Utilisateurs en attente de validation: <strong><%= @sellerwaitinglist.count %></strong>
+            <% @sellerwaitinglist.each do |user| %>
+            <ul>
+              <li><strong><%= link_to user.pseudo, user_path(user) %> <%= user.state %></strong> (<%= user.created_at.strftime("%d/%m/%Y") %>)
+                <br>
+                <span class="label label-success"><%= link_to "passer en vendeur", user_to_seller_path(user.id), method: :patch %></span>
+                <br>
+              </li>
+            </ul><% end %>
+            <br><%= link_to "Voir tous les utilisateurs", users_path %>
+          </div>
+        </div>
       </div>
-<!-- Mes articles ajoutés -->
-    <div class="col-xs-12 col-sm-6">
-      <h3><i class="fa fa-female" aria-hidden="true"></i> Mes derniers articles:</h3>
-      <% @myproducts.each do |product| %>
-      <ul>
-      <li><strong><%= link_to product.name, product_path(product) %></strong>
-      <% if product.active? %>
-      <p>publié</p>
-      <% elsif product.status? %>
-      <p>vendu</p>
-      <% else %>
-      <br>
-      <span class="label label-success">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span>
-      <% end %>
-      </li>
-      </ul><% end %>
-      <%= link_to 'Ajouter un article', new_product_path,  class: 'btn btn-md btn-danger' %><br><br>
-    </div>
-  </div>
 
-</div>∏
-<div></div>
+      <!-- Les articles -->
+      <div class="col-xs-12 col-sm-4">
+        <div class="box-shadow">
+          <div class="panel-heading preview">
+            <h4><i class="fa fa-female" aria-hidden="true"></i> Les articles:</h4>
+          </div>
+          <div class="panel-body">
+            Nombre d'article enregistrés:
+            <strong><%= @products.count %></strong><br>
+            Nombre d'articles publiés:
+            <strong><%= @onlines.count %></strong><br>
+            Nombre d'articles déclarés vendus:
+            <strong><%= @products.where(status:1).count %></strong><br>
+            Articles en attente de publication: <strong><%= @notactives.count %></strong>
+            <% @notactives.each do |product| %>
+            <ul>
+              <li><strong><%= link_to product.name, product_path(product) %> <%= product.user.pseudo %></strong> (<%= product.updated_at.strftime("%d/%m/%Y") %>)<br>
+                <span class="label label-success">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span></li>
+              </ul><% end %><br>
+              <%= link_to "Voir tous les produits", all_products_path %>
+              <br>
+            </div>
+          </div>
+        </div>
+        <!-- Demande de stand -->
+        <div class="col-xs-12 col-sm-4">
+          <div class="box-shadow">
+            <div class="panel-heading preview">
+              <h4> Demande de stand: </h4>
+            </div>
+            <div class="panel-body">
+              XXXXXX
+            </div>
+          </div>
+        </div>
 
-<% content_for(:after_js) do %>
-<%= javascript_tag do %>
-var handler = Gmaps.build('Google');
-handler.buildMap({ internal: { id: 'map' } }, function() {
-markers = handler.addMarkers(<%= raw @markers.to_json %>);
-handler.bounds.extendWith(markers);
-handler.fitMapToBounds();
-if (markers.length == 0) {
-handler.getMap().setZoom(2);
-} else if (markers.length == 1) {
-handler.getMap().setZoom(14);
-}
-});
-<% end %>
-<% end %>
+        <!-- Action requisepour les Review -->
+        <div class="row">
+          <div class="col-xs-12">
+            <% if @reviewsnotactive.count == 0 %>
+            <% else %>
+            <hr>
+            <div class="text-center">
+              <h3><i class="fa fa-comment-o" aria-hidden="true"></i> Les commentaires en attente:</h3>
+            </div>
+          </div>
+          <% @reviews.each do |review| %>
+          <% if !review.active? %>
+          <div class="col-xs-12 col-sm-3">
+            <div class="panel panel-default box-shadow">
+              <div class="panel-heading preview">
+                <strong><%= link_to review.product.name, product_path(review.product) %></strong>
+              </div>
+              <div class="panel-body">
+                <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %> <%= review.user.pseudo %>  <%= review.created_at.strftime("(%d/%m/%y)") %><br>
+                <%= review.comment %><br>
+                <span class="label label-success">
+                  <%= link_to "publier le commentaire", publish_review_path(review.id), method: :patch %></span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+            <br>
+          </div>
+          <% end %>
+          <hr>
+          <div class='row'>
+            <!-- Mes évènements -->
+            <div class="col-xs-12 text-center">
+              <h3><i class="fa fa-calendar" aria-hidden="true"></i> Mes prochains évènements:</h3>
+              <% @meetings.each do |meeting| %>
+              <div class="col-xs-12 col-sm-2">
+                <div class="panel panel-default box-shadow">
+                  <div class="panel-heading preview">
+                  </div>
+                  <div class="panel-body">
+                    <div class="col-xs-12 text-center">
+                      <strong><%= meeting.name %></strong>
+                      <hr>
+                    </div>
+                    <div class="col-xs-12 text-center">
+                      <%= image_tag "place.png", heigth:15, width: 30 %> <br><strong><%= meeting.address %></strong><br>
+                      <%= image_tag "date.png", heigth:20, width: 45 %> <br><%= meeting.start_time.strftime("%d/%m/%Y") %>
+                      <hr>
+                      <%= link_to "Modifier", edit_meeting_path(meeting) %>
+                      <br>
+                      <%= link_to 'Supprimer', meeting, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
 
+              <!-- Mes articles ajoutés
+              <div class="col-xs-12 col-sm-4">
+                <h3><i class="fa fa-female" aria-hidden="true"></i> Mes derniers articles:</h3>
+                <% @myproducts.each do |product| %>
+                <ul>
+                  <li><strong><%= link_to product.name, product_path(product) %></strong>
+                    <% if product.active? %>
+                    <p>publié</p>
+                    <% elsif product.status? %>
+                    <p>vendu</p>
+                    <% else %>
+                    <br>
+                    <span class="label label-success">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span>
+                    <% end %>
+                  </li>
+                </ul><% end %>
+                <%= link_to 'Ajouter un article', new_product_path,  class: 'btn btn-md btn-danger' %><br><br>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <h3><i class="fa fa-globe" aria-hidden="true"></i> Localisation des articles: </h3>
+                <div id="map"></div>
+              </div>
+            </div>
+          -->
+
+          <div></div>
+
+          <% content_for(:after_js) do %>
+          <%= javascript_tag do %>
+          var handler = Gmaps.build('Google');
+          handler.buildMap({ internal: { id: 'map' } }, function() {
+          markers = handler.addMarkers(<%= raw @markers.to_json %>);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+        handler.getMap().setZoom(14);
+      }
+    });
+    <% end %>
+    <% end %>
+  </section>

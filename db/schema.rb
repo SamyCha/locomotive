@@ -112,11 +112,6 @@ ActiveRecord::Schema.define(version: 20180120151923) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "participations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "payments", force: :cascade do |t|
     t.string "email"
     t.string "token"
