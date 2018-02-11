@@ -49,6 +49,7 @@ root to: 'pages#home'
     post :participate
   end
 
+  get 'all_products' => 'products#all_products'
   get 'your_articles' => 'reservations#your_articles'
   get '/your_reservations' => 'reservations#your_reservations'
   get '/search' => 'products#search'

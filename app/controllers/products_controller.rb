@@ -4,6 +4,11 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[show search slide]
   before_action :require_same_user, only: %i[edit update destroy]
+  before_action :is_admin, only: %i[all_products]
+
+  def all_products
+    @products = Product.all
+  end
 
   def search
     @products = Product.where(active: true)

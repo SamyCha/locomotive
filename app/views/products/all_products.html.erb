@@ -1,0 +1,37 @@
+<section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
+  <div class="container-fluid">
+    <div class="col-xs-12">
+      <% @products.each do |product| %>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="panel panel-default box-shadow">
+          <div class="panel-heading preview">
+            <%= image_tag product.photos[0].image.url, style: 'height:120px;width:232px' if product.photos.length > 0  %>
+          </div>
+          <div class="panel-body">
+            <div class="col-xs-12 text-center">
+              <h5><%= link_to product.name, product %></h5><%= image_tag "brand.png", heigth:12, width: 24 %> <%= product.brand %><br>
+              <hr>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <strong><%= product.price %> euros</strong>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <% if product.active %>
+              <!-- Si le produit est publié -->
+              <span class="label label-info">article en vente</span>
+              <% elsif product.status? %>
+              <!-- Si le produit est vendu -->
+              <span class="label label-danger">article vendu</span>
+              <% else %>
+              <!-- Si le produit est dépublié -->
+              <span class="label label-danger">article dépublié</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </section>
