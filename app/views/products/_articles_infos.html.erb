@@ -4,19 +4,19 @@
 
 
        <i class="fa fa-female fa-2x" aria-hidden="true"></i>
-       CATEGORIE: <%= @product.category %><br>
+       C<%= @product.category %><br>
 
 
       <%= image_tag "brand.png", heigth:20, width: 40 %>
-      MARQUE: <%= @product.brand %><br>
+     <%= @product.brand %><br>
 
 
      <%= image_tag "size.png", heigth:20, width: 40 %>
-     TAILLE: <%= @product.size %><br>
+     <%= @product.size %><br>
 
 
      <%= image_tag "color.png", heigth:20, width: 40 %>
-    COULEUR: <%= @product.color %><hr>
+    <%= @product.color %><hr>
 
 <p> (<%= @product.state %>)<%= @product.description %></p><hr>
 
