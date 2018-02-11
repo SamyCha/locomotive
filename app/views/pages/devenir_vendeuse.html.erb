@@ -3,16 +3,20 @@
     <div class="row">
       <div class="col-xs-12 text-center">
         <h3>Vous souhaitez de venir vendeuse?</h3>
-        Rien de plus simple, <%= link_to "inscrivez-vous sur notre site", new_user_registration_path %> et cochez la case "Devenir Vendeuse". Nous recevrons un message qui nous informera de votre souhait.. Nous confirmerons votre demande et vous pourrez dès lors mettre en ligne vos articles respectant nos conditions.
+         <h4>Aucun frais pris auprès de vos clientes.</h4>
+        Rien de plus simple, <%= link_to "inscrivez-vous sur notre site", new_user_registration_path %> et acceptez les conditions. Vous serez rediriger vers notre formulaire de paiement. Nous confirmerons votre demande de devenir vendeuse et pourrez dès lors mettre en ligne vos articles respectant nos conditions.<br>
+
         Connaître nos conditions<br><br>
         <div class="row">
           <div class="col-xs-12 col-md-4">
             <div class="panel panel-default box-shadow">
               <div class="panel-heading preview">
-                formule 5 articles
+                <strong>formule 5 articles</strong>
               </div>
               <div class="panel-body">
-                Je mets en ligne 5 articles
+                Je mets en ligne 5 articles<br>
+                Durée d'utilisation: 1an<br>
+                <strong>5 euros</strong>
                 <div class="col-xs-12 text-center">
                  <%= link_to new_user_registration_path, class: "btn btn-info" do %>
                  Choisir
@@ -24,10 +28,12 @@
           <div class="col-xs-12 col-md-4">
             <div class="panel panel-default box-shadow">
               <div class="panel-heading preview">
-                formule 15 articles
+                <strong>formule 15 articles</strong>
               </div>
               <div class="panel-body">
-                Je mets en ligne 10 articles
+                Je mets en ligne 15 articles<br>
+                Durée d'utilisation: 1an<br>
+                <strong>11 euros</strong>
                 <div class="col-xs-12 text-center">
                  <%= link_to new_user_registration_path, class: "btn btn-info" do %>
                  Choisir
@@ -39,10 +45,12 @@
           <div class="col-xs-12 col-md-4">
             <div class="panel panel-default box-shadow">
               <div class="panel-heading preview">
-                formule 25 articles
+                <strong>formule 25 articles</strong>
               </div>
               <div class="panel-body">
-                Je mets en ligne 25 articles
+                Je mets en ligne 25 articles<br>
+                Durée d'utilisation: 1an<br>
+                <strong>16 euros</strong>
                 <div class="col-xs-12 text-center">
                  <%= link_to new_user_registration_path, class: "btn btn-info" do %>
                  Choisir

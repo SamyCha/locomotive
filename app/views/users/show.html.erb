@@ -1,110 +1,98 @@
-<div class="container-fluid">
+<section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="content">
+        <div id="searchbox">
+          <div class="col-xs-12">
+            <%= image_tag avatar_url(@user), class: "avatar-full" %>
+            <div class="panel panel-default box-shadow">
+              <div class="panel-heading">enregistré depuis: <%= timeago_tag @user.created_at, :lang => :fr  %>
+              </div>
+              <div class="panel-body"><strong><%= @user.pseudo %></strong><br>
+                <% if @user.seller? %>
+                Nombre de commentaires: <strong><%= @user.reviews.count %></strong><br>
+                Note moyenne: <strong> XXX</strong><br>
+                <% end %>
+              </div>
+            </div>
 
-  <div class="row">
-  <div class="content">
-  <div id="searchbox">
-    <div class="col-xs-12">
-      <%= image_tag avatar_url(@user), class: "avatar-full" %>
-      <div class="panel panel-default">
-        <div class="panel-heading">enregistré depuis: <%= timeago_tag @user.created_at, :lang => :fr  %>
-        </div>
-        <div class="panel-body"><strong><%= @user.pseudo %></strong><br>
-          <% if @user.seller? %>
-          Nombre de commentaires: <strong><%= @user.reviews.count %></strong><br>
-          Note moyenne: <strong> XXX</strong><br>
-          <% end %>
-        </div>
-      </div>
-
-      <% if user_signed_in? %>
-      <% if current_user != @user %>
+            <% if user_signed_in? %>
+            <% if current_user != @user %>
 
   <!--
       <div class="row-space-2">
         <%= link_to "Envoyer un message", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: 'btn btn-md btn-danger'%>
       </div>
 
--->
-      <% elsif current_user == @user %>
-      <ul>
+    -->
+    <% elsif current_user == @user %>
+    <ul>
       <li><%= link_to "Je veux ajouter un article", new_product_path %></li>
       <li><%= link_to "Je veux exposer", meetings_path %></li>
       <li><%= link_to "Je veux modifier mon profil", edit_user_registration_path %></li>
-      </ul>
-      <% end %>
-      <% end %>
-    </div>
-</div>
-
-    <br>
-    <div class="col-xs-12">
-      <% if @user.starseller? %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('http://res.cloudinary.com/hessdypy6/image/upload/v1514816032/starseller_bkzwa6.jpg');">
-        <div class="card-category">CREATEUR DU MOIS</div><img class="card-user" src="http://www.freepngimg.com/download/best_quality/5-2-best-quality-download-png.png">
-        <div class="card-description">
-          <h2><%= @user.pseudo %></h2>
-          <h5><%= @user.description %></h5>
-        </div>
-      </div>
-      <% else %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('http://res.cloudinary.com/hessdypy6/image/upload/v1514816032/starseller_bkzwa6.jpg');">
-        <div class="card-description">
-          <h2><%= @user.pseudo %></h2>
-          <h5><%= @user.description %></h5>
-        </div>
-      </div>
-      <% end %>
-      <br>
-      <% if @user.seller? %>
-      <h4><i class="fa fa-calendar fa-2x" aria-hidden="true"></i> VOUS ME TROUVEREZ AUX EVENEMENTS SUIVANTS:</h4>
-      <%= week_calendar number_of_weeks: 2, events: @meetings do |date, meetings| %>
-      <strong><%= date.strftime("%d") %></strong>
-      <% meetings.each do |meeting| %>
-      <div>
-        <strong><p><%= link_to meeting.name, meeting_path(meeting)  %></p></strong>
-      </div>
-      <% end %>
-      <% end %>
-      <h4><i class="fa fa-female fa-2x" aria-hidden="true"></i> MES ARTICLES:</h4>
-      <% @products.each do |product| %>
-      <!-- affiche tous les articles actif en vente -->
-      <% if product.active? %>
-      <div class="col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <strong><%= link_to product.name, product %></strong> (<%= product.price %>euros) <span class="label label-success">article en vente</span><br>
-            <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %>
-            <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %>
-            <!-- affiche tous les aticles vendus -->
-            <% elsif product.status? %>
-            <div class="col-xs-12">
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <strong><%= product.name %></strong> <span class="label label-info">article vendu</span><br>
-                  <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %>
-                  <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %>
-                  <br>
-                  <!-- Si le produit vendu dispose d'un commentaire publié on l'affiche -->
-                  <% if !product.reviews.blank? %>
-                  <% product.reviews.each do |review| %>
-                  <% if review.active %>
-                  <hr>
-                  Commentaire:<br>
-                  <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %> <%= review.user.pseudo %>  <%= review.created_at.strftime("(%d/%m/%y)") %><br>
-                  <%= review.comment %><br>
-                  <% end %>
-                </div>
-              </div>
-              <% end %>
-              <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <% end %>
-      </div>
-      <% end %>
-    </div>
+    </ul>
+    <% end %>
+    <% end %>
   </div>
 </div>
+
+<br>
+<div class="col-xs-12 box-shadow">
+  <br>
+  <% if @user.seller? %>
+  <h4><i class="fa fa-calendar fa-2x" aria-hidden="true"></i> VOUS ME TROUVEREZ AUX EVENEMENTS SUIVANTS:</h4>
+  <%= week_calendar number_of_weeks: 2, events: @meetings do |date, meetings| %>
+  <strong><%= date.strftime("%d") %></strong>
+  <% meetings.each do |meeting| %>
+  <div>
+    <strong><p><%= link_to meeting.name, meeting_path(meeting)  %></p></strong>
+  </div>
+  <% end %>
+  <% end %>
+  <h4><i class="fa fa-female fa-2x" aria-hidden="true"></i> MES ARTICLES:</h4>
+  <% @products.each do |product| %>
+  <!-- affiche tous les articles actif en vente -->
+  <% if product.active? %>
+  <div class="col-xs-12">
+    <div class="panel panel-default box-shadow">
+      <div class="panel-body">
+        <strong><%= link_to product.name, product %></strong> (<%= product.price %>euros) <span class="label label-success">article en vente</span><br>
+        <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %>
+        <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %>
+
+        <!-- affiche tous les aticles vendus -->
+        <% elsif product.status? %>
+
+        <div class="panel-body">
+          <strong><%= product.name %></strong> <span class="label label-info">article vendu</span><br>
+          <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %>
+          <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %>
+          <br>
+          <!-- Si le produit vendu dispose d'un commentaire publié on l'affiche -->
+          <% if !product.reviews.blank? %>
+          <% product.reviews.each do |review| %>
+          <% if review.active %>
+          <hr>
+          Commentaire:<br>
+          <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %> <%= review.user.pseudo %>  <%= review.created_at.strftime("(%d/%m/%y)") %><br>
+          <%= review.comment %><br>
+          <% end %>
+
+        </div>
+
+        <% end %>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <% end %>
 </div>
+
+
+</div>
+</div>
+</div>
+</div>
+</section>
