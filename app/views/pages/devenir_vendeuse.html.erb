@@ -1,17 +1,65 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-12 text-center">
-      <h3>Vous souhaitez de venir vendeuse?</h3>
+<section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <h3>Vous souhaitez de venir vendeuse?</h3>
+        Rien de plus simple, <%= link_to "inscrivez-vous sur notre site", new_user_registration_path %> et cochez la case "Devenir Vendeuse". Nous recevrons un message qui nous informera de votre souhait.. Nous confirmerons votre demande et vous pourrez dès lors mettre en ligne vos articles respectant nos conditions.
+        Connaître nos conditions<br><br>
+        <div class="row">
+          <div class="col-xs-12 col-md-4">
+            <div class="panel panel-default box-shadow">
+              <div class="panel-heading preview">
+                formule 5 articles
+              </div>
+              <div class="panel-body">
+                Je mets en ligne 5 articles
+                <div class="col-xs-12 text-center">
+                 <%= link_to new_user_registration_path, class: "btn btn-info" do %>
+                 Choisir
+                 <% end %>
+               </div>
+             </div>
+           </div>
+         </div>
+          <div class="col-xs-12 col-md-4">
+            <div class="panel panel-default box-shadow">
+              <div class="panel-heading preview">
+                formule 15 articles
+              </div>
+              <div class="panel-body">
+                Je mets en ligne 10 articles
+                <div class="col-xs-12 text-center">
+                 <%= link_to new_user_registration_path, class: "btn btn-info" do %>
+                 Choisir
+                 <% end %>
+               </div>
+             </div>
+           </div>
+         </div>
+          <div class="col-xs-12 col-md-4">
+            <div class="panel panel-default box-shadow">
+              <div class="panel-heading preview">
+                formule 25 articles
+              </div>
+              <div class="panel-body">
+                Je mets en ligne 25 articles
+                <div class="col-xs-12 text-center">
+                 <%= link_to new_user_registration_path, class: "btn btn-info" do %>
+                 Choisir
+                 <% end %>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       Tous les articles mis en ligne doivent respecter nos condiitons pour être publiés. Nous nous reservons le droit de refuser votre article, si celui-ci ne correspond pas à nos critères.
 
-      Rien de plus simple, <%= link_to "inscrivez-vous sur notre site", new_user_session_path %> et cochez la case "Devenir Vendeuse". Nous recevrons un message qui nous informera de votre souhait.. Nous confirmerons votre demande et vous pourrez dès lors mettre en ligne vos articles respectant nos condiitions.<hr>
-      Connaître nos conditions<br>
-      Tous les articles mis en ligne doivent respecter nos condiitons pour être publiés. Nous nous reservons le droit de refuser votre article, si celui-ci ne correspond pas à nos critères. <hr>
+       Vous disposerez d'un espace vous permettant de communiquer sur vos articles et d'entrer en contact avec nos acheteuses.<br>
+       Vos articles permettront aux personnes situées à proximité de consulter rapidement vos articles et entrer en contact avec vous! <br>
+       Enfin vos acheteuses sauront ou vous trouvez, si vous participez à nos évenements
 
-      Vous disposerez d'un espace vous permettant de communiquer sur vos articles et d'entrer en contact avec nos acheteuses.<br>
-      Vos articles permettront aux personnes situées à proximité de consulter rapidement vos articles et entrer en contact avec vous! <br>
-      Enfin vos acheteuses sauront ou vous trouvez, si vous participez à nos évenements<hr>
-
-      Lorsque vous vendez un article, vous donnez aussi le droit à votre acheteur de commenter son achat en lui communiquant un code aprés la vente. Ces commentaires vous permettent de rassurer vos prochaines clientes sur la qualité de vos articles et sur votre serieux.<hr>
-    </div>
-  </div>
-</div>
+       Lorsque vous vendez un article, vous donnez aussi le droit à votre acheteur de commenter son achat en lui communiquant un code aprés la vente. Ces commentaires vous permettent de rassurer vos prochaines clientes sur la qualité de vos articles et sur votre serieux.
+     </div>
+   </div>
+ </div>
+</section>

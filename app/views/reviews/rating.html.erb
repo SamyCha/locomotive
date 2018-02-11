@@ -1,5 +1,6 @@
 <section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
 <div class="container-fluid">
+
   <div class="row">
     <div class="col-md-3">
       <ul class="sidebar-list">
@@ -21,7 +22,7 @@
           </ul>
         </div>
         <div class="col-md-9 text-center">
-          <div class="panel panel-default">
+          <div class="panel panel-default box-shadow">
             <h3><i class="fa fa-star-half-o" aria-hidden="true"></i> Notez et commentez vos achats</h3><br>
             <%= form_tag(mini_index_path, :method => "get", id: "search-form") do %>
             Saisissez le nom de l'article acheté:
@@ -32,11 +33,11 @@
             <% if !@reviews.blank? %>
             <div class="text-left">
               <h4>Mes precedents commentaires:</h4><br>
-              <ul>
+
                 <% @reviews.each do |review| %>
-                <div class="panel panel-default">
+                <div class="panel panel-default box-shadow">
                   <div class="panel-body">
-                    <li><strong><%= review.product.name %></strong> <%= review.created_at.strftime("(%d/%m/%y)") %>
+                    <strong><%= review.product.name %></strong> <%= review.created_at.strftime("(%d/%m/%y)") %>
                       <% if review.active %>
                       <span class="label label-success">publié</span>
                       <% else %>
@@ -45,11 +46,11 @@
                       <br>
                       <%= review.comment %>
                       <br>
-                    </li>
+
                   </div>
                 </div>
                 <% end %>
-              </ul>
+
             </div>
             <% end %>
             <br>

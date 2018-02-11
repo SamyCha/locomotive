@@ -8,12 +8,14 @@
       Bienvenue dans le panneau d'administration, voici les actions requises:
       <!-- Comptabilisation des actions requises -->
       <div class='row text-center'>
-        <span class="label label-success">Article(s) en attente de publication:
+        <span class="label label-primary">Article(s) en attente de publication:
           <%= @notactives.count %></span>
-          <span class="label label-success">
+          <span class="label label-primary">
             Vendeur(s) en attente de validation: <%= @sellerwaitinglist.count %></span>
-            <span class="label label-success">
-              Commentaires(s) en attente de validation: <%= @reviewsnotactive.count %></span>
+            <span class="label label-primary">
+              Commentaire(s) en attente de validation: <%= @reviewsnotactive.count %></span>
+               <span class="label label-primary">
+              Demande(s) de stand en attente de validation: XXXX</span>
             </div>
           </div>
           <br>
@@ -38,9 +40,8 @@
             Utilisateurs en attente de validation: <strong><%= @sellerwaitinglist.count %></strong>
             <% @sellerwaitinglist.each do |user| %>
             <ul>
-              <li><strong><%= link_to user.pseudo, user_path(user) %> <%= user.state %></strong> (<%= user.created_at.strftime("%d/%m/%Y") %>)
-                <br>
-                <span class="label label-success"><%= link_to "passer en vendeur", user_to_seller_path(user.id), method: :patch %></span>
+              <li><strong><%= link_to user.pseudo, user_path(user) %></strong> (<%= user.created_at.strftime("%d/%m/%Y") %>)
+                <span class="label label-info"><%= link_to "passer en vendeur", user_to_seller_path(user.id), method: :patch %></span>
                 <br>
               </li>
             </ul><% end %>
@@ -62,12 +63,12 @@
             <strong><%= @onlines.count %></strong><br>
             Nombre d'articles déclarés vendus:
             <strong><%= @products.where(status:1).count %></strong><br>
-            Articles en attente de publication: <strong><%= @notactives.count %></strong>
+            Articles en attente de publication: <strong><%= @notactives.count %></strong><br>
             <% @notactives.each do |product| %>
-            <ul>
-              <li><strong><%= link_to product.name, product_path(product) %> <%= product.user.pseudo %></strong> (<%= product.updated_at.strftime("%d/%m/%Y") %>)<br>
-                <span class="label label-success">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span></li>
-              </ul><% end %><br>
+
+              <strong><%= link_to product.name, product_path(product) %></strong>
+                <span class="label label-info">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span>
+              <% end %><br>
               <%= link_to "Voir tous les produits", all_products_path %>
               <br>
             </div>
@@ -105,7 +106,7 @@
               <div class="panel-body">
                 <%= image_tag avatar_url(review.user), class: "img-circle avatar-medium" %> <%= review.user.pseudo %>  <%= review.created_at.strftime("(%d/%m/%y)") %><br>
                 <%= review.comment %><br>
-                <span class="label label-success">
+                <span class="label label-info">
                   <%= link_to "publier le commentaire", publish_review_path(review.id), method: :patch %></span>
                   <% end %>
                 </div>

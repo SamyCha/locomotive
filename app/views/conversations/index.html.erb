@@ -1,3 +1,4 @@
+<section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
 <div class="container-fluid">
 <h3>Vos messages</h3>
   <div class="row">
@@ -9,7 +10,7 @@
       </ul>
     </div>
 
-    <div class="col-sm-9">
+    <div class="col-sm-9  box-shadow">
       <% if @box == 'trash' %>
       <p><%= link_to 'Empty trash', empty_trash_conversations_path, class: 'btn btn-danger', method: :delete,
        data: {confirm: 'Are you sure?'} %></p>
@@ -22,3 +23,4 @@
     </div>
   </div>
 </div>
+</section>
