@@ -1,9 +1,9 @@
 <div id="hidden-mobile">
-  <div class="col-xs-12 text-center">
-    <p>___________</p><h4><strong>Nos derniers articles mis en ligne</strong></h4>
-  </div>
   <div class="col-xs-12">
-    <% @selection.each do |product| %>
+    <div class="col-xs-12 text-center">
+      <p>___________</p><h4><strong>Les articles à proximité</strong></h4>
+    </div>
+    <% @proximity.each do |product| %>
     <div class="col-xs-12 col-sm-6 col-md-3">
       <div class="panel panel-default box-shadow">
         <div class="panel-heading preview">
@@ -11,12 +11,14 @@
         </div>
         <div class="panel-body">
           <div class="col-xs-12 text-center">
-            <h5><%= link_to product.name, product %></h5><%= image_tag "brand.png", heigth:10, width: 20 %> <%= product.brand %><br>
+            <h5><%= link_to product.name, product %></h5>
+            <%= image_tag "brand.png", heigth:10, width: 20 %> <%= product.brand %>
+            <br>
             <hr>
           </div>
           <div class="row">
             <div class="col-xs-12">
-              <strong><%= product.price %> euros</strong>    <br>
+              <strong><%= product.price %> euros</strong><br>
               <%= image_tag "place.png", heigth:12, width: 22 %> <%= product.address %>
             </div>
           </div>
