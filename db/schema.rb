@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213114827) do
+ActiveRecord::Schema.define(version: 20180213170206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,8 @@ ActiveRecord::Schema.define(version: 20180213114827) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
+    t.bigint "meeting_id"
+    t.index ["meeting_id"], name: "index_photos_on_meeting_id"
     t.index ["product_id"], name: "index_photos_on_product_id"
   end
 
@@ -222,6 +224,7 @@ ActiveRecord::Schema.define(version: 20180213114827) do
   add_foreign_key "meetings", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
+  add_foreign_key "photos", "meetings"
   add_foreign_key "photos", "products"
   add_foreign_key "products", "users"
   add_foreign_key "reservations", "products"

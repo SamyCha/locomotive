@@ -13,54 +13,72 @@ class MeetingsController < InheritedResources::Base
 #end
 
 
-  def index
-    @meetings = Meeting.where('start_time > ?', Time.now).order("start_time ASC")
-  end
+def index
+  @meetings = Meeting.where('start_time > ?', Time.now).order("start_time ASC")
+  @photos = @meeting.photos
+end
 
-  def new
-    @meeting = Meeting.new
-  end
+def new
+  @meeting = Meeting.new
+end
 
-  def create
-    @meeting = current_user.meetings.create(meeting_params)
-    if @meeting.save
-      redirect_to meetings_path
-    else
-      render :new
-    end
-  end
+def create
+  @meeting = current_user.meetings.create(meeting_params)
 
-  def show
+if @meeting.save
+  redirect_to meetings_path
+    if params[:images]
+   params[:images].each do |i|
+    @meeting.photos.create(image: i)
   end
+end
+@photos = @meeting.photos
+else
+  render :new
+end
+end
 
-  def edit
-  end
+def show
+end
 
-  def update
-    if @meeting.update(meeting_params)
-      redirect_to meetings_path
-    else
-      render :edit
-    end
-  end
+def edit
+  @photos = @meeting.photos
+end
 
-  def destroy
-    @meeting.destroy
+def update
+  if @meeting.update(meeting_params)
     redirect_to meetings_path
+  else
+    render :edit
   end
+  if params[:images]
+
+       params[:images].each do |i|
+
+            @meeting.photos.create(image: i)
+
+       end
 
 
-  def participate
-   meeting = Meeting.find(params[:meeting_id])
-   current_user.meetings << meeting
-   redirect_to meetings_path, alert: "Votre demande est enregistée pour cet évenement. Nous reviendrons rapidemant vers vous."
- end
+end
+
+def destroy
+  @meeting.destroy
+  redirect_to meetings_path
+end
+
+
+def participate
+ meeting = Meeting.find(params[:meeting_id])
+ current_user.meetings << meeting
+ redirect_to meetings_path, alert: "Votre demande est enregistée pour cet évenement. Nous reviendrons rapidemant vers vous."
+end
 
 
 
- private
+private
 
- def set_meeting
+def set_meeting
   @meeting = Meeting.find(params[:id])
 end
 
@@ -74,5 +92,8 @@ def is_admin
     redirect_to meetings_path
   end
 end
+
+
+
 
 end
