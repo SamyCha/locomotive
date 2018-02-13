@@ -1,5 +1,13 @@
 <div id="hidden-mobile">
-  <div class="col-xs-12 col-sm-3">
+  <div class="row">
+    <div class="col-xs-12 text-center">
+     <h4><strong>Suivez notre actualité:</h4></strong>
+   </div>
+ </div>
+
+<div class="row">
+
+ <div class="col-xs-6">
     <% if @highlights.present? %>
     <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('http://res.cloudinary.com/hessdypy6/image/upload/v1515771216/alaffiche_rhs60z.jpg');">
       <div class="card-category">EXPOSER / VISITER</div>
@@ -19,6 +27,9 @@
       </div>
       <% end %>
       <br>
+  </div>
+
+    <div class="col-xs-6">
       <% if @starsellers.present? %>
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('https://sixactualites.fr/wp-content/uploads/2017/06/Bijou.jpg');">
         <div class="card-category">DECOUVREZ</div>
@@ -37,13 +48,8 @@
           </div>
         </div>
         <% end %>
-        <br>
-        Suivez notre actualité:
-        <br>
-        <div class="text-center">
-         <a href="https://www.facebook.com/lesarmoiresdeparis/"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
-         <a href="https://www.instagram.com/lesarmoiresdeparis/"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
-         <i class="fa fa-youtube fa-2x" aria-hidden="true"></i>
-       </div>
-     </div>
+  </div>
    </div>
+
+ </div>
+

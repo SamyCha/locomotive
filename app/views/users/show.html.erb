@@ -53,21 +53,30 @@
   <% @products.each do |product| %>
   <!-- affiche tous les articles actif en vente -->
   <% if product.active? %>
-  <div class="col-xs-12">
+  <div class="col-xs-6">
     <div class="panel panel-default box-shadow">
       <div class="panel-body">
-        <strong><%= link_to product.name, product %></strong> (<%= product.price %>euros) <span class="label label-success">article en vente</span><br>
-        <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %>
-        <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %>
-
+        <div class="col-xs-3">
+          <%= image_tag product.photos[0].image.url, style: 'height:80px;width:110px' if product.photos.length > 0 %>
+        </div>
+        <div class="col-xs-9">
+          <strong><%= link_to product.name, product %></strong> (<%= product.price %>euros)
+          <span class="label label-success">article en vente</span><br>
+          <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %>
+          <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %>
+        </div>
         <!-- affiche tous les aticles vendus -->
         <% elsif product.status? %>
-
         <div class="panel-body">
+          <div class="col-xs-3">
+          <%= image_tag product.photos[0].image.url, style: 'height:80px;width:110px' if product.photos.length > 0 %>
+        </div>
+            <div class="col-xs-9">
           <strong><%= product.name %></strong> <span class="label label-info">article vendu</span><br>
           <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %>
           <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %>
-          <br>
+          </div>
+
           <!-- Si le produit vendu dispose d'un commentaire publié on l'affiche -->
           <% if !product.reviews.blank? %>
           <% product.reviews.each do |review| %>

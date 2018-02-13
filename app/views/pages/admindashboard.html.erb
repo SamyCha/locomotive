@@ -68,9 +68,12 @@
             <strong><%= @products.where(status:1).count %></strong><br>
             Articles en attente de publication: <strong><%= @notactives.count %></strong><br>
             <% @notactives.each do |product| %>
-
+<ul>
+              <li>
             <strong><%= link_to product.name, product_path(product) %></strong>
             <span class="label label-info">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span>
+            </li>
+            </ul>
             <% end %><br>
             <%= link_to "Voir tous les produits", all_products_path %>
             <br>

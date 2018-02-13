@@ -7,10 +7,19 @@ class PagesController < ApplicationController
   def home
     @starsellers = User.where(starseller: true).limit(1)
 
-    @selection = Product.where(active: true).limit(4)
+    @selection = Product.where(active: true).limit(8)
     @products = @selection.sort_by(&:created_at).reverse
     @highlights = Meeting.where(highlight: true).sample(1)
     @starsellers = User.where(starseller: true).sample(1)
+
+
+if user_signed_in?
+    @address = current_user.address
+    @distance = current_user.distance
+    @active = Product.all.where(active: true)
+    @proximity = @active.near(@address, @distance).sample(8)
+end
+
   end
 
   def admindashboard
