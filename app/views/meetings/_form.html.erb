@@ -1,17 +1,42 @@
-<div class="container">
 <%= simple_form_for(@meeting) do |f| %>
-  <%= f.error_notification %>
+<%= f.error_notification %>
+<div class="form-inputs">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <%= f.input :name %>
+      </div>
+      <div class="col-xs-6">
+        <%= f.input :start_time %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <%= f.input :details %>
+        <%= f.input :address %>
+      </div>
+      <div class="col-xs-6">
+        Ajouter un logo du lieu
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :start_time %>
-    <%= f.input :details %>
-    <%= f.input :address %>
-    <%= f.check_box :highlight %> Mettre en avant cet évènement
-  </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <%= f.input :reservation, placeholder: "Lien vers l'évenement event-bride" %>
+      </div>
+      <div class="col-xs-6">
+        <%= f.input :participation, placeholder: "Lien vers l'évenement facebook" %>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.check_box :highlight %> Mettre en avant cet évènement
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
   </div>
-<% end %>
+  <% end %>
+  <br>
 </div>

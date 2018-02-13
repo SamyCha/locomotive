@@ -57,7 +57,8 @@ root to: 'pages#home'
   get '/admindashboard' => 'pages#admindashboard'
   get '/contact' => 'pages#contact'
   get '/quisommesnous' => 'pages#qui'
-    get '/devenir_vendeuse' => 'pages#devenir_vendeuse'
+  get '/concept' => 'pages#concept'
+  get '/devenir_vendeuse' => 'pages#devenir_vendeuse'
 
   get '/rating' => "reviews#rating"
   get '/mini_index' => 'products#mini_index'

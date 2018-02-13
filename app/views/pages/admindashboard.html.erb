@@ -1,8 +1,6 @@
 <section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
   <div class="container-fluid">
-    <br>
-    <%= link_to 'Créer un nouvel évenement', new_meeting_path,  class: 'btn btn-md btn-info' %>
-    <%= link_to 'Ajouter un article', new_product_path,  class: 'btn btn-md btn-info' %>
+
     <div class='row text-center'>
       Bonjour <strong><%= current_user.pseudo %></strong>,<br>
       Bienvenue dans le panneau d'administration, voici les actions requises:
@@ -14,17 +12,20 @@
             Vendeur(s) en attente de validation: <%= @sellerwaitinglist.count %></span>
             <span class="label label-primary">
               Commentaire(s) en attente de validation: <%= @reviewsnotactive.count %></span>
-               <span class="label label-primary">
-              Demande(s) de stand en attente de validation: XXXX</span>
             </div>
+            <br>
+            <%= link_to 'Créer un nouvel évenement', new_meeting_path,  class: 'btn btn-md btn-info' %>
+            <%= link_to 'Ajouter un article', new_product_path,  class: 'btn btn-md btn-info' %>
           </div>
           <br>
           <div class='row'>
             <!-- Les utilisateurs -->
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-sm-6">
+            <div class="text-center">
+            <h3><i class="fa fa-users" aria-hidden="true"></i> Les utilisateurs:</h3>
+                  </div>
               <div class="box-shadow">
                 <div class="panel-heading preview">
-                  <h4><i class="fa fa-users" aria-hidden="true"></i> Les utilisateurs:</h4>
                 </div>
                 <div class="panel-body">
                   Nombre de comptes enregistrés:
@@ -45,16 +46,18 @@
                 <br>
               </li>
             </ul><% end %>
-            <br><%= link_to "Voir tous les utilisateurs", users_path %>
+            <%= link_to "Voir tous les utilisateurs", users_path %>
           </div>
         </div>
       </div>
 
       <!-- Les articles -->
-      <div class="col-xs-12 col-sm-4">
+      <div class="col-xs-12 col-sm-6">
+        <div class="text-center">
+        <h3><i class="fa fa-female" aria-hidden="true"></i> Les articles:</h3>
+        </div>
         <div class="box-shadow">
           <div class="panel-heading preview">
-            <h4><i class="fa fa-female" aria-hidden="true"></i> Les articles:</h4>
           </div>
           <div class="panel-body">
             Nombre d'article enregistrés:
@@ -66,39 +69,26 @@
             Articles en attente de publication: <strong><%= @notactives.count %></strong><br>
             <% @notactives.each do |product| %>
 
-              <strong><%= link_to product.name, product_path(product) %></strong>
-                <span class="label label-info">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span>
-              <% end %><br>
-              <%= link_to "Voir tous les produits", all_products_path %>
-              <br>
-            </div>
+            <strong><%= link_to product.name, product_path(product) %></strong>
+            <span class="label label-info">  <%= link_to "publier l'article", publish_product_path(product.id), method: :patch %></span>
+            <% end %><br>
+            <%= link_to "Voir tous les produits", all_products_path %>
+            <br>
           </div>
         </div>
-        <!-- Demande de stand -->
-        <div class="col-xs-12 col-sm-4">
-          <div class="box-shadow">
-            <div class="panel-heading preview">
-              <h4> Demande de stand: </h4>
-            </div>
-            <div class="panel-body">
-              XXXXXX
-            </div>
-          </div>
-        </div>
-
-        <!-- Action requisepour les Review -->
-        <div class="row">
-          <div class="col-xs-12">
-            <% if @reviewsnotactive.count == 0 %>
-            <% else %>
-            <hr>
-            <div class="text-center">
-              <h3><i class="fa fa-comment-o" aria-hidden="true"></i> Les commentaires en attente:</h3>
-            </div>
+      </div>
+      <!-- Action requisepour les Review -->
+      <div class="row">
+        <div class="col-xs-6">
+          <% if @reviewsnotactive.count == 0 %>
+          Pas de commentaire en attente
+          <% else %>
+          <div class="text-center">
+            <h3><i class="fa fa-comment-o" aria-hidden="true"></i> Les commentaires en attente:</h3>
           </div>
           <% @reviews.each do |review| %>
           <% if !review.active? %>
-          <div class="col-xs-12 col-sm-3">
+          <div class="col-xs-12 col-sm-6">
             <div class="panel panel-default box-shadow">
               <div class="panel-heading preview">
                 <strong><%= link_to review.product.name, product_path(review.product) %></strong>
@@ -116,35 +106,35 @@
             <br>
           </div>
           <% end %>
-          <hr>
-          <div class='row'>
-            <!-- Mes évènements -->
-            <div class="col-xs-12 text-center">
-              <h3><i class="fa fa-calendar" aria-hidden="true"></i> Mes prochains évènements:</h3>
-              <% @meetings.each do |meeting| %>
-              <div class="col-xs-12 col-sm-2">
-                <div class="panel panel-default box-shadow">
-                  <div class="panel-heading preview">
+          <!-- Mes évènements -->
+          <div class="col-xs-6">
+          <div class="text-center">
+            <h3><i class="fa fa-calendar" aria-hidden="true"></i> Mes prochains évènements:</h3>
+            </div>
+            <% @meetings.each do |meeting| %>
+            <div class="col-xs-12 col-sm-4">
+              <div class="panel panel-default box-shadow">
+                <div class="panel-heading preview">
+                </div>
+                <div class="panel-body">
+                  <div class="col-xs-12 text-center">
+                    <strong><%= meeting.name %></strong>
+                    <hr>
                   </div>
-                  <div class="panel-body">
-                    <div class="col-xs-12 text-center">
-                      <strong><%= meeting.name %></strong>
-                      <hr>
-                    </div>
-                    <div class="col-xs-12 text-center">
-                      <%= image_tag "place.png", heigth:15, width: 30 %> <br><strong><%= meeting.address %></strong><br>
-                      <%= image_tag "date.png", heigth:20, width: 45 %> <br><%= meeting.start_time.strftime("%d/%m/%Y") %>
-                      <hr>
-                      <%= link_to "Modifier", edit_meeting_path(meeting) %>
-                      <br>
-                      <%= link_to 'Supprimer', meeting, method: :delete, data: { confirm: 'Are you sure?' } %>
-                    </div>
+                  <div class="col-xs-12 text-center">
+                    <%= image_tag "date.png", heigth:20, width: 45 %> <br><%= meeting.start_time.strftime("%d/%m/%Y") %>
+                    <hr>
+                    <%= link_to "Modifier", edit_meeting_path(meeting) %>
+                    <br>
+                    <%= link_to 'Supprimer', meeting, method: :delete, data: { confirm: 'Are you sure?' } %>
                   </div>
                 </div>
               </div>
-              <% end %>
             </div>
+            <% end %>
           </div>
+
+        </div>
 
               <!-- Mes articles ajoutés
               <div class="col-xs-12 col-sm-4">
@@ -170,9 +160,6 @@
               </div>
             </div>
           -->
-
-          <div></div>
-
           <% content_for(:after_js) do %>
           <%= javascript_tag do %>
           var handler = Gmaps.build('Google');

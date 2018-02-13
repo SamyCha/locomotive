@@ -3,8 +3,8 @@
     <div class="col-md-4 col-md-offset-4 text-center">
       <div class="box-shadow">
         <h4><%= image_tag "seller.png", heigth:70, width: 50 %> INSCRIPTION EN TANT QUE VENDEUSE</h4>
-        Découvrir <%=link_to "nos formules", devenir_vendeuse_path %><br>
-        <hr>
+
+
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
         <%= render 'shared/devise_errors' %>
@@ -24,26 +24,18 @@
         <div class="form-group">
           <%= f.password_field :password, autocomplete: "off", placeholder: "Créer un mot de passe", :class=>"input-small" %>
         </div>
-        <div class="form-group">
-
-              <%= f.select :pseudo, ["formule 5 articles", "formule 15 articles", "formule 25 articles"], :class=>"input-small" %>
-        </div>
-        <div class="form-group">
-          <%= f.text_field :pseudo, autofocus: true, class: "form-control", placeholder: "Code Promo", :class=>"input-small" %>
-        </div>
-
 
         <div class="form-group">
          <div class="col-xs-2">
           <%= f.check_box :choice, class: "form-control" %>
           </div>
           <div class="col-xs-7">
-          J'accepte les conditions pour devenir vendeuse
-        </div><br><br>
-        Consulter les  <%=link_to "conditions pour devenir vendeuse", devenir_vendeuse_path %>
+          J'accepte <%=link_to "les conditions pour devenir vendeuse", devenir_vendeuse_path %>
+        </div><br>
+
       </div>
       <div class="actions">
-        <%= f.submit "Inscription", class: 'btn btn-md btn-info' %>
+        <%= f.submit "Devenir vendeuse", class: 'btn btn-md btn-info' %>
       </div><br>
       <% end %>
     </div>
