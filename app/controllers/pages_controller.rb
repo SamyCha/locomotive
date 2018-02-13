@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home search contact qui devenir_vendeuse]
+  skip_before_action :authenticate_user!, only: %i[home search contact qui devenir_vendeuse concept]
   before_action :is_admin, only: %i[admindashboard publish_product user_to_seller]
 
   def home
@@ -72,7 +72,10 @@ def devenir_vendeuse
 end
 
 def qui
-  @meetings = Meeting.where('start_time < ?', Time.now)
+end
+
+def concept
+    @meetings = Meeting.where('start_time < ?', Time.now)
 end
 
 def contact

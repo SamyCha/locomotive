@@ -1,55 +1,19 @@
-
 <section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
   <div class="container">
-    <h4>Qui sommes-nous</h4>
+    <h4>Qui sommes-nous?</h4>
     <br>
-<div class="row">
-<div class="col-xs-3 text-center">
-
-     <%= image_tag "sarah.png", class:"avatar-bordered" %>
-<br> Sarah
-  </div>
-  <div class="col-xs-3 text-center">
-  <%= image_tag "sarah.png", class:"avatar-bordered" %><br> Johny
- </div>
-<div class="col-xs-3 text-center">
-  <%= image_tag "sarah.png", class:"avatar-bordered" %><br> Ginette
-</div>
- </div>
-<hr>
-    Les armoires de Paris  vous proposent
-    <br>
-    des marques tendances qui n'attendent plus que vous...
-    <br>
-    Le concept
-    Vous souhaitez libérer vos armoires pour mieux renouveler votre garde-robe ou pour booster votre porte-monnaie ?
-    <br>
-    Les armoires de Paris
-    <br>
-    vous proposent de vendre vos articles lors de ses évènements !
-    <br>
-    <h4>Nos précedents évenements:</h4>
     <div class="row">
-      <% @meetings.each do |meeting| %>
-      <div class="col-xs-12 col-sm-2">
-        <div class="panel panel-default box-shadow">
+      <div class="col-xs-6 text-center">
 
-          <div class="panel-heading preview">
-            <%= image_tag "foiredeparis.jpg", width: 20  %>
-          </div>
-          <div class="panel-body">
-            <div class="col-xs-12 text-center">
-              <strong><%= meeting.name %></strong>
-              <hr>
-            </div>
-            <div class="col-xs-12 text-center">
-              <%= image_tag "place.png", heigth:15, width: 30 %><br> <strong><%= meeting.address %></strong><br>
-              <%= image_tag "date.png", heigth:20, width: 45 %><br> <%= meeting.start_time.strftime("%d/%m/%Y") %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% end %>
+       <%= image_tag "equipe.jpg", width:300 %>
+     </div>
+     <div class="col-xs-6 text-center">
+      <%= image_tag "equipe2.jpg", width:300 %>
+
     </div>
-  </div>
+    <hr>
+    <div class="text-center">
+      Une équipe passionnée par la mode et les relations humaines vous proposant de donner une seconde vie à vos articles tendances sur nos évènements ou directement en ligne !  Vous souhaitez participer à nos évènements et y vendre vos articles ?<br> <%= link_to "Inscrivez-vous dés à présent", meetings_path, class:"btn btn-info" %>
+    </div>
+</div>
 </section>

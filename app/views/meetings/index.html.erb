@@ -4,7 +4,6 @@
       <% @meetings.each do |meeting| %>
       <div class="col-xs-12 col-sm-4">
         <div class="panel panel-default box-shadow">
-
           <div class="panel-heading preview">
             <%= image_tag "foiredeparis.jpg", width: 50  %>
           </div>
@@ -17,21 +16,14 @@
               <%= image_tag "place.png", heigth:15, width: 30 %> <strong><%= meeting.address %></strong><br>
               <%= image_tag "date.png", heigth:20, width: 45 %> <%= meeting.start_time.strftime("%d/%m/%Y") %>
               <hr>
+              <%= link_to "Reserver un stand", meeting.reservation, :target => "_blank", class: 'btn btn-md btn-info' %>
+              <%= link_to "Participer", meeting.participation, :target => "_blank", class: 'btn btn-md btn-info' %><br>
               <% if user_signed_in? %>
-
               <% if meeting == current_user.meetings %>
-              Demande en cours
+              Je participe à cet évenement
               <% else %>
-
-              <%= link_to "Réserver un stand", meeting_participate_path(meeting), method: :post, class: 'btn btn-md btn-info' %><br>
-              <%= link_to "ou sur event bride", "https://www.eventbrite.fr/o/les-armoires-de-paris-14507830874", :target => "_blank" %>
-
+               <%= link_to "Je vais à cet évenement", meeting_participate_path(meeting), method: :post  %>
               <% end %>
-
-              <% else %>
-              <%- if controller_name != 'sessions' %>
-              <%= link_to "connectez-vous", new_session_path(resource_name), class:"btn btn-info" %><br />
-              <% end -%>
               <% end %>
             </div>
           </div>

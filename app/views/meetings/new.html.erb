@@ -1,5 +1,10 @@
-<h1>Créer un nouvel évènement</h1>
-
-<%= render 'form', meeting: @meeting %>
-
-<%= link_to 'Back', meetings_path %>
+<section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
+  <div class="container">
+    <div class="box-shadow">
+    <br>
+      <h3>Créer un nouvel évènement</h3>
+      <hr>
+      <%= render 'form', meeting: @meeting %>
+    </div>
+  </div>
+</section>
