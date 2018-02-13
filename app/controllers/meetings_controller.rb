@@ -65,7 +65,7 @@ class MeetingsController < InheritedResources::Base
 end
 
 def meeting_params
-  params.require(:meeting).permit(:name, :details, :address, :start_time, :highlight, :user_id, :reservation, :participation)
+  params.require(:meeting).permit(:name, :details, :address, :start_time, :highlight, :user_id, :reservation, :participation, :avatar)
 end
 
 def is_admin
