@@ -14,7 +14,7 @@ class MeetingsController < InheritedResources::Base
 
 
   def index
-    @meetings = Meeting.where('start_time > ?', Time.now)
+    @meetings = Meeting.where('start_time > ?', Time.now).order("start_time ASC")
   end
 
   def new
