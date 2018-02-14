@@ -37,15 +37,10 @@ autocomplete('#aa-search-input',
 </div>
 </div>
 <br>
-
-
 <div class="row">
   <div class="content">
     <div id="searchbox">
       <div class="col-xs-12">
-
-
-
         <ul class="sidebar-list">
           <li class="sidebar-item"><i class="fa fa-search-plus" aria-hidden="true"></i>
           <%= link_to "Les articles", search_path,
@@ -60,13 +55,10 @@ autocomplete('#aa-search-input',
               <% else %>
               Pas encore de coup de coeur!
               <% end %>
-
-
               <% end %></li>
               <li class="sidebar-item"><i class="fa fa-star-half-o" aria-hidden="true"></i>  <%= link_to "Notez un achat", rating_path, class: "navbar-wagon-item navbar-wagon-link" %>
               </li>
               <% end %>
-
             </ul>
             <div class="box-shadow">
             ALGOLIA INSTANT-SEARCH<br>
@@ -75,8 +67,6 @@ autocomplete('#aa-search-input',
             </div>
           </div>
         </div>
-
-
         <div class="col-xs-12">
           <% @products.each do |product| %>
           <div class="col-xs-12 col-sm-6 col-md-3">
@@ -92,17 +82,12 @@ autocomplete('#aa-search-input',
                 <div class="row">
                   <div class="col-xs-12">
                     <strong><%= product.price %> euros</strong>
-
                   </div>
                 </div>
-
-
                 <div class="col-xs-6">
-
                   <% if user_signed_in? %>
                   <% if @booked %>
                   <%= image_tag "heart.png", heigth:15, width: 30 %>
-
                   <% else %>
                   <%= form_for([product, product.reservations.new]) do |f| %>
                   <%= f.hidden_field :product_id, value: product.id %>
@@ -110,19 +95,12 @@ autocomplete('#aa-search-input',
                   <% end %>
                   <% end %>
                   <% end %>
-
                 </div>
               </div>
-
-
-
-
             </div>
           </div>
           <% end %>
         </div>
-
-
       </div>
     </div>
   </div>

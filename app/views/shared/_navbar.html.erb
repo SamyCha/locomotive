@@ -16,23 +16,35 @@
 <!-- Right Navigation -->
 <div class="navbar-wagon-right hidden-xs hidden-sm">
   <%= link_to "Le concept", concept_path , class: "navbar-wagon-item navbar-wagon-link" %>
-<%= link_to "Trouver des articles", search_path , class: "navbar-wagon-item navbar-wagon-link" %>
- <%= link_to "Suivre des évènements", meetings_path , class: "navbar-wagon-item navbar-wagon-link" %>
+  <%= link_to "Les évènements", meetings_path , class: "navbar-wagon-item navbar-wagon-link" %>
+  <%= link_to "Sélectionner des articles", search_path , class: "navbar-wagon-item navbar-wagon-link" %>
+
 
   <% if user_signed_in? %>
   <!-- Links when logged in -->
+<% if current_user.client? %>
+<%= link_to your_articles_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+<i class="fa fa-heart" aria-hidden="true"></i>
+              <% if current_user.reservations.count == 1 %>
+              Mon coup de coeur
+              <% elsif current_user.reservations.count > 1 %>
+              Mes <%= current_user.reservations.count %> coups de coeur
+              <% else %>
+              Pas encore de coup de coeur!
+              <% end %>
+              <% end %>
+<% end %>
+
   <% if current_user.admin? %>
   <i class="fa fa-unlock" aria-hidden="true"></i>
   <%= link_to "Dashboard Admin", admindashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
   <% end %>
   <!-- if user is seller -->
   <% if current_user.seller? %>
-
-  <i class="fa fa-money" aria-hidden="true"></i>
   <%= link_to "Vendre des articles", products_path, class: "navbar-wagon-item navbar-wagon-link" %>
   <% end %>
 
-  <i class="fa fa-envelope" aria-hidden="true"></i><%= link_to "Messages", conversations_path, class: "navbar-wagon-item navbar-wagon-link" %>
+  <%= link_to "Messages", conversations_path, class: "navbar-wagon-item navbar-wagon-link" %>
   <!-- Avatar with dropdown menu -->
   <div class="navbar-wagon-item">
     <div class="dropdown">
