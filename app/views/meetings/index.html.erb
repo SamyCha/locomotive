@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <% @meetings.each do |meeting| %>
-      <div class="col-xs-12 col-sm-4">
+      <div class="col-xs-12 col-sm-3">
         <div class="panel panel-default box-shadow">
           <div class="panel-heading preview">
             <%= image_tag meeting.avatar.url(:thumb) %>
@@ -17,7 +17,7 @@
               <%= image_tag "place.png", heigth:15, width: 30 %> <strong><%= meeting.address %></strong><br>
               <%= image_tag "date.png", heigth:20, width: 45 %> <%= meeting.start_time.strftime("%d/%m/%Y") %>
               <hr>
-              <%= link_to "Reserver un stand", meeting.reservation, :target => "_blank", class: 'btn btn-md btn-info' %>
+              <%= link_to "Reserver un stand", meeting.reservation, :target => "_blank", class: 'btn btn-md btn-info' %><br><br>
               <%= link_to "Participer", meeting.participation, :target => "_blank", class: 'btn btn-md btn-info' %><br>
               <% if user_signed_in? %>
               <% if meeting == current_user.meetings %>

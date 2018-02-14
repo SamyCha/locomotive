@@ -1,7 +1,7 @@
 <div id="hidden-mobile">
   <div class="col-xs-12">
     <div class="col-xs-12 text-center">
-      <p>___________</p><h4><strong>Les articles à proximité</strong></h4>
+      <p>___________</p><h4><strong>Les articles autour de moi (<%= current_user.distance %>kms)</strong></h4>
     </div>
     <% @proximity.each do |product| %>
     <div class="col-xs-12 col-sm-6 col-md-3">

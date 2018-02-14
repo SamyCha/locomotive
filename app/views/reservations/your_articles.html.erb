@@ -21,58 +21,62 @@
             <% end %>
           </ul>
         </div>
-
         <div class="col-md-9">
-
-            <div class="col-xs-12">
-              <% if @articles.count != 0 %>
-              <% @articles.order("id DESC").each do |article| %>
-
-              <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="panel panel-default box-shadow">
-                  <div class="panel-heading preview">
-                    <%= link_to product_path(article.product) do %>
-                    <%= image_tag article.product.photos[0].image.url, style: 'height:120px;width:220px' if article.product.photos.length > 0 %>
-                    <% end %>
+          <div class="col-xs-12">
+            <% if @articles.count != 0 %>
+            <% @articles.order("id DESC").each do |article| %>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="panel panel-default box-shadow">
+                <div class="panel-heading preview">
+                  <%= link_to product_path(article.product) do %>
+                  <%= image_tag article.product.photos[0].image.url, style: 'height:120px;width:220px' if article.product.photos.length > 0 %>
+                  <% end %>
+                </div>
+                <div class="panel-body">
+                  <div class="col-xs-12 text-center">
+                    <h5><%= link_to article.product.name, product_path(article.product) %><br>
+                      ref. <%= article.product_id %>
+                    </h5><%= image_tag "brand.png", heigth:12, width: 24 %> <%= article.product.brand %><br>
+                    <hr>
                   </div>
-                  <div class="panel-body">
-                    <div class="col-xs-12 text-center">
-                      <h5><%= link_to article.product.name, product_path(article.product) %><br>
-                        ref. <%= article.product_id %>
-                      </h5><%= image_tag "brand.png", heigth:12, width: 24 %> <%= article.product.brand %><br>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <strong><%= article.product.price %> euros</strong>
+
+                      <% if article.product.active %>
+                      <!-- Si le produit est publié -->
+                      <span class="label label-success">article en vente</span>
+
+                      <% elsif article.product.status? %>
+                      <!-- Si le produit est vendu -->
+                      <span class="label label-danger">article vendu</span>
+                      <% else %>
+                      <!-- Si le produit est dépublié -->
+                      <span class="label label-danger">article dépublié</span>
+                      <% end %>
                       <hr>
-                    </div>
-                    <div class="row">
-                      <div class="col-xs-12">
-                        <strong><%= article.product.price %> euros</strong>
-
-                        <% if article.product.active %>
-                        <!-- Si le produit est publié -->
-                        <span class="label label-info">article en vente</span>
-
-                        <% elsif article.product.status? %>
-                        <!-- Si le produit est vendu -->
-                        <span class="label label-danger">article vendu</span>
-                        <% else %>
-                        <!-- Si le produit est dépublié -->
-                        <span class="label label-danger">article dépublié</span>
-                        <% end %>
-                        <hr>
-                        <%= link_to user_path(article.product.user), class: 'btn btn-md btn-danger' do %>
-                        Contacter le vendeur
-                        <% end %>
-                        retirer de ma liste
-                      </div>
+                      <%= link_to user_path(article.product.user), class: 'btn btn-md btn-info' do %>
+                      Contacter le vendeur
+                      <% end %>
+                      retirer de ma liste
                     </div>
                   </div>
                 </div>
               </div>
-              <% end %>
             </div>
-            <% else %>
-            Votre liste est vide
             <% end %>
-
+          </div>
+          <% else %>
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <br>
+              <p>Votre liste est vide</p>
+              <div class="row">
+                <%= link_to "Voir les artticles", search_path, class:"btn btn-info" %>
+              </div>
+            </div>
+          </div>
+          <% end %>
         </div>
       </div>
-    </section>
+</section>

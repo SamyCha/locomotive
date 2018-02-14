@@ -1,27 +1,23 @@
 <section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
-<div class="container-fluid">
- <% if current_user.seller? %>
- <div class="row">
-  <div class="col-md-3">
-    <ul class="sidebar-list">
-      <li class="sidebar-item"><i class="fa fa-female" aria-hidden="true"></i> <%= link_to "Mes articles", products_path,
-        class: "sidebar-link" %></li>
-        <li class="sidebar-item"><i class="fa fa-money" aria-hidden="true"></i>
-         <%= link_to "Mes ventes", your_reservations_path,
-         class: "sidebar-link active" %></li>
-         <li class="sidebar-item">
-          <%= link_to new_product_path do %>
-          <i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un article à la boutique
-          <% end %></li>
-        </ul>
-      </div>
-
-      <div class="col-md-9">
-
-
-            <% @products.each do |product| %>
-            <% if product.status? %>
-
+  <div class="container-fluid">
+   <% if current_user.seller? %>
+   <div class="row">
+    <div class="col-md-3">
+      <ul class="sidebar-list">
+        <li class="sidebar-item"><i class="fa fa-female" aria-hidden="true"></i> <%= link_to "Mes articles", products_path,
+          class: "sidebar-link" %></li>
+          <li class="sidebar-item"><i class="fa fa-money" aria-hidden="true"></i>
+           <%= link_to "Mes ventes", your_reservations_path,
+           class: "sidebar-link active" %></li>
+           <li class="sidebar-item">
+            <%= link_to new_product_path do %>
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un article à la boutique
+            <% end %></li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <% @products.each do |product| %>
+          <% if product.status? %>
           <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="panel panel-default box-shadow">
               <div class="panel-heading preview">
@@ -34,39 +30,24 @@
                   <hr>
                 </div>
                 <div class="row">
-                <span class="label label-danger">produit vendu</span>
+                  <span class="label label-danger">produit vendu</span>
                   <div class="col-xs-12">
-                <% if product.active? %>
-                <span class="label label-success">annonce publiée</span>
-                <% else %>
-                <span class="label label-default">annonce dépubliée</span>
-                <% end %>
+                    <% if product.active? %>
+                    <span class="label label-success">annonce publiée</span>
+                    <% else %>
+                    <span class="label label-default">annonce dépubliée</span>
+                    <% end %>
                   </div>
                 </div>
-<br>
-           Code à transmettre à l'acheteur: <br><strong><%= product.price*10 %></strong>
-
+                <br>
+                Code à transmettre à l'acheteur: <br><strong><%= product.price*10 %></strong>
               </div>
             </div>
           </div>
-
-
-
-
-
-
-
-
-
-
-
-
-            <% end %>
-            <% end %>
-
-
+          <% end %>
+          <% end %>
+        </div>
       </div>
+      <% end %>
     </div>
-    <% end %>
-  </div>
   </section>

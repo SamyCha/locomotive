@@ -1,32 +1,36 @@
  <section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
-  <div class="container">
-
-   <h4>Le concept</h4>
-   XXXXXXXXXXXXXX
-   <h4>Nos précedents évenements:</h4>
-   <div class="row">
-
-    <% @meetings.each do |meeting| %>
-    <div class="col-xs-12 col-sm-2">
-      <div class="panel panel-default box-shadow">
-
-        <div class="panel-heading preview">
-          <%= image_tag "foiredeparis.jpg", width: 20  %>
-        </div>
-        <div class="panel-body">
-          <div class="col-xs-12 text-center">
-            <strong><%= meeting.name %></strong>
-            <hr>
+   <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+       <h4>Le concept:</h4>
+       Les armoires de Paris vous proposent de vendre vos articles en ligne ou lors de ses évènements! Venez chiner et découvrir ses plus beaux articles sur ses évènements éphémères lors de ses journées vide dressing.<br> Rendez-vous mode incontournables avec :Des évènements dans Paris durant les week-ends, des articles de marques d'occasion mais également neufs en excellent état à des prix incroyables !<br><br>
+       <%= link_to meetings_path, class: "btn btn-info" do %>
+       Découvrez les prochains évenements
+       <% end %>
+     </div>
+     <div class="col-xs-12 col-sm-4">
+     </div>
+     <div class="col-xs-12 col-sm-4">
+       <h4>Nos derniers évenements:</h4>
+       <% @meetings.each do |meeting| %>
+       <div class="col-xs-6">
+        <div class="panel panel-default box-shadow">
+          <div class="panel-heading preview">
           </div>
-          <div class="col-xs-12 text-center">
-
-            <%= image_tag "date.png", heigth:20, width: 45 %><br> <%= meeting.start_time.strftime("%d/%m/%Y") %><br>
-            <%= link_to "détails", meeting.participation, :target => "_blank", class: 'btn btn-md btn-info' %>
+          <div class="panel-body">
+            <div class="col-xs-12 text-center">
+              <strong><%= meeting.name %></strong>
+              <hr>
+            </div>
+            <div class="col-xs-12 text-center">
+              <%= image_tag "date.png", heigth:20, width: 45 %><br> <%= meeting.start_time.strftime("%d/%m/%Y") %><br>
+              <%= link_to "détails", meeting.participation, :target => "_blank", class: 'btn btn-md btn-info' %>
+            </div>
           </div>
         </div>
       </div>
+      <% end %>
     </div>
-    <% end %>
   </div>
 </div>
 </section>
