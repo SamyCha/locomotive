@@ -7,6 +7,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+case Rails.env
+when "development"
+
 User.destroy_all
 puts 'All tables are destroyed!'
 
@@ -50,3 +54,8 @@ Product.create!(name: 'Sac Vuitton', brand: 'Vuitton', size: 'petit', color: Fak
 Product.create!(name: 'Ceinture Marlboro', brand: 'Marlboro Classique', size: 'grande', color: Faker::Color.color_name, description: Faker::Food.dish, category: 'ceinture', state: 'neuf', active: true, status: 0, address: Faker::Address.city, price: Faker::Number.between(5, 100), user_id: User.find(5).id)
 
 puts '----- Seed done ! -----'
+
+when "production"
+
+    Article.reindex!
+end

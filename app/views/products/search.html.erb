@@ -15,7 +15,7 @@
       <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
       <!-- Initialize autocomplete menu -->
       <script>
-        var client = algoliasearch('012967GRTQ', 'a3f100606d982f64d7c25410c672f5f5');
+        var client = algoliasearch(ENV['ALGOLIA_ID'], ENV['AGOLIA_SEARCH_KEY']);
         var index = client.initIndex('Product');
 //initialize autocomplete on search input (ID selector must match)
 autocomplete('#aa-search-input',

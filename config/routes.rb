@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'search/index' => 'search#index'
+
   resources :meetings
 
 resources :users, only: [:index]
