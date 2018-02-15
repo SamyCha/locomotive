@@ -1,73 +1,62 @@
 <section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 text-center">
+      <div class="col-xs-12 col-sm-4">
         <h3>Vous souhaitez de venir vendeuse?</h3>
-         <h4>Aucun frais pris auprès de vos clientes.</h4>
-        Rien de plus simple, <%= link_to "inscrivez-vous sur notre site", new_user_registration_path %> et acceptez les conditions. Vous serez rediriger vers notre formulaire de paiement. Nous confirmerons votre demande de devenir vendeuse et pourrez dès lors mettre en ligne vos articles respectant nos conditions.<br>
-
-        Connaître nos conditions<br><br>
-        <div class="row">
-          <div class="col-xs-12 col-md-4">
-            <div class="panel panel-default box-shadow">
-              <div class="panel-heading preview">
-                <strong>formule 5 articles</strong>
-              </div>
-              <div class="panel-body">
-                Je mets en ligne 5 articles<br>
-                Durée d'utilisation: 1an<br>
-                <strong>5 euros</strong>
-                <div class="col-xs-12 text-center">
-                 <%= link_to new_user_registration_path, class: "btn btn-info" do %>
-                 Choisir
-                 <% end %>
-               </div>
-             </div>
-           </div>
-         </div>
-          <div class="col-xs-12 col-md-4">
-            <div class="panel panel-default box-shadow">
-              <div class="panel-heading preview">
-                <strong>formule 15 articles</strong>
-              </div>
-              <div class="panel-body">
-                Je mets en ligne 15 articles<br>
-                Durée d'utilisation: 1an<br>
-                <strong>11 euros</strong>
-                <div class="col-xs-12 text-center">
-                 <%= link_to new_user_registration_path, class: "btn btn-info" do %>
-                 Choisir
-                 <% end %>
-               </div>
-             </div>
-           </div>
-         </div>
-          <div class="col-xs-12 col-md-4">
-            <div class="panel panel-default box-shadow">
-              <div class="panel-heading preview">
-                <strong>formule 25 articles</strong>
-              </div>
-              <div class="panel-body">
-                Je mets en ligne 25 articles<br>
-                Durée d'utilisation: 1an<br>
-                <strong>16 euros</strong>
-                <div class="col-xs-12 text-center">
-                 <%= link_to new_user_registration_path, class: "btn btn-info" do %>
-                 Choisir
-                 <% end %>
-               </div>
-             </div>
+        <h4>Aucun frais pris auprès de vos clientes.</h4>
+        Rien de plus simple, <%= link_to "inscrivez-vous", new_user_registration_path %> et acceptez les conditions. Vous serez rediriger vers notre formulaire de paiement. Nous confirmerons votre demande de devenir vendeuse et pourrez dès lors mettre en ligne vos articles respectant nos conditions.
+        <%= link_to "Connaître nos conditions", conditions_path %> <br><br>
+        <%= link_to "Devenir vendeuse", new_user_registration_path, class:"btn btn-info" %>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <div class="panel panel-default box-shadow">
+          <div class="panel-heading preview">
+            <strong>formule 5 articles</strong>
+          </div>
+          <div class="panel-body">
+            Je mets en ligne 5 articles<br>
+            Durée d'utilisation: 1an<br>
+            <strong>5 euros</strong>
+            <div class="col-xs-12 text-center">
+             <%= link_to new_user_registration_path, class: "btn btn-info" do %>
+             Choisir
+             <% end %>
            </div>
          </div>
        </div>
-       Tous les articles mis en ligne doivent respecter nos condiitons pour être publiés. Nous nous reservons le droit de refuser votre article, si celui-ci ne correspond pas à nos critères.
-
-       Vous disposerez d'un espace vous permettant de communiquer sur vos articles et d'entrer en contact avec nos acheteuses.<br>
-       Vos articles permettront aux personnes situées à proximité de consulter rapidement vos articles et entrer en contact avec vous! <br>
-       Enfin vos acheteuses sauront ou vous trouvez, si vous participez à nos évenements
-
-       Lorsque vous vendez un article, vous donnez aussi le droit à votre acheteur de commenter son achat en lui communiquant un code aprés la vente. Ces commentaires vous permettent de rassurer vos prochaines clientes sur la qualité de vos articles et sur votre serieux.
+       <div class="panel panel-default box-shadow">
+        <div class="panel-heading preview">
+          <strong>formule 15 articles</strong>
+        </div>
+        <div class="panel-body">
+          Je mets en ligne 15 articles<br>
+          Durée d'utilisation: 1an<br>
+          <strong>11 euros</strong>
+          <div class="col-xs-12 text-center">
+           <%= link_to new_user_registration_path, class: "btn btn-info" do %>
+           Choisir
+           <% end %>
+         </div>
+       </div>
+     </div>
+     <div class="panel panel-default box-shadow">
+      <div class="panel-heading preview">
+        <strong>formule 25 articles</strong>
+      </div>
+      <div class="panel-body">
+        Je mets en ligne 25 articles<br>
+        Durée d'utilisation: 1an<br>
+        <strong>16 euros</strong>
+        <div class="col-xs-12 text-center">
+         <%= link_to new_user_registration_path, class: "btn btn-info" do %>
+         Choisir
+         <% end %>
+       </div>
      </div>
    </div>
  </div>
+</div>
+</div>
 </section>

@@ -1,53 +1,29 @@
 <!-- Informations principales -->
-
-    <div class="row text-center">
-
-
-       <i class="fa fa-female fa-2x" aria-hidden="true"></i>
-       C<%= @product.category %><br>
-
-
-      <%= image_tag "brand.png", heigth:20, width: 40 %>
-     <%= @product.brand %><br>
-
-
-     <%= image_tag "size.png", heigth:20, width: 40 %>
-     <%= @product.size %><br>
-
-
-     <%= image_tag "color.png", heigth:20, width: 40 %>
-    <%= @product.color %><hr>
-
-<p> (<%= @product.state %>)<%= @product.description %></p><hr>
-
-
-
-
-
-      <i class="fa fa-map-marker" aria-hidden="true"></i> article situé: <%= @product.address %>
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-   <div class="col-md-3 text-center">
-    <%= image_tag avatar_url(@product.user), class:"img-circle avatar-large" %>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <i class="fa fa-female fa" aria-hidden="true"></i>:
+      <%= @product.category %><br>
+      <%= image_tag "brand.png", heigth:10, width: 20 %>:
+      <%= @product.brand %><br>
+      <%= image_tag "size.png", heigth:10, width: 20 %>:
+      <%= @product.size %><br>
+      <%= image_tag "color.png", heigth:10, width: 20 %>:
+      <%= @product.color %><br>
+      <i class="fa fa-female fa" aria-hidden="true"></i>: <%= @product.state %>
+    </div>
+    <div class="col-md-6 ">
+    <!--
+      <%= image_tag avatar_url(@product.user), class:"img-circle avatar-large" %>
+      <br>
+    -->
+    vendeur: <strong><%= link_to @product.user.pseudo ,user_path(@product.user) %></strong>
     <br>
-    <br>
-    article vendu par:<br>
-    <strong><%= link_to @product.user.pseudo ,user_path(@product.user) %></strong>
-    <br>
-    <span id="average_rating_header"></span> <%= @product.user.reviews.count %> commentaires<hr>
+    <span id="average_rating_header"></span> <%= @product.user.reviews.count %> commentaires
+    <% if @product.active? %>
+    <%= render 'articles_map' %>
+    <% end %>
   </div>
-
+</div>
+</div>

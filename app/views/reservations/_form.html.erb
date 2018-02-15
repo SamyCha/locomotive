@@ -1,38 +1,45 @@
 
-  <strong><%= @product.name %></strong>
-  <div class= "row">
-      <p> Cet article plaît déjà à <%= @product.reservations.count %> utilisateur(s)</p>
-    <div class="col-md-12 price_tag text-center">
-      <span><%= @product.price %> euros</span>
-    </div>
-  </div>
+<h3><strong><%= @product.name %></strong></h3>
 
-
-  <%= form_for([@product, @product.reservations.new]) do |f| %>
-  <%= f.hidden_field :product_id, value: @product.id %>
-  <%= f.hidden_field :price, value: @product.price %>
-  <br>
-  <div class="col-md-12 text-center">
-    <% if user_signed_in? && current_user != @user %>
-    <% if @booked %>
-    <%= link_to your_articles_path,  class: 'btn btn-md btn-danger' do %>
-    Un vos coups de coeur <i class="fa fa-heart" aria-hidden="true"></i>
-    <% end %>
-    <% else %>
-    <%= f.submit "Mettre dans mes coups de coeur", class: 'btn btn-md btn-success' %>
-
-    <%= link_to "Contacter son vendeur", new_message_path(sender_id: current_user.id, recipient_id: @user.id), method: 'get', class: 'btn btn-md btn-danger' %>
-    <% end %>
-
-    <% elsif user_signed_in? && current_user == @product.user %>
-    <%= link_to "Mettre à jour votre article", edit_product_path(@product), class: 'btn btn-md btn-danger' %><br>
-    (dernière mise à jour:<%= timeago_tag @product.updated_at, :lang => :fr  %>)
-    <% else %>
-    <%= link_to new_user_session_path, class: 'btn btn-md btn-danger' do %>
-    Se connecter pour contacter le vendeur
-    <% end %>
-    <% end %>
-  </div>
+<div class= "row">
+  <% if @product.reservations.count >= 1 %>
+  <i class="fa fa-heart" aria-hidden="true"></i> <%= @product.reservations.count %> utilisateur intéréssé
+  <% elsif @product.reservations.count > 1 %>
+  <i class="fa fa-heart" aria-hidden="true"></i><%= @product.reservations.count %> utilisateurs intéréssés
   <% end %>
+</div>
+
+<h4><strong><%= @product.price %> euros</strong></h4>
+<%= @product.description %><br>
+<i class="fa fa-map-marker" aria-hidden="true"></i><%= @product.address %>
+
+
+<%= form_for([@product, @product.reservations.new]) do |f| %>
+<%= f.hidden_field :product_id, value: @product.id %>
+<%= f.hidden_field :price, value: @product.price %>
+<br>
+<div class="col-md-12 text-center">
+  <% if user_signed_in? && current_user != @user %>
+  <% if @booked %>
+  <%= link_to your_articles_path,  class: 'btn btn-md btn-info' do %>
+  Un vos coups de coeur <i class="fa fa-heart" aria-hidden="true"></i>
+  <% end %>
+  <%= link_to "Contacter son vendeur", new_message_path(sender_id: current_user.id, recipient_id: @user.id), method: 'get', class: 'btn btn-md btn-danger' %>
+  <% else %>
+  <%= f.submit "Ajouter à mes coups de coeur", class: 'btn btn-md btn-info' %>
+
+  <%= link_to "Contacter son vendeur", new_message_path(sender_id: current_user.id, recipient_id: @user.id), method: 'get', class: 'btn btn-md btn-danger' %>
+  <% end %>
+
+  <% elsif user_signed_in? && current_user == @product.user %>
+  <%= link_to "Mettre à jour votre article", edit_product_path(@product), class: 'btn btn-md btn-danger' %><br>
+  (dernière mise à jour:<%= timeago_tag @product.updated_at, :lang => :fr  %>)
+  <% else %>
+  <%= link_to new_user_session_path, class: 'btn btn-md btn-info' do %>
+  Contacter le vendeur
+  <% end %>
+  <% end %>
+</div>
+<% end %>
 
 
