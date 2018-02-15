@@ -1,44 +1,32 @@
 <section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
-<div class="container">
-  <div class="panel panel-default box-shadow">
-    <div class="panel-body">
-    <div class="row">
-     <div class="col-md-7">
- <% if @product.active? %>
-      <%= render 'caroussel' %>
-<% end %>
-</div>
-<div class="col-md-5">
-<% if @product.active? %>
-    <%= render 'reservations/form' %>
-  <% end %>
-</div>
-  <% if @product.active? %>
-    <%= render 'articles_infos' %>
-  <% elsif @product.active? == false && @product.status? %>
-  <div class="row text-center">
-  <h2><strong> PRODUIT VENDU </strong></h2>
-  </div>
-    <%= render 'articles_infos' %>
-  <% else %>
-    Le produit est dépublié
-  <% end %>
-</div>
-
-
-
-
-
-
-
-  <% if @product.active? == false && @product.status? %>
-    <%= render 'reviews' %>
-  <% end %>
-
-  <% if @product.active? %>
-    <%= render 'articles_map' %>
-   <% end %>
-
+  <div class="container">
+    <div class="panel panel-default box-shadow">
+      <div class="panel-body">
+        <div class="row">
+         <div class="col-md-6">
+           <% if @product.active? %>
+           <%= render 'caroussel' %>
+           <% end %>
+         </div>
+         <div class="col-md-6">
+          <% if @product.active? %>
+          <%= render 'reservations/form' %>
+          <% end %>
+          <% if @product.active? %>
+          <%= render 'articles_infos' %>
+          <% elsif @product.active? == false && @product.status? %>
+          <div class="row text-center">
+            <h2><strong> PRODUIT VENDU </strong></h2>
+          </div>
+          <%= render 'articles_infos' %>
+          <% else %>
+          Le produit est dépublié
+          <% end %>
+        </div>
+      </div>
+      <% if @product.active? == false && @product.status? %>
+      <%= render 'reviews' %>
+      <% end %>
     </div>
   </div>
 </div>
