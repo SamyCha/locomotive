@@ -76,9 +76,9 @@
                   $.ajax({
 
                       // make a get request to the server
-                      type: "GET",
+                      type: "POST",
                       // get the url from the href attribute of our link
-                      url: "/users",
+                      url: "/search",
                       // send the last id to our rails app
                       data: {
                           id: last_id

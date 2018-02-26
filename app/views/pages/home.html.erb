@@ -21,8 +21,16 @@
     <div class="box-shadow">
      <% if !user_signed_in? %>
      <section>
-      <h4><%= image_tag "signup.png", heigth:65, width: 45 %>
-        Inscrivez-vous gratuitement</h4>
+
+      <div class="row">
+        <div class="col-xs-3">
+        <%= image_tag "signup.png", heigth:95, width: 75 %>
+          </div>
+          <div class="col-xs-9">
+            <h5>Etre informé de nos prochains évenements et derniers articles</h5>
+          </div>
+        </div>
+
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
         <%= f.text_field :pseudo, autofocus: true, placeholder: "Pseudo",:class=>"input-small" %><br><br>
@@ -33,6 +41,8 @@
           <input id="locality" name="locality" disabled type="hidden">
           <input id="country" name="country" disabled type="hidden">
         </div>
+
+<!--
         Articles pouvant m'interesser:
         <div class="col-xs-1">
          0 km
@@ -43,13 +53,16 @@
       <div class="col-xs-1">
        1000 kms
      </div><br><br>
+-->
+
+
      <div class="form-group">
       <%= f.email_field :email, autofocus: true, placeholder: "adresse email", :class=>"input-small" %><br>
     </div>
     <div class="form-group">
       <%= f.password_field :password, autocomplete: "off", placeholder: "Créer un mot de passe", :class=>"input-small" %>
     </div>
-    <div><%= f.submit "S'inscrire",class: "btn btn-info"  %></div><br>
+    <div><%= f.submit "S'inscrire gratuitement",class: "btn btn-info"  %></div><br>
     <% end %>
     <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
     <strong><%= image_tag "seller.png", heigth:35, width: 25 %> <%= link_to "Devenir vendeuse", devenir_vendeuse_path %><br />

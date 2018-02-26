@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
 #List of all users
 def index
-  @users = User.all.order('created_at DESC')
+    @users = User.all.order('created_at DESC')
 end
 
 

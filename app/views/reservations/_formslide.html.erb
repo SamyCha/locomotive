@@ -19,15 +19,6 @@
            </div>
            <div><%= image_tag product.photos[0].image.url(:medium) if product.photos.length > 0  %>
            </div>
-<!--
-          <%= form_for([product, product.reservations.new]) do |f| %>
-          <%= f.hidden_field :product_id, value: product.id %>
-          <%= f.hidden_field :price, value: product.price %>
-          <br>
-          <%= f.submit nil, :class => 'btn btn-primary' %>
-          <% end %>
-
-        -->
         <div>
           <%= product.price %> euros<br></div>
           <div><h2><i class="fa fa-map-marker"></i> <%= product.address %></h2><br>

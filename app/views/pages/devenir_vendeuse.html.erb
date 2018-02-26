@@ -2,61 +2,41 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-4">
-        <h3>Vous souhaitez de venir vendeuse?</h3>
-        <h4>Aucun frais pris auprès de vos clientes.</h4>
-        Rien de plus simple, <%= link_to "inscrivez-vous", new_user_registration_path %> et acceptez les conditions. Vous serez rediriger vers notre formulaire de paiement. Nous confirmerons votre demande de devenir vendeuse et pourrez dès lors mettre en ligne vos articles respectant nos conditions.
-        <%= link_to "Connaître nos conditions", conditions_path %> <br><br>
+        <h3>Vous souhaitez devenir vendeuse au cours de nos évenements?</h3>
+        <h4>Choisissez l'évenement qui vous interesse.</h4>
+        Rien de plus simple: Choisissez l'évenement ou les evenements qui vous interessent, et inscrivez-vous via notre page event-bride.
+        <%= link_to "Prenez connaissance nos conditions", conditions_path %> <br><br>
+        <!--
         <%= link_to "Devenir vendeuse", new_user_registration_path, class:"btn btn-info" %>
+        -->
       </div>
       <div class="col-xs-12 col-sm-4">
       </div>
-      <div class="col-xs-12 col-sm-4">
-        <div class="panel panel-default box-shadow">
-          <div class="panel-heading preview">
-            <strong>formule 5 articles</strong>
+      <ul>
+       <% @meetings.each do |meeting| %>
+
+
+       <div class="col-xs-12 col-sm-4">
+        <li>
+          <div class="panel panel-default box-shadow">
+            <div class="panel-heading preview">
+              <strong><%= meeting.name %></strong>
+            </div>
+            <div class="panel-body">
+              <br>
+              <%= meeting.details %><br>
+              <%= meeting.address %><br>
+              <strong><%= meeting.start_time.strftime("%d/%m/%Y") %></strong>
+              <div class="col-xs-12 text-center">
+
+                <%= link_to "Reserver un stand", meeting.reservation, :target => "_blank", class: 'btn btn-md btn-info' %>
+              </div>
+            </div>
           </div>
-          <div class="panel-body">
-            Je mets en ligne 5 articles<br>
-            Durée d'utilisation: 1an<br>
-            <strong>5 euros</strong>
-            <div class="col-xs-12 text-center">
-             <%= link_to new_user_registration_path, class: "btn btn-info" do %>
-             Choisir
-             <% end %>
-           </div>
-         </div>
-       </div>
-       <div class="panel panel-default box-shadow">
-        <div class="panel-heading preview">
-          <strong>formule 15 articles</strong>
-        </div>
-        <div class="panel-body">
-          Je mets en ligne 15 articles<br>
-          Durée d'utilisation: 1an<br>
-          <strong>11 euros</strong>
-          <div class="col-xs-12 text-center">
-           <%= link_to new_user_registration_path, class: "btn btn-info" do %>
-           Choisir
-           <% end %>
-         </div>
-       </div>
-     </div>
-     <div class="panel panel-default box-shadow">
-      <div class="panel-heading preview">
-        <strong>formule 25 articles</strong>
+      <% end %>
+        </li>
+    </ul>
       </div>
-      <div class="panel-body">
-        Je mets en ligne 25 articles<br>
-        Durée d'utilisation: 1an<br>
-        <strong>16 euros</strong>
-        <div class="col-xs-12 text-center">
-         <%= link_to new_user_registration_path, class: "btn btn-info" do %>
-         Choisir
-         <% end %>
-       </div>
-     </div>
-   </div>
- </div>
-</div>
+  </div>
 </div>
 </section>
