@@ -78,6 +78,7 @@ def publish_review
 end
 
 def devenir_vendeuse
+@meetings = Meeting.where(highlight: true).where('start_time > ?', Time.now)
 end
 
 def qui

@@ -5,14 +5,6 @@ class MeetingsController < InheritedResources::Base
   before_action :set_meeting, only: %i[show edit update destroy]
   before_action :is_admin, only: %i[new create edit update destroy]
 
-
-#def participate
-# meeting = Meeting.find(params[:meeting_id])
-# current_user.meetings << meeting
-#redirect_to meetings_path
-#end
-
-
   def index
     @meetings = Meeting.where('start_time > ?', Time.now).order("start_time ASC")
   end
@@ -49,14 +41,11 @@ class MeetingsController < InheritedResources::Base
     redirect_to meetings_path
   end
 
-
   def participate
    meeting = Meeting.find(params[:meeting_id])
    current_user.meetings << meeting
-   redirect_to meetings_path, alert: "Votre demande est enregistée pour cet évenement. Nous reviendrons rapidemant vers vous."
+   redirect_to meetings_path, alert: "Votre demande est enregistée pour cet évenement. Nous reviendrons rapidement vers vous."
  end
-
-
 
  private
 
