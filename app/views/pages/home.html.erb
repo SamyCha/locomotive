@@ -21,19 +21,12 @@
     <div class="box-shadow">
      <% if !user_signed_in? %>
      <section>
-
-      <div class="row">
-        <div class="col-xs-3">
-        <%= image_tag "signup.png", heigth:95, width: 75 %>
-          </div>
-          <div class="col-xs-9">
-            <h5>Etre informé de nos prochains évenements et derniers articles</h5>
-          </div>
-        </div>
-
+        <h5><%= image_tag "signup.png", heigth:75, width: 55 %>Rester informé</h5>
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
+<!--
         <%= f.text_field :pseudo, autofocus: true, placeholder: "Pseudo",:class=>"input-small" %><br><br>
+-->
         <div class="form-group">
           <%= f.text_field :address, placeholder: "Addresse postale", id:"user_input_autocomplete_address", :class=>"input-small" %>
           <input id="street_number" name="street_number" disabled type="hidden">
