@@ -12,7 +12,6 @@ class ProductsController < ApplicationController
 
   def search
     @products = Product.where(active: true)
-
   end
 
   # pour le slider mobile
