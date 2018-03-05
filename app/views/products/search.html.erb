@@ -92,7 +92,7 @@ autocomplete('#aa-search-input',
                   <% else %>
                   <%= form_for([product, product.reservations.new]) do |f| %>
                   <%= f.hidden_field :product_id, value: product.id %>
-                  <%= f.submit "ajouter à ma liste", class:"btn btn-info" %>
+                  <%= f.submit "ajouter à ma liste", class:"btn btn-info", data: { "disable-with": "Article ajouté..." } %>
                   <% end %>
                   <% end %>
                   <% end %>

@@ -13,18 +13,16 @@
      <div class="col-xs-12 col-sm-4">
        <h4>Nos derniers évenements:</h4>
        <% @meetings.each do |meeting| %>
-       <div class="col-xs-6">
+       <div class="col-xs-12">
         <div class="panel panel-default box-shadow">
           <div class="panel-heading preview">
           </div>
           <div class="panel-body">
             <div class="col-xs-12 text-center">
-              <strong><%= meeting.name %></strong>
+              <strong><%= meeting.name %></strong><br>
               <%= meeting.start_time.strftime("%d/%m/%Y") %>
-              <hr>
             </div>
             <div class="col-xs-12 text-center">
-
               <%= link_to "détails", meeting.participation, :target => "_blank", class: 'btn btn-md btn-info' %>
             </div>
           </div>
