@@ -6,7 +6,7 @@ Rails.application.configure do
     path: 'id/:style/:filename'
   )
 
-  config.action_mailer.default_url_options = { host: 'https://armoires-web.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'https://locobordo.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
 
   ActionMailer::Base.smtp_settings = {
