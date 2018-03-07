@@ -110,7 +110,7 @@ end
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :brand, :category, :color, :size, :state, :price, :address, :status, :active)
+    params.require(:product).permit(:name, :description, :brand, :category, :color, :size, :state, :price, :address, :status, :active, :youtube_id)
   end
 
   def require_same_user

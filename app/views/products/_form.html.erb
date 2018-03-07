@@ -14,6 +14,25 @@
             <%= f.text_field :name, placeholder: "Titre de l'article", class: "form-control" %>
           </div>
         </div>
+
+        <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Identifiant vidéo Youtube</label>
+            <%= f.text_field :youtube_id, placeholder: "Ui90nBJ8", class: "form-control" %>
+          </div>
+          </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Demarrage de la vidéo (en secondes)</label>
+            <div class="input-group">
+              <%= f.text_field :price, placeholder: "720", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
         <div class="row">
           <div class="col-md-4 select">
             <div class="form-group">
@@ -63,17 +82,6 @@
             <input id="route" name="route" disabled type="hidden">
             <input id="locality" name="locality" disabled type="hidden">
             <input id="country" name="country" disabled type="hidden">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label>Prix de l'article</label>
-            <div class="input-group">
-              <%= f.text_field :price, placeholder: "ex: 45€", class: "form-control" %>
-              <div class="input-group-addon">€</div>
-            </div>
           </div>
         </div>
       </div>

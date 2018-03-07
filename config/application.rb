@@ -17,7 +17,6 @@ require 'sprockets/railtie'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-
 module VideDressing
   class Application < Rails::Application
     config.generators do |generate|
@@ -38,3 +37,5 @@ module VideDressing
     config.i18n.default_locale = :fr
   end
 end
+
+

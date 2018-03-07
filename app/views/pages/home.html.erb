@@ -1,6 +1,8 @@
 <section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
   <div class="container text-center">
     <div class="col-md-6 text-left">
+        <div class="box-shadow">
+
       <h2>Locomotiv'</h2>
           <h3>Vous developpez une idée..</h3>
           <h3>Vous voulez un feed back..</h3>
@@ -10,6 +12,8 @@
       <%= link_to search_path, class: "btn btn-info" do %>
       Découvrez les projets
       <% end %>
+       <br><br>
+      </div>
 <!--
       <% if user_signed_in? %>
       <div class="hidden-desktop">
@@ -17,7 +21,7 @@
       </div>
       <% end %>
     -->
-    <br><br>
+
   </div>
   <div class="col-md-3 ">
   </div>
@@ -25,7 +29,7 @@
     <div class="box-shadow">
      <% if !user_signed_in? %>
      <section>
-        <h5><%= image_tag "rocket_launch.png", heigth:75, width: 55 %>Suivre des projets</h5>
+        <h5><%= image_tag "clapping_white.png", heigth:75, width: 55 %>Supporter des projets</h5>
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
 
@@ -73,14 +77,6 @@
 </section>
 </div>
 <div class="container">
-
-    <div class="col-xs-12 text-center">
-
-      <%= image_tag "locomotiv.png", height: 50 %>
-      Donnez de la vitesse à vos projets
-      <hr>
-    </div>
-
   <div class="row">
    <%= link_to concept_path do  %>
    <div class="col-xs-12 col-sm-4 text-center">
@@ -110,8 +106,6 @@
     <%= render "lastarticles" %>
   </div>
   <% end %>
-  <div class="row">
-    <%= render "asidecaroussel" %>
-  </div>
+
 </div>
 </div>

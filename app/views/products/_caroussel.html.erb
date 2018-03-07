@@ -10,6 +10,8 @@
     <% end %>
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @product.youtube_id %>?rel=0&amp;showinfo=0&amp;start=<%= @product.price %>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+ <!--
       <% if @photos %>
       <% @photos.each do |photo| %>
       <div class="item <%= 'active' if photo.id == @photos[0].id %>">
@@ -17,16 +19,8 @@
       </div>
       <% end %>
       <% end %>
+      -->
     </div>
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Précédent</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Suivant</span>
-    </a>
   </div>
 
 
