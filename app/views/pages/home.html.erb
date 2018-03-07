@@ -1,10 +1,14 @@
 <section id="section-jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
   <div class="container text-center">
     <div class="col-md-6 text-left">
-      <h2>Locomotive</h2>
-      <h4>Donnez de la vitesse à vos projets</h4>
+      <h2>Locomotiv'</h2>
+          <h3>Vous developpez une idée..</h3>
+          <h3>Vous voulez un feed back..</h3>
+          <h3>..des bétas testeurs..</h3>
+    <h4>Acrochez-vous à locomotiv'</h4>
+    <h5>en partenariat avec <%= image_tag "logo.png", height: 30 %></h5>
       <%= link_to search_path, class: "btn btn-info" do %>
-      Découvrez nos articles
+      Découvrez les projets
       <% end %>
 <!--
       <% if user_signed_in? %>
@@ -21,12 +25,11 @@
     <div class="box-shadow">
      <% if !user_signed_in? %>
      <section>
-        <h5><%= image_tag "signup.png", heigth:75, width: 55 %>Rester informé</h5>
+        <h5><%= image_tag "rocket_launch.png", heigth:75, width: 55 %>Suivre des projets</h5>
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
-<!--
+
         <%= f.text_field :pseudo, autofocus: true, placeholder: "Pseudo",:class=>"input-small" %><br><br>
--->
         <div class="form-group">
           <%= f.text_field :address, placeholder: "Addresse postale", id:"user_input_autocomplete_address", :class=>"input-small" %>
           <input id="street_number" name="street_number" disabled type="hidden">
@@ -55,24 +58,49 @@
     <div class="form-group">
       <%= f.password_field :password, autocomplete: "off", placeholder: "Créer un mot de passe", :class=>"input-small" %>
     </div>
-    <div><%= f.submit "S'inscrire gratuitement",class: "btn btn-info"  %></div><br>
+    <div><%= f.submit "Voter pour des projets",class: "btn btn-info"  %></div><br>
     <% end %>
-    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <strong><%= image_tag "seller.png", heigth:35, width: 25 %> <%= link_to "Devenir vendeuse", devenir_vendeuse_path %><br />
-    </strong>
 
-    <% end -%>
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <strong><%= image_tag "seller.png", heigth:35, width: 25 %>
+
+  <%= link_to "Porteur de projet", new_registration_path(resource_name) %><br />
+<% end -%>
+
     <% end %>
   </div>
 </div>
 </section>
 </div>
 <div class="container">
-  <div class="row text-center">
-    <div class="col-xs-12">
-      <p>Triari nullo perdiscere ille eius inquam dissentientium ut in quo disputando inquam ut quae solent tum dicas a potest cum.</p>
+
+    <div class="col-xs-12 text-center">
+
+      <%= image_tag "locomotiv.png", height: 50 %>
+      Donnez de la vitesse à vos projets
+      <hr>
     </div>
+
+  <div class="row">
+   <%= link_to concept_path do  %>
+   <div class="col-xs-12 col-sm-4 text-center">
+    <%= image_tag "clapping.png", height: 100 %>
+    <p>Recevez les encouragements des autres étudiants, grâce à nos jetons mensuels gratuits!</p>
   </div>
+  <% end %>
+  <%= link_to root_path do  %>
+  <div class="col-xs-12 col-sm-4 text-center">
+    <%= image_tag "medal.png", height: 100 %>
+    <p>Inspirez-vous! Challenger vos projets entre vous! Suivez d'autres projets...</p>
+    <% end %>
+  </div>
+  <%= link_to root_path do  %>
+  <div class="col-xs-12 col-sm-4 text-center">
+    <%= image_tag "rocket.png", height: 100 %>
+    <p>Poussez vos projets grâce à l'appui de vos proches et d'autres acteurs qui accompagneront le developpement de votre projet</p>
+    <% end %>
+  </div>
+</div>
   <% if user_signed_in? %>
   <div class="row">
     <%= render "proximityarticles" %>

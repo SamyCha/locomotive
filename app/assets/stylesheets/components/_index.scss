@@ -28,24 +28,25 @@ li {
 
 //box en home
 .box-shadow {
- width: 0,5em;
- box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
- background-color: #3c6382;
- opacity:0.9;
- text-align: center;
-color: white;
-
-
+  width: 0,5em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #3c6382;
+  opacity:0.9;
+  text-align: center;
+   color: black;
+  .h1, h2, h3, h4, h5 {
+     color: white;
+  }
 }
 
 //background image home
 .jumbotron {
-  background-image: url('background2.jpg');
+  background-image: url('home_banner.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  min-height: 70vh;
-  color: #374344;
+  min-height: 80vh;
+  color: white;
 }
 section {
   padding-top: 4rem;

@@ -1,107 +1,108 @@
   <!-- Formulaire de réservation -->
-<%= render 'shared/errors' %>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-    Ajouter votre article dans notre boutique
-  </div>
-  <div class="panel-body">
-    <div class="container-fluid">
-      <%= form_for @product, html: {multipart: true} do |f| %>
-      <div class="row">
-        <div class="col-md-4 select">
+  <%= render 'shared/errors' %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      Renseignez votre projet
+    </div>
+    <div class="panel-body">
+      <div class="container-fluid">
+        <%= form_for @product, html: {multipart: true} do |f| %>
+        <div class="row">
           <div class="form-group">
-            <label>Catégorie de Produit</label>
-            <%= f.select :category, ["Bijou", "Jupe", "Pantallon", "Chapeau", "Autre"], id: "home_type", prompt: "A sélectionner...", class: "form-control" %>
+            <label>Nom du projet (max. 25 caractères)</label>
+            <%= f.text_field :name, placeholder: "Titre de l'article", class: "form-control" %>
           </div>
         </div>
-        <div class="col-md-4 select">
-          <div class="form-group">
-            <label>Etat de l'article</label>
-            <%= f.select :state, ["Neuf", "Bon état", "Usé", "Mauvais état"], prompt: "A sélectionner...", class: "form-control" %>
+        <div class="row">
+          <div class="col-md-4 select">
+            <div class="form-group">
+              <label>Framework utilisé</label>
+              <%= f.select :category, ["Ruby on Rails", "React", "Angular", "Vue.js", "Node.js", "Django"], id: "home_type", prompt: "A sélectionner...", class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-4 select">
+            <div class="form-group">
+              <label>Secteur d'activité</label>
+              <%= f.select :state, ["Tourisme", "BTP", "Services", "Transport"], prompt: "A sélectionner...", class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label> Couleur de l'article ?</label>
+              <%= f.text_field :color, placeholder: "bleu..blanc..rouge..", class: "form-control" %>
+            </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Marque</label>
+              <%= f.text_field :brand, placeholder: "Le comptoir des cotoniers..", class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Attentes vis à vis du projet</label>
+              <%= f.text_field :size, placeholder: "small...medium...36..38..", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="form-group">
-            <label> Couleur de l'article ?</label>
-            <%= f.text_field :color, placeholder: "bleu..blanc..rouge..", class: "form-control" %>
+            <label>Description du projet(max. 70 caractères)</label>
+            <%= f.text_area :description, rows:4, placeholder: "Décrivez le produit", class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label>Adresse ou le projet à été développé</label>
+            <%= f.text_field :address, placeholder: "Où est situé votre article ?", id:"user_input_autocomplete_address", class: "form-control" %>
+            <input id="street_number" name="street_number" disabled type="hidden">
+            <input id="route" name="route" disabled type="hidden">
+            <input id="locality" name="locality" disabled type="hidden">
+            <input id="country" name="country" disabled type="hidden">
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-4">
           <div class="form-group">
-            <label>Marque</label>
-            <%= f.text_field :brand, placeholder: "Le comptoir des cotoniers..", class: "form-control" %>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label>Taille</label>
-            <%= f.text_field :size, placeholder: "small...medium...36..38..", class: "form-control" %>
+            <label>Prix de l'article</label>
+            <div class="input-group">
+              <%= f.text_field :price, placeholder: "ex: 45€", class: "form-control" %>
+              <div class="input-group-addon">€</div>
+            </div>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="form-group">
-          <label>Donnez un nom au produit (max. 25 caractères)</label>
-          <%= f.text_field :name, placeholder: "Titre de l'article", class: "form-control" %>
+       <div class="col-md-4">
+         <div class="form-group">
+          <span class="btn btn-default btn-file">
+            <i class = "fa fa-cloud-upload fa-lg"></i> Téléchargez vos photos !
+            <%= file_field_tag "images[]", type: :file, multiple: true %>
+          </span>
         </div>
       </div>
-      <div class="row">
-        <div class="form-group">
-          <label>Description (max. 70 caractères)</label>
-          <%= f.text_area :description, rows:4, placeholder: "Décrivez le produit", class: "form-control" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group">
-          <label>Adresse</label>
-          <%= f.text_field :address, placeholder: "Où est situé votre article ?", id:"user_input_autocomplete_address", class: "form-control" %>
-          <input id="street_number" name="street_number" disabled type="hidden">
-          <input id="route" name="route" disabled type="hidden">
-          <input id="locality" name="locality" disabled type="hidden">
-          <input id="country" name="country" disabled type="hidden">
-        </div>
-      </div>
+    </div>
+    <font color="#555555" face="Arial, Helvetica Neue, Helvetica, Tahoma, sans-serif"></font>
+    <div id="photos">
+      <%= render 'photos/list' %>
     </div>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label>Prix de l'article</label>
-          <div class="input-group">
-            <%= f.text_field :price, placeholder: "ex: 45€", class: "form-control" %>
-            <div class="input-group-addon">€</div>
-          </div>
+          <%= f.check_box :status %> Le produit est vendu. (dépublier)
         </div>
       </div>
-    </div>
-    <div class="row">
-     <div class="col-md-4">
-       <div class="form-group">
-        <span class="btn btn-default btn-file">
-          <i class = "fa fa-cloud-upload fa-lg"></i> Téléchargez vos photos !
-          <%= file_field_tag "images[]", type: :file, multiple: true %>
-        </span>
+      <div class="actions">
+        <%= f.submit "Valider l'article", class: 'btn btn-md btn-danger' %>
       </div>
+      <% end %>
     </div>
   </div>
-  <font color="#555555" face="Arial, Helvetica Neue, Helvetica, Tahoma, sans-serif"></font>
-  <div id="photos">
-    <%= render 'photos/list' %>
-  </div>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="form-group">
-        <%= f.check_box :status %> Le produit est vendu. (dépublier)
-      </div>
-    </div>
-    <div class="actions">
-      <%= f.submit "Valider l'article", class: 'btn btn-md btn-danger' %>
-    </div>
-    <% end %>
-  </div>
-</div>
 </div>
 
 <script type="text/javascript"
