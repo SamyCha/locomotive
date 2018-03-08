@@ -35,30 +35,18 @@
                 <div class="panel-body">
                   <div class="col-xs-12 text-center">
                     <h5><%= link_to article.product.name, product_path(article.product) %><br>
-                      ref. <%= article.product_id %>
-                    </h5><%= image_tag "brand.png", heigth:12, width: 24 %> <%= article.product.brand %><br>
+
+                    </h5><span class="label label-success"><%= article.product.sector %></span><br>
                     <hr>
                   </div>
                   <div class="row">
                     <div class="col-xs-12">
-                      <strong><%= article.product.price %> euros</strong>
 
-                      <% if article.product.active %>
-                      <!-- Si le produit est publié -->
-                      <span class="label label-success">article en vente</span>
 
-                      <% elsif article.product.status? %>
-                      <!-- Si le produit est vendu -->
-                      <span class="label label-danger">article vendu</span>
-                      <% else %>
-                      <!-- Si le produit est dépublié -->
-                      <span class="label label-danger">article dépublié</span>
-                      <% end %>
-                      <hr>
                       <%= link_to user_path(article.product.user), class: 'btn btn-md btn-info' do %>
                       Contacter le vendeur
                       <% end %>
-                      retirer de ma liste
+
                     </div>
                   </div>
                 </div>
