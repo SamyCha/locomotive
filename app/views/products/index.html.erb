@@ -24,20 +24,19 @@
               </div>
               <div class="panel-body">
                 <div class="col-xs-12 text-center">
-                  <h5><%= link_to product.name, product %></h5><%= image_tag "brand.png", heigth:12, width: 24 %> <%= product.brand %><br>
-                  ref. <%= product.id %> <br>
+                  <h5><%= link_to product.name, product %></h5><%= image_tag "brand.png", heigth:12, width: 24 %> <%= product.sector %><br>
                   <hr>
                 </div>
                 <div class="row">
                   <div class="col-xs-12">
                     <% if product.active? %>
-                    <span class="label label-success">article en vente</span>
+                    <span class="label label-success">projet publié</span>
                     <% else %>
                     <span class="label label-default">en cours de publication</span>
                     <% end %>
                   </div>
                 </div>
-                update: <%= product.updated_at  %>
+                update: <%= product.updated_at.strftime("%-d %B %Y") %>
                 <%= link_to "Modifier", edit_product_path(product), class:"btn btn-info" %><br><br>
                 <%= link_to "Supprimer", products_path(product), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer l'article? Cela supprimera aussi vos conversations avec les acheteurs" }, class:"btn btn-info" %><br><br>
                 <%= link_to "Article vendu", edit_product_path(product), class:"btn btn-info" %>

@@ -7,17 +7,18 @@
     <div class="col-xs-12 col-sm-6 col-md-3">
       <div class="panel panel-default box-shadow">
         <div class="panel-heading preview">
+        <!--
           <%= image_tag product.photos[0].image.url, style: 'height:125px;width:250px' if product.photos.length > 0  %>
+          -->
         </div>
         <div class="panel-body">
           <div class="col-xs-12 text-center">
-            <h5><%= link_to product.name, product %></h5><%= image_tag "brand.png", heigth:10, width: 20 %> <%= product.brand %><br>
+            <h5><%= link_to product.name, product %></h5><%= product.sector %><br>
             <hr>
           </div>
           <div class="row">
             <div class="col-xs-12">
-              <strong><%= product.price %> euros</strong>    <br>
-              <%= image_tag "place.png", heigth:12, width: 22 %> <%= product.address %>
+              <strong><%= product.created_at.strftime("%-d %B %Y") %></strong>
             </div>
           </div>
         </div>

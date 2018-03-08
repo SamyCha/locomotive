@@ -4,15 +4,17 @@
   <div class="row">
     <div class="col-md-6 text-left">
       <i class="fa fa-female fa" aria-hidden="true"></i>:
-      <%= @product.category %><br>
+      <%= @product.sector %><br>
       <%= image_tag "brand.png", heigth:10, width: 20 %>:
-      <%= @product.brand %><br>
+      <%= @product.framework %><br>
       <%= image_tag "size.png", heigth:10, width: 20 %>:
-      <%= @product.size %><br>
+      <%= @product.number_of_developper %><br>
     </div>
     <div class="row">
       <div class="col-md-6 ">
+      <!--
         <%= image_tag avatar_url(@product.user), class:"img-circle avatar-large" %>
+      -->
         <br>
         developpé par: <strong><%= link_to @product.user.pseudo ,user_path(@product.user) %></strong>
         <br>

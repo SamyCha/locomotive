@@ -1,12 +1,13 @@
 <div class="row">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @product.youtube_id %>?rel=0&amp;showinfo=0&amp;start=<%= @product.price %>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @product.youtube_id %>?rel=0&amp;showinfo=0&amp;start=<%= @product.youtube_startsecond %>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 <br>
 <div class="row text-left">
     <span id="average_rating_header"></span> <%= @product.user.reviews.count %> commentaires
 <br>
-<h4>Mes attentes:</h4> <br>
-<p><%= @product.objectives %></p>
+<h4>Mes attentes:</h4>
+<h5><%= @product.objectives %></h5>
+App.url: <%= @product.project_url  %>
 </div>
 <!--
 <div id="myCarousel" class="carousel slide" data-ride="carousel">

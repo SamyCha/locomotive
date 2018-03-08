@@ -6,28 +6,13 @@ class Product < ApplicationRecord
   has_many :reservations
   has_many :reviews
 
-  validates :category, presence: true
-  validates :state, presence: true
-  validates :color, presence: true
-  validates :brand, presence: true
-  validates :size, presence: true
-  validates :name, presence: true, length: { maximum: 25 }
-  validates :description, presence: true, length: { maximum: 70 }
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :description, presence: true, length: { maximum: 120 }
   validates :address, presence: true
-  validates :price, numericality: { only_integer: true, greater_than: 1 }
-  validates :status, inclusion: { in: [true, false] }
+  validates :youtube_startsecond, numericality: { only_integer: true, greater_than: 1 }
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
-
-# include PgSearch
-#  pg_search_scope :search_by_name_and_category, against: %i[name category brand],
-#  using: {
-#    tsearch: {
-#      prefix: true
-#    }
-#  }
-
 
 #signifie 'si reviews.count égal 0 alors ça retourne 0 sinon ça retourne la moyenne des notes
   def average_rating
@@ -37,7 +22,7 @@ class Product < ApplicationRecord
 #algolia pour les produit publiés uniquement
 include AlgoliaSearch
 algoliasearch if: :active? do
-  attribute :name, :brand, :category, :color, :size, :price
+  attribute :name
 end
 
 

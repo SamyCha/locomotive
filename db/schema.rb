@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308093100) do
+ActiveRecord::Schema.define(version: 20180308131745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,15 +139,10 @@ ActiveRecord::Schema.define(version: 20180308093100) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "brand"
-    t.string "size"
     t.string "description"
-    t.string "color"
     t.string "name"
     t.string "category"
     t.string "address"
-    t.string "state"
-    t.integer "price"
     t.boolean "active"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -155,11 +150,16 @@ ActiveRecord::Schema.define(version: 20180308093100) do
     t.float "latitude"
     t.float "longitude"
     t.boolean "status"
-    t.boolean "interest"
     t.integer "reviewcode"
     t.string "youtube_id"
     t.string "developped_at"
     t.string "objectives"
+    t.integer "youtube_startsecond"
+    t.string "project_url"
+    t.string "sector"
+    t.string "framework"
+    t.string "devolpement_duration"
+    t.integer "number_of_developper"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
