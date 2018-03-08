@@ -9,30 +9,21 @@
               <div class="panel-heading">enregistré depuis: <%= timeago_tag @user.created_at, :lang => :fr  %>
               </div>
               <div class="panel-body"><strong><%= @user.pseudo %></strong><br>
-                <% if @user.seller? %>
-                Nombre de commentaires: <strong><%= @user.reviews.count %></strong><br>
-                Note moyenne: <strong> XXX</strong><br>
-                <% end %>
+            <% if user_signed_in? %>
+            <% if current_user != @user %>
+      <div class="row-space-2">
+        <%= link_to "Envoyer un message", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: 'btn btn-info'%>
+      </div>
+
+    <% end %>
+    <% end %>
+
+
+
               </div>
             </div>
 
-            <% if user_signed_in? %>
-            <% if current_user != @user %>
 
-  <!--
-      <div class="row-space-2">
-        <%= link_to "Envoyer un message", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: 'btn btn-md btn-danger'%>
-      </div>
-
-    -->
-    <% elsif current_user == @user %>
-    <ul>
-      <li><%= link_to "Je veux ajouter un article", new_product_path %></li>
-      <li><%= link_to "Je suis présent à un évenement", meetings_path %></li>
-      <li><%= link_to "Je veux modifier mon profil", edit_user_registration_path %></li>
-    </ul>
-    <% end %>
-    <% end %>
   </div>
 </div>
 
@@ -40,16 +31,11 @@
 <div class="col-xs-12 box-shadow">
   <br>
   <% if @user.seller? %>
-  <h4><i class="fa fa-calendar fa-2x" aria-hidden="true"></i> VOUS ME TROUVEREZ AUX EVENEMENTS SUIVANTS:</h4>
-  <%= week_calendar number_of_weeks: 2, events: @meetings do |date, meetings| %>
-  <strong><%= date.strftime("%d") %></strong>
-  <% meetings.each do |meeting| %>
-  <div>
-    <strong><p><%= link_to meeting.name, meeting_path(meeting)  %></p></strong>
-  </div>
-  <% end %>
-  <% end %>
-  <h4><i class="fa fa-female fa-2x" aria-hidden="true"></i> MES ARTICLES:</h4>
+
+  <h4><i class="fa fa-female fa-2x" aria-hidden="true"></i> MON EXPERIENCE:</h4>
+  XXXXXX<br>
+  XXXXXXXX
+  <h4><i class="fa fa-female fa-2x" aria-hidden="true"></i> MES PROJETS:</h4>
   <% @products.each do |product| %>
   <!-- affiche tous les articles actif en vente -->
   <% if product.active? %>
@@ -60,10 +46,10 @@
           <%= image_tag product.photos[0].image.url, style: 'height:80px;width:110px' if product.photos.length > 0 %>
         </div>
         <div class="col-xs-9">
-          <strong><%= link_to product.name, product %></strong> (<%= product.price %>euros)
+          <strong><%= link_to product.name, product %></strong> (<%= product.sector %>euros)
           <span class="label label-success">article en vente</span><br>
-          <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.brand %>
-          <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.size %>
+          <i class="fa fa-black-tie" aria-hidden="true"></i> <%= product.sector %>
+          <i class="fa fa-level-up" aria-hidden="true"></i> <%= product.sector %>
         </div>
         <!-- affiche tous les aticles vendus -->
         <% elsif product.status? %>

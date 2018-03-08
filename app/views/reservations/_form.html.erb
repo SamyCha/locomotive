@@ -1,6 +1,5 @@
 
 <h3><strong><%= @product.name %></strong></h3>
-
 <div class= "row">
   <% if @product.reservations.count >= 1 %>
   <%= image_tag "clapping_white.png", width: 35 %> <%= @product.reservations.count %> encouragement reçu
@@ -9,9 +8,8 @@
   <% end %>
 </div>
 
-<h4><strong><%= @product.sector %></strong></h4>
+<span class="label label-success"><%= @product.sector %></span><br>
 <%= @product.description %><br>
-<i class="fa fa-map-marker" aria-hidden="true"></i><%= @product.address %>
 
 
 <%= form_for([@product, @product.reservations.new]) do |f| %>
@@ -21,11 +19,14 @@
   <% if user_signed_in? && current_user != @user %>
   <% if @booked %>
   <%= link_to your_articles_path,  class: 'btn btn-md btn-info' do %>
-  Vous encouragez ce projet <i class="fa fa-heart" aria-hidden="true"></i>
+  Vous encouragez ce projet <%= image_tag "clapping_white.png", width: 25 %>
   <% end %>
+
+  <!--
   <%= link_to "Contacter ce porteur", new_message_path(sender_id: current_user.id, recipient_id: @user.id), method: 'get', class: 'btn btn-md btn-danger' %>
+  -->
   <% else %>
-  <%= f.submit "Ajouter à mes coups de coeur", class: 'btn btn-md btn-info' %>
+  <%= f.submit "Encourager ce projet", class: 'btn btn-md btn-info' %>
 
   <%= link_to "Contacter le developpeur", new_message_path(sender_id: current_user.id, recipient_id: @user.id), method: 'get', class: 'btn btn-md btn-danger' %>
   <% end %>
