@@ -8,7 +8,6 @@
           <li class="sidebar-item"><%= image_tag "rocket_launch.png", heigth:50, width: 30 %>
           <%= link_to "Les projets", search_path,
             class: "sidebar-link active" %></li>
-
             <% if user_signed_in? %>
             <li class="sidebar-item"><i class="fa fa-heart" aria-hidden="true"></i> <%= link_to your_articles_path, class: "navbar-wagon-item navbar-wagon-link" do %>
               <% if current_user.reservations.count == 1 %>
