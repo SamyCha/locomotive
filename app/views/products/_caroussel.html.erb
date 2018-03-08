@@ -1,35 +1,25 @@
-   <!-- Carousel -->
-   <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <% if @photos %>
-    <% @photos.each do |photo| %>
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="<%= photo.id %>" class="active"></li>
-    </ol>
-    <% end %>
-    <% end %>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @product.youtube_id %>?rel=0&amp;showinfo=0&amp;start=<%= @product.price %>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
- <!--
-      <% if @photos %>
-      <% @photos.each do |photo| %>
-      <div class="item <%= 'active' if photo.id == @photos[0].id %>">
-        <%= image_tag photo.image.url(), style: 'height:400px;width:500px' %>
-      </div>
-      <% end %>
-      <% end %>
-      -->
-    </div>
-  </div>
-
-
-</br>
-    <!-- Photo principale de l'annonce
 <div class="row">
-  <div class="col-md-12">
-  <%= image_tag @photos[0].image.url(), class:"img-responsive" if @photos.length >0 %>
-  </div>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @product.youtube_id %>?rel=0&amp;showinfo=0&amp;start=<%= @product.price %>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 <br>
+<br>
+
+<!--
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+ <div class="row">
+  <% if @photos %>
+  <% @photos.each do |photo| %>
+  <div class="col-xs-4">
+
+
+  <div class="item <%= 'active' if photo.id == @photos[0].id %>">
+    <%= image_tag photo.image.url(), style: 'height:100px; width:150px' %>
+    </div>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+
+</div>
 -->
+

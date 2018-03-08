@@ -8,25 +8,25 @@
           <% if user_signed_in? %>
           <li class="sidebar-item"><i class="fa fa-heart" aria-hidden="true"></i> <%= link_to your_articles_path, class: "navbar-wagon-item navbar-wagon-link" do %>
             <% if current_user.reservations.count == 1 %>
-            Mon coup de coeur
+            Mon projet favori
             <% elsif current_user.reservations.count > 1 %>
-            Mes <%= current_user.reservations.count %> coups de coeur
+            Mes <%= current_user.reservations.count %> projets favoris
             <% else %>
-            Pas encore de coup de coeur!
+            Pas encore de projet favori!
             <% end %>
             <% end %></li>
-            <li class="sidebar-item"><i class="fa fa-star-half-o" aria-hidden="true"></i>  <%= link_to "Notez un achat", rating_path, class: "sidebar-link active" %>
+            <li class="sidebar-item"><i class="fa fa-star-half-o" aria-hidden="true"></i>  <%= link_to "Commentez un projet", rating_path, class: "sidebar-link active" %>
             </li>
             <% end %>
           </ul>
         </div>
         <div class="col-md-9 text-center">
           <div class="panel panel-default box-shadow">
-            <h3><i class="fa fa-star-half-o" aria-hidden="true"></i> Notez et commentez vos achats</h3><br>
+            <h3><i class="fa fa-star-half-o" aria-hidden="true"></i> Commentez les projets</h3><br>
             <%= form_tag(mini_index_path, :method => "get", id: "search-form") do %>
-            Saisissez le nom de l'article acheté:
+            Saisissez le nom du projet:
             <%= text_field_tag :search, params[:search] %><br><br>
-            <%= submit_tag "Trouver votre produit", :name => nil, class: 'btn btn-md btn-danger' %>
+            <%= submit_tag "Trouver le projet", :name => nil, class: 'btn btn-md btn-danger' %>
             <% end %>
             <hr>
             <% if !@reviews.blank? %>

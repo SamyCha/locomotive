@@ -3,27 +3,29 @@
     <div class="row">
       <div class="col-xs-12 col-sm-4">
        <h4>Le concept:</h4>
-       Les armoires de Paris vous proposent de vendre vos articles en ligne ou lors de ses évènements! Venez chiner et découvrir ses plus beaux articles sur ses évènements éphémères lors de ses journées vide dressing.<br> Rendez-vous mode incontournables avec des évènements dans Paris durant les week-ends, des articles de marques d'occasion mais également neufs en excellent état à des prix incroyables !<br><br>
-       <%= link_to meetings_path, class: "btn btn-info" do %>
-       Découvrez les prochains évenements
+       Il est toujours difficile lorsque l'on développe un projet de savoir si l'on va atteindre son public. Les embuches sont nombreuses... et un peu de reconnaissance et d'encouragements sont parfois necessaires pour se re-booster<br>
+      La locomotiv' vous permet de mettre en ligne votre projet, le faire conaître, disposer d'un feed-back d'autres utilisateurs de la plateforme, et recruter des bétas testeurs.
+       <br>
+       Votre projet permettra aussi à d'autres de s'inspirer ou de se dire que vous avez la capacité de developper le projet d'un autre.<br>
+       <%= link_to search_path, class: "btn btn-info" do %>
+       Découvrez tous les projets
        <% end %>
      </div>
      <div class="col-xs-12 col-sm-4">
      </div>
      <div class="col-xs-12 col-sm-4">
-       <h4>Nos derniers évenements:</h4>
-       <% @meetings.each do |meeting| %>
+       <h4>Les derniers projets publiés:</h4>
+       <% @products.each do |product| %>
        <div class="col-xs-12">
         <div class="panel panel-default box-shadow">
           <div class="panel-heading preview">
           </div>
           <div class="panel-body">
             <div class="col-xs-12 text-center">
-              <strong><%= meeting.name %></strong><br>
-              <%= meeting.start_time.strftime("%d/%m/%Y") %>
+              <strong><%= product.name %></strong><br>
             </div>
             <div class="col-xs-12 text-center">
-              <%= link_to "détails", meeting.participation, :target => "_blank", class: 'btn btn-md btn-info' %>
+              <%= link_to "détails", product_path(product), class: 'btn btn-md btn-info' %>
             </div>
           </div>
         </div>

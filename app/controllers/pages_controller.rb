@@ -85,7 +85,7 @@ def qui
 end
 
 def concept
-    @meetings = Meeting.where('start_time < ?', Time.now)
+    @products =  Product.where(active: true).limit(3).sort_by(&:created_at).reverse
 end
 
 def conditions
