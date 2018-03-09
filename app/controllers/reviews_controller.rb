@@ -4,20 +4,21 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @review = current_user.reviews.new(review_params)
-    @review.save
+    @review = current_user.reviews.create(review_params)
+    redirect_to @review.product
   end
 
-def rating
- @reviews = current_user.reviews
-#    @reviewsnotactive = Review.where(active: nil)
- end
-
+   def destroy
+       @review = Review.find(params[:id])
+       product = @review.product
+       @review.destroy
+       redirect_to product
+   end
 
   private
 
   def review_params
-    params.require(:review).permit(:comment, :star, :product_id, :user_id, :active)
+    params.require(:review).permit(:comment, :product_id)
   end
 
 

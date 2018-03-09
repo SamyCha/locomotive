@@ -24,7 +24,7 @@ root to: 'pages#home'
 
   resources :products do
     resources :reservations, only: [:create]
-    resources :reviews, only: %i[create destroy]
+    resources :reviews, only: [:create, :destroy]
   end
 
   resources :photos

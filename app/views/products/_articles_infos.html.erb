@@ -3,7 +3,6 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-7 text-left">
-
       <h5>Framework: <strong><%= @product.framework %></strong></h5>
       <h5>Nb. de developpeurs: <strong><%= @product.number_of_developper %></strong></h5>
       <h5>Durée de dev.: <strong><%= @product.devolpement_duration %></strong></h5>
@@ -16,22 +15,23 @@
       <!--
         <%= image_tag avatar_url(@product.user), class:"img-circle avatar-large" %>
       -->
-
       <% if @product.active? %>
       <%= render 'articles_map' %>
       <% end %>
-
-
-
     </div>
   </div>
 </div>
-
-      <hr>
-
-Aidez ce projet en lui envoyant un commentaire:
-
+<hr>
+<% if user_signed_in? %>
+<h5>Aidez ce projet en lui envoyant un commentaire<br>
+  <strong><%= @product.reviews.count %> commentaires</strong>
+</h5>
 <%= render "reviews/form" %>
-
+<% else %>
+<strong><%= @product.reviews.count %> commentaires</strong><br>
+<%- if controller_name != 'sessions' %>
+<%= link_to "Connectez-vous pour commenter ce projet", new_session_path(resource_name) %><br />
+<% end -%>
+<% end %>
 </div>
 

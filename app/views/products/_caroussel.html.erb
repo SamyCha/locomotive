@@ -7,9 +7,11 @@
 Découvrir <strong><%= link_to "#{@product.project_url}", target: :_blank do %>
 <%= @product.name  %>
 <% end %></strong><br>
-</div>
- <%= @product.user.reviews.count %> commentaires
 
+<hr>
+</div>
+
+<%= render 'reviews/list' %>
 <!--
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
  <div class="row">

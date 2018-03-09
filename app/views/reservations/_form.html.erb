@@ -32,7 +32,10 @@
   <% end %>
 
   <% elsif user_signed_in? && current_user == @product.user %>
-  <%= link_to "Mettre à jour votre projet", edit_product_path(@product), class: 'btn btn-md btn-danger' %><br>
+  <%= link_to "Mettre à jour votre projet", edit_product_path(@product), class: 'btn btn-md btn-danger' %>
+  <%= link_to "Partager mon projet", root_path, class: 'btn btn-info' %>
+
+  <br>
   (dernière mise à jour:<%= timeago_tag @product.updated_at, :lang => :fr  %>)
   <% else %>
   <%= link_to new_user_session_path, class: 'btn btn-md btn-info' do %>

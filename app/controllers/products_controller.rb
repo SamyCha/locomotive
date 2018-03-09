@@ -70,11 +70,6 @@ end
     @user = @product.user
     @photos = @product.photos
     @reviews = @product.reviews
-
-    if current_user
-      @booked = Reservation.where('product_id = ?', @product.id).present?
-      @hasReview = @reviews.find_by(user_id: current_user.id)
-    end
   end
 
   def edit
