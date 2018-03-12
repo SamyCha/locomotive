@@ -15,6 +15,9 @@ class ReviewsController < ApplicationController
        redirect_to product
    end
 
+
+
+
   private
 
   def review_params

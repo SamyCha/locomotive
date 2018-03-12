@@ -4,14 +4,17 @@
 <div class="row">
 <h4>Mes attentes:</h4>
 <h5><%= @product.objectives %></h5>
-Découvrir <strong><%= link_to "#{@product.project_url}", target: :_blank do %>
+Découvrir l'application<strong><%= link_to "#{@product.project_url}", target: :_blank do %>
 <%= @product.name  %>
 <% end %></strong><br>
-
-<hr>
+<div class="text-center">
+<h5>projet développé par: <i class="fab fa-github"></i>
+<%= link_to "#{@product.github}", target: :_blank do %>
+<%= @product.user.pseudo  %>
+<% end %></h5>
+</div>
 </div>
 
-<%= render 'reviews/list' %>
 <!--
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
  <div class="row">

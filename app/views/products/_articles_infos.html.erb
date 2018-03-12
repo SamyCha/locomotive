@@ -7,8 +7,12 @@
       <h5>Nb. de developpeurs: <strong><%= @product.number_of_developper %></strong></h5>
       <h5>Durée de dev.: <strong><%= @product.devolpement_duration %></strong></h5>
       <h5>Bootcamp: <strong><%= @product.developped_at %></strong></h5>
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#largeShoes">
+  <%= @product.reviews.count %> commentaires
+</button>
+<!--
       lead developpeur: <strong><%= link_to @product.user.pseudo ,user_path(@product.user) %></strong>
-
+-->
     </div>
     <div class="row">
       <div class="col-xs-5 ">
@@ -24,14 +28,28 @@
 <hr>
 <% if user_signed_in? %>
 <h5>Aidez ce projet en lui envoyant un commentaire<br>
-  <strong><%= @product.reviews.count %> commentaires</strong>
 </h5>
 <%= render "reviews/form" %>
 <% else %>
-<strong><%= @product.reviews.count %> commentaires</strong><br>
+
 <%- if controller_name != 'sessions' %>
-<%= link_to "Connectez-vous pour commenter ce projet", new_session_path(resource_name) %><br />
+<%= link_to "Connectez-vous pour commenter ce projet", new_session_path(resource_name) %>
 <% end -%>
 <% end %>
 </div>
 
+<!-- The modal -->
+<div class="modal fade" id="largeShoes" tabindex="-1" role="dialog" aria-labelledby="modalLabelLarge" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+<p class="modal-title" id="modalLabelLarge"><%= render 'reviews/list' %></p>
+</div>
+
+</div>
+</div>
+</div>

@@ -1,5 +1,14 @@
-
+<div class="row">
+<div class="col-xs-9">
 <h3><strong><%= @product.name %></strong></h3>
+</div>
+<div class="col-xs-3">
+<%= link_to "" do  %>
+<%= image_tag "card.png", width:50 %><br>
+<h5>Transmettre cette carte</h5>
+<% end %>
+</div>
+</div>
 <div class= "row">
   <% if @product.reservations.count >= 1 %>
   <%= image_tag "clapping_white.png", width: 35 %> <%= @product.reservations.count %> encouragement reçu
@@ -33,14 +42,10 @@
 
   <% elsif user_signed_in? && current_user == @product.user %>
   <%= link_to "Mettre à jour votre projet", edit_product_path(@product), class: 'btn btn-md btn-danger' %>
-  <%= link_to "Partager mon projet", root_path, class: 'btn btn-info' %>
-
   <br>
+  <!--
   (dernière mise à jour:<%= timeago_tag @product.updated_at, :lang => :fr  %>)
-  <% else %>
-  <%= link_to new_user_session_path, class: 'btn btn-md btn-info' do %>
-  Contacter le developpeur
-  <% end %>
+  -->
   <% end %>
 </div>
 <% end %>

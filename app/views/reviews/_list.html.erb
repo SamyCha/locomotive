@@ -13,11 +13,12 @@
 </div>
 <div class="row text-left">
   <div class="col-xs-9">
-   <h5><%= r.comment %></h5>
+   <%= r.comment %>
  </div>
  <div class="col-xs-3">
   <%= link_to "Supprimer", [@product, r], class: "btn btn-success", method: :delete, data: {confirm: "Etes-vous sûr?"} if current_user && current_user == r.user %>
 </div>
+<hr>
 </div>
 <% end %>
 <% end %>

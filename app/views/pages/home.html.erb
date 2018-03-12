@@ -77,36 +77,4 @@
 </div>
 </section>
 </div>
-<div class="container">
-  <div class="row">
-   <%= link_to concept_path do  %>
-   <div class="col-xs-12 col-sm-4 text-center">
-    <%= image_tag "clapping.png", height: 100 %>
-    <p>Recevez les encouragements des autres étudiants, grâce à nos jetons mensuels gratuits!</p>
-  </div>
-  <% end %>
-  <%= link_to root_path do  %>
-  <div class="col-xs-12 col-sm-4 text-center">
-    <%= image_tag "medal.png", height: 100 %>
-    <p>Inspirez-vous! Challenger vos projets entre vous! Suivez d'autres projets...</p>
-    <% end %>
-  </div>
-  <%= link_to root_path do  %>
-  <div class="col-xs-12 col-sm-4 text-center">
-    <%= image_tag "rocket.png", height: 100 %>
-    <p>Poussez vos projets grâce à l'appui de vos proches et d'autres acteurs qui accompagneront le developpement de votre projet</p>
-    <% end %>
-  </div>
-</div>
-<% if user_signed_in? %>
-<div class="row">
-  <%= render "proximityarticles" %>
-</div>
-<% else %>
-<div class="row">
-  <%= render "lastarticles" %>
-</div>
-<% end %>
-
-</div>
 </div>

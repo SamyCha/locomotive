@@ -4,7 +4,7 @@
       <div class="col-xs-12 col-sm-4">
        <h4>Le concept:</h4>
        Il est toujours difficile lorsque l'on développe un projet de savoir si l'on va atteindre son public. Les embuches sont nombreuses... et un peu de reconnaissance et d'encouragements sont parfois necessaires pour se re-booster<br>
-      La locomotiv' vous permet de mettre en ligne votre projet, le faire conaître, disposer d'un feed-back d'autres utilisateurs de la plateforme, et recruter des bétas testeurs.
+       La locomotiv' vous permet de mettre en ligne votre projet, le faire conaître, disposer d'un feed-back d'autres utilisateurs de la plateforme, et recruter des bétas testeurs.
        <br>
        Votre projet permettra aussi à d'autres de s'inspirer ou de se dire que vous avez la capacité de developper le projet d'un autre.<br>
        <%= link_to search_path, class: "btn btn-info" do %>
@@ -33,5 +33,26 @@
       <% end %>
     </div>
   </div>
+
+  <div class="row">
+   <%= link_to concept_path do  %>
+   <div class="col-xs-12 col-sm-4 text-center">
+    <%= image_tag "clapping.png", height: 100 %>
+    <p>Recevez les encouragements des autres étudiants, grâce à nos jetons mensuels gratuits!</p>
+  </div>
+  <% end %>
+  <%= link_to root_path do  %>
+  <div class="col-xs-12 col-sm-4 text-center">
+    <%= image_tag "medal.png", height: 100 %>
+    <p>Inspirez-vous! Challenger vos projets entre vous! Suivez d'autres projets...</p>
+    <% end %>
+  </div>
+  <%= link_to root_path do  %>
+  <div class="col-xs-12 col-sm-4 text-center">
+    <%= image_tag "rocket.png", height: 100 %>
+    <p>Poussez vos projets grâce à l'appui de vos proches et d'autres acteurs qui accompagneront le developpement de votre projet</p>
+    <% end %>
+  </div>
+</div>
 </div>
 </section>
