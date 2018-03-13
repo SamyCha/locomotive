@@ -2,7 +2,7 @@
 
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: %i[show search slide]
+  before_action :authenticate_user!, except: %i[show search]
   before_action :require_same_user, only: %i[edit update destroy]
   before_action :is_admin, only: %i[all_products]
 
@@ -13,20 +13,6 @@ class ProductsController < ApplicationController
   def search
     @products = Product.where(active: true)
   end
-
-  # pour le slider mobile
-  def slide
-   @articles = current_user.reservations.last(10)
-
-   if user_signed_in?
-    @address = current_user.address
-    @distance = current_user.distance
-    @active = Product.all.where(active: true)
-    @products = @active.near(@address, @distance).sample(50)
-  else
-    redirect_to search_path
-  end
-end
 
   # liste de tous les articles publiés et non publiés du vendeur
   def index

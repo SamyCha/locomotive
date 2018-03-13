@@ -13,34 +13,25 @@
       Découvrez les projets
       <% end %>
       <br><br>
+    </div>
+    <div class="col-md-3 ">
+    </div>
+    <div class="col-md-3 ">
+      <div class="box-shadow">
+       <% if !user_signed_in? %>
+       <section>
+        <h5><%= image_tag "clapping_white.png", heigth:75, width: 55 %>Supporter des projets</h5>
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
 
-<!--
-      <% if user_signed_in? %>
-      <div class="hidden-desktop">
-      <%= link_to "Les articles autour de vous", slide_path, class:"btn btn-info" %>
-      </div>
-      <% end %>
-    -->
-
-  </div>
-  <div class="col-md-3 ">
-  </div>
-  <div class="col-md-3 ">
-    <div class="box-shadow">
-     <% if !user_signed_in? %>
-     <section>
-      <h5><%= image_tag "clapping_white.png", heigth:75, width: 55 %>Supporter des projets</h5>
-      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
-
-      <%= f.text_field :pseudo, autofocus: true, placeholder: "Pseudo",:class=>"input-small" %><br><br>
-      <div class="form-group">
-        <%= f.text_field :address, placeholder: "Addresse postale", id:"user_input_autocomplete_address", :class=>"input-small" %>
-        <input id="street_number" name="street_number" disabled type="hidden">
-        <input id="route" name="route" disabled type="hidden">
-        <input id="locality" name="locality" disabled type="hidden">
-        <input id="country" name="country" disabled type="hidden">
-      </div>
+        <%= f.text_field :pseudo, autofocus: true, placeholder: "Pseudo",:class=>"input-small" %><br><br>
+        <div class="form-group">
+          <%= f.text_field :address, placeholder: "Addresse postale", id:"user_input_autocomplete_address", :class=>"input-small" %>
+          <input id="street_number" name="street_number" disabled type="hidden">
+          <input id="route" name="route" disabled type="hidden">
+          <input id="locality" name="locality" disabled type="hidden">
+          <input id="country" name="country" disabled type="hidden">
+        </div>
 
 <!--
         Articles pouvant m'interesser:
