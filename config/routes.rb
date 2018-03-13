@@ -27,8 +27,6 @@ root to: 'pages#home'
     resources :reviews, only: [:create, :destroy]
   end
 
-  resources :photos
-
   resources :conversations, only: [:index, :show, :destroy] do
     member do
       post :reply
@@ -39,11 +37,10 @@ root to: 'pages#home'
       delete :empty_trash
     end
   end
-
+  resources :photos
+  resources :categories
   resources :messages, only: [:new, :create]
-
   resources :contacts, only: %i[new create]
-
   resources :meetings
   resources :meetings do
     post :participate
