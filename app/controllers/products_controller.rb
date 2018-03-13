@@ -81,6 +81,7 @@ end
   end
 
   def update
+    params[:product][:category_ids] ||=[]
     @product.active = false
     if @product.update(product_params)
       params[:images]&.each do |i|
@@ -105,7 +106,7 @@ end
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :category, :address, :status, :active, :youtube_id, :developped_at, :objectives, :youtube_startsecond, :project_url, :sector, :framework, :devolpement_duration, :number_of_developper, :github)
+    params.require(:product).permit(:name, :description, :category, :address, :status, :active, :youtube_id, :developped_at, :objectives, :youtube_startsecond, :project_url, :sector, :framework, :devolpement_duration, :number_of_developper, :github, {category_ids: []})
   end
 
   def require_same_user
