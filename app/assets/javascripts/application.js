@@ -12,11 +12,6 @@
 //= require chosen-jquery
 //= require messages
 
-//= require ./jquery.jTinder.js
-//= require ./jquery.transform2d.js
-//= require ./main.js
-//= require ./jquery.min.js
-
 
 //= require ./sticky-kit.js
 //= require ./jquery.raty.js

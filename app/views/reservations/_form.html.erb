@@ -1,7 +1,7 @@
 <div class="row">
 <div class="col-xs-9">
 <h3><strong><%= @product.name %></strong></h3>
-<h5>secteur: <%= @product.sector %></h5>
+
 </div>
 <div class="col-xs-3">
 <%= link_to "" do  %>
@@ -20,8 +20,8 @@
 
 <% @product.categories.each do |category| %>
   <span class="label label-success"><%= category.name %></span>
-<% end %><br><br>
-<%= @product.description %><br>
+<% end %><br><br>Secteur d'activité: <%= @product.sector %><br>
+Description: <%= @product.description %><br>
 
 
 <%= form_for([@product, @product.reservations.new]) do |f| %>

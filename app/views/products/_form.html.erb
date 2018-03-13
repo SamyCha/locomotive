@@ -45,7 +45,7 @@
 
         <div class="row">
           <div class="col-xs-12">
-           <label>Ajouter des Tags à votre projet</label>
+           <label>Ajouter des Tags à votre projet (max 8)</label>
             <% for category in Category.all %>
             <div>
               <p><%= check_box_tag "product[category_ids][]", category.id, @product.categories.include?(category) %>
