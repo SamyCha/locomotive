@@ -28,6 +28,21 @@ User.create!(pseudo: Faker::Superhero.descriptor, email: 'buyer5@gmail.com', pas
 
 # Products
 
+#Products
+
+Product.create!(name: 'File On', description: Faker::Food.dish, active: true, status: 0, address: Faker::Address.city, youtube_startsecond: 340, user_id: User.first.id)
+
+#Categories
+
+Category.create(name: 'Services')
+Category.create(name: 'Transports')
+Category.create(name: 'Food')
+Category.create(name: 'Fashion')
+
+
+
+
+
 #Product.create!(name: 'Chaussures Berlutti', brand: 'Berlutti', size: '44', color: Faker::Color.color_name, description: Faker::Food.dish, category: 'chaussures', state: 'neuf', active: true, status: 0, address: Faker::Address.city, price: Faker::Number.between(5, 100), user_id: User.first.id)
 #Product.create!(name: 'Baskets Nike', brand: 'Nike', size: '42', color: Faker::Color.color_name, description: Faker::Food.dish, category: 'chaussures', state: 'neuf', active: true, status: 0, address: Faker::Address.city, price: Faker::Number.between(5, 100), user_id: User.second.id)
 #Product.create!(name: 'Jean Kaporal', brand: 'Kaporal', size: 'medium', color: Faker::Color.color_name, description: Faker::Food.dish, category: 'pantallon', state: 'neuf', active: true, status: 0, address: Faker::Address.city, price: Faker::Number.between(5, 100), user_id: User.find(3).id)

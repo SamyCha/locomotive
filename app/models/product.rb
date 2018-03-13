@@ -5,6 +5,8 @@ class Product < ApplicationRecord
   has_many :photos
   has_many :reservations
   has_many :reviews
+    has_and_belongs_to_many :categories
+
 
   validates :name, presence: true, length: { maximum: 20 }
   validates :description, presence: true, length: { maximum: 120 }

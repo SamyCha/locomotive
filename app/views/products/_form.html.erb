@@ -42,6 +42,20 @@
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+           <label>Ajouter des Tags à votre projet</label>
+            <% for category in Category.all %>
+            <div>
+              <p><%= check_box_tag "product[category_ids][]", category.id, @product.categories.include?(category) %>
+              <%= category.name %></p>
+            </div>
+            <% end %>
+          </div>
+        </div>
+
+
         <div class="panel-heading">
          <h5> Communiquer sur le projet:</h5>
        </div>
@@ -104,47 +118,47 @@
         </div>
       </div>
 
-    <div class="col-xs-4">
-      <div class="form-group">
-        <label> Bootcamp du developpement</label>
-        <%= f.select :developped_at, ["le wagon Bordeaux", "le wagon Nantes", "le wagon Paris", "le wagon Marseille", "le wagon Lyon"], id: "home_type", prompt: "A sélectionner...", class: "form-control" %>
+      <div class="col-xs-4">
+        <div class="form-group">
+          <label> Bootcamp du developpement</label>
+          <%= f.select :developped_at, ["le wagon Bordeaux", "le wagon Nantes", "le wagon Paris", "le wagon Marseille", "le wagon Lyon"], id: "home_type", prompt: "A sélectionner...", class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-heading">
+     <h5>   Médias supplémentaires:</h5>
+   </div>
+   <div class="row">
+     <div class="col-md-4">
+       <div class="form-group">
+        <span class="btn btn-default btn-file">
+          <i class = "fa fa-cloud-upload fa-lg"></i> Téléchargez vos photos !
+          <%= file_field_tag "images[]", type: :file, multiple: true %>
+        </span>
       </div>
     </div>
   </div>
-
+  <font color="#555555" face="Arial, Helvetica Neue, Helvetica, Tahoma, sans-serif"></font>
+  <div id="photos">
+    <%= render 'photos/list' %>
+  </div>
   <div class="panel-heading">
-   <h5>   Médias supplémentaires:</h5>
- </div>
- <div class="row">
-   <div class="col-md-4">
-     <div class="form-group">
-      <span class="btn btn-default btn-file">
-        <i class = "fa fa-cloud-upload fa-lg"></i> Téléchargez vos photos !
-        <%= file_field_tag "images[]", type: :file, multiple: true %>
-      </span>
+    <h5>  Visibilité du projet:</h5>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.check_box :status %> Dépublier le projet
+      </div>
     </div>
-  </div>
-</div>
-<font color="#555555" face="Arial, Helvetica Neue, Helvetica, Tahoma, sans-serif"></font>
-<div id="photos">
-  <%= render 'photos/list' %>
-</div>
-<div class="panel-heading">
-  <h5>  Visibilité du projet:</h5>
-</div>
-<div class="row">
-  <div class="col-md-4">
-    <div class="form-group">
-      <%= f.check_box :status %> Dépublier le projet
+    <br>
+    <br>
+    <div class="actions">
+      <%= f.submit "Valider le projet", class: 'btn btn-md btn-danger' %>
     </div>
+    <% end %>
   </div>
-  <br>
-  <br>
-  <div class="actions">
-    <%= f.submit "Valider le projet", class: 'btn btn-md btn-danger' %>
-  </div>
-  <% end %>
-</div>
 </div>
 </div>
 

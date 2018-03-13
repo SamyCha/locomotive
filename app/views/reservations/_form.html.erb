@@ -1,6 +1,7 @@
 <div class="row">
 <div class="col-xs-9">
 <h3><strong><%= @product.name %></strong></h3>
+<h5>secteur: <%= @product.sector %></h5>
 </div>
 <div class="col-xs-3">
 <%= link_to "" do  %>
@@ -17,7 +18,9 @@
   <% end %>
 </div>
 
-<span class="label label-success"><%= @product.sector %></span><br>
+<% @product.categories.each do |category| %>
+  <span class="label label-success"><%= category.name %></span>
+<% end %><br><br>
 <%= @product.description %><br>
 
 
